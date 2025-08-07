@@ -1,0 +1,89 @@
+import { useParams } from 'react-router-dom';
+import { DiscussionPage } from '../../../components/discussion/DiscussionPage';
+import { PullRequest } from '../../../types/discussion';
+import { useDiscussionNavigation } from '../../../router/useDiscussionNavigation';
+
+// Mock data - replace with actual API call
+const mockPullRequest: PullRequest = {
+	id: '1',
+	title: 'feat: update to expo 53',
+	number: 123,
+	author: {
+		id: 'nyambogahezron',
+		username: 'nyambogahezron',
+		avatar:
+			'https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop',
+	},
+	state: 'merged',
+	createdAt: '2024-05-24T10:00:00Z',
+	updatedAt: '2024-05-25T15:30:00Z',
+	description: 'No description provided.',
+	branch: {
+		source: 'hezron',
+		target: 'master',
+	},
+	commits: [
+		{
+			id: '1',
+			sha: '8a47f62abc123',
+			message: 'update to expo 53',
+			author: {
+				id: 'nyambogahezron',
+				username: 'nyambogahezron',
+				avatar:
+					'https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop',
+			},
+			createdAt: '2024-05-24T12:00:00Z',
+		},
+	],
+	reviews: [
+		{
+			id: '1',
+			author: {
+				id: 'nezzyyoung',
+				username: 'nezzyyoung',
+				avatar:
+					'https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop',
+			},
+			state: 'commented',
+			createdAt: '2024-05-25T14:00:00Z',
+			comments: [
+				{
+					id: '1',
+					content:
+						'Upgrade to sdk 53 will enable us to have access to most libraries',
+				},
+			],
+		},
+	],
+	assignees: [],
+	reviewers: [
+		{
+			id: 'nezzyyoung',
+			username: 'nezzyyoung',
+			avatar:
+				'https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop',
+		},
+	],
+	labels: [],
+	linkedIssues: [],
+};
+
+export default function DiscussionPageRoute() {
+	const { id } = useParams<{ id: string }>();
+	const { currentDiscussionId, isOnDiscussionRoute } = useDiscussionNavigation();
+	
+	// Log for debugging
+	console.log('Current discussion route info:', {
+		id,
+		currentDiscussionId,
+		isOnDiscussionRoute
+	});
+	
+	return (
+		<DiscussionPage 
+			pullRequestId={id || currentDiscussionId || ''} 
+			initialData={mockPullRequest} 
+		/>
+	);
+}

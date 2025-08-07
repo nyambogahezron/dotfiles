@@ -1,0 +1,21 @@
+{
+  "version": 3,
+  "requesterUsername": "nyambogahezron",
+  "requesterAvatarIconUri": {
+    "$mid": 1,
+    "path": "/u/133749469",
+    "scheme": "https",
+    "authority": "avatars.githubusercontent.com",
+    "query": "v=4"
+  },
+  "responderUsername": "GitHub Copilot",
+  "responderAvatarIconUri": {
+    "id": "copilot"
+  },
+  "initialLocation": "panel",
+  "requests": [],
+  "sessionId": "e32f7de3-9a9f-461e-86c9-fac86436dac1",
+  "creationDate": 1754242949148,
+  "isImported": false,
+  "lastMessageDate": 1754242949148
+}

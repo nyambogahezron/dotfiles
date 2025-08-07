@@ -1,0 +1,233 @@
+import { useState, useEffect, useCallback, useRef } from 'react';
+import { debounce, storage } from '@taskflow/shared-utils';
+import type { ApiResponse } from '@taskflow/shared-types';
+
+// useLocalStorage hook
+export function useLocalStorage<T>(key: string, initialValue: T) {
+  const [storedValue, setStoredValue] = useState<T>(() => {
+    try {
+      return storage.get(key, initialValue);
+    } catch (error) {
+      console.error(`Error reading localStorage key "${key}":`, error);
+      return initialValue;
+    }
+  });
+
+  const setValue = useCallback((value: T | ((val: T) => T)) => {
+    try {
+      const valueToStore = value instanceof Function ? value(storedValue) : value;
+      setStoredValue(valueToStore);
+      storage.set(key, valueToStore);
+    } catch (error) {
+      console.error(`Error setting localStorage key "${key}":`, error);
+    }
+  }, [key, storedValue]);
+
+  const removeValue = useCallback(() => {
+    try {
+      storage.remove(key);
+      setStoredValue(initialValue);
+    } catch (error) {
+      console.error(`Error removing localStorage key "${key}":`, error);
+    }
+  }, [key, initialValue]);
+
+  return [storedValue, setValue, removeValue] as const;
+}
+
+// useDebounce hook
+export function useDebounce<T>(value: T, delay: number): T {
+  const [debouncedValue, setDebouncedValue] = useState<T>(value);
+
+  useEffect(() => {
+    const handler = setTimeout(() => {
+      setDebouncedValue(value);
+    }, delay);
+
+    return () => {
+      clearTimeout(handler);
+    };
+  }, [value, delay]);
+
+  return debouncedValue;
+}
+
+// useToggle hook
+export function useToggle(initialValue = false): [boolean, () => void, (value: boolean) => void] {
+  const [value, setValue] = useState(initialValue);
+
+  const toggle = useCallback(() => setValue(v => !v), []);
+  const setToggle = useCallback((newValue: boolean) => setValue(newValue), []);
+
+  return [value, toggle, setToggle];
+}
+
+// usePrevious hook
+export function usePrevious<T>(value: T): T | undefined {
+  const ref = useRef<T>();
+
+  useEffect(() => {
+    ref.current = value;
+  });
+
+  return ref.current;
+}
+
+// useAsync hook for API calls
+export interface UseAsyncState<T> {
+  data: T | null;
+  loading: boolean;
+  error: string | null;
+}
+
+export function useAsync<T>(
+  asyncFunction: () => Promise<ApiResponse<T>>,
+  immediate = true
+): UseAsyncState<T> & {
+  execute: () => Promise<void>;
+  reset: () => void;
+} {
+  const [state, setState] = useState<UseAsyncState<T>>({
+    data: null,
+    loading: false,
+    error: null,
+  });
+
+  const execute = useCallback(async () => {
+    setState(prev => ({ ...prev, loading: true, error: null }));
+
+    try {
+      const response = await asyncFunction();
+      if (response.success) {
+        setState({ data: response.data || null, loading: false, error: null });
+      } else {
+        setState({ data: null, loading: false, error: response.error || 'An error occurred' });
+      }
+    } catch (error) {
+      setState({ data: null, loading: false, error: error instanceof Error ? error.message : 'An error occurred' });
+    }
+  }, [asyncFunction]);
+
+  const reset = useCallback(() => {
+    setState({ data: null, loading: false, error: null });
+  }, []);
+
+  useEffect(() => {
+    if (immediate) {
+      execute();
+    }
+  }, [execute, immediate]);
+
+  return { ...state, execute, reset };
+}
+
+// useClickOutside hook
+export function useClickOutside<T extends HTMLElement = HTMLElement>(
+  handler: () => void
+): React.RefObject<T> {
+  const ref = useRef<T>(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (ref.current && !ref.current.contains(event.target as Node)) {
+        handler();
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, [handler]);
+
+  return ref;
+}
+
+// useWindowSize hook
+export function useWindowSize() {
+  const [windowSize, setWindowSize] = useState({
+    width: typeof window !== 'undefined' ? window.innerWidth : 0,
+    height: typeof window !== 'undefined' ? window.innerHeight : 0,
+  });
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+
+    const handleResize = debounce(() => {
+      setWindowSize({
+        width: window.innerWidth,
+        height: window.innerHeight,
+      });
+    }, 150);
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  return windowSize;
+}
+
+// useOnlineStatus hook
+export function useOnlineStatus(): boolean {
+  const [isOnline, setIsOnline] = useState(
+    typeof navigator !== 'undefined' ? navigator.onLine : true
+  );
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+
+    const handleOnline = () => setIsOnline(true);
+    const handleOffline = () => setIsOnline(false);
+
+    window.addEventListener('online', handleOnline);
+    window.addEventListener('offline', handleOffline);
+
+    return () => {
+      window.removeEventListener('online', handleOnline);
+      window.removeEventListener('offline', handleOffline);
+    };
+  }, []);
+
+  return isOnline;
+}
+
+// useInterval hook
+export function useInterval(callback: () => void, delay: number | null) {
+  const savedCallback = useRef(callback);
+
+  useEffect(() => {
+    savedCallback.current = callback;
+  }, [callback]);
+
+  useEffect(() => {
+    if (delay === null) return;
+
+    const tick = () => savedCallback.current();
+    const id = setInterval(tick, delay);
+
+    return () => clearInterval(id);
+  }, [delay]);
+}
+
+// useCopyToClipboard hook
+export function useCopyToClipboard(): [boolean, (text: string) => Promise<boolean>] {
+  const [isCopied, setIsCopied] = useState(false);
+
+  const copyToClipboard = useCallback(async (text: string): Promise<boolean> => {
+    if (!navigator?.clipboard) {
+      console.warn('Clipboard not supported');
+      return false;
+    }
+
+    try {
+      await navigator.clipboard.writeText(text);
+      setIsCopied(true);
+      setTimeout(() => setIsCopied(false), 2000);
+      return true;
+    } catch (error) {
+      console.error('Failed to copy to clipboard:', error);
+      setIsCopied(false);
+      return false;
+    }
+  }, []);
+
+  return [isCopied, copyToClipboard];
+}

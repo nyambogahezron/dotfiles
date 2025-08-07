@@ -1,0 +1,42 @@
+{
+  "$schema": "https://turborepo.com/schema.json",
+  "ui": "tui",
+  "globalEnv": ["NODE_ENV"],
+  "globalDependencies": ["**/.env"],
+  "globalPassThroughEnv": [
+    "EXPO_PUBLIC_MOVIE_API_KEY",
+    "VITE_MOVIE_API_KEY",
+    "PUBLIC_MOVIE_API_KEY",
+    "TMDB_API_KEY"
+  ],
+  "tasks": {
+    "build": {
+      "dependsOn": ["^check-types", "^build"],
+      "inputs": ["$TURBO_DEFAULT$", ".env*"],
+      "outputs": [".next/**", "!.next/cache/**", "dist/**", "packages/*/dist/**", "apps/*/dist/**"]
+    },
+    "test": {
+      "dependsOn": ["^test"],
+      "inputs": ["$TURBO_DEFAULT$", ".env*"]
+    },
+    "start": {
+      "cache": false,
+      "persistent": true,
+      "dependsOn": ["build"]
+    },
+    "lint": {
+      "dependsOn": ["^lint", "^build"]
+    },
+    "check-types": {
+      "dependsOn": ["^check-types"]
+    },
+    "dev": {
+      "cache": false,
+      "persistent": true,
+      "concurrency": 15
+    },
+    "format": {
+      "cache": false
+    }
+  }
+}

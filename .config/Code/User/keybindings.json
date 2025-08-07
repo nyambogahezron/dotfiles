@@ -1,0 +1,17 @@
+// Place your key bindings in this file to override the defaults
+[
+	{
+		"key": "ctrl+'",
+		"command": "workbench.files.action.collapseExplorerFolders"
+	},
+	{
+		"key": "ctrl+shift+0",
+		"command": "workbench.view.scm",
+		"when": "workbench.scm.active"
+	},
+	{
+		"key": "ctrl+shift+g",
+		"command": "-workbench.view.scm",
+		"when": "workbench.scm.active"
+	}
+]

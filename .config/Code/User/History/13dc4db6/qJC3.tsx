@@ -1,0 +1,517 @@
+import Colors from '@/constants/Colors';
+import {
+  fetchPersonDetails,
+  fetchPersonMovieCredits,
+  image500,
+  image185,
+} from '@repo/services/TMDBFetch';
+import type { MovieOrTV } from '@repo/interfaces';
+import { useLocalSearchParams, useRouter } from 'expo-router';
+import { Ionicons } from '@expo/vector-icons';
+import { useRef, useState, useEffect } from 'react';
+import {
+  Animated,
+  Platform,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+  Image,
+  ActivityIndicator,
+  FlatList,
+} from 'react-native';
+
+type Person = {
+  id: number;
+  name: string;
+  birthday?: string;
+  place_of_birth?: string;
+  biography?: string;
+  known_for_department?: string;
+  popularity?: number;
+  profile_path?: string | null;
+};
+
+const HEADER_HEIGHT = 400;
+const HEADER_MIN_HEIGHT = Platform.OS === 'ios' ? 90 : 70;
+
+export default function CastDetailsScreen() {
+  const { id } = useLocalSearchParams();
+  const router = useRouter();
+  const scrollY = useRef(new Animated.Value(0)).current;
+  const [loading, setLoading] = useState(true);
+  const [castDetails, setCastDetails] = useState<Person | null>(null);
+  const [movieCredits, setMovieCredits] = useState<MovieOrTV[]>([]);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (id) {
+      fetchCastDetails();
+    }
+  }, [id]);
+
+  const fetchCastDetails = async () => {
+    try {
+      setLoading(true);
+      setError(null);
+
+      const castId = id?.toString() || '';
+
+      // Fetch cast details and movie credits
+      const [details, credits] = await Promise.all([
+        fetchPersonDetails(castId),
+        fetchPersonMovieCredits(castId),
+      ]);
+
+      setCastDetails(details);
+      setMovieCredits(credits);
+    } catch (err) {
+      console.error('Error fetching cast details:', err);
+      setError('Failed to load cast details');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  if (loading) {
+    return (
+      <View style={styles.loadingContainer}>
+        <ActivityIndicator size="large" color={Colors.primary[500]} />
+        <Text style={styles.loadingText}>Loading...</Text>
+      </View>
+    );
+  }
+
+  if (error || !castDetails) {
+    return (
+      <View style={styles.errorContainer}>
+        <Text style={styles.errorText}>{error || 'Cast not found'}</Text>
+        <TouchableOpacity style={styles.retryButton} onPress={fetchCastDetails}>
+          <Text style={styles.retryButtonText}>Retry</Text>
+        </TouchableOpacity>
+      </View>
+    );
+  }
+
+  // Animation values
+  const headerHeight = scrollY.interpolate({
+    inputRange: [0, HEADER_HEIGHT - HEADER_MIN_HEIGHT],
+    outputRange: [HEADER_HEIGHT, HEADER_MIN_HEIGHT],
+    extrapolate: 'clamp',
+  });
+
+  const imageOpacity = scrollY.interpolate({
+    inputRange: [0, HEADER_HEIGHT - HEADER_MIN_HEIGHT],
+    outputRange: [1, 0.3],
+    extrapolate: 'clamp',
+  });
+
+  const headerTitleOpacity = scrollY.interpolate({
+    inputRange: [0, HEADER_HEIGHT - HEADER_MIN_HEIGHT],
+    outputRange: [0, 1],
+    extrapolate: 'clamp',
+  });
+
+  return (
+    <View style={styles.container}>
+      <Animated.View style={[styles.header, { height: headerHeight }]}>
+        <Animated.Image
+          source={{
+            uri: castDetails.profile_path
+              ? image500(castDetails.profile_path)
+              : 'https://i0.wp.com/digitalhealthskills.com/wp-content/uploads/2022/11/3da39-no-user-image-icon-27.png',
+          }}
+          style={[styles.headerImage, { opacity: imageOpacity }]}
+          resizeMode="cover"
+        />
+
+        {/* Header content */}
+        <View style={styles.headerContent}>
+          <Animated.View style={[styles.headerTitleContainer, { opacity: headerTitleOpacity }]}>
+            <Text style={styles.headerTitle} numberOfLines={1}>
+              {castDetails.name}
+            </Text>
+          </Animated.View>
+
+          <View style={styles.headerButtons}>
+            <TouchableOpacity style={styles.backButton} onPress={() => router.back()}>
+              <Ionicons name="chevron-back" size={24} color={Colors.neutral[100]} />
+            </TouchableOpacity>
+          </View>
+        </View>
+      </Animated.View>
+
+      <Animated.ScrollView
+        style={styles.scrollView}
+        contentContainerStyle={styles.scrollContent}
+        showsVerticalScrollIndicator={false}
+        onScroll={Animated.event([{ nativeEvent: { contentOffset: { y: scrollY } } }], {
+          useNativeDriver: false,
+        })}
+        scrollEventThrottle={16}
+      >
+        <View style={styles.content}>
+          {/* Name and Basic Info */}
+          <Text style={styles.title}>{castDetails.name}</Text>
+
+          <View style={styles.infoRow}>
+            {castDetails.birthday && (
+              <View style={styles.infoItem}>
+                <Ionicons name="calendar" size={16} color={Colors.neutral[400]} />
+                <Text style={styles.infoText}>
+                  {new Date(castDetails.birthday).toLocaleDateString()}
+                </Text>
+              </View>
+            )}
+
+            {castDetails.place_of_birth && (
+              <View style={styles.infoItem}>
+                <Ionicons name="location" size={16} color={Colors.neutral[400]} />
+                <Text style={styles.infoText} numberOfLines={1}>
+                  {castDetails.place_of_birth}
+                </Text>
+              </View>
+            )}
+
+            {castDetails.popularity && (
+              <View style={styles.infoItem}>
+                <Ionicons name="star" size={16} color={Colors.warning[400]} />
+                <Text style={styles.infoText}>{castDetails.popularity.toFixed(1)}</Text>
+              </View>
+            )}
+          </View>
+
+          {/* Known For */}
+          {castDetails.known_for_department && (
+            <View style={styles.knownForContainer}>
+              <Text style={styles.knownForLabel}>Known for:</Text>
+              <Text style={styles.knownForText}>{castDetails.known_for_department}</Text>
+            </View>
+          )}
+
+          {/* Biography */}
+          {castDetails.biography && (
+            <View style={styles.section}>
+              <Text style={styles.sectionTitle}>Biography</Text>
+              <Text style={styles.biography}>{castDetails.biography}</Text>
+            </View>
+          )}
+
+          {/* Movie Credits */}
+          {movieCredits.length > 0 && (
+            <View style={styles.section}>
+              <Text style={styles.sectionTitle}>Movies ({movieCredits.length})</Text>
+              <FlatList
+                data={movieCredits}
+                horizontal
+                showsHorizontalScrollIndicator={false}
+                keyExtractor={(item) => item.id.toString()}
+                renderItem={({ item }) => (
+                  <TouchableOpacity
+                    style={styles.movieCard}
+                    onPress={() => router.push(`/media/${item.id}?type=movie`)}
+                  >
+                    <Image
+                      source={{
+                        uri: item.poster_path
+                          ? image185(item.poster_path)
+                          : 'https://via.placeholder.com/185x278?text=No+Image',
+                      }}
+                      style={styles.movieImage}
+                    />
+                    <Text style={styles.movieTitle} numberOfLines={2}>
+                      {item.title}
+                    </Text>
+                    {item.release_date && (
+                      <Text style={styles.movieYear}>
+                        {new Date(item.release_date).getFullYear()}
+                      </Text>
+                    )}
+                  </TouchableOpacity>
+                )}
+                contentContainerStyle={styles.movieList}
+              />
+            </View>
+          )}
+
+          {/* Complete Filmography */}
+          {movieCredits.length > 6 && (
+            <View style={styles.section}>
+              <Text style={styles.sectionTitle}>Complete Filmography</Text>
+              {movieCredits
+                .sort((a, b) => {
+                  const dateA = new Date(a.release_date || '').getTime();
+                  const dateB = new Date(b.release_date || '').getTime();
+                  return dateB - dateA; // Sort by newest first
+                })
+                .map((movie) => (
+                  <TouchableOpacity
+                    key={movie.id}
+                    style={styles.filmographyItem}
+                    onPress={() => router.push(`/media/${movie.id}?type=movie`)}
+                  >
+                    <Image
+                      source={{
+                        uri: movie.poster_path
+                          ? image185(movie.poster_path)
+                          : 'https://via.placeholder.com/92x138?text=No+Image',
+                      }}
+                      style={styles.filmographyImage}
+                    />
+                    <View style={styles.filmographyInfo}>
+                      <Text style={styles.filmographyTitle} numberOfLines={2}>
+                        {movie.title}
+                      </Text>
+                      {movie.release_date && (
+                        <Text style={styles.filmographyYear}>
+                          {new Date(movie.release_date).getFullYear()}
+                        </Text>
+                      )}
+                      {movie.vote_average > 0 && (
+                        <View style={styles.filmographyRating}>
+                          <Ionicons name="star" size={12} color={Colors.warning[400]} />
+                          <Text style={styles.filmographyRatingText}>
+                            {movie.vote_average.toFixed(1)}
+                          </Text>
+                        </View>
+                      )}
+                    </View>
+                  </TouchableOpacity>
+                ))}
+            </View>
+          )}
+        </View>
+      </Animated.ScrollView>
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: Colors.neutral[950],
+  },
+  header: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    zIndex: 100,
+    overflow: 'hidden',
+  },
+  headerImage: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    width: '100%',
+    height: '100%',
+  },
+  headerContent: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    backgroundColor: 'rgba(0, 0, 0, 0.3)',
+    paddingTop: Platform.OS === 'ios' ? 50 : 30,
+    paddingHorizontal: 16,
+  },
+  headerTitleContainer: {
+    position: 'absolute',
+    top: Platform.OS === 'ios' ? 50 : 30,
+    left: 16,
+    right: 16,
+    alignItems: 'center',
+  },
+  headerTitle: {
+    fontFamily: 'Inter-SemiBold',
+    fontSize: 18,
+    color: Colors.neutral[100],
+  },
+  headerButtons: {
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+  },
+  backButton: {
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  scrollView: {
+    flex: 1,
+  },
+  scrollContent: {
+    paddingTop: HEADER_HEIGHT,
+  },
+  content: {
+    padding: 16,
+  },
+  title: {
+    fontFamily: 'Inter-SemiBold',
+    fontSize: 24,
+    color: Colors.neutral[100],
+    marginBottom: 12,
+  },
+  infoRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 16,
+    flexWrap: 'wrap',
+  },
+  infoItem: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginRight: 16,
+    marginBottom: 8,
+    flex: 1,
+    minWidth: '45%',
+  },
+  infoText: {
+    fontFamily: 'Inter-Regular',
+    fontSize: 14,
+    color: Colors.neutral[400],
+    marginLeft: 6,
+    flex: 1,
+  },
+  knownForContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 20,
+  },
+  knownForLabel: {
+    fontFamily: 'Inter-Medium',
+    fontSize: 14,
+    color: Colors.neutral[400],
+    marginRight: 8,
+  },
+  knownForText: {
+    fontFamily: 'Inter-SemiBold',
+    fontSize: 14,
+    color: Colors.primary[400],
+  },
+  section: {
+    marginBottom: 24,
+  },
+  sectionTitle: {
+    fontFamily: 'Inter-SemiBold',
+    fontSize: 18,
+    color: Colors.neutral[100],
+    marginBottom: 12,
+  },
+  biography: {
+    fontFamily: 'Inter-Regular',
+    fontSize: 14,
+    color: Colors.neutral[300],
+    lineHeight: 20,
+  },
+  movieList: {
+    paddingRight: 16,
+  },
+  movieCard: {
+    marginRight: 12,
+    width: 120,
+  },
+  movieImage: {
+    width: 120,
+    height: 180,
+    borderRadius: 8,
+    backgroundColor: Colors.neutral[800],
+    marginBottom: 8,
+  },
+  movieTitle: {
+    fontFamily: 'Inter-Medium',
+    fontSize: 12,
+    color: Colors.neutral[100],
+    textAlign: 'center',
+    marginBottom: 4,
+  },
+  movieYear: {
+    fontFamily: 'Inter-Regular',
+    fontSize: 11,
+    color: Colors.neutral[400],
+    textAlign: 'center',
+  },
+  filmographyItem: {
+    flexDirection: 'row',
+    marginBottom: 12,
+    backgroundColor: Colors.neutral[900],
+    borderRadius: 8,
+    padding: 12,
+  },
+  filmographyImage: {
+    width: 60,
+    height: 90,
+    borderRadius: 6,
+    backgroundColor: Colors.neutral[800],
+    marginRight: 12,
+  },
+  filmographyInfo: {
+    flex: 1,
+    justifyContent: 'center',
+  },
+  filmographyTitle: {
+    fontFamily: 'Inter-Medium',
+    fontSize: 14,
+    color: Colors.neutral[100],
+    marginBottom: 4,
+  },
+  filmographyYear: {
+    fontFamily: 'Inter-Regular',
+    fontSize: 12,
+    color: Colors.neutral[400],
+    marginBottom: 4,
+  },
+  filmographyRating: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  filmographyRatingText: {
+    fontFamily: 'Inter-Regular',
+    fontSize: 12,
+    color: Colors.neutral[400],
+    marginLeft: 4,
+  },
+  loadingContainer: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: Colors.neutral[950],
+  },
+  loadingText: {
+    fontFamily: 'Inter-Medium',
+    fontSize: 16,
+    color: Colors.neutral[400],
+    marginTop: 12,
+  },
+  errorContainer: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: Colors.neutral[950],
+    padding: 20,
+  },
+  errorText: {
+    fontFamily: 'Inter-Medium',
+    fontSize: 16,
+    color: Colors.neutral[400],
+    textAlign: 'center',
+    marginBottom: 20,
+  },
+  retryButton: {
+    backgroundColor: Colors.primary[500],
+    paddingHorizontal: 20,
+    paddingVertical: 10,
+    borderRadius: 8,
+  },
+  retryButtonText: {
+    fontFamily: 'Inter-Medium',
+    fontSize: 14,
+    color: Colors.neutral[100],
+  },
+});

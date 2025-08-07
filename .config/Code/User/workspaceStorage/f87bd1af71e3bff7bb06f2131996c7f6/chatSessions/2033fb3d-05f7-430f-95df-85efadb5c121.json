@@ -1,0 +1,1034 @@
+{
+  "version": 3,
+  "requesterUsername": "nyambogahezron",
+  "requesterAvatarIconUri": {
+    "$mid": 1,
+    "path": "/u/133749469",
+    "scheme": "https",
+    "authority": "avatars.githubusercontent.com",
+    "query": "v=4"
+  },
+  "responderUsername": "GitHub Copilot",
+  "responderAvatarIconUri": {
+    "id": "copilot"
+  },
+  "initialLocation": "panel",
+  "requests": [
+    {
+      "requestId": "request_32022f50-e4ac-4357-b357-37e5f048f081",
+      "message": {
+        "parts": [
+          {
+            "range": {
+              "start": 0,
+              "endExclusive": 41072
+            },
+            "editorRange": {
+              "startLineNumber": 1,
+              "startColumn": 1,
+              "endLineNumber": 437,
+              "endColumn": 3
+            },
+            "text": "ck Error (watcher): Error: EMFILE: too many open files, watch '/home/junior'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps/web'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps/web'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps/web'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps/web'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps/web'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps/web'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps/web'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps/web'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps/web'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps/web'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps/web'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps/web'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps/web'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps/web'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps/web'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps/web'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps/web'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps/web'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps/web'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps/web'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps/web'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps/web'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps/web'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps/web'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps/web'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps/web'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps/web'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps/web'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps/web'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps/web'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps/web'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps/web'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps/web'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps/web'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps/web'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps/web'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps/web'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home'\n ✓ Ready in 19s\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps/web'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps/web'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home'\n ⚠ Found a change in next.config.js. Restarting the server to apply the changes...\n^C",
+            "kind": "text"
+          }
+        ],
+        "text": "ck Error (watcher): Error: EMFILE: too many open files, watch '/home/junior'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps/web'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps/web'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps/web'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps/web'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps/web'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps/web'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps/web'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps/web'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps/web'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps/web'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps/web'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps/web'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps/web'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps/web'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps/web'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps/web'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps/web'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps/web'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps/web'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps/web'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps/web'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps/web'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps/web'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps/web'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps/web'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps/web'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps/web'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps/web'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps/web'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps/web'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps/web'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps/web'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps/web'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps/web'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps/web'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps/web'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps/web'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home'\n ✓ Ready in 19s\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps/web'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps/web'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow/apps'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects/task-flow'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior/Projects'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home/junior'\nWatchpack Error (watcher): Error: EMFILE: too many open files, watch '/home'\n ⚠ Found a change in next.config.js. Restarting the server to apply the changes...\n^C"
+      },
+      "variableData": {
+        "variables": [
+          {
+            "id": "vscode.prompt.instructions.root__file:///home/junior/Projects/task-flow/.github/instructions/nx.instructions.md",
+            "name": "prompt:nx.instructions.md",
+            "value": {
+              "$mid": 1,
+              "external": "file:///home/junior/Projects/task-flow/.github/instructions/nx.instructions.md",
+              "path": "/home/junior/Projects/task-flow/.github/instructions/nx.instructions.md",
+              "scheme": "file"
+            },
+            "kind": "promptFile",
+            "modelDescription": "Prompt instructions file",
+            "isRoot": true,
+            "originLabel": "Automatically attached as pattern is **",
+            "automaticallyAdded": true
+          },
+          {
+            "id": "vscode.prompt.instructions.text.github.copilot.chat.codeGeneration.instructions",
+            "name": "prompt:text",
+            "value": "Here is a list of instruction files that contain rules for modifying or creating new code.\nThese files are important for ensuring that the code is modified or created correctly.\nPlease make sure to follow the rules specified in these files when working with the codebase.\nIf the file is not already available as attachment, use the `read_file` tool to acquire it.\nMake sure to acquire the instructions before making any changes to the code.\n| Pattern | File Path | Description |\n| ------- | --------- | ----------- |\n| **/*-post-r-pm-* | '/tmp/postman-http-request-post-response.instructions.md' |  |\n| **/*-pre-r-pm-* | '/tmp/postman-http-request-pre-request.instructions.md' |  |\n| **/*-post-c-pm-* | '/tmp/postman-collections-post-response.instructions.md' |  |\n| **/*-pre-c-pm-* | '/tmp/postman-collections-pre-request.instructions.md' |  |\n| **/*-post-f-pm-* | '/tmp/postman-folder-post-response.instructions.md' |  |\n| **/*-pre-f-pm-* | '/tmp/postman-folder-pre-request.instructions.md' |  |",
+            "settingId": "github.copilot.chat.codeGeneration.instructions",
+            "kind": "promptText",
+            "modelDescription": "Prompt instructions text",
+            "automaticallyAdded": true
+          }
+        ]
+      },
+      "response": [
+        {
+          "value": "This error indicates that your system is hitting the file descriptor limit (EMFILE: too many open files). This is a common issue on Linux systems when webpack's file watcher tries to watch too many files simultaneously. Here are several solutions to fix this:\n\n## Solution 1: Increase the file descriptor limit (Recommended) ",
+          "supportThemeIcons": false,
+          "supportHtml": false,
+          "baseUri": {
+            "$mid": 1,
+            "path": "/home/junior/Projects/task-flow/",
+            "scheme": "file"
+          }
+        },
+        {
+          "kind": "prepareToolInvocation",
+          "toolName": "copilot_runInTerminal"
+        },
+        {
+          "kind": "toolInvocationSerialized",
+          "invocationMessage": "Using \"Run In Terminal\"",
+          "isConfirmed": true,
+          "isComplete": true,
+          "toolSpecificData": {
+            "kind": "terminal",
+            "language": "sh",
+            "command": "ulimit -n"
+          },
+          "toolCallId": "b1738a35-b873-464a-b503-555680955367",
+          "toolId": "copilot_runInTerminal"
+        },
+        {
+          "value": "Your current limit is 524,288 which should be sufficient. Let's try a temporary increase and then look at other solutions: ",
+          "supportThemeIcons": false,
+          "supportHtml": false,
+          "baseUri": {
+            "$mid": 1,
+            "path": "/home/junior/Projects/task-flow/",
+            "scheme": "file"
+          }
+        },
+        {
+          "kind": "prepareToolInvocation",
+          "toolName": "copilot_runInTerminal"
+        },
+        {
+          "kind": "toolInvocationSerialized",
+          "invocationMessage": "Using \"Run In Terminal\"",
+          "isConfirmed": true,
+          "isComplete": true,
+          "toolSpecificData": {
+            "kind": "terminal",
+            "language": "sh",
+            "command": "ulimit -n 1048576"
+          },
+          "toolCallId": "47bb4b41-f228-485a-b6ae-f26532ff23b6",
+          "toolId": "copilot_runInTerminal"
+        },
+        {
+          "value": "Let's check the hard limit and available options: ",
+          "supportThemeIcons": false,
+          "supportHtml": false,
+          "baseUri": {
+            "$mid": 1,
+            "path": "/home/junior/Projects/task-flow/",
+            "scheme": "file"
+          }
+        },
+        {
+          "kind": "prepareToolInvocation",
+          "toolName": "copilot_runInTerminal"
+        },
+        {
+          "kind": "toolInvocationSerialized",
+          "invocationMessage": "Using \"Run In Terminal\"",
+          "isConfirmed": true,
+          "isComplete": true,
+          "toolSpecificData": {
+            "kind": "terminal",
+            "language": "sh",
+            "command": "ulimit -Hn && ulimit -Sn"
+          },
+          "toolCallId": "4db779cb-a829-42a0-a163-91fb9ee922be",
+          "toolId": "copilot_runInTerminal"
+        },
+        {
+          "value": "## Solution 2: Configure webpack to use polling instead of file system events\n\nLet's check your Next.js configuration and modify it to use polling: ",
+          "supportThemeIcons": false,
+          "supportHtml": false,
+          "baseUri": {
+            "$mid": 1,
+            "path": "/home/junior/Projects/task-flow/",
+            "scheme": "file"
+          }
+        },
+        {
+          "kind": "prepareToolInvocation",
+          "toolName": "copilot_readFile"
+        },
+        {
+          "kind": "toolInvocationSerialized",
+          "invocationMessage": {
+            "value": "Reading [](file:///home/junior/Projects/task-flow/apps/web/next.config.js)",
+            "supportThemeIcons": false,
+            "supportHtml": false,
+            "uris": {
+              "file:///home/junior/Projects/task-flow/apps/web/next.config.js": {
+                "$mid": 1,
+                "path": "/home/junior/Projects/task-flow/apps/web/next.config.js",
+                "scheme": "file"
+              }
+            }
+          },
+          "pastTenseMessage": {
+            "value": "Read [](file:///home/junior/Projects/task-flow/apps/web/next.config.js)",
+            "supportThemeIcons": false,
+            "supportHtml": false,
+            "uris": {
+              "file:///home/junior/Projects/task-flow/apps/web/next.config.js": {
+                "$mid": 1,
+                "path": "/home/junior/Projects/task-flow/apps/web/next.config.js",
+                "scheme": "file"
+              }
+            }
+          },
+          "isConfirmed": true,
+          "isComplete": true,
+          "toolCallId": "58aacaf4-26b4-4447-8aff-54e5c1c63d9a",
+          "toolId": "copilot_readFile"
+        },
+        {
+          "value": "Now let's modify the Next.js config to use polling: ",
+          "supportThemeIcons": false,
+          "supportHtml": false,
+          "baseUri": {
+            "$mid": 1,
+            "path": "/home/junior/Projects/task-flow/",
+            "scheme": "file"
+          }
+        },
+        {
+          "kind": "prepareToolInvocation",
+          "toolName": "copilot_replaceString"
+        },
+        {
+          "kind": "toolInvocationSerialized",
+          "presentation": "hidden",
+          "invocationMessage": "Using \"Replace String in File\"",
+          "isConfirmed": true,
+          "isComplete": true,
+          "toolCallId": "5cb93022-7c96-437f-8a15-8f916b4712a7",
+          "toolId": "copilot_replaceString"
+        },
+        {
+          "value": "\n```\n",
+          "supportThemeIcons": false,
+          "supportHtml": false,
+          "uris": {}
+        },
+        {
+          "id": "e2a7c9af-82ac-4a71-85ea-59a58a1238ef",
+          "kind": "undoStop"
+        },
+        {
+          "kind": "codeblockUri",
+          "uri": {
+            "$mid": 1,
+            "fsPath": "/home/junior/Projects/task-flow/apps/web/next.config.js",
+            "external": "file:///home/junior/Projects/task-flow/apps/web/next.config.js",
+            "path": "/home/junior/Projects/task-flow/apps/web/next.config.js",
+            "scheme": "file"
+          },
+          "isEdit": true
+        },
+        {
+          "kind": "textEditGroup",
+          "uri": {
+            "$mid": 1,
+            "fsPath": "/home/junior/Projects/task-flow/apps/web/next.config.js",
+            "external": "file:///home/junior/Projects/task-flow/apps/web/next.config.js",
+            "path": "/home/junior/Projects/task-flow/apps/web/next.config.js",
+            "scheme": "file"
+          },
+          "edits": [
+            [
+              {
+                "text": "const nextConfig = {\n  reactStrictMode: false, // Disable strict mode for react-beautiful-dnd compatibility\n  images: {\n    remotePatterns: [\n      {\n        protocol: 'https',\n        hostname: 'tailwindcss.com',\n      },\n      {\n        protocol: 'https',\n        hostname: 'images.unsplash.com',\n      },\n    ],\n  },\n  // Fix for EMFILE: too many open files error\n  webpack: (config, { isServer }) => {\n    if (!isServer) {\n      config.watchOptions = {\n        poll: 1000,\n        aggregateTimeout: 300,\n        ignored: /node_modules/,\n      };\n    }\n    return config;\n  },\n  nx: {},\n};",
+                "range": {
+                  "startLineNumber": 9,
+                  "startColumn": 1,
+                  "endLineNumber": 24,
+                  "endColumn": 3
+                }
+              }
+            ],
+            []
+          ],
+          "done": true
+        },
+        {
+          "value": "\n```\n",
+          "supportThemeIcons": false,
+          "supportHtml": false,
+          "uris": {}
+        },
+        {
+          "value": "## Solution 3: Also configure webpack for other apps that might be affected\n\nLet's check if there are other webpack configurations: ",
+          "supportThemeIcons": false,
+          "supportHtml": false,
+          "baseUri": {
+            "$mid": 1,
+            "path": "/home/junior/Projects/task-flow/",
+            "scheme": "file"
+          }
+        },
+        {
+          "kind": "prepareToolInvocation",
+          "toolName": "copilot_readFile"
+        },
+        {
+          "kind": "toolInvocationSerialized",
+          "invocationMessage": {
+            "value": "Reading [](file:///home/junior/Projects/task-flow/apps/desktop-ui/next.config.js)",
+            "supportThemeIcons": false,
+            "supportHtml": false,
+            "uris": {
+              "file:///home/junior/Projects/task-flow/apps/desktop-ui/next.config.js": {
+                "$mid": 1,
+                "path": "/home/junior/Projects/task-flow/apps/desktop-ui/next.config.js",
+                "scheme": "file"
+              }
+            }
+          },
+          "pastTenseMessage": {
+            "value": "Read [](file:///home/junior/Projects/task-flow/apps/desktop-ui/next.config.js)",
+            "supportThemeIcons": false,
+            "supportHtml": false,
+            "uris": {
+              "file:///home/junior/Projects/task-flow/apps/desktop-ui/next.config.js": {
+                "$mid": 1,
+                "path": "/home/junior/Projects/task-flow/apps/desktop-ui/next.config.js",
+                "scheme": "file"
+              }
+            }
+          },
+          "isConfirmed": true,
+          "isComplete": true,
+          "toolCallId": "1dc20b57-c936-42c4-b0dd-691d630cd672",
+          "toolId": "copilot_readFile"
+        },
+        {
+          "value": "Let's apply the same fix to the desktop-ui app: ",
+          "supportThemeIcons": false,
+          "supportHtml": false,
+          "baseUri": {
+            "$mid": 1,
+            "path": "/home/junior/Projects/task-flow/",
+            "scheme": "file"
+          }
+        },
+        {
+          "kind": "prepareToolInvocation",
+          "toolName": "copilot_replaceString"
+        },
+        {
+          "kind": "toolInvocationSerialized",
+          "presentation": "hidden",
+          "invocationMessage": "Using \"Replace String in File\"",
+          "isConfirmed": true,
+          "isComplete": true,
+          "toolCallId": "baa7d0c3-9035-44d8-ba74-4f81abee21bd",
+          "toolId": "copilot_replaceString"
+        },
+        {
+          "value": "\n```\n",
+          "supportThemeIcons": false,
+          "supportHtml": false,
+          "uris": {}
+        },
+        {
+          "id": "0ee45f3e-23df-44de-bfb3-de72505385f2",
+          "kind": "undoStop"
+        },
+        {
+          "kind": "codeblockUri",
+          "uri": {
+            "$mid": 1,
+            "fsPath": "/home/junior/Projects/task-flow/apps/desktop-ui/next.config.js",
+            "external": "file:///home/junior/Projects/task-flow/apps/desktop-ui/next.config.js",
+            "path": "/home/junior/Projects/task-flow/apps/desktop-ui/next.config.js",
+            "scheme": "file"
+          },
+          "isEdit": true
+        },
+        {
+          "kind": "textEditGroup",
+          "uri": {
+            "$mid": 1,
+            "fsPath": "/home/junior/Projects/task-flow/apps/desktop-ui/next.config.js",
+            "external": "file:///home/junior/Projects/task-flow/apps/desktop-ui/next.config.js",
+            "path": "/home/junior/Projects/task-flow/apps/desktop-ui/next.config.js",
+            "scheme": "file"
+          },
+          "edits": [
+            [
+              {
+                "text": "const nextConfig = {\n  images: {\n    remotePatterns: [\n      {\n        protocol: 'https',\n        hostname: 'tailwindcss.com',\n      },\n      {\n        protocol: 'https',\n        hostname: 'images.unsplash.com',\n      },\n    ],\n  },\n  // Fix for EMFILE: too many open files error\n  webpack: (config, { isServer }) => {\n    if (!isServer) {\n      config.watchOptions = {\n        poll: 1000,\n        aggregateTimeout: 300,\n        ignored: /node_modules/,\n      };\n    }\n    return config;\n  },\n  nx: {},\n};",
+                "range": {
+                  "startLineNumber": 9,
+                  "startColumn": 1,
+                  "endLineNumber": 23,
+                  "endColumn": 3
+                }
+              }
+            ],
+            []
+          ],
+          "done": true
+        },
+        {
+          "value": "\n```\n",
+          "supportThemeIcons": false,
+          "supportHtml": false,
+          "uris": {}
+        },
+        {
+          "value": "## Solution 4: Create a systemd configuration for permanent file descriptor limit increase\n\nLet's create a script to help you set up a permanent solution: ",
+          "supportThemeIcons": false,
+          "supportHtml": false,
+          "baseUri": {
+            "$mid": 1,
+            "path": "/home/junior/Projects/task-flow/",
+            "scheme": "file"
+          }
+        },
+        {
+          "kind": "prepareToolInvocation",
+          "toolName": "copilot_createFile"
+        },
+        {
+          "kind": "toolInvocationSerialized",
+          "invocationMessage": {
+            "value": "Creating [](file:///home/junior/Projects/task-flow/scripts/fix-file-limits.sh)",
+            "supportThemeIcons": false,
+            "supportHtml": false,
+            "uris": {
+              "file:///home/junior/Projects/task-flow/scripts/fix-file-limits.sh": {
+                "$mid": 1,
+                "path": "/home/junior/Projects/task-flow/scripts/fix-file-limits.sh",
+                "scheme": "file"
+              }
+            }
+          },
+          "pastTenseMessage": {
+            "value": "Created [](file:///home/junior/Projects/task-flow/scripts/fix-file-limits.sh)",
+            "supportThemeIcons": false,
+            "supportHtml": false,
+            "uris": {
+              "file:///home/junior/Projects/task-flow/scripts/fix-file-limits.sh": {
+                "$mid": 1,
+                "path": "/home/junior/Projects/task-flow/scripts/fix-file-limits.sh",
+                "scheme": "file"
+              }
+            }
+          },
+          "isConfirmed": true,
+          "isComplete": true,
+          "toolCallId": "9386bcc2-b8b9-48b8-9f26-800ec81e4eca",
+          "toolId": "copilot_createFile"
+        },
+        {
+          "kind": "textEditGroup",
+          "uri": {
+            "$mid": 1,
+            "fsPath": "/home/junior/Projects/task-flow/scripts/fix-file-limits.sh",
+            "external": "file:///home/junior/Projects/task-flow/scripts/fix-file-limits.sh",
+            "path": "/home/junior/Projects/task-flow/scripts/fix-file-limits.sh",
+            "scheme": "file"
+          },
+          "edits": [
+            [
+              {
+                "text": "#!/bin/bash",
+                "range": {
+                  "startLineNumber": 1,
+                  "startColumn": 1,
+                  "endLineNumber": 1,
+                  "endColumn": 1
+                }
+              }
+            ],
+            [
+              {
+                "text": "\n",
+                "range": {
+                  "startLineNumber": 2,
+                  "startColumn": 1,
+                  "endLineNumber": 2,
+                  "endColumn": 1
+                }
+              }
+            ],
+            [
+              {
+                "text": "\n# Script to fix EMFILE: too many open files error",
+                "range": {
+                  "startLineNumber": 3,
+                  "startColumn": 1,
+                  "endLineNumber": 3,
+                  "endColumn": 1
+                }
+              }
+            ],
+            [
+              {
+                "text": "\n# This script increases the file descriptor limits system-wide",
+                "range": {
+                  "startLineNumber": 4,
+                  "startColumn": 1,
+                  "endLineNumber": 4,
+                  "endColumn": 1
+                }
+              }
+            ],
+            [
+              {
+                "text": "\n",
+                "range": {
+                  "startLineNumber": 5,
+                  "startColumn": 1,
+                  "endLineNumber": 5,
+                  "endColumn": 1
+                }
+              }
+            ],
+            [
+              {
+                "text": "\necho \"Fixing file descriptor limits for development...\"",
+                "range": {
+                  "startLineNumber": 6,
+                  "startColumn": 1,
+                  "endLineNumber": 6,
+                  "endColumn": 1
+                }
+              }
+            ],
+            [
+              {
+                "text": "\n",
+                "range": {
+                  "startLineNumber": 7,
+                  "startColumn": 1,
+                  "endLineNumber": 7,
+                  "endColumn": 1
+                }
+              }
+            ],
+            [
+              {
+                "text": "\n# Check current limits",
+                "range": {
+                  "startLineNumber": 8,
+                  "startColumn": 1,
+                  "endLineNumber": 8,
+                  "endColumn": 1
+                }
+              }
+            ],
+            [
+              {
+                "text": "\necho \"Current limits:\"",
+                "range": {
+                  "startLineNumber": 9,
+                  "startColumn": 1,
+                  "endLineNumber": 9,
+                  "endColumn": 1
+                }
+              }
+            ],
+            [
+              {
+                "text": "\necho \"Soft limit: $(ulimit -Sn)\"",
+                "range": {
+                  "startLineNumber": 10,
+                  "startColumn": 1,
+                  "endLineNumber": 10,
+                  "endColumn": 1
+                }
+              }
+            ],
+            [
+              {
+                "text": "\necho \"Hard limit: $(ulimit -Hn)\"",
+                "range": {
+                  "startLineNumber": 11,
+                  "startColumn": 1,
+                  "endLineNumber": 11,
+                  "endColumn": 1
+                }
+              }
+            ],
+            [
+              {
+                "text": "\n",
+                "range": {
+                  "startLineNumber": 12,
+                  "startColumn": 1,
+                  "endLineNumber": 12,
+                  "endColumn": 1
+                }
+              }
+            ],
+            [
+              {
+                "text": "\n# Create limits configuration",
+                "range": {
+                  "startLineNumber": 13,
+                  "startColumn": 1,
+                  "endLineNumber": 13,
+                  "endColumn": 1
+                }
+              }
+            ],
+            [
+              {
+                "text": "\nLIMITS_CONF=\"/etc/security/limits.conf\"",
+                "range": {
+                  "startLineNumber": 14,
+                  "startColumn": 1,
+                  "endLineNumber": 14,
+                  "endColumn": 1
+                }
+              }
+            ],
+            [
+              {
+                "text": "\nUSER=$(whoami)",
+                "range": {
+                  "startLineNumber": 15,
+                  "startColumn": 1,
+                  "endLineNumber": 15,
+                  "endColumn": 1
+                }
+              }
+            ],
+            [
+              {
+                "text": "\n",
+                "range": {
+                  "startLineNumber": 16,
+                  "startColumn": 1,
+                  "endLineNumber": 16,
+                  "endColumn": 1
+                }
+              }
+            ],
+            [
+              {
+                "text": "\necho \"Adding configuration to $LIMITS_CONF...\"",
+                "range": {
+                  "startLineNumber": 17,
+                  "startColumn": 1,
+                  "endLineNumber": 17,
+                  "endColumn": 1
+                }
+              }
+            ],
+            [
+              {
+                "text": "\necho \"This requires sudo privileges.\"",
+                "range": {
+                  "startLineNumber": 18,
+                  "startColumn": 1,
+                  "endLineNumber": 18,
+                  "endColumn": 1
+                }
+              }
+            ],
+            [
+              {
+                "text": "\n",
+                "range": {
+                  "startLineNumber": 19,
+                  "startColumn": 1,
+                  "endLineNumber": 19,
+                  "endColumn": 1
+                }
+              }
+            ],
+            [
+              {
+                "text": "\n# Backup original file",
+                "range": {
+                  "startLineNumber": 20,
+                  "startColumn": 1,
+                  "endLineNumber": 20,
+                  "endColumn": 1
+                }
+              }
+            ],
+            [
+              {
+                "text": "\nsudo cp $LIMITS_CONF $LIMITS_CONF.backup",
+                "range": {
+                  "startLineNumber": 21,
+                  "startColumn": 1,
+                  "endLineNumber": 21,
+                  "endColumn": 1
+                }
+              }
+            ],
+            [
+              {
+                "text": "\n",
+                "range": {
+                  "startLineNumber": 22,
+                  "startColumn": 1,
+                  "endLineNumber": 22,
+                  "endColumn": 1
+                }
+              }
+            ],
+            [
+              {
+                "text": "\n# Add limits for the current user",
+                "range": {
+                  "startLineNumber": 23,
+                  "startColumn": 1,
+                  "endLineNumber": 23,
+                  "endColumn": 1
+                }
+              }
+            ],
+            [
+              {
+                "text": "\nsudo tee -a $LIMITS_CONF > /dev/null <<EOF",
+                "range": {
+                  "startLineNumber": 24,
+                  "startColumn": 1,
+                  "endLineNumber": 24,
+                  "endColumn": 1
+                }
+              }
+            ],
+            [
+              {
+                "text": "\n",
+                "range": {
+                  "startLineNumber": 25,
+                  "startColumn": 1,
+                  "endLineNumber": 25,
+                  "endColumn": 1
+                }
+              }
+            ],
+            [
+              {
+                "text": "\n# Increased file descriptor limits for development",
+                "range": {
+                  "startLineNumber": 26,
+                  "startColumn": 1,
+                  "endLineNumber": 26,
+                  "endColumn": 1
+                }
+              }
+            ],
+            [
+              {
+                "text": "\n$USER soft nofile 1048576",
+                "range": {
+                  "startLineNumber": 27,
+                  "startColumn": 1,
+                  "endLineNumber": 27,
+                  "endColumn": 1
+                }
+              }
+            ],
+            [
+              {
+                "text": "\n$USER hard nofile 1048576",
+                "range": {
+                  "startLineNumber": 28,
+                  "startColumn": 1,
+                  "endLineNumber": 28,
+                  "endColumn": 1
+                }
+              }
+            ],
+            [
+              {
+                "text": "\nEOF",
+                "range": {
+                  "startLineNumber": 29,
+                  "startColumn": 1,
+                  "endLineNumber": 29,
+                  "endColumn": 1
+                }
+              }
+            ],
+            [
+              {
+                "text": "\n",
+                "range": {
+                  "startLineNumber": 30,
+                  "startColumn": 1,
+                  "endLineNumber": 30,
+                  "endColumn": 1
+                }
+              }
+            ],
+            [
+              {
+                "text": "\necho \"Configuration added. Please log out and log back in for changes to take effect.\"",
+                "range": {
+                  "startLineNumber": 31,
+                  "startColumn": 1,
+                  "endLineNumber": 31,
+                  "endColumn": 1
+                }
+              }
+            ],
+            [
+              {
+                "text": "\necho \"Alternatively, you can run: newgrp $USER\"",
+                "range": {
+                  "startLineNumber": 32,
+                  "startColumn": 1,
+                  "endLineNumber": 32,
+                  "endColumn": 1
+                }
+              }
+            ],
+            [
+              {
+                "text": "\n",
+                "range": {
+                  "startLineNumber": 33,
+                  "startColumn": 1,
+                  "endLineNumber": 33,
+                  "endColumn": 1
+                }
+              }
+            ],
+            [
+              {
+                "text": "\n# Also set system-wide limits",
+                "range": {
+                  "startLineNumber": 34,
+                  "startColumn": 1,
+                  "endLineNumber": 34,
+                  "endColumn": 1
+                }
+              }
+            ],
+            [
+              {
+                "text": "\nSYSTEMD_CONF=\"/etc/systemd/system.conf\"",
+                "range": {
+                  "startLineNumber": 35,
+                  "startColumn": 1,
+                  "endLineNumber": 35,
+                  "endColumn": 1
+                }
+              }
+            ],
+            [
+              {
+                "text": "\necho \"Adding systemd configuration...\"",
+                "range": {
+                  "startLineNumber": 36,
+                  "startColumn": 1,
+                  "endLineNumber": 36,
+                  "endColumn": 1
+                }
+              }
+            ],
+            [
+              {
+                "text": "\nsudo tee -a $SYSTEMD_CONF > /dev/null <<EOF",
+                "range": {
+                  "startLineNumber": 37,
+                  "startColumn": 1,
+                  "endLineNumber": 37,
+                  "endColumn": 1
+                }
+              }
+            ],
+            [
+              {
+                "text": "\n",
+                "range": {
+                  "startLineNumber": 38,
+                  "startColumn": 1,
+                  "endLineNumber": 38,
+                  "endColumn": 1
+                }
+              }
+            ],
+            [
+              {
+                "text": "\n# Increased file descriptor limits",
+                "range": {
+                  "startLineNumber": 39,
+                  "startColumn": 1,
+                  "endLineNumber": 39,
+                  "endColumn": 1
+                }
+              }
+            ],
+            [
+              {
+                "text": "\nDefaultLimitNOFILE=1048576:1048576",
+                "range": {
+                  "startLineNumber": 40,
+                  "startColumn": 1,
+                  "endLineNumber": 40,
+                  "endColumn": 1
+                }
+              }
+            ],
+            [
+              {
+                "text": "\nEOF",
+                "range": {
+                  "startLineNumber": 41,
+                  "startColumn": 1,
+                  "endLineNumber": 41,
+                  "endColumn": 1
+                }
+              }
+            ],
+            [
+              {
+                "text": "\n",
+                "range": {
+                  "startLineNumber": 42,
+                  "startColumn": 1,
+                  "endLineNumber": 42,
+                  "endColumn": 1
+                }
+              }
+            ],
+            [
+              {
+                "text": "\necho \"Systemd configuration added. Restart required for system-wide changes.\"",
+                "range": {
+                  "startLineNumber": 43,
+                  "startColumn": 1,
+                  "endLineNumber": 43,
+                  "endColumn": 1
+                }
+              }
+            ],
+            [
+              {
+                "text": "\necho \"\"",
+                "range": {
+                  "startLineNumber": 44,
+                  "startColumn": 1,
+                  "endLineNumber": 44,
+                  "endColumn": 1
+                }
+              }
+            ],
+            [
+              {
+                "text": "\necho \"For immediate effect in current session, run:\"",
+                "range": {
+                  "startLineNumber": 45,
+                  "startColumn": 1,
+                  "endLineNumber": 45,
+                  "endColumn": 1
+                }
+              }
+            ],
+            [
+              {
+                "text": "\necho \"ulimit -n 65536\"",
+                "range": {
+                  "startLineNumber": 46,
+                  "startColumn": 1,
+                  "endLineNumber": 46,
+                  "endColumn": 1
+                }
+              }
+            ],
+            [
+              {
+                "text": "\n",
+                "range": {
+                  "startLineNumber": 47,
+                  "startColumn": 1,
+                  "endLineNumber": 47,
+                  "endColumn": 1
+                }
+              }
+            ],
+            []
+          ],
+          "done": true
+        },
+        {
+          "kind": "toolInvocationSerialized",
+          "invocationMessage": "Using \"Run In Terminal\"",
+          "isComplete": false,
+          "toolSpecificData": {
+            "kind": "terminal",
+            "language": "sh",
+            "command": "chmod +x /home/junior/Projects/task-flow/scripts/fix-file-limits.sh"
+          },
+          "toolCallId": "7313d405-6fae-4b80-92ce-3d40a2994e17",
+          "toolId": "copilot_runInTerminal"
+        }
+      ],
+      "responseId": "response_97d195e1-fec9-4c29-866a-42d70db348af",
+      "isCanceled": false,
+      "agent": {
+        "extensionId": {
+          "value": "GitHub.copilot-chat",
+          "_lower": "github.copilot-chat"
+        },
+        "publisherDisplayName": "GitHub",
+        "extensionPublisherId": "GitHub",
+        "extensionDisplayName": "GitHub Copilot Chat",
+        "id": "github.copilot.editsAgent",
+        "description": "Edit files in your workspace in agent mode",
+        "when": "config.chat.agent.enabled",
+        "metadata": {
+          "themeIcon": {
+            "id": "tools"
+          },
+          "hasFollowups": false,
+          "supportIssueReporting": false
+        },
+        "name": "agent",
+        "fullName": "GitHub Copilot",
+        "isDefault": true,
+        "locations": [
+          "panel"
+        ],
+        "modes": [
+          "agent"
+        ],
+        "slashCommands": [
+          {
+            "name": "list"
+          }
+        ],
+        "disambiguation": []
+      },
+      "contentReferences": [
+        {
+          "kind": "reference",
+          "reference": {
+            "$mid": 1,
+            "fsPath": "/home/junior/Projects/task-flow/.github/instructions/nx.instructions.md",
+            "external": "file:///home/junior/Projects/task-flow/.github/instructions/nx.instructions.md",
+            "path": "/home/junior/Projects/task-flow/.github/instructions/nx.instructions.md",
+            "scheme": "file"
+          }
+        }
+      ],
+      "codeCitations": [],
+      "timestamp": 1754565202998,
+      "modelId": "github.copilot-chat/claude-sonnet-4"
+    }
+  ],
+  "sessionId": "2033fb3d-05f7-430f-95df-85efadb5c121",
+  "creationDate": 1754564267935,
+  "isImported": false,
+  "lastMessageDate": 1754565202999
+}

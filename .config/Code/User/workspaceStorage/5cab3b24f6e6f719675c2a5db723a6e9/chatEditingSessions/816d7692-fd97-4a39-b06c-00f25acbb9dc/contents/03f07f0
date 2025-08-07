@@ -1,0 +1,130 @@
+import React, { useState } from 'react';
+import { useWatchlist, useFavorites } from '@repo/services';
+import type { ServerWatchlist, ServerFavorite } from '@repo/services';
+
+const Dashboard: React.FC = () => {
+  const [activeTab, setActiveTab] = useState<'watchlist' | 'favorites'>('watchlist');
+
+  // Fetch server data
+  const {
+    data: watchlistData,
+    isLoading: watchlistLoading,
+    error: watchlistError,
+  } = useWatchlist();
+  const {
+    data: favoritesData,
+    isLoading: favoritesLoading,
+    error: favoritesError,
+  } = useFavorites();
+
+  return (
+    <div className="p-6 max-w-7xl mx-auto">
+      {/* Header */}
+      <div className="mb-8">
+        <h1 className="text-3xl font-bold text-gray-100 mb-2">Dashboard</h1>
+        <p className="text-gray-400">Your movie and TV show collection</p>
+      </div>
+
+      {/* Tab Navigation */}
+      <div className="bg-gray-800 rounded-lg p-6 mb-8">
+        <div className="flex gap-2 mb-6">
+          <button
+            className={`px-4 py-2 rounded-lg transition-colors ${
+              activeTab === 'watchlist'
+                ? 'bg-red-600 text-white'
+                : 'bg-gray-700 text-gray-300 hover:bg-gray-600'
+            }`}
+            onClick={() => setActiveTab('watchlist')}
+          >
+            Watchlist
+          </button>
+          <button
+            className={`px-4 py-2 rounded-lg transition-colors ${
+              activeTab === 'favorites'
+                ? 'bg-red-600 text-white'
+                : 'bg-gray-700 text-gray-300 hover:bg-gray-600'
+            }`}
+            onClick={() => setActiveTab('favorites')}
+          >
+            Favorites
+          </button>
+        </div>
+
+        {/* Content */}
+        <div className="min-h-[300px]">
+          {(watchlistLoading && activeTab === 'watchlist') ||
+          (favoritesLoading && activeTab === 'favorites') ? (
+            <div className="flex justify-center items-center h-64">
+              <div className="text-gray-400">Loading...</div>
+            </div>
+          ) : (watchlistError && activeTab === 'watchlist') ||
+            (favoritesError && activeTab === 'favorites') ? (
+            <div className="flex justify-center items-center h-64">
+              <div className="text-red-400">Error loading data</div>
+            </div>
+          ) : (
+            <div>
+              {activeTab === 'watchlist' && (
+                <div>
+                  <h3 className="text-lg font-semibold text-gray-200 mb-4">
+                    Your Watchlist ({watchlistData?.data?.length || 0} items)
+                  </h3>
+                  {watchlistData?.data && watchlistData.data.length > 0 ? (
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                      {watchlistData.data.map((item: ServerWatchlist) => (
+                        <div key={item.id} className="bg-gray-700 rounded-lg p-4">
+                          <h4 className="text-white font-medium">{item.movie.title}</h4>
+                          <p className="text-gray-400 text-sm">Movie</p>
+                          <p className="text-gray-500 text-xs">
+                            {new Date(item.addedAt).getFullYear()}
+                          </p>
+                        </div>
+                      ))}
+                    </div>
+                  ) : (
+                    <div className="text-center py-12">
+                      <p className="text-gray-400">Your watchlist is empty</p>
+                      <p className="text-gray-500 text-sm mt-2">
+                        Add some movies and shows to get started
+                      </p>
+                    </div>
+                  )}
+                </div>
+              )}
+
+              {activeTab === 'favorites' && (
+                <div>
+                  <h3 className="text-lg font-semibold text-gray-200 mb-4">
+                    Your Favorites ({favoritesData?.data?.length || 0} items)
+                  </h3>
+                  {favoritesData?.data && favoritesData.data.length > 0 ? (
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                      {favoritesData.data.map((item: ServerFavorite) => (
+                        <div key={item.id} className="bg-gray-700 rounded-lg p-4">
+                          <h4 className="text-white font-medium">{item.movie.title}</h4>
+                          <p className="text-gray-400 text-sm">Movie</p>
+                          <p className="text-gray-500 text-xs">
+                            {new Date(item.addedAt).getFullYear()}
+                          </p>
+                        </div>
+                      ))}
+                    </div>
+                  ) : (
+                    <div className="text-center py-12">
+                      <p className="text-gray-400">No favorites yet</p>
+                      <p className="text-gray-500 text-sm mt-2">
+                        Mark some movies and shows as favorites
+                      </p>
+                    </div>
+                  )}
+                </div>
+              )}
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default Dashboard;

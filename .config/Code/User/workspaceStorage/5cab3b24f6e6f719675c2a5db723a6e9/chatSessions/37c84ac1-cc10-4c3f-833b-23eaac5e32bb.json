@@ -1,0 +1,4068 @@
+{
+  "version": 3,
+  "requesterUsername": "nyambogahezron",
+  "requesterAvatarIconUri": {
+    "$mid": 1,
+    "path": "/u/133749469",
+    "scheme": "https",
+    "authority": "avatars.githubusercontent.com",
+    "query": "v=4"
+  },
+  "responderUsername": "GitHub Copilot",
+  "responderAvatarIconUri": {
+    "id": "copilot"
+  },
+  "initialLocation": "panel",
+  "requests": [
+    {
+      "requestId": "request_05509d66-6731-479f-898f-9fde154ba4c9",
+      "message": {
+        "parts": [
+          {
+            "range": {
+              "start": 0,
+              "endExclusive": 188
+            },
+            "editorRange": {
+              "startLineNumber": 1,
+              "startColumn": 1,
+              "endLineNumber": 5,
+              "endColumn": 121
+            },
+            "text": "pnpm exec turbo run dev\nturbo 2.5.5\n\n  × Invalid task configuration\n  ╰─▶   × You have 10 persistent tasks but `turbo` is configured for concurrency of 10. Set --concurrency to at least 11",
+            "kind": "text"
+          }
+        ],
+        "text": "pnpm exec turbo run dev\nturbo 2.5.5\n\n  × Invalid task configuration\n  ╰─▶   × You have 10 persistent tasks but `turbo` is configured for concurrency of 10. Set --concurrency to at least 11"
+      },
+      "variableData": {
+        "variables": [
+          {
+            "id": "vscode.prompt.instructions.text.github.copilot.chat.codeGeneration.instructions",
+            "name": "prompt:text",
+            "value": "Here is a list of instruction files that contain rules for modifying or creating new code.\nThese files are important for ensuring that the code is modified or created correctly.\nPlease make sure to follow the rules specified in these files when working with the codebase.\nIf the file is not already available as attachment, use the `read_file` tool to acquire it.\nMake sure to acquire the instructions before making any changes to the code.\n| Pattern | File Path | Description |\n| ------- | --------- | ----------- |\n| **/*-post-r-pm-* | '/tmp/postman-http-request-post-response.instructions.md' |  |\n| **/*-pre-r-pm-* | '/tmp/postman-http-request-pre-request.instructions.md' |  |\n| **/*-post-c-pm-* | '/tmp/postman-collections-post-response.instructions.md' |  |\n| **/*-pre-c-pm-* | '/tmp/postman-collections-pre-request.instructions.md' |  |\n| **/*-post-f-pm-* | '/tmp/postman-folder-post-response.instructions.md' |  |\n| **/*-pre-f-pm-* | '/tmp/postman-folder-pre-request.instructions.md' |  |",
+            "settingId": "github.copilot.chat.codeGeneration.instructions",
+            "kind": "promptText",
+            "modelDescription": "Prompt instructions text",
+            "automaticallyAdded": true
+          }
+        ]
+      },
+      "response": [
+        {
+          "value": "I can see the issue. You're running into a concurrency limitation with Turbo. The error indicates that you have 10 persistent tasks but Turbo is configured for a concurrency of 10, and it needs at least 11 to handle all the tasks properly.\n\nLet me check your Turbo configuration to understand the current setup and fix this issue. ",
+          "supportThemeIcons": false,
+          "supportHtml": false,
+          "baseUri": {
+            "$mid": 1,
+            "path": "/home/junior/Projects/movie-diary/",
+            "scheme": "file"
+          }
+        },
+        {
+          "kind": "prepareToolInvocation",
+          "toolName": "copilot_readFile"
+        },
+        {
+          "kind": "toolInvocationSerialized",
+          "invocationMessage": {
+            "value": "Reading [](file:///home/junior/Projects/movie-diary/turbo.json)",
+            "supportThemeIcons": false,
+            "supportHtml": false,
+            "uris": {
+              "file:///home/junior/Projects/movie-diary/turbo.json": {
+                "$mid": 1,
+                "path": "/home/junior/Projects/movie-diary/turbo.json",
+                "scheme": "file"
+              }
+            }
+          },
+          "pastTenseMessage": {
+            "value": "Read [](file:///home/junior/Projects/movie-diary/turbo.json)",
+            "supportThemeIcons": false,
+            "supportHtml": false,
+            "uris": {
+              "file:///home/junior/Projects/movie-diary/turbo.json": {
+                "$mid": 1,
+                "path": "/home/junior/Projects/movie-diary/turbo.json",
+                "scheme": "file"
+              }
+            }
+          },
+          "isConfirmed": true,
+          "isComplete": true,
+          "toolCallId": "747bf697-b111-441f-9816-83114fc629cd",
+          "toolId": "copilot_readFile"
+        },
+        {
+          "value": "Now let me check which packages have dev scripts to understand how many persistent tasks are being run: ",
+          "supportThemeIcons": false,
+          "supportHtml": false,
+          "baseUri": {
+            "$mid": 1,
+            "path": "/home/junior/Projects/movie-diary/",
+            "scheme": "file"
+          }
+        },
+        {
+          "kind": "prepareToolInvocation",
+          "toolName": "copilot_findTextInFiles"
+        },
+        {
+          "kind": "toolInvocationSerialized",
+          "invocationMessage": {
+            "value": "Searching text for `\"dev\":` (`**/package.json`)",
+            "supportThemeIcons": false,
+            "supportHtml": false,
+            "uris": {}
+          },
+          "pastTenseMessage": {
+            "value": "Searched text for `\"dev\":` (`**/package.json`), 11 results",
+            "supportThemeIcons": false,
+            "supportHtml": false,
+            "uris": {}
+          },
+          "isConfirmed": true,
+          "isComplete": true,
+          "resultDetails": [
+            {
+              "uri": {
+                "$mid": 1,
+                "fsPath": "/home/junior/Projects/movie-diary/package.json",
+                "external": "file:///home/junior/Projects/movie-diary/package.json",
+                "path": "/home/junior/Projects/movie-diary/package.json",
+                "scheme": "file"
+              },
+              "range": {
+                "startLineNumber": 26,
+                "startColumn": 5,
+                "endLineNumber": 26,
+                "endColumn": 11
+              }
+            },
+            {
+              "uri": {
+                "$mid": 1,
+                "fsPath": "/home/junior/Projects/movie-diary/packages/components/package.json",
+                "external": "file:///home/junior/Projects/movie-diary/packages/components/package.json",
+                "path": "/home/junior/Projects/movie-diary/packages/components/package.json",
+                "scheme": "file"
+              },
+              "range": {
+                "startLineNumber": 22,
+                "startColumn": 5,
+                "endLineNumber": 22,
+                "endColumn": 11
+              }
+            },
+            {
+              "uri": {
+                "$mid": 1,
+                "fsPath": "/home/junior/Projects/movie-diary/packages/utils/package.json",
+                "external": "file:///home/junior/Projects/movie-diary/packages/utils/package.json",
+                "path": "/home/junior/Projects/movie-diary/packages/utils/package.json",
+                "scheme": "file"
+              },
+              "range": {
+                "startLineNumber": 19,
+                "startColumn": 5,
+                "endLineNumber": 19,
+                "endColumn": 11
+              }
+            },
+            {
+              "uri": {
+                "$mid": 1,
+                "fsPath": "/home/junior/Projects/movie-diary/packages/hooks/package.json",
+                "external": "file:///home/junior/Projects/movie-diary/packages/hooks/package.json",
+                "path": "/home/junior/Projects/movie-diary/packages/hooks/package.json",
+                "scheme": "file"
+              },
+              "range": {
+                "startLineNumber": 38,
+                "startColumn": 5,
+                "endLineNumber": 38,
+                "endColumn": 11
+              }
+            },
+            {
+              "uri": {
+                "$mid": 1,
+                "fsPath": "/home/junior/Projects/movie-diary/packages/context/package.json",
+                "external": "file:///home/junior/Projects/movie-diary/packages/context/package.json",
+                "path": "/home/junior/Projects/movie-diary/packages/context/package.json",
+                "scheme": "file"
+              },
+              "range": {
+                "startLineNumber": 16,
+                "startColumn": 5,
+                "endLineNumber": 16,
+                "endColumn": 11
+              }
+            },
+            {
+              "uri": {
+                "$mid": 1,
+                "fsPath": "/home/junior/Projects/movie-diary/packages/ui/package.json",
+                "external": "file:///home/junior/Projects/movie-diary/packages/ui/package.json",
+                "path": "/home/junior/Projects/movie-diary/packages/ui/package.json",
+                "scheme": "file"
+              },
+              "range": {
+                "startLineNumber": 14,
+                "startColumn": 5,
+                "endLineNumber": 14,
+                "endColumn": 11
+              }
+            },
+            {
+              "uri": {
+                "$mid": 1,
+                "fsPath": "/home/junior/Projects/movie-diary/packages/interfaces/package.json",
+                "external": "file:///home/junior/Projects/movie-diary/packages/interfaces/package.json",
+                "path": "/home/junior/Projects/movie-diary/packages/interfaces/package.json",
+                "scheme": "file"
+              },
+              "range": {
+                "startLineNumber": 15,
+                "startColumn": 5,
+                "endLineNumber": 15,
+                "endColumn": 11
+              }
+            },
+            {
+              "uri": {
+                "$mid": 1,
+                "fsPath": "/home/junior/Projects/movie-diary/packages/services/package.json",
+                "external": "file:///home/junior/Projects/movie-diary/packages/services/package.json",
+                "path": "/home/junior/Projects/movie-diary/packages/services/package.json",
+                "scheme": "file"
+              },
+              "range": {
+                "startLineNumber": 49,
+                "startColumn": 5,
+                "endLineNumber": 49,
+                "endColumn": 11
+              }
+            },
+            {
+              "uri": {
+                "$mid": 1,
+                "fsPath": "/home/junior/Projects/movie-diary/apps/server/package.json",
+                "external": "file:///home/junior/Projects/movie-diary/apps/server/package.json",
+                "path": "/home/junior/Projects/movie-diary/apps/server/package.json",
+                "scheme": "file"
+              },
+              "range": {
+                "startLineNumber": 11,
+                "startColumn": 5,
+                "endLineNumber": 11,
+                "endColumn": 11
+              }
+            },
+            {
+              "uri": {
+                "$mid": 1,
+                "fsPath": "/home/junior/Projects/movie-diary/apps/mobile/package.json",
+                "external": "file:///home/junior/Projects/movie-diary/apps/mobile/package.json",
+                "path": "/home/junior/Projects/movie-diary/apps/mobile/package.json",
+                "scheme": "file"
+              },
+              "range": {
+                "startLineNumber": 12,
+                "startColumn": 5,
+                "endLineNumber": 12,
+                "endColumn": 11
+              }
+            },
+            {
+              "uri": {
+                "$mid": 1,
+                "fsPath": "/home/junior/Projects/movie-diary/apps/web/package.json",
+                "external": "file:///home/junior/Projects/movie-diary/apps/web/package.json",
+                "path": "/home/junior/Projects/movie-diary/apps/web/package.json",
+                "scheme": "file"
+              },
+              "range": {
+                "startLineNumber": 24,
+                "startColumn": 5,
+                "endLineNumber": 24,
+                "endColumn": 11
+              }
+            }
+          ],
+          "toolCallId": "d80b86f4-c811-4593-ac46-d03e0f689034",
+          "toolId": "copilot_findTextInFiles"
+        },
+        {
+          "value": "Perfect! I can see you have 10 packages/apps with dev scripts, and since the `dev` task is marked as `persistent: true` in your ",
+          "supportThemeIcons": false,
+          "supportHtml": false,
+          "baseUri": {
+            "$mid": 1,
+            "path": "/home/junior/Projects/movie-diary/",
+            "scheme": "file"
+          }
+        },
+        {
+          "kind": "inlineReference",
+          "inlineReference": {
+            "$mid": 1,
+            "fsPath": "/home/junior/Projects/movie-diary/turbo.json",
+            "external": "file:///home/junior/Projects/movie-diary/turbo.json",
+            "path": "/home/junior/Projects/movie-diary/turbo.json",
+            "scheme": "file"
+          }
+        },
+        {
+          "value": ", each one runs as a persistent task. The issue is that Turbo's default concurrency is 10, but you need at least 11 to handle 10 persistent tasks plus any overhead.\n\nLet me fix this by updating the ",
+          "supportThemeIcons": false,
+          "supportHtml": false,
+          "baseUri": {
+            "$mid": 1,
+            "path": "/home/junior/Projects/movie-diary/",
+            "scheme": "file"
+          }
+        },
+        {
+          "kind": "inlineReference",
+          "inlineReference": {
+            "$mid": 1,
+            "fsPath": "/home/junior/Projects/movie-diary/turbo.json",
+            "external": "file:///home/junior/Projects/movie-diary/turbo.json",
+            "path": "/home/junior/Projects/movie-diary/turbo.json",
+            "scheme": "file"
+          }
+        },
+        {
+          "value": " to increase the concurrency limit: ",
+          "supportThemeIcons": false,
+          "supportHtml": false,
+          "baseUri": {
+            "$mid": 1,
+            "path": "/home/junior/Projects/movie-diary/",
+            "scheme": "file"
+          }
+        },
+        {
+          "kind": "prepareToolInvocation",
+          "toolName": "copilot_replaceString"
+        },
+        {
+          "kind": "toolInvocationSerialized",
+          "presentation": "hidden",
+          "invocationMessage": "Using \"Replace String in File\"",
+          "isConfirmed": true,
+          "isComplete": true,
+          "toolCallId": "eafe7fb4-f7cd-4bd1-8e09-c5de7bfd5fba",
+          "toolId": "copilot_replaceString"
+        },
+        {
+          "value": "Let me try a different approach - I'll add the concurrency configuration to the turbo.json: ",
+          "supportThemeIcons": false,
+          "supportHtml": false,
+          "baseUri": {
+            "$mid": 1,
+            "path": "/home/junior/Projects/movie-diary/",
+            "scheme": "file"
+          }
+        },
+        {
+          "kind": "prepareToolInvocation",
+          "toolName": "copilot_replaceString"
+        },
+        {
+          "kind": "toolInvocationSerialized",
+          "presentation": "hidden",
+          "invocationMessage": "Using \"Replace String in File\"",
+          "isConfirmed": true,
+          "isComplete": true,
+          "toolCallId": "f12b1209-1019-4b18-9689-d28fc0e91f7e",
+          "toolId": "copilot_replaceString"
+        },
+        {
+          "value": "Let me try to add the concurrency setting. I need to add it to the tasks configuration: ",
+          "supportThemeIcons": false,
+          "supportHtml": false,
+          "baseUri": {
+            "$mid": 1,
+            "path": "/home/junior/Projects/movie-diary/",
+            "scheme": "file"
+          }
+        },
+        {
+          "kind": "prepareToolInvocation",
+          "toolName": "copilot_replaceString"
+        },
+        {
+          "kind": "toolInvocationSerialized",
+          "presentation": "hidden",
+          "invocationMessage": "Using \"Replace String in File\"",
+          "isConfirmed": true,
+          "isComplete": true,
+          "toolCallId": "0502373e-315a-4446-afa7-415fcf51a2f7",
+          "toolId": "copilot_replaceString"
+        },
+        {
+          "value": "Let me add the concurrency configuration to the dev task specifically: ",
+          "supportThemeIcons": false,
+          "supportHtml": false,
+          "baseUri": {
+            "$mid": 1,
+            "path": "/home/junior/Projects/movie-diary/",
+            "scheme": "file"
+          }
+        },
+        {
+          "kind": "prepareToolInvocation",
+          "toolName": "copilot_replaceString"
+        },
+        {
+          "kind": "toolInvocationSerialized",
+          "presentation": "hidden",
+          "invocationMessage": "Using \"Replace String in File\"",
+          "isConfirmed": true,
+          "isComplete": true,
+          "toolCallId": "0df32e49-f765-4494-8b89-a1812e802418",
+          "toolId": "copilot_replaceString"
+        },
+        {
+          "value": "\n```\n",
+          "supportThemeIcons": false,
+          "supportHtml": false,
+          "uris": {}
+        },
+        {
+          "id": "b0116fcf-269d-403b-a89a-e4db103ef92a",
+          "kind": "undoStop"
+        },
+        {
+          "kind": "codeblockUri",
+          "uri": {
+            "$mid": 1,
+            "fsPath": "/home/junior/Projects/movie-diary/turbo.json",
+            "external": "file:///home/junior/Projects/movie-diary/turbo.json",
+            "path": "/home/junior/Projects/movie-diary/turbo.json",
+            "scheme": "file"
+          },
+          "isEdit": true
+        },
+        {
+          "kind": "textEditGroup",
+          "uri": {
+            "$mid": 1,
+            "fsPath": "/home/junior/Projects/movie-diary/turbo.json",
+            "external": "file:///home/junior/Projects/movie-diary/turbo.json",
+            "path": "/home/junior/Projects/movie-diary/turbo.json",
+            "scheme": "file"
+          },
+          "edits": [
+            [
+              {
+                "text": "    \"dev\": {\n      \"cache\": false,\n      \"persistent\": true,\n      \"concurrency\": 15\n    },",
+                "range": {
+                  "startLineNumber": 33,
+                  "startColumn": 1,
+                  "endLineNumber": 36,
+                  "endColumn": 7
+                }
+              }
+            ],
+            []
+          ],
+          "done": true
+        },
+        {
+          "value": "\n```\n",
+          "supportThemeIcons": false,
+          "supportHtml": false,
+          "uris": {}
+        },
+        {
+          "value": "I see that `concurrency` is not a valid property for individual tasks. Let me revert that change and use the correct approach. The concurrency should be set at the global level or passed as a command line argument. ",
+          "supportThemeIcons": false,
+          "supportHtml": false,
+          "baseUri": {
+            "$mid": 1,
+            "path": "/home/junior/Projects/movie-diary/",
+            "scheme": "file"
+          }
+        },
+        {
+          "kind": "prepareToolInvocation",
+          "toolName": "copilot_replaceString"
+        },
+        {
+          "kind": "toolInvocationSerialized",
+          "presentation": "hidden",
+          "invocationMessage": "Using \"Replace String in File\"",
+          "isConfirmed": true,
+          "isComplete": true,
+          "toolCallId": "aa842b27-f153-4a88-af9d-613398335f58",
+          "toolId": "copilot_replaceString"
+        },
+        {
+          "value": "\n```\n",
+          "supportThemeIcons": false,
+          "supportHtml": false,
+          "uris": {}
+        },
+        {
+          "id": "44084d69-0387-4251-8e01-67f4fb1f097f",
+          "kind": "undoStop"
+        },
+        {
+          "kind": "codeblockUri",
+          "uri": {
+            "$mid": 1,
+            "fsPath": "/home/junior/Projects/movie-diary/turbo.json",
+            "external": "file:///home/junior/Projects/movie-diary/turbo.json",
+            "path": "/home/junior/Projects/movie-diary/turbo.json",
+            "scheme": "file"
+          },
+          "isEdit": true
+        },
+        {
+          "kind": "textEditGroup",
+          "uri": {
+            "$mid": 1,
+            "fsPath": "/home/junior/Projects/movie-diary/turbo.json",
+            "external": "file:///home/junior/Projects/movie-diary/turbo.json",
+            "path": "/home/junior/Projects/movie-diary/turbo.json",
+            "scheme": "file"
+          },
+          "edits": [
+            [
+              {
+                "text": "    \"dev\": {\n      \"cache\": false,\n      \"persistent\": true\n    },",
+                "range": {
+                  "startLineNumber": 33,
+                  "startColumn": 1,
+                  "endLineNumber": 37,
+                  "endColumn": 7
+                }
+              }
+            ],
+            []
+          ],
+          "done": true
+        },
+        {
+          "value": "\n```\n",
+          "supportThemeIcons": false,
+          "supportHtml": false,
+          "uris": {}
+        },
+        {
+          "value": "Now let me run the command with the correct concurrency flag: ",
+          "supportThemeIcons": false,
+          "supportHtml": false,
+          "baseUri": {
+            "$mid": 1,
+            "path": "/home/junior/Projects/movie-diary/",
+            "scheme": "file"
+          }
+        },
+        {
+          "kind": "prepareToolInvocation",
+          "toolName": "copilot_runInTerminal"
+        },
+        {
+          "kind": "toolInvocationSerialized",
+          "invocationMessage": "Using \"Run In Terminal\"",
+          "isConfirmed": true,
+          "isComplete": true,
+          "toolSpecificData": {
+            "kind": "terminal",
+            "language": "sh",
+            "command": "pnpm exec turbo run dev --concurrency=15"
+          },
+          "toolCallId": "c210f529-f8f4-4a3b-a9b1-2e7a079c8524",
+          "toolId": "copilot_runInTerminal"
+        },
+        {
+          "value": "Perfect! The command is now running with increased concurrency. Let me check the output to make sure it's working properly: ",
+          "supportThemeIcons": false,
+          "supportHtml": false,
+          "baseUri": {
+            "$mid": 1,
+            "path": "/home/junior/Projects/movie-diary/",
+            "scheme": "file"
+          }
+        },
+        {
+          "kind": "prepareToolInvocation",
+          "toolName": "copilot_getTerminalOutput"
+        },
+        {
+          "kind": "toolInvocationSerialized",
+          "invocationMessage": "Checking background terminal output",
+          "pastTenseMessage": "Checked background terminal output",
+          "isConfirmed": true,
+          "isComplete": true,
+          "toolCallId": "cd3fe73b-cc46-4f35-bda0-c124a974f320",
+          "toolId": "copilot_getTerminalOutput"
+        },
+        {
+          "value": "Excellent! The command is now running successfully. I can see that Turbo is running the dev tasks for all 12 packages (it shows \"Running dev in 12 packages\"), and the tasks are starting up properly with TypeScript compilation in watch mode.\n\nTo make this easier for future runs, let me update your root ",
+          "supportThemeIcons": false,
+          "supportHtml": false,
+          "baseUri": {
+            "$mid": 1,
+            "path": "/home/junior/Projects/movie-diary/",
+            "scheme": "file"
+          }
+        },
+        {
+          "kind": "inlineReference",
+          "inlineReference": {
+            "$mid": 1,
+            "fsPath": "/home/junior/Projects/movie-diary/package.json",
+            "external": "file:///home/junior/Projects/movie-diary/package.json",
+            "path": "/home/junior/Projects/movie-diary/package.json",
+            "scheme": "file"
+          }
+        },
+        {
+          "value": " to include the concurrency flag in the dev script: ",
+          "supportThemeIcons": false,
+          "supportHtml": false,
+          "baseUri": {
+            "$mid": 1,
+            "path": "/home/junior/Projects/movie-diary/",
+            "scheme": "file"
+          }
+        },
+        {
+          "kind": "prepareToolInvocation",
+          "toolName": "copilot_readFile"
+        },
+        {
+          "kind": "toolInvocationSerialized",
+          "invocationMessage": {
+            "value": "Reading [](file:///home/junior/Projects/movie-diary/package.json#20-20), lines 20 to 35",
+            "supportThemeIcons": false,
+            "supportHtml": false,
+            "uris": {
+              "file:///home/junior/Projects/movie-diary/package.json#20-20": {
+                "$mid": 1,
+                "path": "/home/junior/Projects/movie-diary/package.json",
+                "scheme": "file",
+                "fragment": "20-20"
+              }
+            }
+          },
+          "pastTenseMessage": {
+            "value": "Read [](file:///home/junior/Projects/movie-diary/package.json#20-20), lines 20 to 35",
+            "supportThemeIcons": false,
+            "supportHtml": false,
+            "uris": {
+              "file:///home/junior/Projects/movie-diary/package.json#20-20": {
+                "$mid": 1,
+                "path": "/home/junior/Projects/movie-diary/package.json",
+                "scheme": "file",
+                "fragment": "20-20"
+              }
+            }
+          },
+          "isConfirmed": true,
+          "isComplete": true,
+          "toolCallId": "35b7b3e5-ea0e-4163-a33b-d23239ed105c",
+          "toolId": "copilot_readFile"
+        },
+        {
+          "kind": "toolInvocationSerialized",
+          "presentation": "hidden",
+          "invocationMessage": "Using \"Replace String in File\"",
+          "isConfirmed": true,
+          "isComplete": true,
+          "toolCallId": "cacd9522-603b-4c3c-bd7b-2bbcca089655",
+          "toolId": "copilot_replaceString"
+        },
+        {
+          "value": "\n```\n",
+          "supportThemeIcons": false,
+          "supportHtml": false,
+          "uris": {}
+        },
+        {
+          "id": "02cacb4e-709b-46b1-a517-2a07d687c1bf",
+          "kind": "undoStop"
+        },
+        {
+          "kind": "codeblockUri",
+          "uri": {
+            "$mid": 1,
+            "fsPath": "/home/junior/Projects/movie-diary/package.json",
+            "external": "file:///home/junior/Projects/movie-diary/package.json",
+            "path": "/home/junior/Projects/movie-diary/package.json",
+            "scheme": "file"
+          },
+          "isEdit": true
+        },
+        {
+          "kind": "textEditGroup",
+          "uri": {
+            "$mid": 1,
+            "fsPath": "/home/junior/Projects/movie-diary/package.json",
+            "external": "file:///home/junior/Projects/movie-diary/package.json",
+            "path": "/home/junior/Projects/movie-diary/package.json",
+            "scheme": "file"
+          },
+          "edits": [
+            [
+              {
+                "text": "  \"scripts\": {\n    \"build\": \"turbo run build\",\n    \"check-types\": \"turbo run check-types\",\n    \"dev\": \"turbo run dev --concurrency=15\",\n    \"start\": \"turbo run start\",\n    \"lint\": \"turbo run lint\",\n    \"test\": \"turbo run test\",\n    \"format\": \"turbo run format\",",
+                "range": {
+                  "startLineNumber": 23,
+                  "startColumn": 1,
+                  "endLineNumber": 30,
+                  "endColumn": 34
+                }
+              }
+            ],
+            []
+          ],
+          "done": true
+        },
+        {
+          "value": "\n```\n",
+          "supportThemeIcons": false,
+          "supportHtml": false,
+          "uris": {}
+        },
+        {
+          "value": "Perfect! I've fixed the issue by:\n\n1. **Identified the problem**: You have 10 persistent tasks (dev scripts) but Turbo was configured for a concurrency of 10, which wasn't sufficient.\n\n2. **Applied the solution**: Added the `--concurrency=15` flag to your dev command, which gives you enough concurrency to handle all 10 persistent tasks plus some overhead.\n\n3. **Made it permanent**: Updated your root ",
+          "supportThemeIcons": false,
+          "supportHtml": false,
+          "baseUri": {
+            "$mid": 1,
+            "path": "/home/junior/Projects/movie-diary/",
+            "scheme": "file"
+          }
+        },
+        {
+          "kind": "inlineReference",
+          "inlineReference": {
+            "$mid": 1,
+            "fsPath": "/home/junior/Projects/movie-diary/package.json",
+            "external": "file:///home/junior/Projects/movie-diary/package.json",
+            "path": "/home/junior/Projects/movie-diary/package.json",
+            "scheme": "file"
+          }
+        },
+        {
+          "value": " script so that future runs of `pnpm run dev` will automatically use the correct concurrency setting.\n\nNow when you run `pnpm run dev` in the future, it will automatically use the correct concurrency setting and all your development servers should start up properly. The command is currently running and you should see all your packages building in watch mode, including:\n\n- All the TypeScript packages compiling in watch mode\n- The Next.js web app starting up\n- The Express server starting up  \n- The Expo mobile app starting up\n\nThis will allow you to develop across all your packages simultaneously with hot reloading.",
+          "supportThemeIcons": false,
+          "supportHtml": false,
+          "baseUri": {
+            "$mid": 1,
+            "path": "/home/junior/Projects/movie-diary/",
+            "scheme": "file"
+          }
+        }
+      ],
+      "responseId": "response_913c7e98-76ac-444d-8672-83d064e4a8a6",
+      "result": {
+        "timings": {
+          "firstProgress": 6864,
+          "totalElapsed": 191052
+        },
+        "metadata": {
+          "codeBlocks": [],
+          "renderedUserMessage": [
+            {
+              "type": 1,
+              "text": "<context>\nThe current date is August 5, 2025.\nNo active tasks or terminals found.\n</context>\n<repoContext>\nBelow is the information about the current repository. You can use this information when you need to calculate diffs or compare changes with the default branch.\nRepository name: movie-diary\nOwner: nyambogahezron\nCurrent branch: main\nDefault branch: main\n\n</repoContext>\n<reminderInstructions>\nWhen using the replace_string_in_file tool, include 3-5 lines of unchanged code before and after the string you want to replace, to make it unambiguous which part of the file should be edited.\n\n</reminderInstructions>\n<userRequest>\npnpm exec turbo run dev\nturbo 2.5.5\n\n  × Invalid task configuration\n  ╰─▶   × You have 10 persistent tasks but `turbo` is configured for concurrency of 10. Set --concurrency to at least 11\n</userRequest>\n"
+            },
+            {
+              "type": 3,
+              "cacheType": "ephemeral"
+            }
+          ],
+          "renderedGlobalContext": [
+            {
+              "type": 1,
+              "text": "<environment_info>\nThe user's current OS is: Linux\nThe user's default shell is: \"zsh\". When you generate terminal commands, please generate them correctly for this shell.\n</environment_info>\n<workspace_info>\nI am working in a workspace with the following folders:\n- /home/junior/Projects/movie-diary \nI am working in a workspace that has the following structure:\n```\nLICENSE\npackage.json\npnpm-lock.yaml\npnpm-workspace.yaml\nREADME.md\nSECURITY.md\nturbo.json\napps/\n\tdocs/\n\t\tdeployment.md\n\t\tformatting.md\n\t\tpackages.md\n\tmobile/\n\t\tapp.json\n\t\tbabel.config.js\n\t\teas.json\n\t\teslint.config.js\n\t\texpo-env.d.ts\n\t\tmetro.config.js\n\t\tnativewind-env.d.ts\n\t\tpackage.json\n\t\tREADME.md\n\t\ttailwind.config.js\n\t\ttsconfig.json\n\t\tapp/\n\t\t\t_layout.tsx\n\t\t\t+not-found.tsx\n\t\t\tglobal.css\n\t\t\tindex.tsx\n\t\t\tsearch.tsx\n\t\t\tStats.tsx\n\t\t\t(auth)/\n\t\t\t(tabs)/\n\t\t\tcast/\n\t\t\tmedia/\n\t\t\treviews/\n\t\t\tsocial/\n\t\tassets/\n\t\t\timages/\n\t\tcomponents/\n\t\t\tCommentsBottomSheet.tsx\n\t\t\tEmptyState.tsx\n\t\t\tFilterModal.tsx\n\t\t\tMediaCard.tsx\n\t\t\tMediaCardSkeleton.tsx\n\t\t\tMediaListItem.tsx\n\t\t\tMediaMiniCard.tsx\n\t\t\tMediaSectionHeader.tsx\n\t\t\tQualitySelectionModal.tsx\n\t\t\tRatingStars.tsx\n\t\t\tReviewsSection.tsx\n\t\t\tSearchBar.tsx\n\t\t\tStatisticCard.tsx\n\t\t\tStreamingProviders.tsx\n\t\t\tUserAvatar.tsx\n\t\t\tVideoSection.tsx\n\t\t\tWatchTimeChart.tsx\n\t\t\tauth/\n\t\t\t...\n\t\tconstants/\n\t\t\t...\n\t\tcontext/\n\t\tutils/\n\tserver/\n\t\tdrizzle.config.ts\n\t\tenv-example.txt\n\t\tfly.toml\n\t\tindex.ts\n\t\tjest.config.js\n\t\tpackage.json\n\t\tREADME.md\n\t\ttsconfig.json\n\t\tvercel.json\n\t\tconfig/\n\t\tcontrollers/\n\t\tdb/\n\t\tdocs/\n\t\thelpers/\n\t\tmiddleware/\n\t\tprisma/\n\t\tpublic/\n\t\troutes/\n\t\tscripts/\n\t\tservices/\n\t\ttest/\n\t\ttypes/\n\t\tutils/\n\tweb/\n\t\teslint.config.js\n\t\tnext-env.d.ts\n\t\tnext.config.js\n\t\tpackage.json\n\t\tREADME.md\n\t\ttsconfig.json\n\t\tapp/\n\t\tassets/\n\t\tcomponents/\n\t\tcomponets/\n\t\tcontext/\n\t\thooks/\n\t\tpublic/\n\t\ttypes/\n\t\tutils/\npackages/\n\tcomponents/\n\t\tpackage.json\n\t\ttsconfig.json\n\t\tsrc/\n\tcontext/\n\t\tpackage.json\n\t\ttsconfig.json\n\t\tsrc/\n\teslint-config/\n\t\tbase.js\n\t\tnext.js\n\t\tpackage.json\n\t\treact-internal.js\n\t\tREADME.md\n\thooks/\n\t\tpackage.json\n\t\ttsconfig.json\n\t\tsrc/\n\tinterfaces/\n\t\tpackage.json\n\t\ttsconfig.json\n\t\tsrc/\n\tservices/\n\t\tpackage.json\n\t\ttsconfig.json\n\t\tsrc/\n\ttypescript-config/\n\t\tbase.json\n\t\tnextjs.json\n\t\tpackage.json\n\t\treact-library.json\n\tui/\n\t\teslint.config.mjs\n\t\tpackage.json\n\t\ttsconfig.json\n\t\tsrc/\n\tutils/\n\t\tpackage.json\n\t\ttsconfig.json\n\t\tsrc/\nscripts/\n\tcleanup.sh\n\tcreate-package.ts\n```\nThis is the state of the context at this point in the conversation. The view of the workspace structure may be truncated. You can use tools to collect more context if needed.\n</workspace_info>\n"
+            },
+            {
+              "type": 3,
+              "cacheType": "ephemeral"
+            }
+          ],
+          "toolCallRounds": [
+            {
+              "response": "I can see the issue. You're running into a concurrency limitation with Turbo. The error indicates that you have 10 persistent tasks but Turbo is configured for a concurrency of 10, and it needs at least 11 to handle all the tasks properly.\n\nLet me check your Turbo configuration to understand the current setup and fix this issue. ",
+              "toolCalls": [
+                {
+                  "name": "read_file",
+                  "arguments": "{\"filePath\": \"/home/junior/Projects/movie-diary/turbo.json\", \"startLine\": 1, \"endLine\": 50}",
+                  "id": "toolu_vrtx_01Qio36Dkh9nhk9zDkG3QJ3o__vscode-1754419517303"
+                }
+              ],
+              "toolInputRetry": 0,
+              "id": "21ba5883-5688-474b-8ce7-225c04c283b3"
+            },
+            {
+              "response": "Now let me check which packages have dev scripts to understand how many persistent tasks are being run: ",
+              "toolCalls": [
+                {
+                  "name": "grep_search",
+                  "arguments": "{\"query\": \"\\\"dev\\\":\", \"isRegexp\": false, \"includePattern\": \"**/package.json\"}",
+                  "id": "toolu_vrtx_017uo1gyDQmxnksgXhruYHrn__vscode-1754419517304"
+                }
+              ],
+              "toolInputRetry": 0,
+              "id": "63722ca4-1791-4d09-a65e-8450f824567c"
+            },
+            {
+              "response": "Perfect! I can see you have 10 packages/apps with dev scripts, and since the `dev` task is marked as `persistent: true` in your `turbo.json`, each one runs as a persistent task. The issue is that Turbo's default concurrency is 10, but you need at least 11 to handle 10 persistent tasks plus any overhead.\n\nLet me fix this by updating the `turbo.json` to increase the concurrency limit: ",
+              "toolCalls": [
+                {
+                  "name": "replace_string_in_file",
+                  "arguments": "{\"filePath\": \"/home/junior/Projects/movie-diary/turbo.json\", \"oldString\": \"{\\n  \\\"$schema\\\": \\\"https://turborepo.com/schema.json\\\",\\n  \\\"ui\\\": \\\"tui\\\",\\n  \\\"globalEnv\\\": [\\\"NODE_ENV\\\"],\\n  \\\"globalDependencies\\\": [\\\"**/.env\\\"],\", \"newString\": \"{\\n  \\\"$schema\\\": \\\"https://turborepo.com/schema.json\\\",\\n  \\\"ui\\\": \\\"tui\\\",\\n  \\\"globalEnv\\\": [\\\"NODE_ENV\\\"],\\n  \\\"globalDependencies\\\": [\\\"**/.env\\\"],\"}",
+                  "id": "toolu_vrtx_01QEsn4TL3PC5B8uhnkcBKYq__vscode-1754419517305"
+                }
+              ],
+              "toolInputRetry": 0,
+              "id": "627da948-0190-40de-b7b3-946990f1c76c"
+            },
+            {
+              "response": "Let me try a different approach - I'll add the concurrency configuration to the turbo.json: ",
+              "toolCalls": [
+                {
+                  "name": "replace_string_in_file",
+                  "arguments": "{\"filePath\": \"/home/junior/Projects/movie-diary/turbo.json\", \"newString\": \"{\\n  \\\"$schema\\\": \\\"https://turborepo.com/schema.json\\\",\\n  \\\"ui\\\": \\\"tui\\\",\\n  \\\"globalEnv\\\": [\\\"NODE_ENV\\\"],\\n  \\\"globalDependencies\\\": [\\\"**/.env\\\"],\\n  \\\"globalPassThroughEnv\\\": [\\n    \\\"EXPO_PUBLIC_MOVIE_API_KEY\\\",\\n    \\\"VITE_MOVIE_API_KEY\\\",\\n    \\\"PUBLIC_MOVIE_API_KEY\\\",\\n    \\\"TMDB_API_KEY\\\"\\n  ],\\n  \\\"tasks\\\": {\", \"oldString\": \"{\\n  \\\"$schema\\\": \\\"https://turborepo.com/schema.json\\\",\\n  \\\"ui\\\": \\\"tui\\\",\\n  \\\"globalEnv\\\": [\\\"NODE_ENV\\\"],\\n  \\\"globalDependencies\\\": [\\\"**/.env\\\"],\\n  \\\"globalPassThroughEnv\\\": [\\n    \\\"EXPO_PUBLIC_MOVIE_API_KEY\\\",\\n    \\\"VITE_MOVIE_API_KEY\\\",\\n    \\\"PUBLIC_MOVIE_API_KEY\\\",\\n    \\\"TMDB_API_KEY\\\"\\n  ],\\n  \\\"tasks\\\": {\"}",
+                  "id": "toolu_vrtx_01Q6gDx7V1nbihEUXgDy1JpD__vscode-1754419517306"
+                }
+              ],
+              "toolInputRetry": 0,
+              "id": "cbaf5e4e-3311-49b3-b0ea-075d313e165f"
+            },
+            {
+              "response": "Let me try to add the concurrency setting. I need to add it to the tasks configuration: ",
+              "toolCalls": [
+                {
+                  "name": "replace_string_in_file",
+                  "arguments": "{\"filePath\": \"/home/junior/Projects/movie-diary/turbo.json\", \"newString\": \"    \\\"dev\\\": {\\n      \\\"cache\\\": false,\\n      \\\"persistent\\\": true\\n    },\", \"oldString\": \"    \\\"dev\\\": {\\n      \\\"cache\\\": false,\\n      \\\"persistent\\\": true\\n    },\"}",
+                  "id": "toolu_vrtx_01WNfE4SkeMdjJ6uQucRMva5__vscode-1754419517307"
+                }
+              ],
+              "toolInputRetry": 0,
+              "id": "7c3a9d20-bd7f-4ead-beb7-7bacd2305e60"
+            },
+            {
+              "response": "Let me add the concurrency configuration to the dev task specifically: ",
+              "toolCalls": [
+                {
+                  "name": "replace_string_in_file",
+                  "arguments": "{\"filePath\": \"/home/junior/Projects/movie-diary/turbo.json\", \"newString\": \"    \\\"dev\\\": {\\n      \\\"cache\\\": false,\\n      \\\"persistent\\\": true,\\n      \\\"concurrency\\\": 15\\n    },\", \"oldString\": \"    \\\"dev\\\": {\\n      \\\"cache\\\": false,\\n      \\\"persistent\\\": true\\n    },\"}",
+                  "id": "toolu_vrtx_011ADpmFonQNhNysQXzVPFbb__vscode-1754419517308"
+                }
+              ],
+              "toolInputRetry": 0,
+              "id": "efcb017c-3c35-4bce-858f-a82b828e3660"
+            },
+            {
+              "response": "I see that `concurrency` is not a valid property for individual tasks. Let me revert that change and use the correct approach. The concurrency should be set at the global level or passed as a command line argument. ",
+              "toolCalls": [
+                {
+                  "name": "replace_string_in_file",
+                  "arguments": "{\"filePath\": \"/home/junior/Projects/movie-diary/turbo.json\", \"newString\": \"    \\\"dev\\\": {\\n      \\\"cache\\\": false,\\n      \\\"persistent\\\": true\\n    },\", \"oldString\": \"    \\\"dev\\\": {\\n      \\\"cache\\\": false,\\n      \\\"persistent\\\": true,\\n      \\\"concurrency\\\": 15\\n    },\"}",
+                  "id": "toolu_vrtx_01UBDw6iyCvR1LMjUUfmZ4Qu__vscode-1754419517309"
+                }
+              ],
+              "toolInputRetry": 0,
+              "id": "57071254-429e-4e92-a4e4-bb8b3bfb4c97"
+            },
+            {
+              "response": "Now let me run the command with the correct concurrency flag: ",
+              "toolCalls": [
+                {
+                  "name": "run_in_terminal",
+                  "arguments": "{\"command\": \"cd /home/junior/Projects/movie-diary && pnpm exec turbo run dev --concurrency=15\", \"explanation\": \"Running the dev command with increased concurrency to handle 10 persistent tasks\", \"isBackground\": true}",
+                  "id": "toolu_vrtx_01PTP2CmMWhK7825YX8pFGRi__vscode-1754419517310"
+                }
+              ],
+              "toolInputRetry": 0,
+              "id": "cee430a6-a24f-4232-83a9-e8de4b07769f"
+            },
+            {
+              "response": "Perfect! The command is now running with increased concurrency. Let me check the output to make sure it's working properly: ",
+              "toolCalls": [
+                {
+                  "name": "get_terminal_output",
+                  "arguments": "{\"id\": \"c9898b80-2610-4011-a055-11eb5f78ab13\"}",
+                  "id": "toolu_vrtx_019okEGMd9PoB3iWX1P3JCuP__vscode-1754419517311"
+                }
+              ],
+              "toolInputRetry": 0,
+              "id": "6a857937-2a10-4a59-88dc-47ef2c382922"
+            },
+            {
+              "response": "Excellent! The command is now running successfully. I can see that Turbo is running the dev tasks for all 12 packages (it shows \"Running dev in 12 packages\"), and the tasks are starting up properly with TypeScript compilation in watch mode.\n\nTo make this easier for future runs, let me update your root `package.json` to include the concurrency flag in the dev script: ",
+              "toolCalls": [
+                {
+                  "name": "read_file",
+                  "arguments": "{\"filePath\": \"/home/junior/Projects/movie-diary/package.json\", \"startLine\": 20, \"endLine\": 35}",
+                  "id": "toolu_vrtx_01HdB2jVj42w9AhFbxstxtns__vscode-1754419517312"
+                }
+              ],
+              "toolInputRetry": 0,
+              "id": "841db8dc-db77-48a6-a0dd-a15a3a3b3e75"
+            },
+            {
+              "response": "",
+              "toolCalls": [
+                {
+                  "name": "replace_string_in_file",
+                  "arguments": "{\"filePath\": \"/home/junior/Projects/movie-diary/package.json\", \"newString\": \"  \\\"scripts\\\": {\\n    \\\"build\\\": \\\"turbo run build\\\",\\n    \\\"check-types\\\": \\\"turbo run check-types\\\",\\n    \\\"dev\\\": \\\"turbo run dev --concurrency=15\\\",\\n    \\\"start\\\": \\\"turbo run start\\\",\\n    \\\"lint\\\": \\\"turbo run lint\\\",\\n    \\\"test\\\": \\\"turbo run test\\\",\\n    \\\"format\\\": \\\"turbo run format\\\",\", \"oldString\": \"  \\\"scripts\\\": {\\n    \\\"build\\\": \\\"turbo run build\\\",\\n    \\\"check-types\\\": \\\"turbo run check-types\\\",\\n    \\\"dev\\\": \\\"turbo run dev\\\",\\n    \\\"start\\\": \\\"turbo run start\\\",\\n    \\\"lint\\\": \\\"turbo run lint\\\",\\n    \\\"test\\\": \\\"turbo run test\\\",\\n    \\\"format\\\": \\\"turbo run format\\\",\"}",
+                  "id": "toolu_vrtx_01TY2d7fxR7KLWqoTCsn9GEf__vscode-1754419517313"
+                }
+              ],
+              "toolInputRetry": 0,
+              "id": "831fdafb-c8cd-421d-a916-3e5c711c0b7d"
+            },
+            {
+              "response": "Perfect! I've fixed the issue by:\n\n1. **Identified the problem**: You have 10 persistent tasks (dev scripts) but Turbo was configured for a concurrency of 10, which wasn't sufficient.\n\n2. **Applied the solution**: Added the `--concurrency=15` flag to your dev command, which gives you enough concurrency to handle all 10 persistent tasks plus some overhead.\n\n3. **Made it permanent**: Updated your root `package.json` script so that future runs of `pnpm run dev` will automatically use the correct concurrency setting.\n\nNow when you run `pnpm run dev` in the future, it will automatically use the correct concurrency setting and all your development servers should start up properly. The command is currently running and you should see all your packages building in watch mode, including:\n\n- All the TypeScript packages compiling in watch mode\n- The Next.js web app starting up\n- The Express server starting up  \n- The Expo mobile app starting up\n\nThis will allow you to develop across all your packages simultaneously with hot reloading.",
+              "toolCalls": [],
+              "toolInputRetry": 0,
+              "id": "f1334aac-41a1-433a-8560-f2c3ec42e164"
+            }
+          ],
+          "toolCallResults": {
+            "toolu_vrtx_01Qio36Dkh9nhk9zDkG3QJ3o__vscode-1754419517303": {
+              "$mid": 20,
+              "content": [
+                {
+                  "$mid": 22,
+                  "value": {
+                    "node": {
+                      "type": 1,
+                      "ctor": 2,
+                      "ctorName": "QY",
+                      "children": [
+                        {
+                          "type": 1,
+                          "ctor": 2,
+                          "ctorName": "We",
+                          "children": [
+                            {
+                              "type": 1,
+                              "ctor": 2,
+                              "ctorName": "Lee",
+                              "children": [
+                                {
+                                  "type": 2,
+                                  "priority": 44,
+                                  "text": "```json\n",
+                                  "references": [
+                                    {
+                                      "anchor": {
+                                        "$mid": 1,
+                                        "fsPath": "/home/junior/Projects/movie-diary/turbo.json",
+                                        "external": "file:///home/junior/Projects/movie-diary/turbo.json",
+                                        "path": "/home/junior/Projects/movie-diary/turbo.json",
+                                        "scheme": "file"
+                                      },
+                                      "options": {
+                                        "isFromTool": true
+                                      }
+                                    }
+                                  ],
+                                  "lineBreakBefore": true
+                                }
+                              ],
+                              "props": {
+                                "priority": 44
+                              },
+                              "references": []
+                            },
+                            {
+                              "type": 1,
+                              "ctor": 2,
+                              "ctorName": "Lee",
+                              "children": [
+                                {
+                                  "type": 2,
+                                  "priority": 43,
+                                  "text": "{\n",
+                                  "references": [],
+                                  "lineBreakBefore": true
+                                }
+                              ],
+                              "props": {
+                                "priority": 43
+                              },
+                              "references": []
+                            },
+                            {
+                              "type": 1,
+                              "ctor": 2,
+                              "ctorName": "Lee",
+                              "children": [
+                                {
+                                  "type": 2,
+                                  "priority": 42,
+                                  "text": "  \"$schema\": \"https://turborepo.com/schema.json\",\n",
+                                  "references": [],
+                                  "lineBreakBefore": true
+                                }
+                              ],
+                              "props": {
+                                "priority": 42
+                              },
+                              "references": []
+                            },
+                            {
+                              "type": 1,
+                              "ctor": 2,
+                              "ctorName": "Lee",
+                              "children": [
+                                {
+                                  "type": 2,
+                                  "priority": 41,
+                                  "text": "  \"ui\": \"tui\",\n",
+                                  "references": [],
+                                  "lineBreakBefore": true
+                                }
+                              ],
+                              "props": {
+                                "priority": 41
+                              },
+                              "references": []
+                            },
+                            {
+                              "type": 1,
+                              "ctor": 2,
+                              "ctorName": "Lee",
+                              "children": [
+                                {
+                                  "type": 2,
+                                  "priority": 40,
+                                  "text": "  \"globalEnv\": [\"NODE_ENV\"],\n",
+                                  "references": [],
+                                  "lineBreakBefore": true
+                                }
+                              ],
+                              "props": {
+                                "priority": 40
+                              },
+                              "references": []
+                            },
+                            {
+                              "type": 1,
+                              "ctor": 2,
+                              "ctorName": "Lee",
+                              "children": [
+                                {
+                                  "type": 2,
+                                  "priority": 39,
+                                  "text": "  \"globalDependencies\": [\"**/.env\"],\n",
+                                  "references": [],
+                                  "lineBreakBefore": true
+                                }
+                              ],
+                              "props": {
+                                "priority": 39
+                              },
+                              "references": []
+                            },
+                            {
+                              "type": 1,
+                              "ctor": 2,
+                              "ctorName": "Lee",
+                              "children": [
+                                {
+                                  "type": 2,
+                                  "priority": 38,
+                                  "text": "  \"globalPassThroughEnv\": [\n",
+                                  "references": [],
+                                  "lineBreakBefore": true
+                                }
+                              ],
+                              "props": {
+                                "priority": 38
+                              },
+                              "references": []
+                            },
+                            {
+                              "type": 1,
+                              "ctor": 2,
+                              "ctorName": "Lee",
+                              "children": [
+                                {
+                                  "type": 2,
+                                  "priority": 37,
+                                  "text": "    \"EXPO_PUBLIC_MOVIE_API_KEY\",\n",
+                                  "references": [],
+                                  "lineBreakBefore": true
+                                }
+                              ],
+                              "props": {
+                                "priority": 37
+                              },
+                              "references": []
+                            },
+                            {
+                              "type": 1,
+                              "ctor": 2,
+                              "ctorName": "Lee",
+                              "children": [
+                                {
+                                  "type": 2,
+                                  "priority": 36,
+                                  "text": "    \"VITE_MOVIE_API_KEY\",\n",
+                                  "references": [],
+                                  "lineBreakBefore": true
+                                }
+                              ],
+                              "props": {
+                                "priority": 36
+                              },
+                              "references": []
+                            },
+                            {
+                              "type": 1,
+                              "ctor": 2,
+                              "ctorName": "Lee",
+                              "children": [
+                                {
+                                  "type": 2,
+                                  "priority": 35,
+                                  "text": "    \"PUBLIC_MOVIE_API_KEY\",\n",
+                                  "references": [],
+                                  "lineBreakBefore": true
+                                }
+                              ],
+                              "props": {
+                                "priority": 35
+                              },
+                              "references": []
+                            },
+                            {
+                              "type": 1,
+                              "ctor": 2,
+                              "ctorName": "Lee",
+                              "children": [
+                                {
+                                  "type": 2,
+                                  "priority": 34,
+                                  "text": "    \"TMDB_API_KEY\"\n",
+                                  "references": [],
+                                  "lineBreakBefore": true
+                                }
+                              ],
+                              "props": {
+                                "priority": 34
+                              },
+                              "references": []
+                            },
+                            {
+                              "type": 1,
+                              "ctor": 2,
+                              "ctorName": "Lee",
+                              "children": [
+                                {
+                                  "type": 2,
+                                  "priority": 33,
+                                  "text": "  ],\n",
+                                  "references": [],
+                                  "lineBreakBefore": true
+                                }
+                              ],
+                              "props": {
+                                "priority": 33
+                              },
+                              "references": []
+                            },
+                            {
+                              "type": 1,
+                              "ctor": 2,
+                              "ctorName": "Lee",
+                              "children": [
+                                {
+                                  "type": 2,
+                                  "priority": 32,
+                                  "text": "  \"tasks\": {\n",
+                                  "references": [],
+                                  "lineBreakBefore": true
+                                }
+                              ],
+                              "props": {
+                                "priority": 32
+                              },
+                              "references": []
+                            },
+                            {
+                              "type": 1,
+                              "ctor": 2,
+                              "ctorName": "Lee",
+                              "children": [
+                                {
+                                  "type": 2,
+                                  "priority": 31,
+                                  "text": "    \"build\": {\n",
+                                  "references": [],
+                                  "lineBreakBefore": true
+                                }
+                              ],
+                              "props": {
+                                "priority": 31
+                              },
+                              "references": []
+                            },
+                            {
+                              "type": 1,
+                              "ctor": 2,
+                              "ctorName": "Lee",
+                              "children": [
+                                {
+                                  "type": 2,
+                                  "priority": 30,
+                                  "text": "      \"dependsOn\": [\"^check-types\", \"^build\"],\n",
+                                  "references": [],
+                                  "lineBreakBefore": true
+                                }
+                              ],
+                              "props": {
+                                "priority": 30
+                              },
+                              "references": []
+                            },
+                            {
+                              "type": 1,
+                              "ctor": 2,
+                              "ctorName": "Lee",
+                              "children": [
+                                {
+                                  "type": 2,
+                                  "priority": 29,
+                                  "text": "      \"inputs\": [\"$TURBO_DEFAULT$\", \".env*\"],\n",
+                                  "references": [],
+                                  "lineBreakBefore": true
+                                }
+                              ],
+                              "props": {
+                                "priority": 29
+                              },
+                              "references": []
+                            },
+                            {
+                              "type": 1,
+                              "ctor": 2,
+                              "ctorName": "Lee",
+                              "children": [
+                                {
+                                  "type": 2,
+                                  "priority": 28,
+                                  "text": "      \"outputs\": [\".next/**\", \"!.next/cache/**\", \"dist/**\", \"packages/*/dist/**\", \"apps/*/dist/**\"]\n",
+                                  "references": [],
+                                  "lineBreakBefore": true
+                                }
+                              ],
+                              "props": {
+                                "priority": 28
+                              },
+                              "references": []
+                            },
+                            {
+                              "type": 1,
+                              "ctor": 2,
+                              "ctorName": "Lee",
+                              "children": [
+                                {
+                                  "type": 2,
+                                  "priority": 27,
+                                  "text": "    },\n",
+                                  "references": [],
+                                  "lineBreakBefore": true
+                                }
+                              ],
+                              "props": {
+                                "priority": 27
+                              },
+                              "references": []
+                            },
+                            {
+                              "type": 1,
+                              "ctor": 2,
+                              "ctorName": "Lee",
+                              "children": [
+                                {
+                                  "type": 2,
+                                  "priority": 26,
+                                  "text": "    \"test\": {\n",
+                                  "references": [],
+                                  "lineBreakBefore": true
+                                }
+                              ],
+                              "props": {
+                                "priority": 26
+                              },
+                              "references": []
+                            },
+                            {
+                              "type": 1,
+                              "ctor": 2,
+                              "ctorName": "Lee",
+                              "children": [
+                                {
+                                  "type": 2,
+                                  "priority": 25,
+                                  "text": "      \"dependsOn\": [\"^test\"],\n",
+                                  "references": [],
+                                  "lineBreakBefore": true
+                                }
+                              ],
+                              "props": {
+                                "priority": 25
+                              },
+                              "references": []
+                            },
+                            {
+                              "type": 1,
+                              "ctor": 2,
+                              "ctorName": "Lee",
+                              "children": [
+                                {
+                                  "type": 2,
+                                  "priority": 24,
+                                  "text": "      \"inputs\": [\"$TURBO_DEFAULT$\", \".env*\"]\n",
+                                  "references": [],
+                                  "lineBreakBefore": true
+                                }
+                              ],
+                              "props": {
+                                "priority": 24
+                              },
+                              "references": []
+                            },
+                            {
+                              "type": 1,
+                              "ctor": 2,
+                              "ctorName": "Lee",
+                              "children": [
+                                {
+                                  "type": 2,
+                                  "priority": 23,
+                                  "text": "    },\n",
+                                  "references": [],
+                                  "lineBreakBefore": true
+                                }
+                              ],
+                              "props": {
+                                "priority": 23
+                              },
+                              "references": []
+                            },
+                            {
+                              "type": 1,
+                              "ctor": 2,
+                              "ctorName": "Lee",
+                              "children": [
+                                {
+                                  "type": 2,
+                                  "priority": 22,
+                                  "text": "    \"start\": {\n",
+                                  "references": [],
+                                  "lineBreakBefore": true
+                                }
+                              ],
+                              "props": {
+                                "priority": 22
+                              },
+                              "references": []
+                            },
+                            {
+                              "type": 1,
+                              "ctor": 2,
+                              "ctorName": "Lee",
+                              "children": [
+                                {
+                                  "type": 2,
+                                  "priority": 21,
+                                  "text": "      \"cache\": false,\n",
+                                  "references": [],
+                                  "lineBreakBefore": true
+                                }
+                              ],
+                              "props": {
+                                "priority": 21
+                              },
+                              "references": []
+                            },
+                            {
+                              "type": 1,
+                              "ctor": 2,
+                              "ctorName": "Lee",
+                              "children": [
+                                {
+                                  "type": 2,
+                                  "priority": 20,
+                                  "text": "      \"persistent\": true,\n",
+                                  "references": [],
+                                  "lineBreakBefore": true
+                                }
+                              ],
+                              "props": {
+                                "priority": 20
+                              },
+                              "references": []
+                            },
+                            {
+                              "type": 1,
+                              "ctor": 2,
+                              "ctorName": "Lee",
+                              "children": [
+                                {
+                                  "type": 2,
+                                  "priority": 19,
+                                  "text": "      \"dependsOn\": [\"build\"]\n",
+                                  "references": [],
+                                  "lineBreakBefore": true
+                                }
+                              ],
+                              "props": {
+                                "priority": 19
+                              },
+                              "references": []
+                            },
+                            {
+                              "type": 1,
+                              "ctor": 2,
+                              "ctorName": "Lee",
+                              "children": [
+                                {
+                                  "type": 2,
+                                  "priority": 18,
+                                  "text": "    },\n",
+                                  "references": [],
+                                  "lineBreakBefore": true
+                                }
+                              ],
+                              "props": {
+                                "priority": 18
+                              },
+                              "references": []
+                            },
+                            {
+                              "type": 1,
+                              "ctor": 2,
+                              "ctorName": "Lee",
+                              "children": [
+                                {
+                                  "type": 2,
+                                  "priority": 17,
+                                  "text": "    \"lint\": {\n",
+                                  "references": [],
+                                  "lineBreakBefore": true
+                                }
+                              ],
+                              "props": {
+                                "priority": 17
+                              },
+                              "references": []
+                            },
+                            {
+                              "type": 1,
+                              "ctor": 2,
+                              "ctorName": "Lee",
+                              "children": [
+                                {
+                                  "type": 2,
+                                  "priority": 16,
+                                  "text": "      \"dependsOn\": [\"^lint\", \"^build\"]\n",
+                                  "references": [],
+                                  "lineBreakBefore": true
+                                }
+                              ],
+                              "props": {
+                                "priority": 16
+                              },
+                              "references": []
+                            },
+                            {
+                              "type": 1,
+                              "ctor": 2,
+                              "ctorName": "Lee",
+                              "children": [
+                                {
+                                  "type": 2,
+                                  "priority": 15,
+                                  "text": "    },\n",
+                                  "references": [],
+                                  "lineBreakBefore": true
+                                }
+                              ],
+                              "props": {
+                                "priority": 15
+                              },
+                              "references": []
+                            },
+                            {
+                              "type": 1,
+                              "ctor": 2,
+                              "ctorName": "Lee",
+                              "children": [
+                                {
+                                  "type": 2,
+                                  "priority": 14,
+                                  "text": "    \"check-types\": {\n",
+                                  "references": [],
+                                  "lineBreakBefore": true
+                                }
+                              ],
+                              "props": {
+                                "priority": 14
+                              },
+                              "references": []
+                            },
+                            {
+                              "type": 1,
+                              "ctor": 2,
+                              "ctorName": "Lee",
+                              "children": [
+                                {
+                                  "type": 2,
+                                  "priority": 13,
+                                  "text": "      \"dependsOn\": [\"^check-types\"]\n",
+                                  "references": [],
+                                  "lineBreakBefore": true
+                                }
+                              ],
+                              "props": {
+                                "priority": 13
+                              },
+                              "references": []
+                            },
+                            {
+                              "type": 1,
+                              "ctor": 2,
+                              "ctorName": "Lee",
+                              "children": [
+                                {
+                                  "type": 2,
+                                  "priority": 12,
+                                  "text": "    },\n",
+                                  "references": [],
+                                  "lineBreakBefore": true
+                                }
+                              ],
+                              "props": {
+                                "priority": 12
+                              },
+                              "references": []
+                            },
+                            {
+                              "type": 1,
+                              "ctor": 2,
+                              "ctorName": "Lee",
+                              "children": [
+                                {
+                                  "type": 2,
+                                  "priority": 11,
+                                  "text": "    \"dev\": {\n",
+                                  "references": [],
+                                  "lineBreakBefore": true
+                                }
+                              ],
+                              "props": {
+                                "priority": 11
+                              },
+                              "references": []
+                            },
+                            {
+                              "type": 1,
+                              "ctor": 2,
+                              "ctorName": "Lee",
+                              "children": [
+                                {
+                                  "type": 2,
+                                  "priority": 10,
+                                  "text": "      \"cache\": false,\n",
+                                  "references": [],
+                                  "lineBreakBefore": true
+                                }
+                              ],
+                              "props": {
+                                "priority": 10
+                              },
+                              "references": []
+                            },
+                            {
+                              "type": 1,
+                              "ctor": 2,
+                              "ctorName": "Lee",
+                              "children": [
+                                {
+                                  "type": 2,
+                                  "priority": 9,
+                                  "text": "      \"persistent\": true\n",
+                                  "references": [],
+                                  "lineBreakBefore": true
+                                }
+                              ],
+                              "props": {
+                                "priority": 9
+                              },
+                              "references": []
+                            },
+                            {
+                              "type": 1,
+                              "ctor": 2,
+                              "ctorName": "Lee",
+                              "children": [
+                                {
+                                  "type": 2,
+                                  "priority": 8,
+                                  "text": "    },\n",
+                                  "references": [],
+                                  "lineBreakBefore": true
+                                }
+                              ],
+                              "props": {
+                                "priority": 8
+                              },
+                              "references": []
+                            },
+                            {
+                              "type": 1,
+                              "ctor": 2,
+                              "ctorName": "Lee",
+                              "children": [
+                                {
+                                  "type": 2,
+                                  "priority": 7,
+                                  "text": "    \"format\": {\n",
+                                  "references": [],
+                                  "lineBreakBefore": true
+                                }
+                              ],
+                              "props": {
+                                "priority": 7
+                              },
+                              "references": []
+                            },
+                            {
+                              "type": 1,
+                              "ctor": 2,
+                              "ctorName": "Lee",
+                              "children": [
+                                {
+                                  "type": 2,
+                                  "priority": 6,
+                                  "text": "      \"cache\": false\n",
+                                  "references": [],
+                                  "lineBreakBefore": true
+                                }
+                              ],
+                              "props": {
+                                "priority": 6
+                              },
+                              "references": []
+                            },
+                            {
+                              "type": 1,
+                              "ctor": 2,
+                              "ctorName": "Lee",
+                              "children": [
+                                {
+                                  "type": 2,
+                                  "priority": 5,
+                                  "text": "    }\n",
+                                  "references": [],
+                                  "lineBreakBefore": true
+                                }
+                              ],
+                              "props": {
+                                "priority": 5
+                              },
+                              "references": []
+                            },
+                            {
+                              "type": 1,
+                              "ctor": 2,
+                              "ctorName": "Lee",
+                              "children": [
+                                {
+                                  "type": 2,
+                                  "priority": 4,
+                                  "text": "  }\n",
+                                  "references": [],
+                                  "lineBreakBefore": true
+                                }
+                              ],
+                              "props": {
+                                "priority": 4
+                              },
+                              "references": []
+                            },
+                            {
+                              "type": 1,
+                              "ctor": 2,
+                              "ctorName": "Lee",
+                              "children": [
+                                {
+                                  "type": 2,
+                                  "priority": 3,
+                                  "text": "}\n",
+                                  "references": [],
+                                  "lineBreakBefore": true
+                                }
+                              ],
+                              "props": {
+                                "priority": 3
+                              },
+                              "references": []
+                            },
+                            {
+                              "type": 1,
+                              "ctor": 2,
+                              "ctorName": "Lee",
+                              "children": [
+                                {
+                                  "type": 2,
+                                  "priority": 2,
+                                  "text": "\n",
+                                  "references": [],
+                                  "lineBreakBefore": true
+                                }
+                              ],
+                              "props": {
+                                "priority": 2
+                              },
+                              "references": []
+                            },
+                            {
+                              "type": 1,
+                              "ctor": 2,
+                              "ctorName": "Lee",
+                              "children": [
+                                {
+                                  "type": 2,
+                                  "priority": 44,
+                                  "text": "```",
+                                  "references": [],
+                                  "lineBreakBefore": true
+                                }
+                              ],
+                              "props": {
+                                "priority": 44
+                              },
+                              "references": []
+                            }
+                          ],
+                          "props": {},
+                          "references": []
+                        }
+                      ],
+                      "props": {},
+                      "references": []
+                    }
+                  }
+                }
+              ]
+            },
+            "toolu_vrtx_017uo1gyDQmxnksgXhruYHrn__vscode-1754419517304": {
+              "$mid": 20,
+              "content": [
+                {
+                  "$mid": 22,
+                  "value": {
+                    "node": {
+                      "type": 1,
+                      "ctor": 2,
+                      "ctorName": "cFe",
+                      "children": [
+                        {
+                          "type": 1,
+                          "ctor": 2,
+                          "ctorName": "Lee",
+                          "children": [
+                            {
+                              "type": 2,
+                              "priority": 20,
+                              "text": "11 matches",
+                              "references": [],
+                              "lineBreakBefore": true
+                            }
+                          ],
+                          "props": {
+                            "priority": 20
+                          },
+                          "references": []
+                        },
+                        {
+                          "type": 1,
+                          "ctor": 2,
+                          "ctorName": "IY",
+                          "children": [
+                            {
+                              "type": 1,
+                              "ctor": 2,
+                              "ctorName": "r",
+                              "children": [
+                                {
+                                  "type": 1,
+                                  "ctor": 2,
+                                  "ctorName": "",
+                                  "children": [
+                                    {
+                                      "type": 2,
+                                      "priority": 9007199254740991,
+                                      "text": "<match path=\"/home/junior/Projects/movie-diary/package.json\" line=26>\n",
+                                      "lineBreakBefore": false
+                                    }
+                                  ],
+                                  "props": {},
+                                  "references": [],
+                                  "keepWithId": 382
+                                },
+                                {
+                                  "type": 1,
+                                  "ctor": 2,
+                                  "ctorName": "LTe",
+                                  "children": [
+                                    {
+                                      "type": 1,
+                                      "ctor": 2,
+                                      "ctorName": "Lee",
+                                      "children": [
+                                        {
+                                          "type": 2,
+                                          "priority": 1000,
+                                          "text": "    \"dev\": \"turbo run dev\",",
+                                          "references": [],
+                                          "lineBreakBefore": true
+                                        }
+                                      ],
+                                      "props": {
+                                        "priority": 1000
+                                      },
+                                      "references": []
+                                    },
+                                    {
+                                      "type": 2,
+                                      "priority": 1,
+                                      "text": "\n",
+                                      "lineBreakBefore": false
+                                    }
+                                  ],
+                                  "props": {
+                                    "flexGrow": 1,
+                                    "priority": 1
+                                  },
+                                  "references": [
+                                    {
+                                      "anchor": {
+                                        "uri": {
+                                          "$mid": 1,
+                                          "fsPath": "/home/junior/Projects/movie-diary/package.json",
+                                          "external": "file:///home/junior/Projects/movie-diary/package.json",
+                                          "path": "/home/junior/Projects/movie-diary/package.json",
+                                          "scheme": "file"
+                                        },
+                                        "range": [
+                                          {
+                                            "line": 25,
+                                            "character": 4
+                                          },
+                                          {
+                                            "line": 25,
+                                            "character": 10
+                                          }
+                                        ]
+                                      },
+                                      "options": {
+                                        "isFromTool": true
+                                      }
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": 1,
+                                  "ctor": 2,
+                                  "ctorName": "",
+                                  "children": [
+                                    {
+                                      "type": 2,
+                                      "priority": 9007199254740991,
+                                      "text": "</match>",
+                                      "lineBreakBefore": false
+                                    }
+                                  ],
+                                  "props": {},
+                                  "references": [],
+                                  "keepWithId": 382
+                                },
+                                {
+                                  "type": 2,
+                                  "priority": 9007199254740991,
+                                  "text": "\n",
+                                  "lineBreakBefore": false
+                                }
+                              ],
+                              "props": {},
+                              "references": []
+                            }
+                          ],
+                          "props": {
+                            "passPriority": true
+                          },
+                          "references": [],
+                          "flags": 4
+                        },
+                        {
+                          "type": 1,
+                          "ctor": 2,
+                          "ctorName": "IY",
+                          "children": [
+                            {
+                              "type": 1,
+                              "ctor": 2,
+                              "ctorName": "r",
+                              "children": [
+                                {
+                                  "type": 1,
+                                  "ctor": 2,
+                                  "ctorName": "",
+                                  "children": [
+                                    {
+                                      "type": 2,
+                                      "priority": 9007199254740991,
+                                      "text": "<match path=\"/home/junior/Projects/movie-diary/packages/components/package.json\" line=22>\n",
+                                      "lineBreakBefore": false
+                                    }
+                                  ],
+                                  "props": {},
+                                  "references": [],
+                                  "keepWithId": 383
+                                },
+                                {
+                                  "type": 1,
+                                  "ctor": 2,
+                                  "ctorName": "LTe",
+                                  "children": [
+                                    {
+                                      "type": 1,
+                                      "ctor": 2,
+                                      "ctorName": "Lee",
+                                      "children": [
+                                        {
+                                          "type": 2,
+                                          "priority": 1000,
+                                          "text": "    \"dev\": \"tsc --watch\",",
+                                          "references": [],
+                                          "lineBreakBefore": true
+                                        }
+                                      ],
+                                      "props": {
+                                        "priority": 1000
+                                      },
+                                      "references": []
+                                    },
+                                    {
+                                      "type": 2,
+                                      "priority": 1,
+                                      "text": "\n",
+                                      "lineBreakBefore": false
+                                    }
+                                  ],
+                                  "props": {
+                                    "flexGrow": 1,
+                                    "priority": 1
+                                  },
+                                  "references": [
+                                    {
+                                      "anchor": {
+                                        "uri": {
+                                          "$mid": 1,
+                                          "fsPath": "/home/junior/Projects/movie-diary/packages/components/package.json",
+                                          "external": "file:///home/junior/Projects/movie-diary/packages/components/package.json",
+                                          "path": "/home/junior/Projects/movie-diary/packages/components/package.json",
+                                          "scheme": "file"
+                                        },
+                                        "range": [
+                                          {
+                                            "line": 21,
+                                            "character": 4
+                                          },
+                                          {
+                                            "line": 21,
+                                            "character": 10
+                                          }
+                                        ]
+                                      },
+                                      "options": {
+                                        "isFromTool": true
+                                      }
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": 1,
+                                  "ctor": 2,
+                                  "ctorName": "",
+                                  "children": [
+                                    {
+                                      "type": 2,
+                                      "priority": 9007199254740991,
+                                      "text": "</match>",
+                                      "lineBreakBefore": false
+                                    }
+                                  ],
+                                  "props": {},
+                                  "references": [],
+                                  "keepWithId": 383
+                                },
+                                {
+                                  "type": 2,
+                                  "priority": 9007199254740991,
+                                  "text": "\n",
+                                  "lineBreakBefore": false
+                                }
+                              ],
+                              "props": {},
+                              "references": []
+                            }
+                          ],
+                          "props": {
+                            "passPriority": true
+                          },
+                          "references": [],
+                          "flags": 4
+                        },
+                        {
+                          "type": 1,
+                          "ctor": 2,
+                          "ctorName": "IY",
+                          "children": [
+                            {
+                              "type": 1,
+                              "ctor": 2,
+                              "ctorName": "r",
+                              "children": [
+                                {
+                                  "type": 1,
+                                  "ctor": 2,
+                                  "ctorName": "",
+                                  "children": [
+                                    {
+                                      "type": 2,
+                                      "priority": 9007199254740991,
+                                      "text": "<match path=\"/home/junior/Projects/movie-diary/packages/utils/package.json\" line=19>\n",
+                                      "lineBreakBefore": false
+                                    }
+                                  ],
+                                  "props": {},
+                                  "references": [],
+                                  "keepWithId": 384
+                                },
+                                {
+                                  "type": 1,
+                                  "ctor": 2,
+                                  "ctorName": "LTe",
+                                  "children": [
+                                    {
+                                      "type": 1,
+                                      "ctor": 2,
+                                      "ctorName": "Lee",
+                                      "children": [
+                                        {
+                                          "type": 2,
+                                          "priority": 1000,
+                                          "text": "    \"dev\": \"tsc --watch\",",
+                                          "references": [],
+                                          "lineBreakBefore": true
+                                        }
+                                      ],
+                                      "props": {
+                                        "priority": 1000
+                                      },
+                                      "references": []
+                                    },
+                                    {
+                                      "type": 2,
+                                      "priority": 1,
+                                      "text": "\n",
+                                      "lineBreakBefore": false
+                                    }
+                                  ],
+                                  "props": {
+                                    "flexGrow": 1,
+                                    "priority": 1
+                                  },
+                                  "references": [
+                                    {
+                                      "anchor": {
+                                        "uri": {
+                                          "$mid": 1,
+                                          "fsPath": "/home/junior/Projects/movie-diary/packages/utils/package.json",
+                                          "external": "file:///home/junior/Projects/movie-diary/packages/utils/package.json",
+                                          "path": "/home/junior/Projects/movie-diary/packages/utils/package.json",
+                                          "scheme": "file"
+                                        },
+                                        "range": [
+                                          {
+                                            "line": 18,
+                                            "character": 4
+                                          },
+                                          {
+                                            "line": 18,
+                                            "character": 10
+                                          }
+                                        ]
+                                      },
+                                      "options": {
+                                        "isFromTool": true
+                                      }
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": 1,
+                                  "ctor": 2,
+                                  "ctorName": "",
+                                  "children": [
+                                    {
+                                      "type": 2,
+                                      "priority": 9007199254740991,
+                                      "text": "</match>",
+                                      "lineBreakBefore": false
+                                    }
+                                  ],
+                                  "props": {},
+                                  "references": [],
+                                  "keepWithId": 384
+                                },
+                                {
+                                  "type": 2,
+                                  "priority": 9007199254740991,
+                                  "text": "\n",
+                                  "lineBreakBefore": false
+                                }
+                              ],
+                              "props": {},
+                              "references": []
+                            }
+                          ],
+                          "props": {
+                            "passPriority": true
+                          },
+                          "references": [],
+                          "flags": 4
+                        },
+                        {
+                          "type": 1,
+                          "ctor": 2,
+                          "ctorName": "IY",
+                          "children": [
+                            {
+                              "type": 1,
+                              "ctor": 2,
+                              "ctorName": "r",
+                              "children": [
+                                {
+                                  "type": 1,
+                                  "ctor": 2,
+                                  "ctorName": "",
+                                  "children": [
+                                    {
+                                      "type": 2,
+                                      "priority": 9007199254740991,
+                                      "text": "<match path=\"/home/junior/Projects/movie-diary/packages/hooks/package.json\" line=38>\n",
+                                      "lineBreakBefore": false
+                                    }
+                                  ],
+                                  "props": {},
+                                  "references": [],
+                                  "keepWithId": 385
+                                },
+                                {
+                                  "type": 1,
+                                  "ctor": 2,
+                                  "ctorName": "LTe",
+                                  "children": [
+                                    {
+                                      "type": 1,
+                                      "ctor": 2,
+                                      "ctorName": "Lee",
+                                      "children": [
+                                        {
+                                          "type": 2,
+                                          "priority": 1000,
+                                          "text": "    \"dev\": \"tsc --watch\",",
+                                          "references": [],
+                                          "lineBreakBefore": true
+                                        }
+                                      ],
+                                      "props": {
+                                        "priority": 1000
+                                      },
+                                      "references": []
+                                    },
+                                    {
+                                      "type": 2,
+                                      "priority": 1,
+                                      "text": "\n",
+                                      "lineBreakBefore": false
+                                    }
+                                  ],
+                                  "props": {
+                                    "flexGrow": 1,
+                                    "priority": 1
+                                  },
+                                  "references": [
+                                    {
+                                      "anchor": {
+                                        "uri": {
+                                          "$mid": 1,
+                                          "fsPath": "/home/junior/Projects/movie-diary/packages/hooks/package.json",
+                                          "external": "file:///home/junior/Projects/movie-diary/packages/hooks/package.json",
+                                          "path": "/home/junior/Projects/movie-diary/packages/hooks/package.json",
+                                          "scheme": "file"
+                                        },
+                                        "range": [
+                                          {
+                                            "line": 37,
+                                            "character": 4
+                                          },
+                                          {
+                                            "line": 37,
+                                            "character": 10
+                                          }
+                                        ]
+                                      },
+                                      "options": {
+                                        "isFromTool": true
+                                      }
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": 1,
+                                  "ctor": 2,
+                                  "ctorName": "",
+                                  "children": [
+                                    {
+                                      "type": 2,
+                                      "priority": 9007199254740991,
+                                      "text": "</match>",
+                                      "lineBreakBefore": false
+                                    }
+                                  ],
+                                  "props": {},
+                                  "references": [],
+                                  "keepWithId": 385
+                                },
+                                {
+                                  "type": 2,
+                                  "priority": 9007199254740991,
+                                  "text": "\n",
+                                  "lineBreakBefore": false
+                                }
+                              ],
+                              "props": {},
+                              "references": []
+                            }
+                          ],
+                          "props": {
+                            "passPriority": true
+                          },
+                          "references": [],
+                          "flags": 4
+                        },
+                        {
+                          "type": 1,
+                          "ctor": 2,
+                          "ctorName": "IY",
+                          "children": [
+                            {
+                              "type": 1,
+                              "ctor": 2,
+                              "ctorName": "r",
+                              "children": [
+                                {
+                                  "type": 1,
+                                  "ctor": 2,
+                                  "ctorName": "",
+                                  "children": [
+                                    {
+                                      "type": 2,
+                                      "priority": 9007199254740991,
+                                      "text": "<match path=\"/home/junior/Projects/movie-diary/packages/context/package.json\" line=16>\n",
+                                      "lineBreakBefore": false
+                                    }
+                                  ],
+                                  "props": {},
+                                  "references": [],
+                                  "keepWithId": 386
+                                },
+                                {
+                                  "type": 1,
+                                  "ctor": 2,
+                                  "ctorName": "LTe",
+                                  "children": [
+                                    {
+                                      "type": 1,
+                                      "ctor": 2,
+                                      "ctorName": "Lee",
+                                      "children": [
+                                        {
+                                          "type": 2,
+                                          "priority": 1000,
+                                          "text": "    \"dev\": \"tsc --watch\",",
+                                          "references": [],
+                                          "lineBreakBefore": true
+                                        }
+                                      ],
+                                      "props": {
+                                        "priority": 1000
+                                      },
+                                      "references": []
+                                    },
+                                    {
+                                      "type": 2,
+                                      "priority": 1,
+                                      "text": "\n",
+                                      "lineBreakBefore": false
+                                    }
+                                  ],
+                                  "props": {
+                                    "flexGrow": 1,
+                                    "priority": 1
+                                  },
+                                  "references": [
+                                    {
+                                      "anchor": {
+                                        "uri": {
+                                          "$mid": 1,
+                                          "fsPath": "/home/junior/Projects/movie-diary/packages/context/package.json",
+                                          "external": "file:///home/junior/Projects/movie-diary/packages/context/package.json",
+                                          "path": "/home/junior/Projects/movie-diary/packages/context/package.json",
+                                          "scheme": "file"
+                                        },
+                                        "range": [
+                                          {
+                                            "line": 15,
+                                            "character": 4
+                                          },
+                                          {
+                                            "line": 15,
+                                            "character": 10
+                                          }
+                                        ]
+                                      },
+                                      "options": {
+                                        "isFromTool": true
+                                      }
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": 1,
+                                  "ctor": 2,
+                                  "ctorName": "",
+                                  "children": [
+                                    {
+                                      "type": 2,
+                                      "priority": 9007199254740991,
+                                      "text": "</match>",
+                                      "lineBreakBefore": false
+                                    }
+                                  ],
+                                  "props": {},
+                                  "references": [],
+                                  "keepWithId": 386
+                                },
+                                {
+                                  "type": 2,
+                                  "priority": 9007199254740991,
+                                  "text": "\n",
+                                  "lineBreakBefore": false
+                                }
+                              ],
+                              "props": {},
+                              "references": []
+                            }
+                          ],
+                          "props": {
+                            "passPriority": true
+                          },
+                          "references": [],
+                          "flags": 4
+                        },
+                        {
+                          "type": 1,
+                          "ctor": 2,
+                          "ctorName": "IY",
+                          "children": [
+                            {
+                              "type": 1,
+                              "ctor": 2,
+                              "ctorName": "r",
+                              "children": [
+                                {
+                                  "type": 1,
+                                  "ctor": 2,
+                                  "ctorName": "",
+                                  "children": [
+                                    {
+                                      "type": 2,
+                                      "priority": 9007199254740991,
+                                      "text": "<match path=\"/home/junior/Projects/movie-diary/packages/ui/package.json\" line=14>\n",
+                                      "lineBreakBefore": false
+                                    }
+                                  ],
+                                  "props": {},
+                                  "references": [],
+                                  "keepWithId": 387
+                                },
+                                {
+                                  "type": 1,
+                                  "ctor": 2,
+                                  "ctorName": "LTe",
+                                  "children": [
+                                    {
+                                      "type": 1,
+                                      "ctor": 2,
+                                      "ctorName": "Lee",
+                                      "children": [
+                                        {
+                                          "type": 2,
+                                          "priority": 1000,
+                                          "text": "    \"dev\": \"tsc --watch\",",
+                                          "references": [],
+                                          "lineBreakBefore": true
+                                        }
+                                      ],
+                                      "props": {
+                                        "priority": 1000
+                                      },
+                                      "references": []
+                                    },
+                                    {
+                                      "type": 2,
+                                      "priority": 1,
+                                      "text": "\n",
+                                      "lineBreakBefore": false
+                                    }
+                                  ],
+                                  "props": {
+                                    "flexGrow": 1,
+                                    "priority": 1
+                                  },
+                                  "references": [
+                                    {
+                                      "anchor": {
+                                        "uri": {
+                                          "$mid": 1,
+                                          "fsPath": "/home/junior/Projects/movie-diary/packages/ui/package.json",
+                                          "external": "file:///home/junior/Projects/movie-diary/packages/ui/package.json",
+                                          "path": "/home/junior/Projects/movie-diary/packages/ui/package.json",
+                                          "scheme": "file"
+                                        },
+                                        "range": [
+                                          {
+                                            "line": 13,
+                                            "character": 4
+                                          },
+                                          {
+                                            "line": 13,
+                                            "character": 10
+                                          }
+                                        ]
+                                      },
+                                      "options": {
+                                        "isFromTool": true
+                                      }
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": 1,
+                                  "ctor": 2,
+                                  "ctorName": "",
+                                  "children": [
+                                    {
+                                      "type": 2,
+                                      "priority": 9007199254740991,
+                                      "text": "</match>",
+                                      "lineBreakBefore": false
+                                    }
+                                  ],
+                                  "props": {},
+                                  "references": [],
+                                  "keepWithId": 387
+                                },
+                                {
+                                  "type": 2,
+                                  "priority": 9007199254740991,
+                                  "text": "\n",
+                                  "lineBreakBefore": false
+                                }
+                              ],
+                              "props": {},
+                              "references": []
+                            }
+                          ],
+                          "props": {
+                            "passPriority": true
+                          },
+                          "references": [],
+                          "flags": 4
+                        },
+                        {
+                          "type": 1,
+                          "ctor": 2,
+                          "ctorName": "IY",
+                          "children": [
+                            {
+                              "type": 1,
+                              "ctor": 2,
+                              "ctorName": "r",
+                              "children": [
+                                {
+                                  "type": 1,
+                                  "ctor": 2,
+                                  "ctorName": "",
+                                  "children": [
+                                    {
+                                      "type": 2,
+                                      "priority": 9007199254740991,
+                                      "text": "<match path=\"/home/junior/Projects/movie-diary/packages/interfaces/package.json\" line=15>\n",
+                                      "lineBreakBefore": false
+                                    }
+                                  ],
+                                  "props": {},
+                                  "references": [],
+                                  "keepWithId": 388
+                                },
+                                {
+                                  "type": 1,
+                                  "ctor": 2,
+                                  "ctorName": "LTe",
+                                  "children": [
+                                    {
+                                      "type": 1,
+                                      "ctor": 2,
+                                      "ctorName": "Lee",
+                                      "children": [
+                                        {
+                                          "type": 2,
+                                          "priority": 1000,
+                                          "text": "    \"dev\": \"echo 'No dev mode for .d.ts files'\",",
+                                          "references": [],
+                                          "lineBreakBefore": true
+                                        }
+                                      ],
+                                      "props": {
+                                        "priority": 1000
+                                      },
+                                      "references": []
+                                    },
+                                    {
+                                      "type": 2,
+                                      "priority": 1,
+                                      "text": "\n",
+                                      "lineBreakBefore": false
+                                    }
+                                  ],
+                                  "props": {
+                                    "flexGrow": 1,
+                                    "priority": 1
+                                  },
+                                  "references": [
+                                    {
+                                      "anchor": {
+                                        "uri": {
+                                          "$mid": 1,
+                                          "fsPath": "/home/junior/Projects/movie-diary/packages/interfaces/package.json",
+                                          "external": "file:///home/junior/Projects/movie-diary/packages/interfaces/package.json",
+                                          "path": "/home/junior/Projects/movie-diary/packages/interfaces/package.json",
+                                          "scheme": "file"
+                                        },
+                                        "range": [
+                                          {
+                                            "line": 14,
+                                            "character": 4
+                                          },
+                                          {
+                                            "line": 14,
+                                            "character": 10
+                                          }
+                                        ]
+                                      },
+                                      "options": {
+                                        "isFromTool": true
+                                      }
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": 1,
+                                  "ctor": 2,
+                                  "ctorName": "",
+                                  "children": [
+                                    {
+                                      "type": 2,
+                                      "priority": 9007199254740991,
+                                      "text": "</match>",
+                                      "lineBreakBefore": false
+                                    }
+                                  ],
+                                  "props": {},
+                                  "references": [],
+                                  "keepWithId": 388
+                                },
+                                {
+                                  "type": 2,
+                                  "priority": 9007199254740991,
+                                  "text": "\n",
+                                  "lineBreakBefore": false
+                                }
+                              ],
+                              "props": {},
+                              "references": []
+                            }
+                          ],
+                          "props": {
+                            "passPriority": true
+                          },
+                          "references": [],
+                          "flags": 4
+                        },
+                        {
+                          "type": 1,
+                          "ctor": 2,
+                          "ctorName": "IY",
+                          "children": [
+                            {
+                              "type": 1,
+                              "ctor": 2,
+                              "ctorName": "r",
+                              "children": [
+                                {
+                                  "type": 1,
+                                  "ctor": 2,
+                                  "ctorName": "",
+                                  "children": [
+                                    {
+                                      "type": 2,
+                                      "priority": 9007199254740991,
+                                      "text": "<match path=\"/home/junior/Projects/movie-diary/packages/services/package.json\" line=49>\n",
+                                      "lineBreakBefore": false
+                                    }
+                                  ],
+                                  "props": {},
+                                  "references": [],
+                                  "keepWithId": 389
+                                },
+                                {
+                                  "type": 1,
+                                  "ctor": 2,
+                                  "ctorName": "LTe",
+                                  "children": [
+                                    {
+                                      "type": 1,
+                                      "ctor": 2,
+                                      "ctorName": "Lee",
+                                      "children": [
+                                        {
+                                          "type": 2,
+                                          "priority": 1000,
+                                          "text": "    \"dev\": \"tsc --watch\"",
+                                          "references": [],
+                                          "lineBreakBefore": true
+                                        }
+                                      ],
+                                      "props": {
+                                        "priority": 1000
+                                      },
+                                      "references": []
+                                    },
+                                    {
+                                      "type": 2,
+                                      "priority": 1,
+                                      "text": "\n",
+                                      "lineBreakBefore": false
+                                    }
+                                  ],
+                                  "props": {
+                                    "flexGrow": 1,
+                                    "priority": 1
+                                  },
+                                  "references": [
+                                    {
+                                      "anchor": {
+                                        "uri": {
+                                          "$mid": 1,
+                                          "fsPath": "/home/junior/Projects/movie-diary/packages/services/package.json",
+                                          "external": "file:///home/junior/Projects/movie-diary/packages/services/package.json",
+                                          "path": "/home/junior/Projects/movie-diary/packages/services/package.json",
+                                          "scheme": "file"
+                                        },
+                                        "range": [
+                                          {
+                                            "line": 48,
+                                            "character": 4
+                                          },
+                                          {
+                                            "line": 48,
+                                            "character": 10
+                                          }
+                                        ]
+                                      },
+                                      "options": {
+                                        "isFromTool": true
+                                      }
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": 1,
+                                  "ctor": 2,
+                                  "ctorName": "",
+                                  "children": [
+                                    {
+                                      "type": 2,
+                                      "priority": 9007199254740991,
+                                      "text": "</match>",
+                                      "lineBreakBefore": false
+                                    }
+                                  ],
+                                  "props": {},
+                                  "references": [],
+                                  "keepWithId": 389
+                                },
+                                {
+                                  "type": 2,
+                                  "priority": 9007199254740991,
+                                  "text": "\n",
+                                  "lineBreakBefore": false
+                                }
+                              ],
+                              "props": {},
+                              "references": []
+                            }
+                          ],
+                          "props": {
+                            "passPriority": true
+                          },
+                          "references": [],
+                          "flags": 4
+                        },
+                        {
+                          "type": 1,
+                          "ctor": 2,
+                          "ctorName": "IY",
+                          "children": [
+                            {
+                              "type": 1,
+                              "ctor": 2,
+                              "ctorName": "r",
+                              "children": [
+                                {
+                                  "type": 1,
+                                  "ctor": 2,
+                                  "ctorName": "",
+                                  "children": [
+                                    {
+                                      "type": 2,
+                                      "priority": 9007199254740991,
+                                      "text": "<match path=\"/home/junior/Projects/movie-diary/apps/server/package.json\" line=11>\n",
+                                      "lineBreakBefore": false
+                                    }
+                                  ],
+                                  "props": {},
+                                  "references": [],
+                                  "keepWithId": 390
+                                },
+                                {
+                                  "type": 1,
+                                  "ctor": 2,
+                                  "ctorName": "LTe",
+                                  "children": [
+                                    {
+                                      "type": 1,
+                                      "ctor": 2,
+                                      "ctorName": "Lee",
+                                      "children": [
+                                        {
+                                          "type": 2,
+                                          "priority": 1000,
+                                          "text": "    \"dev\": \"nodemon index.ts\",",
+                                          "references": [],
+                                          "lineBreakBefore": true
+                                        }
+                                      ],
+                                      "props": {
+                                        "priority": 1000
+                                      },
+                                      "references": []
+                                    },
+                                    {
+                                      "type": 2,
+                                      "priority": 1,
+                                      "text": "\n",
+                                      "lineBreakBefore": false
+                                    }
+                                  ],
+                                  "props": {
+                                    "flexGrow": 1,
+                                    "priority": 1
+                                  },
+                                  "references": [
+                                    {
+                                      "anchor": {
+                                        "uri": {
+                                          "$mid": 1,
+                                          "fsPath": "/home/junior/Projects/movie-diary/apps/server/package.json",
+                                          "external": "file:///home/junior/Projects/movie-diary/apps/server/package.json",
+                                          "path": "/home/junior/Projects/movie-diary/apps/server/package.json",
+                                          "scheme": "file"
+                                        },
+                                        "range": [
+                                          {
+                                            "line": 10,
+                                            "character": 4
+                                          },
+                                          {
+                                            "line": 10,
+                                            "character": 10
+                                          }
+                                        ]
+                                      },
+                                      "options": {
+                                        "isFromTool": true
+                                      }
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": 1,
+                                  "ctor": 2,
+                                  "ctorName": "",
+                                  "children": [
+                                    {
+                                      "type": 2,
+                                      "priority": 9007199254740991,
+                                      "text": "</match>",
+                                      "lineBreakBefore": false
+                                    }
+                                  ],
+                                  "props": {},
+                                  "references": [],
+                                  "keepWithId": 390
+                                },
+                                {
+                                  "type": 2,
+                                  "priority": 9007199254740991,
+                                  "text": "\n",
+                                  "lineBreakBefore": false
+                                }
+                              ],
+                              "props": {},
+                              "references": []
+                            }
+                          ],
+                          "props": {
+                            "passPriority": true
+                          },
+                          "references": [],
+                          "flags": 4
+                        },
+                        {
+                          "type": 1,
+                          "ctor": 2,
+                          "ctorName": "IY",
+                          "children": [
+                            {
+                              "type": 1,
+                              "ctor": 2,
+                              "ctorName": "r",
+                              "children": [
+                                {
+                                  "type": 1,
+                                  "ctor": 2,
+                                  "ctorName": "",
+                                  "children": [
+                                    {
+                                      "type": 2,
+                                      "priority": 9007199254740991,
+                                      "text": "<match path=\"/home/junior/Projects/movie-diary/apps/mobile/package.json\" line=12>\n",
+                                      "lineBreakBefore": false
+                                    }
+                                  ],
+                                  "props": {},
+                                  "references": [],
+                                  "keepWithId": 391
+                                },
+                                {
+                                  "type": 1,
+                                  "ctor": 2,
+                                  "ctorName": "LTe",
+                                  "children": [
+                                    {
+                                      "type": 1,
+                                      "ctor": 2,
+                                      "ctorName": "Lee",
+                                      "children": [
+                                        {
+                                          "type": 2,
+                                          "priority": 1000,
+                                          "text": "    \"dev\": \"expo start\",",
+                                          "references": [],
+                                          "lineBreakBefore": true
+                                        }
+                                      ],
+                                      "props": {
+                                        "priority": 1000
+                                      },
+                                      "references": []
+                                    },
+                                    {
+                                      "type": 2,
+                                      "priority": 1,
+                                      "text": "\n",
+                                      "lineBreakBefore": false
+                                    }
+                                  ],
+                                  "props": {
+                                    "flexGrow": 1,
+                                    "priority": 1
+                                  },
+                                  "references": [
+                                    {
+                                      "anchor": {
+                                        "uri": {
+                                          "$mid": 1,
+                                          "fsPath": "/home/junior/Projects/movie-diary/apps/mobile/package.json",
+                                          "external": "file:///home/junior/Projects/movie-diary/apps/mobile/package.json",
+                                          "path": "/home/junior/Projects/movie-diary/apps/mobile/package.json",
+                                          "scheme": "file"
+                                        },
+                                        "range": [
+                                          {
+                                            "line": 11,
+                                            "character": 4
+                                          },
+                                          {
+                                            "line": 11,
+                                            "character": 10
+                                          }
+                                        ]
+                                      },
+                                      "options": {
+                                        "isFromTool": true
+                                      }
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": 1,
+                                  "ctor": 2,
+                                  "ctorName": "",
+                                  "children": [
+                                    {
+                                      "type": 2,
+                                      "priority": 9007199254740991,
+                                      "text": "</match>",
+                                      "lineBreakBefore": false
+                                    }
+                                  ],
+                                  "props": {},
+                                  "references": [],
+                                  "keepWithId": 391
+                                },
+                                {
+                                  "type": 2,
+                                  "priority": 9007199254740991,
+                                  "text": "\n",
+                                  "lineBreakBefore": false
+                                }
+                              ],
+                              "props": {},
+                              "references": []
+                            }
+                          ],
+                          "props": {
+                            "passPriority": true
+                          },
+                          "references": [],
+                          "flags": 4
+                        },
+                        {
+                          "type": 1,
+                          "ctor": 2,
+                          "ctorName": "IY",
+                          "children": [
+                            {
+                              "type": 1,
+                              "ctor": 2,
+                              "ctorName": "r",
+                              "children": [
+                                {
+                                  "type": 1,
+                                  "ctor": 2,
+                                  "ctorName": "",
+                                  "children": [
+                                    {
+                                      "type": 2,
+                                      "priority": 9007199254740991,
+                                      "text": "<match path=\"/home/junior/Projects/movie-diary/apps/web/package.json\" line=24>\n",
+                                      "lineBreakBefore": false
+                                    }
+                                  ],
+                                  "props": {},
+                                  "references": [],
+                                  "keepWithId": 392
+                                },
+                                {
+                                  "type": 1,
+                                  "ctor": 2,
+                                  "ctorName": "LTe",
+                                  "children": [
+                                    {
+                                      "type": 1,
+                                      "ctor": 2,
+                                      "ctorName": "Lee",
+                                      "children": [
+                                        {
+                                          "type": 2,
+                                          "priority": 1000,
+                                          "text": "    \"dev\": \"next dev --turbopack --port 3000\",",
+                                          "references": [],
+                                          "lineBreakBefore": true
+                                        }
+                                      ],
+                                      "props": {
+                                        "priority": 1000
+                                      },
+                                      "references": []
+                                    },
+                                    {
+                                      "type": 2,
+                                      "priority": 1,
+                                      "text": "\n",
+                                      "lineBreakBefore": false
+                                    }
+                                  ],
+                                  "props": {
+                                    "flexGrow": 1,
+                                    "priority": 1
+                                  },
+                                  "references": [
+                                    {
+                                      "anchor": {
+                                        "uri": {
+                                          "$mid": 1,
+                                          "fsPath": "/home/junior/Projects/movie-diary/apps/web/package.json",
+                                          "external": "file:///home/junior/Projects/movie-diary/apps/web/package.json",
+                                          "path": "/home/junior/Projects/movie-diary/apps/web/package.json",
+                                          "scheme": "file"
+                                        },
+                                        "range": [
+                                          {
+                                            "line": 23,
+                                            "character": 4
+                                          },
+                                          {
+                                            "line": 23,
+                                            "character": 10
+                                          }
+                                        ]
+                                      },
+                                      "options": {
+                                        "isFromTool": true
+                                      }
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": 1,
+                                  "ctor": 2,
+                                  "ctorName": "",
+                                  "children": [
+                                    {
+                                      "type": 2,
+                                      "priority": 9007199254740991,
+                                      "text": "</match>",
+                                      "lineBreakBefore": false
+                                    }
+                                  ],
+                                  "props": {},
+                                  "references": [],
+                                  "keepWithId": 392
+                                },
+                                {
+                                  "type": 2,
+                                  "priority": 9007199254740991,
+                                  "text": "\n",
+                                  "lineBreakBefore": false
+                                }
+                              ],
+                              "props": {},
+                              "references": []
+                            }
+                          ],
+                          "props": {
+                            "passPriority": true
+                          },
+                          "references": [],
+                          "flags": 4
+                        }
+                      ],
+                      "props": {},
+                      "references": []
+                    }
+                  }
+                }
+              ]
+            },
+            "toolu_vrtx_01QEsn4TL3PC5B8uhnkcBKYq__vscode-1754419517305": {
+              "$mid": 20,
+              "content": [
+                {
+                  "$mid": 22,
+                  "value": {
+                    "node": {
+                      "type": 1,
+                      "ctor": 2,
+                      "ctorName": "zf",
+                      "children": [
+                        {
+                          "type": 2,
+                          "priority": 9007199254740991,
+                          "text": "String replacement failed: Original and edited file match exactly. Failed to apply edit.",
+                          "lineBreakBefore": false
+                        }
+                      ],
+                      "props": {},
+                      "references": []
+                    }
+                  }
+                }
+              ]
+            },
+            "toolu_vrtx_01Q6gDx7V1nbihEUXgDy1JpD__vscode-1754419517306": {
+              "$mid": 20,
+              "content": [
+                {
+                  "$mid": 22,
+                  "value": {
+                    "node": {
+                      "type": 1,
+                      "ctor": 2,
+                      "ctorName": "zf",
+                      "children": [
+                        {
+                          "type": 2,
+                          "priority": 9007199254740991,
+                          "text": "String replacement failed: Original and edited file match exactly. Failed to apply edit.",
+                          "lineBreakBefore": false
+                        }
+                      ],
+                      "props": {},
+                      "references": []
+                    }
+                  }
+                }
+              ]
+            },
+            "toolu_vrtx_01WNfE4SkeMdjJ6uQucRMva5__vscode-1754419517307": {
+              "$mid": 20,
+              "content": [
+                {
+                  "$mid": 22,
+                  "value": {
+                    "node": {
+                      "type": 1,
+                      "ctor": 2,
+                      "ctorName": "zf",
+                      "children": [
+                        {
+                          "type": 2,
+                          "priority": 9007199254740991,
+                          "text": "String replacement failed: Original and edited file match exactly. Failed to apply edit.",
+                          "lineBreakBefore": false
+                        }
+                      ],
+                      "props": {},
+                      "references": []
+                    }
+                  }
+                }
+              ]
+            },
+            "toolu_vrtx_011ADpmFonQNhNysQXzVPFbb__vscode-1754419517308": {
+              "$mid": 20,
+              "content": [
+                {
+                  "$mid": 22,
+                  "value": {
+                    "node": {
+                      "type": 1,
+                      "ctor": 2,
+                      "ctorName": "zf",
+                      "children": [
+                        {
+                          "type": 2,
+                          "priority": 9007199254740991,
+                          "text": "The edit to ",
+                          "lineBreakBefore": false
+                        },
+                        {
+                          "type": 2,
+                          "priority": 9007199254740991,
+                          "text": "/home/junior/Projects/movie-diary/turbo.json",
+                          "lineBreakBefore": false
+                        },
+                        {
+                          "type": 2,
+                          "priority": 9007199254740991,
+                          "text": " was applied successfully.",
+                          "lineBreakBefore": false
+                        },
+                        {
+                          "type": 2,
+                          "priority": 9007199254740991,
+                          "text": "\n",
+                          "lineBreakBefore": false
+                        },
+                        {
+                          "type": 2,
+                          "priority": 9007199254740991,
+                          "text": "The edit resulted in the following lint errors:",
+                          "lineBreakBefore": false
+                        },
+                        {
+                          "type": 2,
+                          "priority": 9007199254740991,
+                          "text": "\n",
+                          "lineBreakBefore": false
+                        },
+                        {
+                          "type": 1,
+                          "ctor": 2,
+                          "ctorName": "J1",
+                          "children": [
+                            {
+                              "type": 1,
+                              "ctor": 2,
+                              "ctorName": "r",
+                              "children": [
+                                {
+                                  "type": 1,
+                                  "ctor": 2,
+                                  "ctorName": "",
+                                  "children": [
+                                    {
+                                      "type": 2,
+                                      "priority": 9007199254740991,
+                                      "text": "<errors path=\"/home/junior/Projects/movie-diary/turbo.json\">\n",
+                                      "lineBreakBefore": false
+                                    }
+                                  ],
+                                  "props": {},
+                                  "references": [],
+                                  "keepWithId": 494
+                                },
+                                {
+                                  "type": 1,
+                                  "ctor": 2,
+                                  "ctorName": "LTe",
+                                  "children": [
+                                    {
+                                      "type": 1,
+                                      "ctor": 2,
+                                      "ctorName": "b_",
+                                      "children": [
+                                        {
+                                          "type": 1,
+                                          "ctor": 2,
+                                          "ctorName": "ZBe",
+                                          "children": [
+                                            {
+                                              "type": 2,
+                                              "priority": 9007199254740991,
+                                              "text": "This code at line ",
+                                              "lineBreakBefore": false
+                                            },
+                                            {
+                                              "type": 2,
+                                              "priority": 9007199254740991,
+                                              "text": "36",
+                                              "lineBreakBefore": false
+                                            },
+                                            {
+                                              "type": 2,
+                                              "priority": 9007199254740991,
+                                              "text": "\n",
+                                              "lineBreakBefore": false
+                                            },
+                                            {
+                                              "type": 1,
+                                              "ctor": 2,
+                                              "ctorName": "We",
+                                              "children": [
+                                                {
+                                                  "type": 1,
+                                                  "ctor": 2,
+                                                  "ctorName": "Lee",
+                                                  "children": [
+                                                    {
+                                                      "type": 2,
+                                                      "priority": 9007199254740991,
+                                                      "text": "```\n      \"concurrency\": 15\n```",
+                                                      "references": [],
+                                                      "lineBreakBefore": true
+                                                    }
+                                                  ],
+                                                  "props": {},
+                                                  "references": []
+                                                }
+                                              ],
+                                              "props": {},
+                                              "references": []
+                                            },
+                                            {
+                                              "type": 2,
+                                              "priority": 9007199254740991,
+                                              "text": "\n",
+                                              "lineBreakBefore": false
+                                            },
+                                            {
+                                              "type": 2,
+                                              "priority": 9007199254740991,
+                                              "text": "has the problem reported:",
+                                              "lineBreakBefore": false
+                                            },
+                                            {
+                                              "type": 2,
+                                              "priority": 9007199254740991,
+                                              "text": "\n",
+                                              "lineBreakBefore": false
+                                            },
+                                            {
+                                              "type": 1,
+                                              "ctor": 2,
+                                              "ctorName": "r",
+                                              "children": [
+                                                {
+                                                  "type": 1,
+                                                  "ctor": 2,
+                                                  "ctorName": "",
+                                                  "children": [
+                                                    {
+                                                      "type": 2,
+                                                      "priority": 9007199254740991,
+                                                      "text": "<compileError>\n",
+                                                      "lineBreakBefore": false
+                                                    }
+                                                  ],
+                                                  "props": {},
+                                                  "references": [],
+                                                  "keepWithId": 495
+                                                },
+                                                {
+                                                  "type": 1,
+                                                  "ctor": 2,
+                                                  "ctorName": "LTe",
+                                                  "children": [
+                                                    {
+                                                      "type": 2,
+                                                      "priority": 1,
+                                                      "text": "Property concurrency is not allowed.",
+                                                      "lineBreakBefore": false
+                                                    },
+                                                    {
+                                                      "type": 2,
+                                                      "priority": 1,
+                                                      "text": "\n",
+                                                      "lineBreakBefore": false
+                                                    }
+                                                  ],
+                                                  "props": {
+                                                    "flexGrow": 1,
+                                                    "priority": 1
+                                                  },
+                                                  "references": []
+                                                },
+                                                {
+                                                  "type": 1,
+                                                  "ctor": 2,
+                                                  "ctorName": "",
+                                                  "children": [
+                                                    {
+                                                      "type": 2,
+                                                      "priority": 9007199254740991,
+                                                      "text": "</compileError>",
+                                                      "lineBreakBefore": false
+                                                    }
+                                                  ],
+                                                  "props": {},
+                                                  "references": [],
+                                                  "keepWithId": 495
+                                                },
+                                                {
+                                                  "type": 2,
+                                                  "priority": 9007199254740991,
+                                                  "text": "\n",
+                                                  "lineBreakBefore": false
+                                                }
+                                              ],
+                                              "props": {},
+                                              "references": []
+                                            }
+                                          ],
+                                          "props": {},
+                                          "references": []
+                                        },
+                                        {
+                                          "type": 1,
+                                          "ctor": 2,
+                                          "ctorName": "eFe",
+                                          "children": [],
+                                          "props": {},
+                                          "references": []
+                                        }
+                                      ],
+                                      "props": {},
+                                      "references": []
+                                    },
+                                    {
+                                      "type": 2,
+                                      "priority": 1,
+                                      "text": "\n",
+                                      "lineBreakBefore": false
+                                    }
+                                  ],
+                                  "props": {
+                                    "flexGrow": 1,
+                                    "priority": 1
+                                  },
+                                  "references": []
+                                },
+                                {
+                                  "type": 1,
+                                  "ctor": 2,
+                                  "ctorName": "",
+                                  "children": [
+                                    {
+                                      "type": 2,
+                                      "priority": 9007199254740991,
+                                      "text": "</errors>",
+                                      "lineBreakBefore": false
+                                    }
+                                  ],
+                                  "props": {},
+                                  "references": [],
+                                  "keepWithId": 494
+                                },
+                                {
+                                  "type": 2,
+                                  "priority": 9007199254740991,
+                                  "text": "\n",
+                                  "lineBreakBefore": false
+                                }
+                              ],
+                              "props": {},
+                              "references": []
+                            }
+                          ],
+                          "props": {},
+                          "references": []
+                        }
+                      ],
+                      "props": {},
+                      "references": []
+                    }
+                  }
+                }
+              ]
+            },
+            "toolu_vrtx_01UBDw6iyCvR1LMjUUfmZ4Qu__vscode-1754419517309": {
+              "$mid": 20,
+              "content": [
+                {
+                  "$mid": 22,
+                  "value": {
+                    "node": {
+                      "type": 1,
+                      "ctor": 2,
+                      "ctorName": "zf",
+                      "children": [
+                        {
+                          "type": 2,
+                          "priority": 9007199254740991,
+                          "text": "The following files were successfully edited:",
+                          "lineBreakBefore": false
+                        },
+                        {
+                          "type": 2,
+                          "priority": 9007199254740991,
+                          "text": "\n",
+                          "lineBreakBefore": false
+                        },
+                        {
+                          "type": 2,
+                          "priority": 9007199254740991,
+                          "text": "/home/junior/Projects/movie-diary/turbo.json",
+                          "lineBreakBefore": false
+                        },
+                        {
+                          "type": 2,
+                          "priority": 9007199254740991,
+                          "text": "\n",
+                          "lineBreakBefore": false
+                        }
+                      ],
+                      "props": {},
+                      "references": []
+                    }
+                  }
+                }
+              ]
+            },
+            "toolu_vrtx_01PTP2CmMWhK7825YX8pFGRi__vscode-1754419517310": {
+              "$mid": 20,
+              "content": [
+                {
+                  "$mid": 21,
+                  "value": "Note: The user manually edited the command to `pnpm exec turbo run dev --concurrency=15`, and that command is now running in terminal with ID=c9898b80-2610-4011-a055-11eb5f78ab13"
+                }
+              ]
+            },
+            "toolu_vrtx_019okEGMd9PoB3iWX1P3JCuP__vscode-1754419517311": {
+              "$mid": 20,
+              "content": [
+                {
+                  "$mid": 21,
+                  "value": "Output of terminal c9898b80-2610-4011-a055-11eb5f78ab13:\nturbo 2.5.5\r\n\r\n• Packages in scope: @repo/components, @repo/context, @repo/eslint-config, @repo/hooks, @repo/interfaces, @repo/services, @repo/typescript-config, @repo/ui, @repo/utils, mobile, server, web\r\n• Running dev in 12 packages\r\n• Remote caching disabled\r\nTasks               │ @repo/components#dev > @repo/components#dev │█@repo/context#dev│@repo/hooks#dev│@repo/interfaces#dev│@repo/services#dev│@repo/ui#dev│@repo/utils#dev│mobile#dev│server#dev│web#dev│││││││││││↑ ↓ - Select        │m - More binds      │   u/d - Scroll logs   U/D - Page logs   t/b - Jump to top/bottommobile#dev          »@repo/components#dev cntext#devhooks#dev     interfaces#devservices#devi#dev   @repo/utils#dev@repo/utils#dev     »@repo/components#dev cntext#devhooks#dev     interfaces#devservices#devi#dev   web#dev             »@repo/components#dev cntext#devhooks#dev     interfaces#devservices#dev@repo/ui#devsrver#dev@repo/interfaces#dev»@repo/components#dev cntext#devhooks#dev     server#dev          »@repo/components#dev cntext#devhooks#dev   services#dev@repo/ui#dev»cache bypass, force executing dfc47357f32955f8 i -Inteact  u/d- Scroll logs   U/D - Page logs  t/b - Jup to top/bottomservices#dev»cntext#devhooks#dev   ui#dv     »cntext#devhooks#devhoks#dev  »cntext#dev»server#dev          @repo/components#dev»@repo/services#dev  »ui#dev      hooks#devcntext#devinterfaces#dev✓ >@repo/components@0.0.0dev/home/junior/Projects/movie-diary/packages/components>tsc--watch██                                                                                           [9:57:07 PM]Startingcompilationinwatchmode...█"
+                }
+              ]
+            },
+            "toolu_vrtx_01HdB2jVj42w9AhFbxstxtns__vscode-1754419517312": {
+              "$mid": 20,
+              "content": [
+                {
+                  "$mid": 22,
+                  "value": {
+                    "node": {
+                      "type": 1,
+                      "ctor": 2,
+                      "ctorName": "QY",
+                      "children": [
+                        {
+                          "type": 2,
+                          "priority": 9007199254740991,
+                          "text": "File: `",
+                          "lineBreakBefore": false
+                        },
+                        {
+                          "type": 2,
+                          "priority": 9007199254740991,
+                          "text": "/home/junior/Projects/movie-diary/package.json",
+                          "lineBreakBefore": false
+                        },
+                        {
+                          "type": 2,
+                          "priority": 9007199254740991,
+                          "text": "`. Lines ",
+                          "lineBreakBefore": false
+                        },
+                        {
+                          "type": 2,
+                          "priority": 9007199254740991,
+                          "text": "20",
+                          "lineBreakBefore": false
+                        },
+                        {
+                          "type": 2,
+                          "priority": 9007199254740991,
+                          "text": " to ",
+                          "lineBreakBefore": false
+                        },
+                        {
+                          "type": 2,
+                          "priority": 9007199254740991,
+                          "text": "35",
+                          "lineBreakBefore": false
+                        },
+                        {
+                          "type": 2,
+                          "priority": 9007199254740991,
+                          "text": " (",
+                          "lineBreakBefore": false
+                        },
+                        {
+                          "type": 2,
+                          "priority": 9007199254740991,
+                          "text": "73",
+                          "lineBreakBefore": false
+                        },
+                        {
+                          "type": 2,
+                          "priority": 9007199254740991,
+                          "text": " lines total): ",
+                          "lineBreakBefore": false
+                        },
+                        {
+                          "type": 2,
+                          "priority": 9007199254740991,
+                          "text": "\n",
+                          "lineBreakBefore": false
+                        },
+                        {
+                          "type": 1,
+                          "ctor": 2,
+                          "ctorName": "We",
+                          "children": [
+                            {
+                              "type": 1,
+                              "ctor": 2,
+                              "ctorName": "Lee",
+                              "children": [
+                                {
+                                  "type": 2,
+                                  "priority": 18,
+                                  "text": "```json\n",
+                                  "references": [
+                                    {
+                                      "anchor": {
+                                        "$mid": 1,
+                                        "fsPath": "/home/junior/Projects/movie-diary/package.json",
+                                        "external": "file:///home/junior/Projects/movie-diary/package.json",
+                                        "path": "/home/junior/Projects/movie-diary/package.json",
+                                        "scheme": "file"
+                                      },
+                                      "options": {
+                                        "isFromTool": true
+                                      }
+                                    }
+                                  ],
+                                  "lineBreakBefore": true
+                                }
+                              ],
+                              "props": {
+                                "priority": 18
+                              },
+                              "references": []
+                            },
+                            {
+                              "type": 1,
+                              "ctor": 2,
+                              "ctorName": "Lee",
+                              "children": [
+                                {
+                                  "type": 2,
+                                  "priority": 17,
+                                  "text": "  },\n",
+                                  "references": [],
+                                  "lineBreakBefore": true
+                                }
+                              ],
+                              "props": {
+                                "priority": 17
+                              },
+                              "references": []
+                            },
+                            {
+                              "type": 1,
+                              "ctor": 2,
+                              "ctorName": "Lee",
+                              "children": [
+                                {
+                                  "type": 2,
+                                  "priority": 16,
+                                  "text": "  \"packageManager\": \"pnpm@9.0.0\",\n",
+                                  "references": [],
+                                  "lineBreakBefore": true
+                                }
+                              ],
+                              "props": {
+                                "priority": 16
+                              },
+                              "references": []
+                            },
+                            {
+                              "type": 1,
+                              "ctor": 2,
+                              "ctorName": "Lee",
+                              "children": [
+                                {
+                                  "type": 2,
+                                  "priority": 15,
+                                  "text": "  \"private\": true,\n",
+                                  "references": [],
+                                  "lineBreakBefore": true
+                                }
+                              ],
+                              "props": {
+                                "priority": 15
+                              },
+                              "references": []
+                            },
+                            {
+                              "type": 1,
+                              "ctor": 2,
+                              "ctorName": "Lee",
+                              "children": [
+                                {
+                                  "type": 2,
+                                  "priority": 14,
+                                  "text": "  \"scripts\": {\n",
+                                  "references": [],
+                                  "lineBreakBefore": true
+                                }
+                              ],
+                              "props": {
+                                "priority": 14
+                              },
+                              "references": []
+                            },
+                            {
+                              "type": 1,
+                              "ctor": 2,
+                              "ctorName": "Lee",
+                              "children": [
+                                {
+                                  "type": 2,
+                                  "priority": 13,
+                                  "text": "    \"build\": \"turbo run build\",\n",
+                                  "references": [],
+                                  "lineBreakBefore": true
+                                }
+                              ],
+                              "props": {
+                                "priority": 13
+                              },
+                              "references": []
+                            },
+                            {
+                              "type": 1,
+                              "ctor": 2,
+                              "ctorName": "Lee",
+                              "children": [
+                                {
+                                  "type": 2,
+                                  "priority": 12,
+                                  "text": "    \"check-types\": \"turbo run check-types\",\n",
+                                  "references": [],
+                                  "lineBreakBefore": true
+                                }
+                              ],
+                              "props": {
+                                "priority": 12
+                              },
+                              "references": []
+                            },
+                            {
+                              "type": 1,
+                              "ctor": 2,
+                              "ctorName": "Lee",
+                              "children": [
+                                {
+                                  "type": 2,
+                                  "priority": 11,
+                                  "text": "    \"dev\": \"turbo run dev\",\n",
+                                  "references": [],
+                                  "lineBreakBefore": true
+                                }
+                              ],
+                              "props": {
+                                "priority": 11
+                              },
+                              "references": []
+                            },
+                            {
+                              "type": 1,
+                              "ctor": 2,
+                              "ctorName": "Lee",
+                              "children": [
+                                {
+                                  "type": 2,
+                                  "priority": 10,
+                                  "text": "    \"start\": \"turbo run start\",\n",
+                                  "references": [],
+                                  "lineBreakBefore": true
+                                }
+                              ],
+                              "props": {
+                                "priority": 10
+                              },
+                              "references": []
+                            },
+                            {
+                              "type": 1,
+                              "ctor": 2,
+                              "ctorName": "Lee",
+                              "children": [
+                                {
+                                  "type": 2,
+                                  "priority": 9,
+                                  "text": "    \"lint\": \"turbo run lint\",\n",
+                                  "references": [],
+                                  "lineBreakBefore": true
+                                }
+                              ],
+                              "props": {
+                                "priority": 9
+                              },
+                              "references": []
+                            },
+                            {
+                              "type": 1,
+                              "ctor": 2,
+                              "ctorName": "Lee",
+                              "children": [
+                                {
+                                  "type": 2,
+                                  "priority": 8,
+                                  "text": "    \"test\": \"turbo run test\",\n",
+                                  "references": [],
+                                  "lineBreakBefore": true
+                                }
+                              ],
+                              "props": {
+                                "priority": 8
+                              },
+                              "references": []
+                            },
+                            {
+                              "type": 1,
+                              "ctor": 2,
+                              "ctorName": "Lee",
+                              "children": [
+                                {
+                                  "type": 2,
+                                  "priority": 7,
+                                  "text": "    \"format\": \"turbo run format\",\n",
+                                  "references": [],
+                                  "lineBreakBefore": true
+                                }
+                              ],
+                              "props": {
+                                "priority": 7
+                              },
+                              "references": []
+                            },
+                            {
+                              "type": 1,
+                              "ctor": 2,
+                              "ctorName": "Lee",
+                              "children": [
+                                {
+                                  "type": 2,
+                                  "priority": 6,
+                                  "text": "    \"sync\": \"syncpack fix-mismatches\",\n",
+                                  "references": [],
+                                  "lineBreakBefore": true
+                                }
+                              ],
+                              "props": {
+                                "priority": 6
+                              },
+                              "references": []
+                            },
+                            {
+                              "type": 1,
+                              "ctor": 2,
+                              "ctorName": "Lee",
+                              "children": [
+                                {
+                                  "type": 2,
+                                  "priority": 5,
+                                  "text": "    \"sync:check\": \"syncpack list-mismatches\",\n",
+                                  "references": [],
+                                  "lineBreakBefore": true
+                                }
+                              ],
+                              "props": {
+                                "priority": 5
+                              },
+                              "references": []
+                            },
+                            {
+                              "type": 1,
+                              "ctor": 2,
+                              "ctorName": "Lee",
+                              "children": [
+                                {
+                                  "type": 2,
+                                  "priority": 4,
+                                  "text": "    \"sync:fix\": \"syncpack fix-mismatches\",\n",
+                                  "references": [],
+                                  "lineBreakBefore": true
+                                }
+                              ],
+                              "props": {
+                                "priority": 4
+                              },
+                              "references": []
+                            },
+                            {
+                              "type": 1,
+                              "ctor": 2,
+                              "ctorName": "Lee",
+                              "children": [
+                                {
+                                  "type": 2,
+                                  "priority": 3,
+                                  "text": "    \"prepare\": \"husky\",\n",
+                                  "references": [],
+                                  "lineBreakBefore": true
+                                }
+                              ],
+                              "props": {
+                                "priority": 3
+                              },
+                              "references": []
+                            },
+                            {
+                              "type": 1,
+                              "ctor": 2,
+                              "ctorName": "Lee",
+                              "children": [
+                                {
+                                  "type": 2,
+                                  "priority": 2,
+                                  "text": "    \"postinstall\": \"pnpm prepare\",\n",
+                                  "references": [],
+                                  "lineBreakBefore": true
+                                }
+                              ],
+                              "props": {
+                                "priority": 2
+                              },
+                              "references": []
+                            },
+                            {
+                              "type": 1,
+                              "ctor": 2,
+                              "ctorName": "Lee",
+                              "children": [
+                                {
+                                  "type": 2,
+                                  "priority": 18,
+                                  "text": "```",
+                                  "references": [],
+                                  "lineBreakBefore": true
+                                }
+                              ],
+                              "props": {
+                                "priority": 18
+                              },
+                              "references": []
+                            }
+                          ],
+                          "props": {},
+                          "references": []
+                        }
+                      ],
+                      "props": {},
+                      "references": []
+                    }
+                  }
+                }
+              ]
+            },
+            "toolu_vrtx_01TY2d7fxR7KLWqoTCsn9GEf__vscode-1754419517313": {
+              "$mid": 20,
+              "content": [
+                {
+                  "$mid": 22,
+                  "value": {
+                    "node": {
+                      "type": 1,
+                      "ctor": 2,
+                      "ctorName": "zf",
+                      "children": [
+                        {
+                          "type": 2,
+                          "priority": 9007199254740991,
+                          "text": "The following files were successfully edited:",
+                          "lineBreakBefore": false
+                        },
+                        {
+                          "type": 2,
+                          "priority": 9007199254740991,
+                          "text": "\n",
+                          "lineBreakBefore": false
+                        },
+                        {
+                          "type": 2,
+                          "priority": 9007199254740991,
+                          "text": "/home/junior/Projects/movie-diary/package.json",
+                          "lineBreakBefore": false
+                        },
+                        {
+                          "type": 2,
+                          "priority": 9007199254740991,
+                          "text": "\n",
+                          "lineBreakBefore": false
+                        }
+                      ],
+                      "props": {},
+                      "references": []
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "modelMessageId": "314b3d49-edee-4ad0-a899-98f0279d94fd",
+          "responseId": "c88694c1-905c-4779-a1bc-a33661ed61b5",
+          "sessionId": "55d372cc-2fa7-4232-b02d-df43ee21d72e",
+          "agentId": "github.copilot.editsAgent"
+        }
+      },
+      "followups": [],
+      "isCanceled": false,
+      "agent": {
+        "extensionId": {
+          "value": "GitHub.copilot-chat",
+          "_lower": "github.copilot-chat"
+        },
+        "publisherDisplayName": "GitHub",
+        "extensionPublisherId": "GitHub",
+        "extensionDisplayName": "GitHub Copilot Chat",
+        "id": "github.copilot.editsAgent",
+        "description": "Edit files in your workspace in agent mode",
+        "when": "config.chat.agent.enabled",
+        "metadata": {
+          "themeIcon": {
+            "id": "tools"
+          },
+          "hasFollowups": false,
+          "supportIssueReporting": false
+        },
+        "name": "agent",
+        "fullName": "GitHub Copilot",
+        "isDefault": true,
+        "locations": [
+          "panel"
+        ],
+        "modes": [
+          "agent"
+        ],
+        "slashCommands": [
+          {
+            "name": "list"
+          }
+        ],
+        "disambiguation": []
+      },
+      "contentReferences": [],
+      "codeCitations": [],
+      "timestamp": 1754420098757,
+      "modelId": "github.copilot-chat/claude-sonnet-4"
+    }
+  ],
+  "sessionId": "37c84ac1-cc10-4c3f-833b-23eaac5e32bb",
+  "creationDate": 1754420094889,
+  "isImported": false,
+  "lastMessageDate": 1754420098760
+}

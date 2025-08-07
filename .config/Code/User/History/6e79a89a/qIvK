@@ -1,0 +1,13 @@
+PORT = 8000
+NODE_ENV=local
+# NODE_ENV=production
+BD_HOST = localhost
+DB_USER = root
+# DB_USER = ecodnrsi_ecodnrsi
+# DB_PASSWORD = 'GM^2a_~*hsjW'
+DB_PASSWORD = ''
+# DOMAIN = ecodreum.com
+
+DB_NAME = ecodreum
+# DB_NAME = ecodnrsi_ecodreumdb
+JWT_PRIVATE_KEY = |dsdGgBDDDGYdsgdw7oijfajf?dhsjdhihSJSSBDBhsshfdfHSbdsdJSdsdb

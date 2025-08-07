@@ -1,0 +1,19 @@
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import ProjectsListing from './components/ProjectsListing';
+import ProjectDetail from './components/ProjectDetail';
+import DiscussionPageRoute from './app/discussion/[id]/page';
+
+function App() {
+	return (
+		<Router>
+			<Routes>
+				<Route path='/' element={<ProjectsListing />} />
+				<Route path='/project/:projectId' element={<ProjectDetail />} />
+				<Route path='/project/:projectId' element={<ProjectDetail />} />
+				<Route path='/discussion/:id' element={<DiscussionPageRoute />} />
+			</Routes>
+		</Router>
+	);
+}
+
+export default App;

@@ -1,0 +1,990 @@
+{
+  "version": 3,
+  "requesterUsername": "nyambogahezron",
+  "requesterAvatarIconUri": {
+    "$mid": 1,
+    "path": "/u/133749469",
+    "scheme": "https",
+    "authority": "avatars.githubusercontent.com",
+    "query": "v=4"
+  },
+  "responderUsername": "GitHub Copilot",
+  "responderAvatarIconUri": {
+    "id": "copilot"
+  },
+  "initialLocation": "panel",
+  "requests": [
+    {
+      "requestId": "request_265c3df6-6e84-42ac-9a56-0df2acf5063e",
+      "message": {
+        "parts": [
+          {
+            "range": {
+              "start": 0,
+              "endExclusive": 108
+            },
+            "editorRange": {
+              "startLineNumber": 1,
+              "startColumn": 1,
+              "endLineNumber": 1,
+              "endColumn": 109
+            },
+            "text": "since this project is collaborated by many people i want to setup prittier formation that will be use by all",
+            "kind": "text"
+          }
+        ],
+        "text": "since this project is collaborated by many people i want to setup prittier formation that will be use by all"
+      },
+      "variableData": {
+        "variables": [
+          {
+            "id": "vscode.prompt.instructions.text.github.copilot.chat.codeGeneration.instructions",
+            "name": "prompt:text",
+            "value": "Here is a list of instruction files that contain rules for modifying or creating new code.\nThese files are important for ensuring that the code is modified or created correctly.\nPlease make sure to follow the rules specified in these files when working with the codebase.\nIf the file is not already available as attachment, use the `read_file` tool to acquire it.\nMake sure to acquire the instructions before making any changes to the code.\n| Pattern | File Path | Description |\n| ------- | --------- | ----------- |\n| **/*-post-r-pm-* | '/tmp/postman-http-request-post-response.instructions.md' |  |\n| **/*-pre-r-pm-* | '/tmp/postman-http-request-pre-request.instructions.md' |  |\n| **/*-post-c-pm-* | '/tmp/postman-collections-post-response.instructions.md' |  |\n| **/*-pre-c-pm-* | '/tmp/postman-collections-pre-request.instructions.md' |  |\n| **/*-post-f-pm-* | '/tmp/postman-folder-post-response.instructions.md' |  |\n| **/*-pre-f-pm-* | '/tmp/postman-folder-pre-request.instructions.md' |  |",
+            "settingId": "github.copilot.chat.codeGeneration.instructions",
+            "kind": "promptText",
+            "modelDescription": "Prompt instructions text",
+            "automaticallyAdded": true
+          }
+        ]
+      },
+      "response": [
+        {
+          "value": "I'll help you set up Prettier formatting for your collaborative Node.js project. This will ensure consistent code formatting across all team members. Let me first examine your current project structure and then set up Prettier with appropriate configuration. ",
+          "supportThemeIcons": false,
+          "supportHtml": false,
+          "baseUri": {
+            "$mid": 1,
+            "path": "/home/junior/Projects/ecodreum/back-end-json/",
+            "scheme": "file"
+          }
+        },
+        {
+          "kind": "prepareToolInvocation",
+          "toolName": "copilot_readFile"
+        },
+        {
+          "kind": "toolInvocationSerialized",
+          "invocationMessage": {
+            "value": "Reading [](file:///home/junior/Projects/ecodreum/back-end-json/package.json)",
+            "supportThemeIcons": false,
+            "supportHtml": false,
+            "uris": {
+              "file:///home/junior/Projects/ecodreum/back-end-json/package.json": {
+                "$mid": 1,
+                "path": "/home/junior/Projects/ecodreum/back-end-json/package.json",
+                "scheme": "file"
+              }
+            }
+          },
+          "pastTenseMessage": {
+            "value": "Read [](file:///home/junior/Projects/ecodreum/back-end-json/package.json)",
+            "supportThemeIcons": false,
+            "supportHtml": false,
+            "uris": {
+              "file:///home/junior/Projects/ecodreum/back-end-json/package.json": {
+                "$mid": 1,
+                "path": "/home/junior/Projects/ecodreum/back-end-json/package.json",
+                "scheme": "file"
+              }
+            }
+          },
+          "isConfirmed": true,
+          "isComplete": true,
+          "toolCallId": "453febe0-af02-400b-81ce-e9e5f7790377",
+          "toolId": "copilot_readFile"
+        },
+        {
+          "value": "Now let me install Prettier and set up the configuration files for your project: ",
+          "supportThemeIcons": false,
+          "supportHtml": false,
+          "baseUri": {
+            "$mid": 1,
+            "path": "/home/junior/Projects/ecodreum/back-end-json/",
+            "scheme": "file"
+          }
+        },
+        {
+          "kind": "prepareToolInvocation",
+          "toolName": "copilot_runInTerminal"
+        },
+        {
+          "kind": "toolInvocationSerialized",
+          "invocationMessage": "Using \"Run In Terminal\"",
+          "isConfirmed": true,
+          "isComplete": true,
+          "toolSpecificData": {
+            "kind": "terminal",
+            "language": "sh",
+            "command": "npm install --save-dev prettier"
+          },
+          "toolCallId": "6f40f3c7-7fbe-4704-adfa-faa90d248295",
+          "toolId": "copilot_runInTerminal"
+        }
+      ],
+      "responseId": "response_bd6e2ef6-d0f5-46b0-a6f7-8104d1545b99",
+      "result": {
+        "timings": {
+          "firstProgress": 3878,
+          "totalElapsed": 371962
+        },
+        "metadata": {
+          "codeBlocks": [],
+          "renderedUserMessage": [
+            {
+              "type": 1,
+              "text": "<context>\nThe current date is August 4, 2025.\nNo active tasks or terminals found.\n</context>\n<repoContext>\nBelow is the information about the current repository. You can use this information when you need to calculate diffs or compare changes with the default branch.\nRepository name: back-end-json\nOwner: nezzyyoung\nCurrent branch: hezron\nDefault branch: main\n\n</repoContext>\n<reminderInstructions>\nWhen using the replace_string_in_file tool, include 3-5 lines of unchanged code before and after the string you want to replace, to make it unambiguous which part of the file should be edited.\n\n</reminderInstructions>\n<userRequest>\nsince this project is collaborated by many people i want to setup prittier formation that will be use by all\n</userRequest>\n"
+            },
+            {
+              "type": 3,
+              "cacheType": "ephemeral"
+            }
+          ],
+          "renderedGlobalContext": [
+            {
+              "type": 1,
+              "text": "<environment_info>\nThe user's current OS is: Linux\nThe user's default shell is: \"zsh\". When you generate terminal commands, please generate them correctly for this shell.\n</environment_info>\n<workspace_info>\nI am working in a workspace with the following folders:\n- /home/junior/Projects/ecodreum/back-end-json \nI am working in a workspace that has the following structure:\n```\npackage.json\nserver-ecoderum.js\nclass/\n\tUpload.js\n\tValidation.js\n\tuploads/\n\t\tPubliciteUpload.js\nconstants/\n\tFILE_CONFIG.js\n\tIMAGES_DESTINATIONS.js\n\tRESPONSE_CODES.js\n\tRESPONSE_STATUS.js\ncontrollers/\n\tdeviceTokens.controller.js\n\tadmins/\n\t\tadmins.controller.js\n\tauth/\n\t\tauth.controllers.js\n\teco/\n\t\teco.js\n\tevents/\n\t\tevents.controller.js\n\thistory/\n\t\thistory.controller.js\n\tpayment/\n\t\tpayment.controllers.js\n\tposts/\n\t\tposts.controller.js\n\tqrcode/\n\t\tqrcode.controllers.js\nmiddleware/\n\tbindUser.js\n\trequireAuth.js\nmodels/\n\tAdmins.js\n\tCategory.js\n\tdb_async.js\n\tDeviceTokens.js\n\tEco.js\n\tEvents.js\n\tHistory.js\n\tNotifications.js\n\tPosts.js\n\tProducts.js\n\tSector.js\n\tUsers.js\n\tWallet_type.js\n\tWallet.js\nroutes/\n\tadmins/\n\t\tadminsRouter.js\n\tauth/\n\t\tauthRouter.js\n\t\tauthRouterProvider.js\n\tdeviceTokens/\n\t\tdeviceTokensRouter.js\n\teco/\n\t\tecoRouter.js\n\t\tecoRouterProvider.js\n\tevents/\n\t\teventsRouter.js\n\t\teventsRouterProvider.js\n\thistory/\n\t\thistoryRouter.js\n\t\thistoryRouterProvider.js\n\tpayment/\n\t\tpaymentRouter.js\n\t\tpaymentRouterProvider.js\n\tposts/\n\t\tpostsRouter.js\n\t\tpostsRouterProvider.js\n\tqrCode/\n\t\tmarchantRouter.js\n\t\tmarchantRouterProvider.js\nsockets/\n\teco.js\nutils/\n\tdb.js\n\tgenerateEco.js\n\tgenerateToken.js\n\tsequerize.js\n```\nThis is the state of the context at this point in the conversation. The view of the workspace structure may be truncated. You can use tools to collect more context if needed.\n</workspace_info>\n"
+            },
+            {
+              "type": 3,
+              "cacheType": "ephemeral"
+            }
+          ],
+          "toolCallRounds": [
+            {
+              "response": "I'll help you set up Prettier formatting for your collaborative Node.js project. This will ensure consistent code formatting across all team members. Let me first examine your current project structure and then set up Prettier with appropriate configuration. ",
+              "toolCalls": [
+                {
+                  "name": "read_file",
+                  "arguments": "{\"filePath\": \"/home/junior/Projects/ecodreum/back-end-json/package.json\", \"startLine\": 1, \"endLine\": 50}",
+                  "id": "toolu_01Uk7EDWVhXXXdzHh9FtGTNu__vscode-1754290444034"
+                }
+              ],
+              "toolInputRetry": 0,
+              "id": "78b47bce-10ab-4329-beeb-b4700692dc6c"
+            },
+            {
+              "response": "Now let me install Prettier and set up the configuration files for your project: ",
+              "toolCalls": [
+                {
+                  "name": "run_in_terminal",
+                  "arguments": "{\"command\": \"cd /home/junior/Projects/ecodreum/back-end-json && npm install --save-dev prettier\", \"explanation\": \"Installing Prettier as a development dependency\", \"isBackground\": false}",
+                  "id": "toolu_01KteKhNpXsyjhpYajMWdAJP__vscode-1754290444035"
+                }
+              ],
+              "toolInputRetry": 0,
+              "id": "43d1ba2d-40c7-4cc9-a99f-11a31265534c"
+            }
+          ],
+          "toolCallResults": {
+            "toolu_01Uk7EDWVhXXXdzHh9FtGTNu__vscode-1754290444034": {
+              "$mid": 20,
+              "content": [
+                {
+                  "$mid": 22,
+                  "value": {
+                    "node": {
+                      "type": 1,
+                      "ctor": 2,
+                      "ctorName": "QY",
+                      "children": [
+                        {
+                          "type": 1,
+                          "ctor": 2,
+                          "ctorName": "We",
+                          "children": [
+                            {
+                              "type": 1,
+                              "ctor": 2,
+                              "ctorName": "Lee",
+                              "children": [
+                                {
+                                  "type": 2,
+                                  "priority": 32,
+                                  "text": "```json\n",
+                                  "references": [
+                                    {
+                                      "anchor": {
+                                        "$mid": 1,
+                                        "fsPath": "/home/junior/Projects/ecodreum/back-end-json/package.json",
+                                        "external": "file:///home/junior/Projects/ecodreum/back-end-json/package.json",
+                                        "path": "/home/junior/Projects/ecodreum/back-end-json/package.json",
+                                        "scheme": "file"
+                                      },
+                                      "options": {
+                                        "isFromTool": true
+                                      }
+                                    }
+                                  ],
+                                  "lineBreakBefore": true
+                                }
+                              ],
+                              "props": {
+                                "priority": 32
+                              },
+                              "references": []
+                            },
+                            {
+                              "type": 1,
+                              "ctor": 2,
+                              "ctorName": "Lee",
+                              "children": [
+                                {
+                                  "type": 2,
+                                  "priority": 31,
+                                  "text": "{\n",
+                                  "references": [],
+                                  "lineBreakBefore": true
+                                }
+                              ],
+                              "props": {
+                                "priority": 31
+                              },
+                              "references": []
+                            },
+                            {
+                              "type": 1,
+                              "ctor": 2,
+                              "ctorName": "Lee",
+                              "children": [
+                                {
+                                  "type": 2,
+                                  "priority": 30,
+                                  "text": "  \"name\": \"back-end-json\",\n",
+                                  "references": [],
+                                  "lineBreakBefore": true
+                                }
+                              ],
+                              "props": {
+                                "priority": 30
+                              },
+                              "references": []
+                            },
+                            {
+                              "type": 1,
+                              "ctor": 2,
+                              "ctorName": "Lee",
+                              "children": [
+                                {
+                                  "type": 2,
+                                  "priority": 29,
+                                  "text": "  \"version\": \"1.0.0\",\n",
+                                  "references": [],
+                                  "lineBreakBefore": true
+                                }
+                              ],
+                              "props": {
+                                "priority": 29
+                              },
+                              "references": []
+                            },
+                            {
+                              "type": 1,
+                              "ctor": 2,
+                              "ctorName": "Lee",
+                              "children": [
+                                {
+                                  "type": 2,
+                                  "priority": 28,
+                                  "text": "  \"main\": \"index.js\",\n",
+                                  "references": [],
+                                  "lineBreakBefore": true
+                                }
+                              ],
+                              "props": {
+                                "priority": 28
+                              },
+                              "references": []
+                            },
+                            {
+                              "type": 1,
+                              "ctor": 2,
+                              "ctorName": "Lee",
+                              "children": [
+                                {
+                                  "type": 2,
+                                  "priority": 27,
+                                  "text": "  \"scripts\": {\n",
+                                  "references": [],
+                                  "lineBreakBefore": true
+                                }
+                              ],
+                              "props": {
+                                "priority": 27
+                              },
+                              "references": []
+                            },
+                            {
+                              "type": 1,
+                              "ctor": 2,
+                              "ctorName": "Lee",
+                              "children": [
+                                {
+                                  "type": 2,
+                                  "priority": 26,
+                                  "text": "    \"test\": \"echo \\\"Error: no test specified\\\" && exit 1\",\n",
+                                  "references": [],
+                                  "lineBreakBefore": true
+                                }
+                              ],
+                              "props": {
+                                "priority": 26
+                              },
+                              "references": []
+                            },
+                            {
+                              "type": 1,
+                              "ctor": 2,
+                              "ctorName": "Lee",
+                              "children": [
+                                {
+                                  "type": 2,
+                                  "priority": 25,
+                                  "text": "    \"start\": \"nodemon server-ecoderum.js\"\n",
+                                  "references": [],
+                                  "lineBreakBefore": true
+                                }
+                              ],
+                              "props": {
+                                "priority": 25
+                              },
+                              "references": []
+                            },
+                            {
+                              "type": 1,
+                              "ctor": 2,
+                              "ctorName": "Lee",
+                              "children": [
+                                {
+                                  "type": 2,
+                                  "priority": 24,
+                                  "text": "  },\n",
+                                  "references": [],
+                                  "lineBreakBefore": true
+                                }
+                              ],
+                              "props": {
+                                "priority": 24
+                              },
+                              "references": []
+                            },
+                            {
+                              "type": 1,
+                              "ctor": 2,
+                              "ctorName": "Lee",
+                              "children": [
+                                {
+                                  "type": 2,
+                                  "priority": 23,
+                                  "text": "  \"author\": \"\",\n",
+                                  "references": [],
+                                  "lineBreakBefore": true
+                                }
+                              ],
+                              "props": {
+                                "priority": 23
+                              },
+                              "references": []
+                            },
+                            {
+                              "type": 1,
+                              "ctor": 2,
+                              "ctorName": "Lee",
+                              "children": [
+                                {
+                                  "type": 2,
+                                  "priority": 22,
+                                  "text": "  \"license\": \"ISC\",\n",
+                                  "references": [],
+                                  "lineBreakBefore": true
+                                }
+                              ],
+                              "props": {
+                                "priority": 22
+                              },
+                              "references": []
+                            },
+                            {
+                              "type": 1,
+                              "ctor": 2,
+                              "ctorName": "Lee",
+                              "children": [
+                                {
+                                  "type": 2,
+                                  "priority": 21,
+                                  "text": "  \"description\": \"\",\n",
+                                  "references": [],
+                                  "lineBreakBefore": true
+                                }
+                              ],
+                              "props": {
+                                "priority": 21
+                              },
+                              "references": []
+                            },
+                            {
+                              "type": 1,
+                              "ctor": 2,
+                              "ctorName": "Lee",
+                              "children": [
+                                {
+                                  "type": 2,
+                                  "priority": 20,
+                                  "text": "  \"dependencies\": {\n",
+                                  "references": [],
+                                  "lineBreakBefore": true
+                                }
+                              ],
+                              "props": {
+                                "priority": 20
+                              },
+                              "references": []
+                            },
+                            {
+                              "type": 1,
+                              "ctor": 2,
+                              "ctorName": "Lee",
+                              "children": [
+                                {
+                                  "type": 2,
+                                  "priority": 19,
+                                  "text": "    \"@supabase/supabase-js\": \"^2.46.1\",\n",
+                                  "references": [],
+                                  "lineBreakBefore": true
+                                }
+                              ],
+                              "props": {
+                                "priority": 19
+                              },
+                              "references": []
+                            },
+                            {
+                              "type": 1,
+                              "ctor": 2,
+                              "ctorName": "Lee",
+                              "children": [
+                                {
+                                  "type": 2,
+                                  "priority": 18,
+                                  "text": "    \"cors\": \"^2.8.5\",\n",
+                                  "references": [],
+                                  "lineBreakBefore": true
+                                }
+                              ],
+                              "props": {
+                                "priority": 18
+                              },
+                              "references": []
+                            },
+                            {
+                              "type": 1,
+                              "ctor": 2,
+                              "ctorName": "Lee",
+                              "children": [
+                                {
+                                  "type": 2,
+                                  "priority": 17,
+                                  "text": "    \"dotenv\": \"^16.4.5\",\n",
+                                  "references": [],
+                                  "lineBreakBefore": true
+                                }
+                              ],
+                              "props": {
+                                "priority": 17
+                              },
+                              "references": []
+                            },
+                            {
+                              "type": 1,
+                              "ctor": 2,
+                              "ctorName": "Lee",
+                              "children": [
+                                {
+                                  "type": 2,
+                                  "priority": 16,
+                                  "text": "    \"express\": \"^4.21.1\",\n",
+                                  "references": [],
+                                  "lineBreakBefore": true
+                                }
+                              ],
+                              "props": {
+                                "priority": 16
+                              },
+                              "references": []
+                            },
+                            {
+                              "type": 1,
+                              "ctor": 2,
+                              "ctorName": "Lee",
+                              "children": [
+                                {
+                                  "type": 2,
+                                  "priority": 15,
+                                  "text": "    \"express-fileupload\": \"^1.5.1\",\n",
+                                  "references": [],
+                                  "lineBreakBefore": true
+                                }
+                              ],
+                              "props": {
+                                "priority": 15
+                              },
+                              "references": []
+                            },
+                            {
+                              "type": 1,
+                              "ctor": 2,
+                              "ctorName": "Lee",
+                              "children": [
+                                {
+                                  "type": 2,
+                                  "priority": 14,
+                                  "text": "    \"ip\": \"^2.0.1\",\n",
+                                  "references": [],
+                                  "lineBreakBefore": true
+                                }
+                              ],
+                              "props": {
+                                "priority": 14
+                              },
+                              "references": []
+                            },
+                            {
+                              "type": 1,
+                              "ctor": 2,
+                              "ctorName": "Lee",
+                              "children": [
+                                {
+                                  "type": 2,
+                                  "priority": 13,
+                                  "text": "    \"jsonwebtoken\": \"^9.0.2\",\n",
+                                  "references": [],
+                                  "lineBreakBefore": true
+                                }
+                              ],
+                              "props": {
+                                "priority": 13
+                              },
+                              "references": []
+                            },
+                            {
+                              "type": 1,
+                              "ctor": 2,
+                              "ctorName": "Lee",
+                              "children": [
+                                {
+                                  "type": 2,
+                                  "priority": 12,
+                                  "text": "    \"md5\": \"^2.3.0\",\n",
+                                  "references": [],
+                                  "lineBreakBefore": true
+                                }
+                              ],
+                              "props": {
+                                "priority": 12
+                              },
+                              "references": []
+                            },
+                            {
+                              "type": 1,
+                              "ctor": 2,
+                              "ctorName": "Lee",
+                              "children": [
+                                {
+                                  "type": 2,
+                                  "priority": 11,
+                                  "text": "    \"multer\": \"^2.0.0\",\n",
+                                  "references": [],
+                                  "lineBreakBefore": true
+                                }
+                              ],
+                              "props": {
+                                "priority": 11
+                              },
+                              "references": []
+                            },
+                            {
+                              "type": 1,
+                              "ctor": 2,
+                              "ctorName": "Lee",
+                              "children": [
+                                {
+                                  "type": 2,
+                                  "priority": 10,
+                                  "text": "    \"mysql2\": \"^3.11.4\",\n",
+                                  "references": [],
+                                  "lineBreakBefore": true
+                                }
+                              ],
+                              "props": {
+                                "priority": 10
+                              },
+                              "references": []
+                            },
+                            {
+                              "type": 1,
+                              "ctor": 2,
+                              "ctorName": "Lee",
+                              "children": [
+                                {
+                                  "type": 2,
+                                  "priority": 9,
+                                  "text": "    \"node-fetch\": \"^2.7.0\",\n",
+                                  "references": [],
+                                  "lineBreakBefore": true
+                                }
+                              ],
+                              "props": {
+                                "priority": 9
+                              },
+                              "references": []
+                            },
+                            {
+                              "type": 1,
+                              "ctor": 2,
+                              "ctorName": "Lee",
+                              "children": [
+                                {
+                                  "type": 2,
+                                  "priority": 8,
+                                  "text": "    \"nodemon\": \"^3.1.7\",\n",
+                                  "references": [],
+                                  "lineBreakBefore": true
+                                }
+                              ],
+                              "props": {
+                                "priority": 8
+                              },
+                              "references": []
+                            },
+                            {
+                              "type": 1,
+                              "ctor": 2,
+                              "ctorName": "Lee",
+                              "children": [
+                                {
+                                  "type": 2,
+                                  "priority": 7,
+                                  "text": "    \"sequelize\": \"^6.37.5\",\n",
+                                  "references": [],
+                                  "lineBreakBefore": true
+                                }
+                              ],
+                              "props": {
+                                "priority": 7
+                              },
+                              "references": []
+                            },
+                            {
+                              "type": 1,
+                              "ctor": 2,
+                              "ctorName": "Lee",
+                              "children": [
+                                {
+                                  "type": 2,
+                                  "priority": 6,
+                                  "text": "    \"sharp\": \"^0.33.5\",\n",
+                                  "references": [],
+                                  "lineBreakBefore": true
+                                }
+                              ],
+                              "props": {
+                                "priority": 6
+                              },
+                              "references": []
+                            },
+                            {
+                              "type": 1,
+                              "ctor": 2,
+                              "ctorName": "Lee",
+                              "children": [
+                                {
+                                  "type": 2,
+                                  "priority": 5,
+                                  "text": "    \"wrangler\": \"^3.102.0\"\n",
+                                  "references": [],
+                                  "lineBreakBefore": true
+                                }
+                              ],
+                              "props": {
+                                "priority": 5
+                              },
+                              "references": []
+                            },
+                            {
+                              "type": 1,
+                              "ctor": 2,
+                              "ctorName": "Lee",
+                              "children": [
+                                {
+                                  "type": 2,
+                                  "priority": 4,
+                                  "text": "  }\n",
+                                  "references": [],
+                                  "lineBreakBefore": true
+                                }
+                              ],
+                              "props": {
+                                "priority": 4
+                              },
+                              "references": []
+                            },
+                            {
+                              "type": 1,
+                              "ctor": 2,
+                              "ctorName": "Lee",
+                              "children": [
+                                {
+                                  "type": 2,
+                                  "priority": 3,
+                                  "text": "}\n",
+                                  "references": [],
+                                  "lineBreakBefore": true
+                                }
+                              ],
+                              "props": {
+                                "priority": 3
+                              },
+                              "references": []
+                            },
+                            {
+                              "type": 1,
+                              "ctor": 2,
+                              "ctorName": "Lee",
+                              "children": [
+                                {
+                                  "type": 2,
+                                  "priority": 2,
+                                  "text": "\n",
+                                  "references": [],
+                                  "lineBreakBefore": true
+                                }
+                              ],
+                              "props": {
+                                "priority": 2
+                              },
+                              "references": []
+                            },
+                            {
+                              "type": 1,
+                              "ctor": 2,
+                              "ctorName": "Lee",
+                              "children": [
+                                {
+                                  "type": 2,
+                                  "priority": 32,
+                                  "text": "```",
+                                  "references": [],
+                                  "lineBreakBefore": true
+                                }
+                              ],
+                              "props": {
+                                "priority": 32
+                              },
+                              "references": []
+                            }
+                          ],
+                          "props": {},
+                          "references": []
+                        }
+                      ],
+                      "props": {},
+                      "references": []
+                    }
+                  }
+                }
+              ]
+            },
+            "toolu_01KteKhNpXsyjhpYajMWdAJP__vscode-1754290444035": {
+              "$mid": 20,
+              "content": [
+                {
+                  "$mid": 21,
+                  "value": "The user cancelled the tool call."
+                }
+              ]
+            }
+          },
+          "modelMessageId": "41999f62-83d0-4c30-9c6c-a6ee8bc6b198",
+          "responseId": "14395042-9cb7-40a1-a4cd-2c29b6e53814",
+          "sessionId": "98e9c7e2-651c-4ded-a25f-6ac3b6f2f818",
+          "agentId": "github.copilot.editsAgent"
+        }
+      },
+      "followups": [],
+      "isCanceled": true,
+      "agent": {
+        "extensionId": {
+          "value": "GitHub.copilot-chat",
+          "_lower": "github.copilot-chat"
+        },
+        "publisherDisplayName": "GitHub",
+        "extensionPublisherId": "GitHub",
+        "extensionDisplayName": "GitHub Copilot Chat",
+        "id": "github.copilot.editsAgent",
+        "description": "Edit files in your workspace in agent mode",
+        "when": "config.chat.agent.enabled",
+        "metadata": {
+          "themeIcon": {
+            "id": "tools"
+          },
+          "hasFollowups": false,
+          "supportIssueReporting": false
+        },
+        "name": "agent",
+        "fullName": "GitHub Copilot",
+        "isDefault": true,
+        "locations": [
+          "panel"
+        ],
+        "modes": [
+          "agent"
+        ],
+        "slashCommands": [
+          {
+            "name": "list"
+          }
+        ],
+        "disambiguation": []
+      },
+      "contentReferences": [],
+      "codeCitations": [],
+      "timestamp": 1754290954111,
+      "modelId": "github.copilot-chat/claude-sonnet-4"
+    },
+    {
+      "requestId": "request_9a163fb0-ca2e-48e5-aba0-4ca1d1625345",
+      "message": {
+        "parts": [
+          {
+            "range": {
+              "start": 0,
+              "endExclusive": 8
+            },
+            "editorRange": {
+              "startLineNumber": 1,
+              "startColumn": 1,
+              "endLineNumber": 1,
+              "endColumn": 9
+            },
+            "text": "use bun ",
+            "kind": "text"
+          }
+        ],
+        "text": "use bun "
+      },
+      "variableData": {
+        "variables": [
+          {
+            "id": "vscode.prompt.instructions.text.github.copilot.chat.codeGeneration.instructions",
+            "name": "prompt:text",
+            "value": "Here is a list of instruction files that contain rules for modifying or creating new code.\nThese files are important for ensuring that the code is modified or created correctly.\nPlease make sure to follow the rules specified in these files when working with the codebase.\nIf the file is not already available as attachment, use the `read_file` tool to acquire it.\nMake sure to acquire the instructions before making any changes to the code.\n| Pattern | File Path | Description |\n| ------- | --------- | ----------- |\n| **/*-post-r-pm-* | '/tmp/postman-http-request-post-response.instructions.md' |  |\n| **/*-pre-r-pm-* | '/tmp/postman-http-request-pre-request.instructions.md' |  |\n| **/*-post-c-pm-* | '/tmp/postman-collections-post-response.instructions.md' |  |\n| **/*-pre-c-pm-* | '/tmp/postman-collections-pre-request.instructions.md' |  |\n| **/*-post-f-pm-* | '/tmp/postman-folder-post-response.instructions.md' |  |\n| **/*-pre-f-pm-* | '/tmp/postman-folder-pre-request.instructions.md' |  |",
+            "settingId": "github.copilot.chat.codeGeneration.instructions",
+            "kind": "promptText",
+            "modelDescription": "Prompt instructions text",
+            "automaticallyAdded": true
+          }
+        ]
+      },
+      "response": [
+        {
+          "value": "I'll use Bun to install Prettier and set up the formatting configuration for your project. ",
+          "supportThemeIcons": false,
+          "supportHtml": false,
+          "baseUri": {
+            "$mid": 1,
+            "path": "/home/junior/Projects/ecodreum/back-end-json/",
+            "scheme": "file"
+          }
+        },
+        {
+          "kind": "prepareToolInvocation",
+          "toolName": "copilot_runInTerminal"
+        },
+        {
+          "kind": "toolInvocationSerialized",
+          "invocationMessage": "Using \"Run In Terminal\"",
+          "isConfirmed": true,
+          "isComplete": true,
+          "toolSpecificData": {
+            "kind": "terminal",
+            "language": "sh",
+            "command": "bun add --dev prettier"
+          },
+          "toolCallId": "168f21aa-153a-4e51-9e2a-b0a702b0719e",
+          "toolId": "copilot_runInTerminal"
+        },
+        {
+          "value": "Let me try again: ",
+          "supportThemeIcons": false,
+          "supportHtml": false,
+          "baseUri": {
+            "$mid": 1,
+            "path": "/home/junior/Projects/ecodreum/back-end-json/",
+            "scheme": "file"
+          }
+        },
+        {
+          "kind": "prepareToolInvocation",
+          "toolName": "copilot_runInTerminal"
+        },
+        {
+          "kind": "toolInvocationSerialized",
+          "invocationMessage": "Using \"Run In Terminal\"",
+          "isConfirmed": true,
+          "isComplete": false,
+          "toolSpecificData": {
+            "kind": "terminal",
+            "language": "sh",
+            "command": "bun add -d prettier"
+          },
+          "toolCallId": "c21e6775-c584-45b5-85f3-069cc79b19f5",
+          "toolId": "copilot_runInTerminal"
+        }
+      ],
+      "responseId": "response_04ad7d6c-dd00-41c1-9d58-1a6590614380",
+      "isCanceled": false,
+      "agent": {
+        "extensionId": {
+          "value": "GitHub.copilot-chat",
+          "_lower": "github.copilot-chat"
+        },
+        "publisherDisplayName": "GitHub",
+        "extensionPublisherId": "GitHub",
+        "extensionDisplayName": "GitHub Copilot Chat",
+        "id": "github.copilot.editsAgent",
+        "description": "Edit files in your workspace in agent mode",
+        "when": "config.chat.agent.enabled",
+        "metadata": {
+          "themeIcon": {
+            "id": "tools"
+          },
+          "hasFollowups": false,
+          "supportIssueReporting": false
+        },
+        "name": "agent",
+        "fullName": "GitHub Copilot",
+        "isDefault": true,
+        "locations": [
+          "panel"
+        ],
+        "modes": [
+          "agent"
+        ],
+        "slashCommands": [
+          {
+            "name": "list"
+          }
+        ],
+        "disambiguation": []
+      },
+      "contentReferences": [],
+      "codeCitations": [],
+      "timestamp": 1754291340388,
+      "modelId": "github.copilot-chat/claude-sonnet-4"
+    }
+  ],
+  "sessionId": "da6e097d-1fc7-4588-ac09-c9bf0c056502",
+  "creationDate": 1754290413910,
+  "isImported": false,
+  "lastMessageDate": 1754291340389
+}

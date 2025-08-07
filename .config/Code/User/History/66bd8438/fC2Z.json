@@ -1,0 +1,50 @@
+{
+    // Transparency and blur-friendly settings
+    "window.titleBarStyle": "custom",
+    "window.menuBarVisibility": "compact",
+    "workbench.colorTheme": "One Dark Pro Darker",
+    
+    // Background settings for better blur effect
+    "workbench.colorCustomizations": {
+        "editor.background": "#1a1a1aE6",
+        "sideBar.background": "#1e1e1eE6", 
+        "activityBar.background": "#181818E6",
+        "panel.background": "#1a1a1aE6",
+        "terminal.background": "#000000CC"
+    },
+    
+    // Editor settings
+    "editor.fontFamily": "'JetBrains Mono', 'Fira Code', Consolas, 'Courier New', monospace",
+    "editor.fontSize": 14,
+    "editor.fontLigatures": true,
+    "editor.cursorBlinking": "smooth",
+    "editor.cursorSmoothCaretAnimation": "on",
+    
+    // UI improvements
+    "workbench.iconTheme": "material-icon-theme",
+    "workbench.tree.indent": 20,
+    "editor.minimap.enabled": false,
+    "breadcrumbs.enabled": true,
+    
+    // Terminal settings
+    "terminal.integrated.fontFamily": "JetBrains Mono",
+    "terminal.integrated.fontSize": 13,
+    "terminal.integrated.cursorBlinking": true,
+    
+    // Performance
+    "extensions.autoUpdate": false,
+    "telemetry.telemetryLevel": "off",
+    
+    // File explorer
+    "explorer.confirmDelete": false,
+    "explorer.confirmDragAndDrop": false,
+    "chat.instructionsFilesLocations": {
+        ".github/instructions": true,
+        "/tmp/postman-collections-post-response.instructions.md": true,
+        "/tmp/postman-collections-pre-request.instructions.md": true,
+        "/tmp/postman-folder-post-response.instructions.md": true,
+        "/tmp/postman-folder-pre-request.instructions.md": true,
+        "/tmp/postman-http-request-post-response.instructions.md": true,
+        "/tmp/postman-http-request-pre-request.instructions.md": true
+    }
+}

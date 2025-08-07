@@ -1,0 +1,151 @@
+import React, { useEffect } from 'react';
+import { View, StyleSheet, Dimensions } from 'react-native';
+import Animated, {
+  useSharedValue,
+  useAnimatedStyle,
+  withTiming,
+} from 'react-native-reanimated';
+import { router } from 'expo-router';
+import { onboardingSlides } from '@/data/onboardingData';
+import { useOnboarding } from '@/hooks/useOnboarding';
+import OnboardingSlide from '@/components/onboarding/OnboardingSlide';
+import ProgressIndicator from '@/components/onboarding/ProgressIndicator';
+import OnboardingControls from '@/components/onboarding/OnboardingControls';
+import SwipeGestureHandler from '@/components/onboarding/SwipeGestureHandler';
+
+const { width } = Dimensions.get('window');
+
+export default function OnboardingScreen() {
+  const {
+    currentIndex,
+    isAutoPlaying,
+    hasSeenOnboarding,
+    nextSlide,
+    previousSlide,
+    toggleAutoPlay,
+    completeOnboarding,
+  } = useOnboarding();
+
+  const animatedIndex = useSharedValue(0);
+
+  useEffect(() => {
+    animatedIndex.value = withTiming(currentIndex, { duration: 300 });
+  }, [currentIndex, animatedIndex]);
+
+  // Navigate to main app if onboarding was already completed
+  useEffect(() => {
+    if (hasSeenOnboarding) {
+      // Add a small delay to ensure navigation is ready
+      setTimeout(() => {
+        try {
+          router.replace('/');
+        } catch (error) {
+          console.error('Navigation error:', error);
+        }
+      }, 100);
+    }
+  }, [hasSeenOnboarding]);
+
+  const handleSkip = () => {
+    completeOnboarding();
+    setTimeout(() => {
+      try {
+        router.replace('/');
+      } catch (error) {
+        console.error('Navigation error:', error);
+      }
+    }, 100);
+  };
+
+  const handleGetStarted = () => {
+    completeOnboarding();
+    setTimeout(() => {
+      try {
+        router.replace('/');
+      } catch (error) {
+        console.error('Navigation error:', error);
+      }
+    }, 100);
+  };
+
+  // Simple color interpolation function
+  const interpolateColors = (
+    color1: string,
+    color2: string,
+    progress: number
+  ) => {
+    'worklet';
+    // This is a simplified interpolation - in production you might want to use a more sophisticated color interpolation library
+    return progress < 0.5 ? color1 : color2;
+  };
+
+  const backgroundAnimatedStyle = useAnimatedStyle(() => {
+    const colors = onboardingSlides.map((slide) => slide.backgroundColor);
+
+    let backgroundColor = colors[0];
+    for (let i = 0; i < colors.length - 1; i++) {
+      if (animatedIndex.value >= i && animatedIndex.value <= i + 1) {
+        const progress = animatedIndex.value - i;
+        backgroundColor = interpolateColors(colors[i], colors[i + 1], progress);
+        break;
+      }
+    }
+
+    return { backgroundColor };
+  });
+
+  return (
+    <Animated.View style={[styles.container, backgroundAnimatedStyle]}>
+      <SwipeGestureHandler
+        onSwipeLeft={nextSlide}
+        onSwipeRight={previousSlide}
+        currentIndex={currentIndex}
+        totalSlides={onboardingSlides.length}
+      >
+        <View style={styles.slidesContainer}>
+          {onboardingSlides.map((slide, index) => (
+            <OnboardingSlide
+              key={slide.id}
+              slide={slide}
+              index={index}
+              currentIndex={currentIndex}
+            />
+          ))}
+        </View>
+      </SwipeGestureHandler>
+
+      <View style={styles.progressContainer}>
+        <ProgressIndicator
+          currentIndex={currentIndex}
+          totalSlides={onboardingSlides.length}
+        />
+      </View>
+
+      <OnboardingControls
+        currentIndex={currentIndex}
+        totalSlides={onboardingSlides.length}
+        onNext={nextSlide}
+        onSkip={handleSkip}
+        onGetStarted={handleGetStarted}
+        isAutoPlaying={isAutoPlaying}
+        onToggleAutoPlay={toggleAutoPlay}
+      />
+    </Animated.View>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+  slidesContainer: {
+    flex: 1,
+  },
+  progressContainer: {
+    position: 'absolute',
+    bottom: 140,
+    left: 0,
+    right: 0,
+    zIndex: 10,
+  },
+});

@@ -1,0 +1,164 @@
+import React, { useState, useCallback } from 'react';
+import { useParams, useRouter } from 'next/navigation';
+import MediaCard from '../../components/media/MediaCard';
+import { MediaEntry, WatchStatus } from '../../types';
+import {
+  fetchMovies,
+  fetchTopTreadingMovies,
+  fetchTreadingTV,
+  fetchUpcomingTV,
+  useFetch,
+  image500,
+  fallbackProfileImage,
+} from '@repo/services';
+import type { MovieOrTV } from '@repo/interfaces';
+
+type SeeAllType = 'trending-movies' | 'upcoming-movies' | 'trending-tv' | 'upcoming-tv';
+
+const SeeAll: React.FC = () => {
+  const { type } = useParams<{ type: string }>();
+  const router = useRouter();
+  const [searchQuery, setSearchQuery] = useState('');
+
+  const getTitleForType = (type: SeeAllType): string => {
+    switch (type) {
+      case 'trending-movies':
+        return 'Trending Movies';
+      case 'upcoming-movies':
+        return 'Upcoming Movies';
+      case 'trending-tv':
+        return 'Trending TV Series';
+      case 'upcoming-tv':
+        return 'Upcoming TV Series';
+      default:
+        return 'See All';
+    }
+  };
+
+  const getDataFetcher = (type: SeeAllType) => {
+    switch (type) {
+      case 'trending-movies':
+        return () => fetchMovies({ query: '' });
+      case 'upcoming-movies':
+        return () => fetchTopTreadingMovies();
+      case 'trending-tv':
+        return () => fetchTreadingTV();
+      case 'upcoming-tv':
+        return () => fetchUpcomingTV();
+      default:
+        return () => fetchMovies({ query: '' });
+    }
+  };
+
+  const { data, loading, error } = useFetch(getDataFetcher(type as SeeAllType));
+
+  const transformMovieData = useCallback((items: MovieOrTV[]): MediaEntry[] => {
+    return (
+      items?.map((item: MovieOrTV) => ({
+        id: item.id.toString(),
+        title: item.title || item.name || 'Unknown Title',
+        type: item.title ? 'movie' : 'tv',
+        poster: image500(item.poster_path) || fallbackProfileImage,
+        backdrop: image500(item.backdrop_path) || fallbackProfileImage,
+        rating: item.vote_average ? Math.round(item.vote_average * 10) / 20 : 0,
+        status: WatchStatus.PLANNING,
+        year:
+          item.release_date || item.first_air_date
+            ? new Date(item.release_date || item.first_air_date || '').getFullYear()
+            : undefined,
+        tmdbId: item.id,
+        overview: item.overview,
+        rewatches: 0,
+        private: false,
+        favorite: false,
+        createdAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString(),
+      })) || []
+    );
+  }, []);
+
+  const filteredData = data
+    ? transformMovieData(data).filter(
+        (item) =>
+          searchQuery === '' || item.title.toLowerCase().includes(searchQuery.toLowerCase()),
+      )
+    : [];
+
+  const handleBack = () => {
+    router.push('/');
+  };
+
+  if (error) {
+    return (
+      <div className="container-custom py-16">
+        <div className="text-center">
+          <h2 className="text-2xl font-bold text-white">Failed to load content</h2>
+          <p className="text-gray-400 mt-2">{error.message}</p>
+          <button onClick={handleBack} className="btn btn-primary mt-4">
+            Go Back
+          </button>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="container-custom py-8">
+      <div className="max-w-6xl mx-auto">
+        {/* Header */}
+        <div className="flex items-center mb-6">
+          <button
+            onClick={handleBack}
+            className="p-2 rounded-lg bg-gray-800 hover:bg-gray-700 transition-colors mr-4"
+          >
+            <span className="text-lg">←</span>
+          </button>
+          <h1 className="text-3xl font-bold text-white">{getTitleForType(type as SeeAllType)}</h1>
+        </div>
+
+        {/* Search Bar */}
+        <div className="mb-8">
+          <div className="relative max-w-md">
+            <input
+              type="text"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              placeholder={`Search ${getTitleForType(type as SeeAllType).toLowerCase()}...`}
+              className="w-full bg-gray-800 border border-gray-600 rounded-lg pl-4 pr-4 py-3 text-white placeholder-gray-400 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+            />
+          </div>
+        </div>
+
+        {/* Content Grid */}
+        {loading ? (
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
+            {Array.from({ length: 20 }).map((_, index) => (
+              <div key={index} className="animate-pulse">
+                <div className="bg-gray-700 aspect-[2/3] rounded-lg mb-2"></div>
+                <div className="bg-gray-700 h-4 rounded mb-1"></div>
+                <div className="bg-gray-700 h-3 rounded w-2/3"></div>
+              </div>
+            ))}
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
+            {filteredData.map((item) => (
+              <MediaCard key={item.id} media={item} />
+            ))}
+          </div>
+        )}
+
+        {filteredData.length === 0 && !loading && (
+          <div className="text-center py-16">
+            <p className="text-gray-400 text-lg">No results found</p>
+            {searchQuery && (
+              <p className="text-gray-500 text-sm mt-2">Try adjusting your search terms</p>
+            )}
+          </div>
+        )}
+      </div>
+    </div>
+  );
+};
+
+export default SeeAll;

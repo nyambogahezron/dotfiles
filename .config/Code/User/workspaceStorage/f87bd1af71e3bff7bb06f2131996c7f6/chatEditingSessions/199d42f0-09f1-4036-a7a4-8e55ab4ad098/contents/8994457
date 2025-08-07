@@ -1,0 +1,13 @@
+// Common UI components for web and desktop applications
+// Note: These components are designed for React web apps and should not be used in React Native/mobile apps
+
+export * from './components/Button';
+export * from './components/Input';
+export * from './components/Card';
+export * from './components/Badge';
+export * from './components/Modal';
+export * from './components/LoadingSpinner';
+export * from './components/EmptyState';
+
+// Task-related components will be available once shared-types and shared-utils are built
+// export * from './components/TaskCard';
