@@ -1,0 +1,49 @@
+/**
+ * Discussion router utility functions
+ * Provides helper functions for navigation and URL generation
+ */
+
+export const discussionPaths = {
+	discussion: (id: string) => `/discussion/${id}`,
+	discussions: () => '/discussions',
+	discussionFiles: (id: string) => `/discussion/${id}/files`,
+	discussionCommits: (id: string) => `/discussion/${id}/commits`,
+} as const;
+
+export type DiscussionPath = keyof typeof discussionPaths;
+
+/**
+ * Navigate to a discussion by ID
+ */
+export const navigateToDiscussion = (id: string) => {
+	return discussionPaths.discussion(id);
+};
+
+/**
+ * Navigate to discussion files tab
+ */
+export const navigateToDiscussionFiles = (id: string) => {
+	return discussionPaths.discussionFiles(id);
+};
+
+/**
+ * Navigate to discussion commits tab
+ */
+export const navigateToDiscussionCommits = (id: string) => {
+	return discussionPaths.discussionCommits(id);
+};
+
+/**
+ * Check if current path is a discussion route
+ */
+export const isDiscussionRoute = (pathname: string): boolean => {
+	return pathname.startsWith('/discussion');
+};
+
+/**
+ * Extract discussion ID from pathname
+ */
+export const extractDiscussionId = (pathname: string): string | null => {
+	const match = pathname.match(/^\/discussion\/([^/]+)/);
+	return match ? match[1] : null;
+};

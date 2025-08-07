@@ -1,0 +1,39 @@
+add dragAndDrop functionality to Kanban board
+fix Kanban board responsiveness and mobile view
+fix routing issues in project pages
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+#
+# On branch main
+# Your branch is up to date with 'origin/main'.
+#
+# Changes to be committed:
+#	modified:   .vscode/settings.json
+#	modified:   apps/web/next.config.js
+#	modified:   apps/web/package.json
+#	modified:   apps/web/src/app/globals.css
+#	modified:   apps/web/src/app/project/[projectId]/activities/page.tsx
+#	modified:   apps/web/src/app/project/[projectId]/chats/page.tsx
+#	modified:   apps/web/src/app/project/[projectId]/layout.tsx
+#	modified:   apps/web/src/app/project/[projectId]/page.tsx
+#	modified:   apps/web/src/app/project/[projectId]/team-capacity/page.tsx
+#	new file:   apps/web/src/components/Kanban/DragDropWrapper.tsx
+#	new file:   apps/web/src/components/Kanban/DragItem.tsx
+#	modified:   apps/web/src/components/Kanban/KanbanBoard.tsx
+#	modified:   apps/web/src/components/Kanban/KanbanColumn.tsx
+#	new file:   apps/web/src/components/Kanban/MobileKanbanColumn.tsx
+#	new file:   apps/web/src/components/Kanban/MobileStatusPopup.tsx
+#	modified:   apps/web/src/components/project/ProjectHeader.tsx
+#	new file:   apps/web/src/contexts/ProjectContext.tsx
+#	new file:   apps/web/src/hooks/useProjectId.ts
+#	modified:   apps/web/src/store/useProjectStore.ts
+#	modified:   apps/web/src/types/index.ts
+#	new file:   apps/web/src/utils/dragAndDrop.ts
+#	new file:   apps/web/src/utils/notifications.ts
+#	modified:   apps/web/tsconfig.json
+#	modified:   bun.lock
+#	modified:   packages/shared-hooks/tsconfig.json
+#	modified:   packages/shared-ui/tsconfig.json
+#	modified:   tsconfig.base.json
+#	modified:   tsconfig.json
+#

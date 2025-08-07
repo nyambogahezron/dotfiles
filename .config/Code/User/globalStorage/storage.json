@@ -1,0 +1,325 @@
+{
+    "telemetry.sqmId": "",
+    "telemetry.machineId": "d3be4469e6e73806787484b03328f665eeaf69e53ba9612af88ac46781ec095a",
+    "telemetry.devDeviceId": "3ba94493-d016-4dd7-a73e-863d0a410736",
+    "backupWorkspaces": {
+        "workspaces": [],
+        "folders": [
+            {
+                "folderUri": "file:///home/junior/Projects/agroHub"
+            }
+        ],
+        "emptyWindows": []
+    },
+    "windowControlHeight": 35,
+    "profileAssociations": {
+        "workspaces": {
+            "file:///home/junior/Projects/connectThree": "__default__profile__",
+            "file:///home/junior/Projects/movie-diary/server": "__default__profile__",
+            "file:///home/junior/Projects/my-electron-app": "__default__profile__",
+            "file:///home/junior/Projects/Expense-Buddy/app": "__default__profile__",
+            "file:///home/junior/Projects/DATA_UI": "__default__profile__",
+            "file:///home/junior/Projects/ecodreum/events": "__default__profile__",
+            "file:///home/junior/Projects/AgroHub/server": "__default__profile__",
+            "file:///home/junior/Projects/AgroHub/server/errors": "__default__profile__",
+            "file:///home/junior/Projects/movie-diary/app": "__default__profile__",
+            "file:///home/junior/Projects/AgroHub": "__default__profile__",
+            "file:///home/junior/Projects/TicTacToeJS": "__default__profile__",
+            "file:///home/junior/Projects/agroHub/server": "__default__profile__",
+            "file:///home/junior/Projects/movie-threads": "__default__profile__",
+            "file:///home/junior/Projects/movie-diary/web": "__default__profile__",
+            "file:///home/junior/document-reader": "__default__profile__",
+            "file:///home/junior/Projects/movie-threads/app": "__default__profile__",
+            "file:///home/junior/Projects/agroHub/app": "__default__profile__",
+            "file:///home/junior/Projects/agroHub": "__default__profile__",
+            "file:///home/junior/Projects/agroHub/web": "__default__profile__",
+            "file:///home/junior/Projects/expense-buddy": "__default__profile__",
+            "file:///home/junior/Projects/timeline": "__default__profile__",
+            "file:///home/junior/Projects/pixel-art": "__default__profile__",
+            "file:///home/junior/Projects/movie-diary": "__default__profile__",
+            "file:///home/junior/Projects/tic-tac-toe": "__default__profile__",
+            "file:///home/junior/Projects/expense-buddy/app": "__default__profile__",
+            "file:///home/junior/Projects/connect3": "__default__profile__",
+            "file:///home/junior/Projects/comfy-store": "__default__profile__",
+            "file:///home/junior/Projects/monorepo%20playground": "__default__profile__",
+            "file:///home/junior/Projects/Quizify": "__default__profile__",
+            "file:///home/junior/Projects/tast-flow": "__default__profile__",
+            "file:///home/junior/Projects/task-flow": "__default__profile__",
+            "file:///home/junior/Projects/task-flow/apps/server": "__default__profile__",
+            "file:///home/junior/Projects/task-flow/apps/desktop": "__default__profile__",
+            "file:///home/junior/Projects/workspace-version-aligner": "__default__profile__",
+            "file:///home/junior/Projects/task-flow/apps/mobile": "__default__profile__",
+            "file:///home/junior/Projects/movie-diary/apps/mobile": "__default__profile__",
+            "file:///home/junior/Projects/quizify": "__default__profile__",
+            "file:///home/junior/Projects/task-flow/apps/dashboard": "__default__profile__",
+            "file:///home/junior/Projects/task-flow/apps": "__default__profile__",
+            "file:///home/junior/Projects/movie-diary/apps/server": "__default__profile__",
+            "file:///home/junior/Projects/task-flow/apps/web": "__default__profile__",
+            "file:///home/junior/Projects/task-flow/apps/website": "__default__profile__",
+            "file:///home/junior/Downloads/task/project": "__default__profile__",
+            "file:///home/junior/Projects/electron": "__default__profile__",
+            "file:///home/junior/expo-nx-example": "__default__profile__",
+            "file:///home/junior/Projects/movie-diary%20%28Copy%29/apps": "__default__profile__",
+            "file:///home/junior": "__default__profile__",
+            "file:///home/junior/Projects/movie-diary/packages/services": "__default__profile__",
+            "file:///home/junior/Projects/agroHub/apps/server/models": "__default__profile__",
+            "file:///home/junior/Projects/agroHub/apps": "__default__profile__",
+            "file:///home/junior/Projects/agroHub/apps/server": "__default__profile__",
+            "file:///home/junior/Projects/ecodreum/back-end-json": "__default__profile__",
+            "file:///home/junior/Projects/ecodreum/ecodreum-app": "__default__profile__",
+            "file:///home/junior/Projects/movie-diary/apps": "__default__profile__",
+            "file:///home/junior/Downloads/task%20%282%29/project": "__default__profile__",
+            "file:///home/junior/Downloads/portfolio/project": "__default__profile__",
+            "file:///home/junior/Downloads/project-bolt-sb1-8msw5v6n/project": "__default__profile__"
+        },
+        "emptyWindows": {}
+    },
+    "theme": "vs-dark",
+    "themeBackground": "#282c34",
+    "windowSplash": {
+        "zoomLevel": 0,
+        "baseTheme": "vs-dark",
+        "colorInfo": {
+            "foreground": "#cccccc",
+            "background": "#282c34",
+            "editorBackground": "#282c34",
+            "titleBarBackground": "#21252b",
+            "activityBarBackground": "#333842",
+            "sideBarBackground": "#21252b",
+            "statusBarBackground": "#21252b",
+            "statusBarNoFolderBackground": "#21252b"
+        },
+        "layoutInfo": {
+            "sideBarSide": "right",
+            "editorPartMinWidth": 220,
+            "titleBarHeight": 35,
+            "activityBarWidth": 0,
+            "sideBarWidth": 272,
+            "auxiliaryBarWidth": 430,
+            "statusBarHeight": 0,
+            "windowBorder": false
+        }
+    },
+    "windowsState": {
+        "lastActiveWindow": {
+            "folder": "file:///home/junior/Projects/agroHub",
+            "backupPath": "/home/junior/.config/Code/Backups/fc4580b137da9843d644913105d7eb28",
+            "uiState": {
+                "mode": 0,
+                "x": 0,
+                "y": 32,
+                "width": 1920,
+                "height": 1048
+            }
+        },
+        "openedWindows": []
+    },
+    "windowSplashWorkspaceOverride": {
+        "layoutInfo": {
+            "sideBarWidth": 272,
+            "auxiliaryBarWidth": 430,
+            "workspaces": {
+                "94cbda7664bea5213be4e838a1c69517": {
+                    "sideBarVisible": true,
+                    "auxiliaryBarVisible": false
+                },
+                "6dfdbac4a5e286d52faa0d7e37e35e52": {
+                    "sideBarVisible": true,
+                    "auxiliaryBarVisible": false
+                },
+                "8a36748e6bdb4ed78ad845a95262215e": {
+                    "sideBarVisible": true,
+                    "auxiliaryBarVisible": false
+                },
+                "233102c69efc296a57f182769087727a": {
+                    "sideBarVisible": true,
+                    "auxiliaryBarVisible": true
+                },
+                "c4044478d2398b2a9bcee25ef5474c35": {
+                    "sideBarVisible": true,
+                    "auxiliaryBarVisible": true
+                },
+                "7f3b308c3d0edb4bbaca47b99b305a26": {
+                    "sideBarVisible": true,
+                    "auxiliaryBarVisible": false
+                },
+                "57c94eff51c41c3c2fd51ceb34de416b": {
+                    "sideBarVisible": true,
+                    "auxiliaryBarVisible": true
+                },
+                "d0d5d8ff9570af7ab8912b4c21dae23f": {
+                    "sideBarVisible": true,
+                    "auxiliaryBarVisible": true
+                },
+                "5cab3b24f6e6f719675c2a5db723a6e9": {
+                    "sideBarVisible": true,
+                    "auxiliaryBarVisible": true
+                },
+                "5db6b8df2cc3dc639f2be0e92499a743": {
+                    "sideBarVisible": true,
+                    "auxiliaryBarVisible": true
+                },
+                "4ec01247a4ef988c22b0b2bb298ba53a": {
+                    "sideBarVisible": true,
+                    "auxiliaryBarVisible": true
+                },
+                "e366d1291e852f268e9113e265137948": {
+                    "sideBarVisible": true,
+                    "auxiliaryBarVisible": true
+                },
+                "46d34d25100327fe2ce793cd82547af8": {
+                    "sideBarVisible": true,
+                    "auxiliaryBarVisible": true
+                },
+                "f4f0f2b394fb7f13be85d3eff1c81ada": {
+                    "sideBarVisible": true,
+                    "auxiliaryBarVisible": false
+                },
+                "a9edb3a071cdc3326a6782342a012df9": {
+                    "sideBarVisible": true,
+                    "auxiliaryBarVisible": true
+                },
+                "e387216b693ba190d395bb08ecb15f5d": {
+                    "sideBarVisible": true,
+                    "auxiliaryBarVisible": false
+                },
+                "8799de16f190617d872c24af59486257": {
+                    "sideBarVisible": true,
+                    "auxiliaryBarVisible": false
+                },
+                "0ebff55693f5f5470c8b079073a80b54": {
+                    "sideBarVisible": true,
+                    "auxiliaryBarVisible": true
+                },
+                "993a8101a6c2cb538ad720eef3ee5aa4": {
+                    "sideBarVisible": true,
+                    "auxiliaryBarVisible": true
+                },
+                "4a8f40ea3a112a7a6cdcab1c2c8ab73f": {
+                    "sideBarVisible": true,
+                    "auxiliaryBarVisible": false
+                },
+                "03f14a1d71128cf09e30516d4290a7c7": {
+                    "sideBarVisible": true,
+                    "auxiliaryBarVisible": false
+                },
+                "d35615307ffd2e8cdae0c11c026edf1d": {
+                    "sideBarVisible": true,
+                    "auxiliaryBarVisible": false
+                },
+                "50be4b6ef3b17f0bf6f9dda3cb5dd232": {
+                    "sideBarVisible": true,
+                    "auxiliaryBarVisible": true
+                },
+                "d6d04cc560bfbea9ccd5df880d239918": {
+                    "sideBarVisible": true,
+                    "auxiliaryBarVisible": true
+                },
+                "5c98ed1361452abb227da5b4cce77ed4": {
+                    "sideBarVisible": true,
+                    "auxiliaryBarVisible": false
+                },
+                "cda439c8223949345a9075eda4186f2f": {
+                    "sideBarVisible": true,
+                    "auxiliaryBarVisible": true
+                },
+                "0d2033bdd725492dd709eac04337fec0": {
+                    "sideBarVisible": true,
+                    "auxiliaryBarVisible": false
+                },
+                "23e87644c91151c96370827317894bc1": {
+                    "sideBarVisible": true,
+                    "auxiliaryBarVisible": false
+                },
+                "603c07d599c5052b4bc09175046424a7": {
+                    "sideBarVisible": true,
+                    "auxiliaryBarVisible": true
+                },
+                "a725179c45a58af4429b0e346da09ed4": {
+                    "sideBarVisible": true,
+                    "auxiliaryBarVisible": false
+                },
+                "e716f39144d92ed3a0c5735390f45df0": {
+                    "sideBarVisible": true,
+                    "auxiliaryBarVisible": true
+                },
+                "872c4e7860d4971dcb3e1e7ff49023a7": {
+                    "sideBarVisible": true,
+                    "auxiliaryBarVisible": true
+                },
+                "dec94eaf7353720c00463202b5da9600": {
+                    "sideBarVisible": true,
+                    "auxiliaryBarVisible": false
+                },
+                "e04feb5b597a6a63056a7d0125a770b6": {
+                    "sideBarVisible": true,
+                    "auxiliaryBarVisible": true
+                },
+                "756936fa91bc8a69229f0f14781c92ce": {
+                    "sideBarVisible": true,
+                    "auxiliaryBarVisible": true
+                },
+                "8df7d9cbc822bcdd47ec4f09e964ad68": {
+                    "sideBarVisible": true,
+                    "auxiliaryBarVisible": true
+                },
+                "2a2210da6855eb21396334d877e68e2f": {
+                    "sideBarVisible": true,
+                    "auxiliaryBarVisible": true
+                },
+                "40122e7af18d39511b47f4439165cc5f": {
+                    "sideBarVisible": true,
+                    "auxiliaryBarVisible": true
+                },
+                "3602a05e30ab4c0026d5fc9f62bdeab0": {
+                    "sideBarVisible": true,
+                    "auxiliaryBarVisible": true
+                },
+                "90d8d4b89ac78cfa312c6cb7692d251e": {
+                    "sideBarVisible": true,
+                    "auxiliaryBarVisible": true
+                },
+                "98aa3377d05a208de10a25fef087b7d3": {
+                    "sideBarVisible": true,
+                    "auxiliaryBarVisible": true
+                },
+                "f87bd1af71e3bff7bb06f2131996c7f6": {
+                    "sideBarVisible": true,
+                    "auxiliaryBarVisible": true
+                },
+                "d260a653bca6c608448884e337c09565": {
+                    "sideBarVisible": true,
+                    "auxiliaryBarVisible": true
+                },
+                "5d4326d12a7ae39cd94789dea08de13c": {
+                    "sideBarVisible": true,
+                    "auxiliaryBarVisible": true
+                },
+                "972cc8b839c1815997008972e5526668": {
+                    "sideBarVisible": true,
+                    "auxiliaryBarVisible": true
+                },
+                "cdfccc284fd006a2ee6cbb9aca493804": {
+                    "sideBarVisible": true,
+                    "auxiliaryBarVisible": true
+                },
+                "1685054ecef13c9a1289d2270f510fa8": {
+                    "sideBarVisible": true,
+                    "auxiliaryBarVisible": true
+                },
+                "3538ba8a2f16232ae7a728026b3ec2a3": {
+                    "sideBarVisible": true,
+                    "auxiliaryBarVisible": true
+                },
+                "b7edce12643a4c88856c74a4d30d5d0d": {
+                    "sideBarVisible": true,
+                    "auxiliaryBarVisible": true
+                },
+                "8f9ca447b555b953a4647cbb1d201a87": {
+                    "sideBarVisible": true,
+                    "auxiliaryBarVisible": true
+                }
+            }
+        }
+    }
+}

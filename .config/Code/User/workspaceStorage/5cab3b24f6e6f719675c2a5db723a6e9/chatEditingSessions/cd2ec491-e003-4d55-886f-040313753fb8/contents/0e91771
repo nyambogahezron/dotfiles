@@ -1,0 +1,54 @@
+{
+	"name": "@repo/hooks",
+	"version": "0.0.0",
+	"private": true,
+	"type": "module",
+	"exports": {
+		"./useComments": {
+			"types": "./src/useComments.tsx",
+			"default": "./dist/useComments.js"
+		},
+		"./useLibrary": {
+			"types": "./src/useLibrary.tsx",
+			"default": "./dist/useLibrary.js"
+		},
+		"./types": {
+			"types": "./src/types.tsx",
+			"default": "./dist/types.js"
+		},
+		"./useProfile": {
+			"types": "./src/useProfile.tsx",
+			"default": "./dist/useProfile.js"
+		},
+		"./useSocialFeed": {
+			"types": "./src/useSocialFeed.tsx",
+			"default": "./dist/useSocialFeed.js"
+		},
+		"./useTrendingContent": {
+			"types": "./src/useTrendingContent.tsx",
+			"default": "./dist/useTrendingContent.js"
+		},
+		"./useServerLibrary": {
+			"types": "./src/useServerLibrary.tsx",
+			"default": "./dist/useServerLibrary.js"
+		}
+	},
+	"scripts": {
+		"build": "tsc",
+		"dev": "tsc --watch",
+		"lint": "echo 'No linting configured'",
+		"test": "echo 'No tests configured'",
+		"check-types": "tsc --noEmit",
+		"clean": "rm -rf dist",
+		"setup": "bun install"
+	},
+	"dependencies": {
+		"@repo/interfaces": "workspace:*",
+		"@repo/services": "workspace:*"
+	},
+	"peerDependencies": {
+		"react": "^19.0.0",
+		"react-dom": "^19.0.0"
+	},
+	"devDependencies": {}
+}

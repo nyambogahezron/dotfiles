@@ -1,0 +1,10 @@
+import TeamCapacityView from '@/components/project/views/TeamCapacityView';
+import React from 'react';
+
+export default function TeamCapacity() {
+	return (
+		<>
+			<TeamCapacityView />
+		</>
+	);
+}

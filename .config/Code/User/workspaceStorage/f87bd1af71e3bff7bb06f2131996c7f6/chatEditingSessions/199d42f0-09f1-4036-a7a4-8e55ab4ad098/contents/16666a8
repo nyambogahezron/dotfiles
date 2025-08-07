@@ -1,0 +1,328 @@
+import React from 'react';
+import type { Task, TaskStatus, TaskPriority } from '@taskflow/shared-types';
+import { getTaskStatusColor, getTaskPriorityColor, formatDate } from '@taskflow/shared-utils';
+
+// Button Component
+export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  variant?: 'primary' | 'secondary' | 'danger' | 'outline';
+  size?: 'sm' | 'md' | 'lg';
+  loading?: boolean;
+  children: React.ReactNode;
+}
+
+export const Button: React.FC<ButtonProps> = ({
+  variant = 'primary',
+  size = 'md',
+  loading = false,
+  disabled,
+  children,
+  className = '',
+  ...props
+}) => {
+  const baseClasses = 'inline-flex items-center justify-center font-medium rounded-md transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2';
+  
+  const variantClasses = {
+    primary: 'bg-blue-600 text-white hover:bg-blue-700 focus:ring-blue-500',
+    secondary: 'bg-gray-600 text-white hover:bg-gray-700 focus:ring-gray-500',
+    danger: 'bg-red-600 text-white hover:bg-red-700 focus:ring-red-500',
+    outline: 'border border-gray-300 bg-white text-gray-700 hover:bg-gray-50 focus:ring-blue-500'
+  };
+
+  const sizeClasses = {
+    sm: 'px-3 py-1.5 text-sm',
+    md: 'px-4 py-2 text-sm',
+    lg: 'px-6 py-3 text-base'
+  };
+
+  const classes = `${baseClasses} ${variantClasses[variant]} ${sizeClasses[size]} ${className}`;
+
+  return (
+    <button
+      className={classes}
+      disabled={disabled || loading}
+      {...props}
+    >
+      {loading && (
+        <svg className="animate-spin -ml-1 mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24">
+          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
+        </svg>
+      )}
+      {children}
+    </button>
+  );
+};
+
+// Input Component
+export interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
+  label?: string;
+  error?: string;
+  helperText?: string;
+}
+
+export const Input: React.FC<InputProps> = ({
+  label,
+  error,
+  helperText,
+  className = '',
+  ...props
+}) => {
+  const inputClasses = `w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-1 transition-colors ${
+    error
+      ? 'border-red-300 focus:border-red-500 focus:ring-red-500'
+      : 'border-gray-300 focus:border-blue-500 focus:ring-blue-500'
+  } ${className}`;
+
+  return (
+    <div>
+      {label && (
+        <label className="block text-sm font-medium text-gray-700 mb-1">
+          {label}
+        </label>
+      )}
+      <input className={inputClasses} {...props} />
+      {error && (
+        <p className="mt-1 text-sm text-red-600">{error}</p>
+      )}
+      {helperText && !error && (
+        <p className="mt-1 text-sm text-gray-500">{helperText}</p>
+      )}
+    </div>
+  );
+};
+
+// Card Component
+export interface CardProps {
+  children: React.ReactNode;
+  className?: string;
+  title?: string;
+  subtitle?: string;
+}
+
+export const Card: React.FC<CardProps> = ({ children, className = '', title, subtitle }) => {
+  return (
+    <div className={`bg-white rounded-lg border border-gray-200 shadow-sm ${className}`}>
+      {(title || subtitle) && (
+        <div className="px-6 py-4 border-b border-gray-200">
+          {title && <h3 className="text-lg font-medium text-gray-900">{title}</h3>}
+          {subtitle && <p className="text-sm text-gray-500 mt-1">{subtitle}</p>}
+        </div>
+      )}
+      <div className="px-6 py-4">
+        {children}
+      </div>
+    </div>
+  );
+};
+
+// Badge Component
+export interface BadgeProps {
+  children: React.ReactNode;
+  variant?: 'default' | 'success' | 'warning' | 'danger' | 'info';
+  size?: 'sm' | 'md';
+}
+
+export const Badge: React.FC<BadgeProps> = ({ children, variant = 'default', size = 'md' }) => {
+  const baseClasses = 'inline-flex items-center font-medium rounded-full';
+  
+  const variantClasses = {
+    default: 'bg-gray-100 text-gray-800',
+    success: 'bg-green-100 text-green-800',
+    warning: 'bg-yellow-100 text-yellow-800',
+    danger: 'bg-red-100 text-red-800',
+    info: 'bg-blue-100 text-blue-800'
+  };
+
+  const sizeClasses = {
+    sm: 'px-2 py-0.5 text-xs',
+    md: 'px-2.5 py-0.5 text-sm'
+  };
+
+  const classes = `${baseClasses} ${variantClasses[variant]} ${sizeClasses[size]}`;
+
+  return <span className={classes}>{children}</span>;
+};
+
+// TaskCard Component
+export interface TaskCardProps {
+  task: Task;
+  onClick?: (task: Task) => void;
+  onStatusChange?: (taskId: string, status: TaskStatus) => void;
+  className?: string;
+}
+
+export const TaskCard: React.FC<TaskCardProps> = ({ 
+  task, 
+  onClick, 
+  onStatusChange, 
+  className = '' 
+}) => {
+  const statusColor = getTaskStatusColor(task.status);
+  const priorityColor = getTaskPriorityColor(task.priority);
+
+  return (
+    <Card 
+      className={`cursor-pointer hover:shadow-md transition-shadow ${className}`}
+      onClick={() => onClick?.(task)}
+    >
+      <div className="space-y-3">
+        <div className="flex items-start justify-between">
+          <h4 className="text-sm font-medium text-gray-900 line-clamp-2">
+            {task.title}
+          </h4>
+          <div className="flex items-center space-x-2">
+            <Badge variant={priorityColor as any}>
+              {task.priority}
+            </Badge>
+            <Badge variant={statusColor as any}>
+              {task.status.replace('_', ' ')}
+            </Badge>
+          </div>
+        </div>
+        
+        {task.description && (
+          <p className="text-sm text-gray-600 line-clamp-3">
+            {task.description}
+          </p>
+        )}
+        
+        <div className="flex items-center justify-between text-xs text-gray-500">
+          <span>Created {formatDate(task.createdAt)}</span>
+          {task.dueDate && (
+            <span className={task.dueDate < new Date() ? 'text-red-600' : ''}>
+              Due {formatDate(task.dueDate)}
+            </span>
+          )}
+        </div>
+      </div>
+    </Card>
+  );
+};
+
+// Modal Component
+export interface ModalProps {
+  isOpen: boolean;
+  onClose: () => void;
+  title?: string;
+  children: React.ReactNode;
+  size?: 'sm' | 'md' | 'lg' | 'xl';
+}
+
+export const Modal: React.FC<ModalProps> = ({ 
+  isOpen, 
+  onClose, 
+  title, 
+  children, 
+  size = 'md' 
+}) => {
+  if (!isOpen) return null;
+
+  const sizeClasses = {
+    sm: 'max-w-md',
+    md: 'max-w-lg',
+    lg: 'max-w-2xl',
+    xl: 'max-w-4xl'
+  };
+
+  return (
+    <div className="fixed inset-0 z-50 overflow-y-auto">
+      <div className="flex min-h-screen items-center justify-center p-4">
+        <div className="fixed inset-0 bg-black bg-opacity-25" onClick={onClose} />
+        <div className={`relative bg-white rounded-lg shadow-xl w-full ${sizeClasses[size]}`}>
+          {title && (
+            <div className="flex items-center justify-between p-6 border-b">
+              <h3 className="text-lg font-medium text-gray-900">{title}</h3>
+              <button
+                onClick={onClose}
+                className="text-gray-400 hover:text-gray-600"
+              >
+                <span className="sr-only">Close</span>
+                ✕
+              </button>
+            </div>
+          )}
+          <div className="p-6">
+            {children}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+// Loading Spinner Component
+export interface LoadingSpinnerProps {
+  size?: 'sm' | 'md' | 'lg';
+  className?: string;
+}
+
+export const LoadingSpinner: React.FC<LoadingSpinnerProps> = ({ 
+  size = 'md', 
+  className = '' 
+}) => {
+  const sizeClasses = {
+    sm: 'h-4 w-4',
+    md: 'h-8 w-8',
+    lg: 'h-12 w-12'
+  };
+
+  return (
+    <div className={`animate-spin ${sizeClasses[size]} ${className}`}>
+      <svg fill="none" viewBox="0 0 24 24">
+        <circle
+          className="opacity-25"
+          cx="12"
+          cy="12"
+          r="10"
+          stroke="currentColor"
+          strokeWidth="4"
+        />
+        <path
+          className="opacity-75"
+          fill="currentColor"
+          d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+        />
+      </svg>
+    </div>
+  );
+};
+
+// Empty State Component
+export interface EmptyStateProps {
+  title: string;
+  description?: string;
+  action?: {
+    label: string;
+    onClick: () => void;
+  };
+  icon?: React.ReactNode;
+}
+
+export const EmptyState: React.FC<EmptyStateProps> = ({ 
+  title, 
+  description, 
+  action, 
+  icon 
+}) => {
+  return (
+    <div className="text-center py-12">
+      {icon && (
+        <div className="mx-auto h-12 w-12 text-gray-400 mb-4">
+          {icon}
+        </div>
+      )}
+      <h3 className="text-sm font-medium text-gray-900 mb-1">{title}</h3>
+      {description && (
+        <p className="text-sm text-gray-500 mb-4">{description}</p>
+      )}
+      {action && (
+        <Button onClick={action.onClick}>
+          {action.label}
+        </Button>
+      )}
+    </div>
+  );
+};
+
+export * from './components/forms';
+export * from './components/layout';

@@ -1,0 +1,30 @@
+'use client';
+
+import React from 'react';
+import { TimelineEvent, PullRequest } from '@/types/discussion';
+import { TimelineItem } from './TimelineItem';
+
+interface DiscussionTimelineProps {
+  events: TimelineEvent[];
+  pullRequest: PullRequest;
+}
+
+export const DiscussionTimeline: React.FC<DiscussionTimelineProps> = ({
+  events,
+  pullRequest
+}) => {
+  return (
+    <div className="relative">
+      <div className="relative">
+        {events.map((event, index) => (
+          <TimelineItem
+            key={event.id}
+            event={event}
+            isLast={index === events.length - 1}
+            pullRequest={pullRequest}
+          />
+        ))}
+      </div>
+    </div>
+  );
+};

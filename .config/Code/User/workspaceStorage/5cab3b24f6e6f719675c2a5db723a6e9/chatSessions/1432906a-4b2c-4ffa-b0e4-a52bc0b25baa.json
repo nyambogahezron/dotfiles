@@ -1,0 +1,371 @@
+{
+  "version": 3,
+  "requesterUsername": "nyambogahezron",
+  "requesterAvatarIconUri": {
+    "$mid": 1,
+    "path": "/u/133749469",
+    "scheme": "https",
+    "authority": "avatars.githubusercontent.com",
+    "query": "v=4"
+  },
+  "responderUsername": "GitHub Copilot",
+  "responderAvatarIconUri": {
+    "id": "copilot"
+  },
+  "initialLocation": "panel",
+  "requests": [
+    {
+      "requestId": "request_39ab7e64-7fe9-40d1-96fe-b34356f38dda",
+      "message": {
+        "parts": [
+          {
+            "range": {
+              "start": 0,
+              "endExclusive": 697
+            },
+            "editorRange": {
+              "startLineNumber": 1,
+              "startColumn": 1,
+              "endLineNumber": 20,
+              "endColumn": 24
+            },
+            "text": "> server@1.0.0 build /home/junior/Projects/movie-diary/apps/server\n> tsc\n\nscripts/seed.ts:1:10 - error TS2305: Module '\"@prisma/client\"' has no exported member 'PrismaClient'.\n\n1 import { PrismaClient } from '@prisma/client';\n           ~~~~~~~~~~~~\n\n\nFound 1 error in scripts/seed.ts:1\n\n ELIFECYCLE  Command failed with exit code 2.\ncommand finished with error: command (/home/junior/Projects/movie-diary/apps/server) /usr/local/bin/pnpm run build exited (2)\n└─ server#build ──\nserver#build: command (/home/junior/Projects/movie-diary/apps/server) /usr/local/bin/pnpm run build exited (2)\n\n Tasks:    13 successful, 15 total\nCached:    0 cached, 15 total\n  Time:    44.6s \nFailed:    server#build",
+            "kind": "text"
+          }
+        ],
+        "text": "> server@1.0.0 build /home/junior/Projects/movie-diary/apps/server\n> tsc\n\nscripts/seed.ts:1:10 - error TS2305: Module '\"@prisma/client\"' has no exported member 'PrismaClient'.\n\n1 import { PrismaClient } from '@prisma/client';\n           ~~~~~~~~~~~~\n\n\nFound 1 error in scripts/seed.ts:1\n\n ELIFECYCLE  Command failed with exit code 2.\ncommand finished with error: command (/home/junior/Projects/movie-diary/apps/server) /usr/local/bin/pnpm run build exited (2)\n└─ server#build ──\nserver#build: command (/home/junior/Projects/movie-diary/apps/server) /usr/local/bin/pnpm run build exited (2)\n\n Tasks:    13 successful, 15 total\nCached:    0 cached, 15 total\n  Time:    44.6s \nFailed:    server#build"
+      },
+      "variableData": {
+        "variables": [
+          {
+            "id": "vscode.prompt.instructions.text.github.copilot.chat.codeGeneration.instructions",
+            "name": "prompt:text",
+            "value": "Here is a list of instruction files that contain rules for modifying or creating new code.\nThese files are important for ensuring that the code is modified or created correctly.\nPlease make sure to follow the rules specified in these files when working with the codebase.\nIf the file is not already available as attachment, use the `read_file` tool to acquire it.\nMake sure to acquire the instructions before making any changes to the code.\n| Pattern | File Path | Description |\n| ------- | --------- | ----------- |\n| **/*-post-r-pm-* | '/tmp/postman-http-request-post-response.instructions.md' |  |\n| **/*-pre-r-pm-* | '/tmp/postman-http-request-pre-request.instructions.md' |  |\n| **/*-post-c-pm-* | '/tmp/postman-collections-post-response.instructions.md' |  |\n| **/*-pre-c-pm-* | '/tmp/postman-collections-pre-request.instructions.md' |  |\n| **/*-post-f-pm-* | '/tmp/postman-folder-post-response.instructions.md' |  |\n| **/*-pre-f-pm-* | '/tmp/postman-folder-pre-request.instructions.md' |  |",
+            "settingId": "github.copilot.chat.codeGeneration.instructions",
+            "kind": "promptText",
+            "modelDescription": "Prompt instructions text",
+            "automaticallyAdded": true
+          }
+        ]
+      },
+      "response": [
+        {
+          "value": "I can see that there's a TypeScript error in the server build related to the Prisma client import. Let me investigate the issue by first examining the `scripts/seed.ts` file and the Prisma setup. ",
+          "supportThemeIcons": false,
+          "supportHtml": false,
+          "baseUri": {
+            "$mid": 1,
+            "path": "/home/junior/Projects/movie-diary/",
+            "scheme": "file"
+          }
+        },
+        {
+          "kind": "prepareToolInvocation",
+          "toolName": "copilot_readFile"
+        },
+        {
+          "kind": "toolInvocationSerialized",
+          "invocationMessage": {
+            "value": "Reading [](file:///home/junior/Projects/movie-diary/apps/server/scripts/seed.ts#1-1), lines 1 to 20",
+            "supportThemeIcons": false,
+            "supportHtml": false,
+            "uris": {
+              "file:///home/junior/Projects/movie-diary/apps/server/scripts/seed.ts#1-1": {
+                "$mid": 1,
+                "path": "/home/junior/Projects/movie-diary/apps/server/scripts/seed.ts",
+                "scheme": "file",
+                "fragment": "1-1"
+              }
+            }
+          },
+          "pastTenseMessage": {
+            "value": "Read [](file:///home/junior/Projects/movie-diary/apps/server/scripts/seed.ts#1-1), lines 1 to 20",
+            "supportThemeIcons": false,
+            "supportHtml": false,
+            "uris": {
+              "file:///home/junior/Projects/movie-diary/apps/server/scripts/seed.ts#1-1": {
+                "$mid": 1,
+                "path": "/home/junior/Projects/movie-diary/apps/server/scripts/seed.ts",
+                "scheme": "file",
+                "fragment": "1-1"
+              }
+            }
+          },
+          "isConfirmed": true,
+          "isComplete": true,
+          "toolCallId": "d143dfe1-8ec3-427e-9f54-de034a2484c8",
+          "toolId": "copilot_readFile"
+        },
+        {
+          "value": "Now let me check the Prisma configuration and ",
+          "supportThemeIcons": false,
+          "supportHtml": false,
+          "baseUri": {
+            "$mid": 1,
+            "path": "/home/junior/Projects/movie-diary/",
+            "scheme": "file"
+          }
+        },
+        {
+          "kind": "inlineReference",
+          "inlineReference": {
+            "$mid": 1,
+            "fsPath": "/home/junior/Projects/movie-diary/package.json",
+            "external": "file:///home/junior/Projects/movie-diary/package.json",
+            "path": "/home/junior/Projects/movie-diary/package.json",
+            "scheme": "file"
+          }
+        },
+        {
+          "value": " to understand the setup: ",
+          "supportThemeIcons": false,
+          "supportHtml": false,
+          "baseUri": {
+            "$mid": 1,
+            "path": "/home/junior/Projects/movie-diary/",
+            "scheme": "file"
+          }
+        },
+        {
+          "kind": "prepareToolInvocation",
+          "toolName": "copilot_readFile"
+        },
+        {
+          "kind": "toolInvocationSerialized",
+          "invocationMessage": {
+            "value": "Reading [](file:///home/junior/Projects/movie-diary/apps/server/package.json#1-1), lines 1 to 50",
+            "supportThemeIcons": false,
+            "supportHtml": false,
+            "uris": {
+              "file:///home/junior/Projects/movie-diary/apps/server/package.json#1-1": {
+                "$mid": 1,
+                "path": "/home/junior/Projects/movie-diary/apps/server/package.json",
+                "scheme": "file",
+                "fragment": "1-1"
+              }
+            }
+          },
+          "pastTenseMessage": {
+            "value": "Read [](file:///home/junior/Projects/movie-diary/apps/server/package.json#1-1), lines 1 to 50",
+            "supportThemeIcons": false,
+            "supportHtml": false,
+            "uris": {
+              "file:///home/junior/Projects/movie-diary/apps/server/package.json#1-1": {
+                "$mid": 1,
+                "path": "/home/junior/Projects/movie-diary/apps/server/package.json",
+                "scheme": "file",
+                "fragment": "1-1"
+              }
+            }
+          },
+          "isConfirmed": true,
+          "isComplete": true,
+          "toolCallId": "a966c297-1e64-4ee9-b0c8-b163a2a59c24",
+          "toolId": "copilot_readFile"
+        },
+        {
+          "value": "Let me check if there's a Prisma schema file and see the rest of the dependencies: ",
+          "supportThemeIcons": false,
+          "supportHtml": false,
+          "baseUri": {
+            "$mid": 1,
+            "path": "/home/junior/Projects/movie-diary/",
+            "scheme": "file"
+          }
+        },
+        {
+          "kind": "prepareToolInvocation",
+          "toolName": "copilot_readFile"
+        },
+        {
+          "kind": "toolInvocationSerialized",
+          "invocationMessage": {
+            "value": "Reading [](file:///home/junior/Projects/movie-diary/apps/server/package.json#50-50), lines 50 to 80",
+            "supportThemeIcons": false,
+            "supportHtml": false,
+            "uris": {
+              "file:///home/junior/Projects/movie-diary/apps/server/package.json#50-50": {
+                "$mid": 1,
+                "path": "/home/junior/Projects/movie-diary/apps/server/package.json",
+                "scheme": "file",
+                "fragment": "50-50"
+              }
+            }
+          },
+          "pastTenseMessage": {
+            "value": "Read [](file:///home/junior/Projects/movie-diary/apps/server/package.json#50-50), lines 50 to 80",
+            "supportThemeIcons": false,
+            "supportHtml": false,
+            "uris": {
+              "file:///home/junior/Projects/movie-diary/apps/server/package.json#50-50": {
+                "$mid": 1,
+                "path": "/home/junior/Projects/movie-diary/apps/server/package.json",
+                "scheme": "file",
+                "fragment": "50-50"
+              }
+            }
+          },
+          "isConfirmed": true,
+          "isComplete": true,
+          "toolCallId": "6f46e863-83c6-45dd-8d0c-2011f8b2e761",
+          "toolId": "copilot_readFile"
+        },
+        {
+          "kind": "toolInvocationSerialized",
+          "invocationMessage": {
+            "value": "Reading [](file:///home/junior/Projects/movie-diary/apps/server/prisma)",
+            "supportThemeIcons": false,
+            "supportHtml": false,
+            "uris": {
+              "file:///home/junior/Projects/movie-diary/apps/server/prisma": {
+                "$mid": 1,
+                "path": "/home/junior/Projects/movie-diary/apps/server/prisma",
+                "scheme": "file"
+              }
+            }
+          },
+          "pastTenseMessage": {
+            "value": "Read [](file:///home/junior/Projects/movie-diary/apps/server/prisma)",
+            "supportThemeIcons": false,
+            "supportHtml": false,
+            "uris": {
+              "file:///home/junior/Projects/movie-diary/apps/server/prisma": {
+                "$mid": 1,
+                "path": "/home/junior/Projects/movie-diary/apps/server/prisma",
+                "scheme": "file"
+              }
+            }
+          },
+          "isConfirmed": true,
+          "isComplete": true,
+          "toolCallId": "6808a475-953b-4806-9f4b-a1b89996395e",
+          "toolId": "copilot_listDirectory"
+        },
+        {
+          "kind": "toolInvocationSerialized",
+          "invocationMessage": {
+            "value": "Reading [](file:///home/junior/Projects/movie-diary/apps/server/prisma/schema.prisma#1-1), lines 1 to 30",
+            "supportThemeIcons": false,
+            "supportHtml": false,
+            "uris": {
+              "file:///home/junior/Projects/movie-diary/apps/server/prisma/schema.prisma#1-1": {
+                "$mid": 1,
+                "path": "/home/junior/Projects/movie-diary/apps/server/prisma/schema.prisma",
+                "scheme": "file",
+                "fragment": "1-1"
+              }
+            }
+          },
+          "pastTenseMessage": {
+            "value": "Read [](file:///home/junior/Projects/movie-diary/apps/server/prisma/schema.prisma#1-1), lines 1 to 30",
+            "supportThemeIcons": false,
+            "supportHtml": false,
+            "uris": {
+              "file:///home/junior/Projects/movie-diary/apps/server/prisma/schema.prisma#1-1": {
+                "$mid": 1,
+                "path": "/home/junior/Projects/movie-diary/apps/server/prisma/schema.prisma",
+                "scheme": "file",
+                "fragment": "1-1"
+              }
+            }
+          },
+          "isConfirmed": true,
+          "isComplete": true,
+          "toolCallId": "6e6c773d-6118-4cd8-8e85-fe6c172ad6b0",
+          "toolId": "copilot_readFile"
+        },
+        {
+          "value": "Now let me check if the Prisma client has been generated by looking for the generated files: ",
+          "supportThemeIcons": false,
+          "supportHtml": false,
+          "baseUri": {
+            "$mid": 1,
+            "path": "/home/junior/Projects/movie-diary/",
+            "scheme": "file"
+          }
+        },
+        {
+          "kind": "prepareToolInvocation",
+          "toolName": "copilot_findFiles"
+        },
+        {
+          "kind": "toolInvocationSerialized",
+          "invocationMessage": {
+            "value": "Searching for files matching `**/node_modules/.prisma/client/**`",
+            "supportThemeIcons": false,
+            "supportHtml": false,
+            "uris": {}
+          },
+          "pastTenseMessage": {
+            "value": "Searched for files matching `**/node_modules/.prisma/client/**`, no matches",
+            "supportThemeIcons": false,
+            "supportHtml": false,
+            "uris": {}
+          },
+          "isConfirmed": true,
+          "isComplete": true,
+          "resultDetails": [],
+          "toolCallId": "6227bbc0-68f7-43dc-9c80-5ba64980ee70",
+          "toolId": "copilot_findFiles"
+        },
+        {
+          "kind": "toolInvocationSerialized",
+          "invocationMessage": {
+            "value": "Searching for files matching `**/node_modules/@prisma/client/**`",
+            "supportThemeIcons": false,
+            "supportHtml": false,
+            "uris": {}
+          },
+          "isConfirmed": true,
+          "isComplete": false,
+          "toolCallId": "d1698ddc-7915-41a1-aec8-f35415710807",
+          "toolId": "copilot_findFiles"
+        }
+      ],
+      "responseId": "response_b80b1b42-66ea-4ab7-b49e-b96e5b0764ce",
+      "isCanceled": false,
+      "agent": {
+        "extensionId": {
+          "value": "GitHub.copilot-chat",
+          "_lower": "github.copilot-chat"
+        },
+        "publisherDisplayName": "GitHub",
+        "extensionPublisherId": "GitHub",
+        "extensionDisplayName": "GitHub Copilot Chat",
+        "id": "github.copilot.editsAgent",
+        "description": "Edit files in your workspace in agent mode",
+        "when": "config.chat.agent.enabled",
+        "metadata": {
+          "themeIcon": {
+            "id": "tools"
+          },
+          "hasFollowups": false,
+          "supportIssueReporting": false
+        },
+        "name": "agent",
+        "fullName": "GitHub Copilot",
+        "isDefault": true,
+        "locations": [
+          "panel"
+        ],
+        "modes": [
+          "agent"
+        ],
+        "slashCommands": [
+          {
+            "name": "list"
+          }
+        ],
+        "disambiguation": []
+      },
+      "contentReferences": [],
+      "codeCitations": [],
+      "timestamp": 1754486656697,
+      "modelId": "github.copilot-chat/claude-sonnet-4"
+    }
+  ],
+  "sessionId": "1432906a-4b2c-4ffa-b0e4-a52bc0b25baa",
+  "creationDate": 1754486650545,
+  "isImported": false,
+  "lastMessageDate": 1754486656698
+}

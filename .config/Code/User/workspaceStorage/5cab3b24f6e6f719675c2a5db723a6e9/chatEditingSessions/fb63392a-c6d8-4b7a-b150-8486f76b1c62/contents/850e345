@@ -1,0 +1,72 @@
+{
+  "name": "repo",
+  "devDependencies": {
+    "@repo/eslint-config": "0.0.0",
+    "@repo/typescript-config": "0.0.0",
+    "@types/node": "^22.15.32",
+    "@types/react": "^19.1.0",
+    "@types/react-dom": "^19.1.1",
+    "eslint": "^9.31.0",
+    "husky": "^9.0.11",
+    "lint-staged": "^15.2.2",
+    "prettier": "^3.6.2",
+    "syncpack": "^13.0.4",
+    "turbo": "^2.5.5",
+    "typescript": "^5.8.3",
+    "workspace-version-aligner": "^1.0.1"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "packageManager": "pnpm@9.0.0",
+  "private": true,
+  "scripts": {
+    "build": "turbo run build",
+    "check-types": "turbo run check-types",
+    "dev": "turbo run dev",
+    "start": "turbo run start",
+    "lint": "turbo run lint",
+    "test": "turbo run test",
+    "format": "turbo run format",
+    "sync": "syncpack fix",
+    "sync:check": "syncpack check",
+    "sync:fix": "syncpack fix --write",
+    "prepare": "husky",
+    "postinstall": "pnpm prepare",
+    "postinstall:mobile": "turbo run postinstall --filter=@repo/mobile",
+    "postinstall:web": "turbo run postinstall --filter=@repo/web",
+    "postinstall:server": "turbo run postinstall --filter=@repo/server",
+    "postinstall:all": "turbo run postinstall",
+    "postinstall:all:mobile": "turbo run postinstall --filter=@repo/mobile",
+    "postinstall:all:web": "turbo run postinstall --filter=@repo/web",
+    "postinstall:all:server": "turbo run postinstall --filter=@repo/server",
+    "postinstall:all:cleanup": "pnpm scripts/cleanup.sh",
+    "postinstall:cleanup": "pnpm scripts/cleanup.sh",
+    "precommit": "turbo run lint",
+    "cleanup": "pnpm scripts/cleanup.sh",
+    "start:mobile": "turbo start --filter=@repo/mobile",
+    "start:web": "turbo start --filter=@repo/web",
+    "start:server": "turbo start --filter=@repo/server",
+    "dev:mobile": "turbo dev --filter=@repo/mobile",
+    "dev:web": "turbo dev --filter=@repo/web",
+    "dev:server": "turbo dev --filter=@repo/server",
+    "build:mobile": "turbo build --filter=@repo/mobile"
+  },
+  "lint-staged": {
+    "**/*.{js,jsx,ts,tsx,md,json,css,scss,html}": [
+      "prettier --write"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "pnpm": {
+    "overrides": {
+      "react": "^19.1.0",
+      "react-dom": "^19.1.0",
+      "typescript": "^5.8.3"
+    }
+  }
+}

@@ -1,0 +1,27 @@
+{
+	"name": "@repo/components",
+	"version": "0.0.0",
+	"dependencies": {
+		"lucide-react": "^0.263.1"
+	},
+	"peerDependencies": {
+		"react": "^19.1.0",
+		"react-dom": "^19.1.0"
+	},
+	"devDependencies": {},
+	"exports": {
+		".": {
+			"types": "./dist/index.d.ts",
+			"default": "./dist/index.js"
+		}
+	},
+	"main": "./dist/index.js",
+	"types": "./dist/index.d.ts",
+	"scripts": {
+		"build": "tsc",
+		"dev": "tsc --watch",
+		"lint": "eslint src/",
+		"clean": "rm -rf node_modules dist"
+	},
+	"private": true
+}

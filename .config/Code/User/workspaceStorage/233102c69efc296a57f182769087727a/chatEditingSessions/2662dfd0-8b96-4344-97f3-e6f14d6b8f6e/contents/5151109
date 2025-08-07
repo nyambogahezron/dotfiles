@@ -1,0 +1,11 @@
+echo "🔍 Running pre-commit checks..."
+
+# Run lint-staged for formatting and linting staged files
+echo "📝 Running lint-staged..."
+bunx lint-staged
+
+# Run type checking
+echo "🔍 Type checking..."
+bun run check-types
+
+echo "✅ Pre-commit checks passed!"

@@ -1,0 +1,29 @@
+{
+  "name": "shared-utils",
+  "version": "0.0.1",
+  "sourceRoot": "src",
+  "projectType": "library",
+  "tags": ["shared", "utils"],
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "packages/shared-utils/dist",
+        "main": "packages/shared-utils/src/index.ts",
+        "tsConfig": "packages/shared-utils/tsconfig.json",
+        "assets": []
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "packages/shared-utils/jest.config.ts"
+      }
+    }
+  }
+}

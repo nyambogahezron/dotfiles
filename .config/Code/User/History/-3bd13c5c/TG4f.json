@@ -1,0 +1,38 @@
+{
+	"name": "@repo/context",
+	"version": "0.0.0",
+	"private": true,
+	"type": "module",
+	"main": "./dist/index.js",
+	"types": "./dist/index.d.ts",
+	"exports": {
+		".": {
+			"types": "./dist/index.d.ts",
+			"default": "./dist/index.js"
+		},
+		"./AuthContext": "./dist/AuthContext.js",
+		"./DownloadContext": "./dist/DownloadContext.js",
+		"./ThemeContext": "./dist/ThemeContext.js"
+	},
+	"scripts": {
+		"build": "tsc",
+		"dev": "tsc --watch",
+		"lint": "echo 'No linting configured'",
+		"test": "echo 'No tests configured'",
+		"check-types": "tsc --noEmit",
+		"clean": "rm -rf dist",
+		"setup": "bun install"
+	},
+	"dependencies": {
+		"@repo/interfaces": "workspace:*",
+		"@repo/typescript-config": "workspace:*"
+	},
+	"peerDependencies": {
+		"react": "^19.0.0",
+		"react-dom": "^19.0.0"
+	},
+	"devDependencies": {
+		"@types/react": "^19.0.10",
+		"@types/react-dom": "^19.0.0"
+	}
+}

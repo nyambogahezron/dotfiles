@@ -1,0 +1,40 @@
+{
+	"name": "web",
+	"version": "0.1.0",
+	"scripts": {
+		"prebuild": "pnpm --filter @repo/services... build",
+		"build": "next build",
+		"check-types": "tsc --noEmit",
+		"dev": "next dev --turbopack --port 3000",
+		"lint": "next lint --max-warnings 0",
+		"start": "next start",
+		"clean": "rm -rf node_modules .next",
+		"setup": "pnpm install",
+		"deploy": "vercel --prod",
+		"deploy:preview": "vercel"
+	},
+	"dependencies": {
+		"@repo/components": "workspace:*",
+		"@repo/context": "workspace:*",
+		"@repo/hooks": "workspace:*",
+		"@repo/interfaces": "workspace:*",
+		"@repo/services": "workspace:*",
+		"@repo/ui": "workspace:*",
+		"@repo/utils": "workspace:*",
+		"@tanstack/react-query": "^5.83.0",
+		"lucide-react": "^0.263.1",
+		"next": "^15.4.2",
+		"react": "^19.0.0",
+		"react-dom": "^19.0.0",
+		"uuid": "^9.0.1"
+	},
+	"devDependencies": {
+		"@types/react": "^19.0.10",
+		"@types/react-dom": "^19.0.0",
+		"autoprefixer": "^10.4.21",
+		"postcss": "^8.5.6",
+		"tailwindcss": "^3.4.17"
+	},
+	"private": true,
+	"type": "module"
+}

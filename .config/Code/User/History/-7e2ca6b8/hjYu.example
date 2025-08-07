@@ -1,0 +1,43 @@
+# Environment Configuration
+NODE_ENV=development
+PORT=3000
+
+# Database Configuration
+DATABASE_URL=postgresql://username:password@localhost:5432/taskflow
+DB_HOST=localhost
+DB_PORT=5432
+DB_NAME=taskflow
+DB_USER=username
+DB_PASSWORD=password
+
+# JWT Configuration
+JWT_SECRET=your-super-secret-jwt-key-change-this-in-production
+JWT_EXPIRES_IN=7d
+REFRESH_TOKEN_SECRET=your-super-secret-refresh-token-key-change-this-in-production
+
+# OTP Configuration
+OTP_SECRET=your-otp-secret-key-change-this-in-production
+
+# Cookie Configuration
+COOKIE_SECRET=your-cookie-secret-key-change-this-in-production
+
+# Rate Limiting
+RATE_LIMIT_WINDOW_MS=900000
+RATE_LIMIT_MAX_REQUESTS=100
+
+# File Upload Configuration
+MAX_FILE_SIZE=5242880
+UPLOAD_PATH=./uploads
+
+# CORS Configuration
+CORS_ORIGIN=http://localhost:3000,http://localhost:5173
+
+# Socket.IO Configuration
+SOCKET_CORS_ORIGIN=http://localhost:3000,http://localhost:5173
+
+# Security
+BCRYPT_ROUNDS=12
+
+# Admin Configuration
+ADMIN_EMAIL=admin@taskflow.com
+ADMIN_PASSWORD=admin123
