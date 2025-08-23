@@ -177,6 +177,25 @@
 	"github.copilot.nextEditSuggestions.enabled": true,
 	"vscode-blur-linux.opacity": 30,
 	"workbench.preferredDarkColorTheme": "Red",
+	"cSpell.userWords": ["ecoderum"],
 	"files.autoSave": "afterDelay",
-	"cSpell.userWords": ["ecoderum"]
+	"workbench.secondarySideBar.defaultVisibility": "hidden",
+	"mobile-preview.deviceOptions": [
+		"iPhone 13 Pro",
+		"iPhone 15",
+		"iPhone 15 Pro Max",
+		"iPhone 12 Mini (Pro)",
+		"iPhone 14 Pro (Pro)",
+		"iPhone 11 (Pro)",
+		"iPad Pro 11 (Pro)",
+		"iPad Air (Pro)",
+		"iPad Mini (Pro)",
+		"Samsung Galaxy S23 (Pro)",
+		"Google Pixel 7 (Pro)",
+		"OnePlus 10 Pro (Pro)",
+		"Xiaomi 13 (Pro)",
+		"Samsung Galaxy Tab S8 (Pro)",
+		"Google Pixel Tablet (Pro)"
+	],
+	"mobile-preview.url": "http://localhost:19000  "
 }

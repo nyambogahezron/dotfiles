@@ -9,7 +9,13 @@ Personal configuration files for various applications and tools.
 ├── .config/
 │   ├── kitty/          # Kitty terminal configuration
 │   └── ...             # Other application configs
-├── install.sh          # Installation script
+├── shortcuts/          # Custom keyboard shortcuts and productivity scripts
+│   ├── scripts/        # Executable shortcut scripts
+│   ├── desktop-entries/ # Application menu entries
+│   ├── gnome-settings/ # GNOME keyboard shortcut configuration
+│   ├── install.sh      # Shortcuts installation script
+│   └── README.md       # Detailed shortcuts documentation
+├── install.sh          # Main installation script
 ├── README.md           # This file
 └── scripts/            # Custom scripts (optional)
 ```
@@ -30,6 +36,10 @@ Personal configuration files for various applications and tools.
 - **VSCode**: Transparency-ready settings with dark theme
 - **Picom Compositor**: System-wide blur and transparency effects
 - **Blur Setup Script**: Automated setup for application blur effects
+- **Custom Shortcuts**: Productivity keyboard shortcuts and scripts
+  - `Super + Alt + T`: Open terminal in current directory
+  - `Super + Alt + C`: Open VS Code in current directory
+  - `Super + Alt + S`: Quick shutdown with confirmation
 
 ## Adding new configurations
 
@@ -56,6 +66,13 @@ Personal configuration files for various applications and tools.
 - Blur effects for VSCode, Brave, and Kitty
 - Smooth fading animations
 - Custom shadow effects
+
+### Custom Shortcuts
+- **Terminal Here**: Opens Kitty terminal in current working directory
+- **VS Code Here**: Opens VS Code in current working directory
+- **Quick Shutdown**: Safe shutdown with GUI confirmation dialog
+- Desktop menu integration and command-line access
+- Automatic fallbacks for different terminal emulators
 
 ## Backup
 

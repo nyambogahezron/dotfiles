@@ -1,0 +1,24 @@
+#!/bin/bash
+# Open VS Code in current directory or a specified directory
+
+# Get the current directory or use the one passed as argument
+if [ $# -eq 0 ]; then
+    # Try to get current directory from various sources
+    if [ -n "$PWD" ]; then
+        DIR="$PWD"
+    elif [ -n "$OLDPWD" ]; then
+        DIR="$OLDPWD"
+    else
+        DIR="$HOME"
+    fi
+else
+    DIR="$1"
+fi
+
+# Ensure the directory exists
+if [ ! -d "$DIR" ]; then
+    DIR="$HOME"
+fi
+
+# Open VS Code in the specified directory
+code "$DIR" &

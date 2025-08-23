@@ -61,5 +61,12 @@ fi
 #     create_symlink "$DOTFILES_DIR/.zshrc" "$HOME/.zshrc"
 # fi
 
+# Install custom shortcuts
+if [[ -d "$DOTFILES_DIR/shortcuts" ]]; then
+    echo "⌨️  Installing custom shortcuts..."
+    cd "$DOTFILES_DIR/shortcuts" && ./install.sh
+    cd "$DOTFILES_DIR"
+fi
+
 echo "✅ Dotfiles installation complete!"
 echo "💡 Run 'source ~/.zshrc' or restart your terminal to apply changes."

@@ -1,0 +1,21 @@
+#!/bin/bash
+# Quick shutdown script with confirmation
+
+# Use zenity for a GUI confirmation dialog
+if zenity --question --text="Are you sure you want to shutdown the computer?" --title="Shutdown Confirmation" 2>/dev/null; then
+    systemctl poweroff
+else
+    # If zenity is not available, use terminal confirmation
+    if command -v zenity &> /dev/null; then
+        exit 0
+    else
+        echo "Shutdown cancelled or zenity not available"
+        read -p "Do you want to shutdown now? (y/N): " -n 1 -r
+        echo
+        if [[ $REPLY =~ ^[Yy]$ ]]; then
+            systemctl poweroff
+        else
+            echo "Shutdown cancelled."
+        fi
+    fi
+fi

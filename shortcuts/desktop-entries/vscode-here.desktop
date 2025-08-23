@@ -1,0 +1,10 @@
+[Desktop Entry]
+Version=1.0
+Name=VS Code Here
+Comment=Open VS Code in current directory
+Exec=/home/junior/.mydotfiles/shortcuts/scripts/vscode-here
+Icon=code
+Terminal=false
+Type=Application
+Categories=Development;TextEditor;
+Keywords=vscode;editor;development;

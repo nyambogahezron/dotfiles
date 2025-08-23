@@ -1,0 +1,10 @@
+[Desktop Entry]
+Version=1.0
+Name=Terminal Here
+Comment=Open terminal in current directory
+Exec=/home/junior/.mydotfiles/shortcuts/scripts/terminal-here
+Icon=terminal
+Terminal=false
+Type=Application
+Categories=System;TerminalEmulator;
+Keywords=terminal;kitty;console;
