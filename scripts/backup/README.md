@@ -1,10 +1,11 @@
-# Ubuntu Backup Tool
+# BackIt - Linux Backup Tool
 
 ![Shell Script](https://img.shields.io/badge/Shell_Script-121011?style=for-the-badge&logo=gnu-bash&logoColor=white)
 ![Ubuntu](https://img.shields.io/badge/Ubuntu-E95420?style=for-the-badge&logo=ubuntu&logoColor=white)
 ![License](https://img.shields.io/badge/License-MIT-blue.svg)
 
-A comprehensive, modular shell-based backup solution for Ubuntu systems. This tool provides flexible file backup capabilities with configurable exclusion patterns, multiple compression formats, and automated scheduling.
+
+A comprehensive, modular shell-based backup solution for Linux systems. This tool provides flexible file backup capabilities with configurable exclusion patterns, multiple compression formats, and automated scheduling.
 
 ## ✨ Features
 
@@ -23,7 +24,7 @@ A comprehensive, modular shell-based backup solution for Ubuntu systems. This to
 ## 📁 Project Structure
 
 ```
-backup-tool/
+backit/
 ├── README.md
 ├── install.sh
 ├── main.sh              # Main entry point
@@ -44,14 +45,14 @@ backup-tool/
 ## 🚀 Quick Start
 
 ### Prerequisites
-- Ubuntu Linux
+- Linux Linux
 - Root/sudo access
 - Mounted backup destination (e.g., `/mnt/harddrive`)
 
 ### Installation
 
 ```bash
-# 1. Download or clone the backup-tool directory
+# 1. Download or clone the backit directory
 
 # 2. Make scripts executable
 chmod +x main.sh install.sh
@@ -77,7 +78,7 @@ Key settings to configure:
 
 ## Run Your First Backup
 ```bash
-sudo backup-tool
+sudo backit
 ```
 The backup will be created at `/mnt/harddrive/backups/home_backup_TIMESTAMP.tar.gz`
 
@@ -108,7 +109,7 @@ The backup will be created at `/mnt/harddrive/backups/home_backup_TIMESTAMP.tar.
 └── cron.log                # Cron job logs (if enabled)
 
 /usr/local/bin/
-└── backup-tool             # Symlink to main script
+└── backit             # Symlink to main script
 ```
 
 ## ⚙️ Configuration Guide
@@ -198,27 +199,27 @@ MAX_LOG_FILES=10
 
 | Command | Description |
 |---------|-------------|
-| `sudo backup-tool` | Run backup with default config |
-| `sudo backup-tool --list` | List available backups |
-| `sudo backup-tool --dry-run` | Show what would be backed up |
-| `sudo backup-tool --verify file.tar.gz` | Verify backup integrity |
-| `sudo backup-tool --summary` | Show last backup summary |
-| `sudo backup-tool --help` | Show help message |
+| `sudo backit` | Run backup with default config |
+| `sudo backit --list` | List available backups |
+| `sudo backit --dry-run` | Show what would be backed up |
+| `sudo backit --verify file.tar.gz` | Verify backup integrity |
+| `sudo backit --summary` | Show last backup summary |
+| `sudo backit --help` | Show help message |
 
 ### Restore from Backup
 ```bash
 # Restore to specific directory
-sudo backup-tool --restore /mnt/harddrive/backups/backup.tar.gz --to /path/to/restore
+sudo backit --restore /mnt/harddrive/backups/backup.tar.gz --to /path/to/restore
 
 # Restore to auto-generated directory  
-sudo backup-tool --restore /mnt/harddrive/backups/backup.tar.gz
+sudo backit --restore /mnt/harddrive/backups/backup.tar.gz
 # Creates: ./restored_YYYYMMDD_HHMMSS/
 ```
 
 ### Using Custom Configuration
 ```bash
 # Use alternate config file
-sudo backup-tool --config /path/to/custom_config.sh
+sudo backit --config /path/to/custom_config.sh
 ```
 
 ## 🔄 Automated Backups
@@ -226,32 +227,32 @@ sudo backup-tool --config /path/to/custom_config.sh
 ### Option 1: Cron (Recommended)
 ```bash
 # Setup automatic backups via cron
-sudo backup-tool --setup-cron
+sudo backit --setup-cron
 ```
 
 This creates a cron job based on your config's `BACKUP_TIME` and `BACKUP_FREQUENCY`.
 
 View the cron schedule:
 ```bash
-sudo cat /etc/cron.d/backup-tool
+sudo cat /etc/cron.d/backit
 ```
 
 Remove cron job:
 ```bash
-sudo backup-tool --remove-cron
+sudo backit --remove-cron
 ```
 
 ### Option 2: Systemd Timer
 ```bash
 # Enable systemd timer
-sudo systemctl enable backup-tool.timer
-sudo systemctl start backup-tool.timer
+sudo systemctl enable backit.timer
+sudo systemctl start backit.timer
 
 # Check status
-sudo systemctl status backup-tool.timer
+sudo systemctl status backit.timer
 
 # View next run time
-sudo systemctl list-timers backup-tool.timer
+sudo systemctl list-timers backit.timer
 ```
 
 ### Manual Cron Setup
@@ -260,14 +261,14 @@ sudo systemctl list-timers backup-tool.timer
 sudo crontab -e
 
 # Add this line:
-0 2 * * * /usr/local/bin/backup-tool >> /var/log/backup_tool/cron.log 2>&1
+0 2 * * * /usr/local/bin/backit >> /var/log/backup_tool/cron.log 2>&1
 ```
 
 ## 📊 Backup Management
 
 ### View Available Backups
 ```bash
-sudo backup-tool --list
+sudo backit --list
 ```
 
 Example output:
@@ -337,10 +338,10 @@ sudo bash -vx /opt/backup_tool/main.sh --dry-run
 sudo systemctl status cron
 
 # Check active cron jobs
-sudo crontab -l | grep backup-tool || echo "No cron job found"
+sudo crontab -l | grep backit || echo "No cron job found"
 
 # Check script executable
-ls -la /usr/local/bin/backup-tool
+ls -la /usr/local/bin/backit
 ```
 
 ## 📝 Examples
@@ -416,7 +417,7 @@ sudo chown root:root /etc/backup_tool/backup_config.sh
 **Regular Testing** - Always verify backups work:
 ```bash
 # Quarterly backup fire drill
-sudo backup-tool --restore latest_backup.tar.gz --to /tmp/test_restore
+sudo backit --restore latest_backup.tar.gz --to /tmp/test_restore
 ```
 
 ## 📈 Monitoring
@@ -454,7 +455,7 @@ exit 0
 For Nagios/Icinga/Zabbix:
 ```bash
 # Simple check script
-if sudo backup-tool --summary | grep -q "Backup created"; then
+if sudo backit --summary | grep -q "Backup created"; then
     echo "OK: Backup system functional"
     exit 0
 else
@@ -497,7 +498,7 @@ echo "Testing restore of: $LATEST_BACKUP"
 echo "To directory: $TEST_DIR"
 
 mkdir -p "$TEST_DIR"
-if sudo backup-tool --restore "$LATEST_BACKUP" --to "$TEST_DIR"; then
+if sudo backit --restore "$LATEST_BACKUP" --to "$TEST_DIR"; then
     echo "✅ Restore test successful"
     echo "Files restored: $(find "$TEST_DIR" -type f | wc -l)"
     rm -rf "$TEST_DIR"
@@ -545,13 +546,13 @@ Each module is independent and can be modified without affecting others.
 ## 🆘 Need Help?
 
 - Check logs first: `/var/log/backup_tool/backup.log`
-- Dry run: `sudo backup-tool --dry-run`
+- Dry run: `sudo backit --dry-run`
 - Verify configuration: Check `/etc/backup_tool/backup_config.sh`
 - Test manually: Run commands from the script step by step
 
 ## 📚 Additional Resources
 
-- [Ubuntu Backup Guide](https://help.ubuntu.com/community/BackupYourSystem)
+- [Linux Backup Guide](https://help.linux.com/community/BackupYourSystem)
 - [rsync Documentation](https://rsync.samba.org/documentation.html)
 - [tar Manual](https://www.gnu.org/software/tar/manual/)
 - [GPG Encryption Guide](https://gnupg.org/documentation/)

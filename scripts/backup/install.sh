@@ -74,7 +74,7 @@ else
 fi
 
 # Create symlink for easy access
-ln -sf /opt/backup_tool/main.sh /usr/local/bin/backup-tool
+ln -sf /opt/backup_tool/main.sh /usr/local/bin/backit
 
 # Create example backup destination
 echo "Setting up backup destination..."
@@ -83,7 +83,7 @@ chmod 755 /mnt/harddrive/backups
 
 # Create log rotation
 echo "Setting up log rotation..."
-cat > /etc/logrotate.d/backup-tool << 'EOF'
+cat > /etc/logrotate.d/backit << 'EOF'
 /var/log/backup_tool/*.log {
     weekly
     missingok
@@ -97,14 +97,14 @@ EOF
 
 # Create systemd service (optional)
 echo "Creating systemd service..."
-cat > /etc/systemd/system/backup-tool.service << 'EOF'
+cat > /etc/systemd/system/backit.service << 'EOF'
 [Unit]
 Description=Backup Tool Service
 After=network.target
 
 [Service]
 Type=oneshot
-ExecStart=/usr/local/bin/backup-tool
+ExecStart=/usr/local/bin/backit
 User=root
 StandardOutput=journal
 StandardError=journal
@@ -113,10 +113,10 @@ StandardError=journal
 WantedBy=multi-user.target
 EOF
 
-cat > /etc/systemd/system/backup-tool.timer << 'EOF'
+cat > /etc/systemd/system/backit.timer << 'EOF'
 [Unit]
 Description=Run backup tool daily
-Requires=backup-tool.service
+Requires=backit.service
 
 [Timer]
 OnCalendar=daily
@@ -142,17 +142,17 @@ set -e
 echo "=== Backup Tool Uninstallation ==="
 
 # Remove symlink
-rm -f /usr/local/bin/backup-tool
+rm -f /usr/local/bin/backit
 
 # Remove systemd files
-rm -f /etc/systemd/system/backup-tool.service
-rm -f /etc/systemd/system/backup-tool.timer
+rm -f /etc/systemd/system/backit.service
+rm -f /etc/systemd/system/backit.timer
 
 # Remove cron job
-rm -f /etc/cron.d/backup-tool
+rm -f /etc/cron.d/backit
 
 # Remove log rotation
-rm -f /etc/logrotate.d/backup-tool
+rm -f /etc/logrotate.d/backit
 
 # Ask about removing config and logs
 read -p "Remove configuration files? (y/n): " -r
@@ -189,15 +189,15 @@ echo "  - Adjust exclude patterns"
 echo "  - Configure backup settings"
 echo ""
 echo "Usage:"
-echo "  backup-tool                    # Run backup"
-echo "  backup-tool --list             # List available backups"
-echo "  backup-tool --restore file.tar.gz --to /path"
-echo "  backup-tool --verify file.tar.gz"
-echo "  backup-tool --dry-run          # Show what would be backed up"
-echo "  backup-tool --setup-cron       # Setup automatic backups"
+echo "  backit                    # Run backup"
+echo "  backit --list             # List available backups"
+echo "  backit --restore file.tar.gz --to /path"
+echo "  backit --verify file.tar.gz"
+echo "  backit --dry-run          # Show what would be backed up"
+echo "  backit --setup-cron       # Setup automatic backups"
 echo ""
 echo "To enable automatic daily backups:"
-echo "  backup-tool --setup-cron"
+echo "  backit --setup-cron"
 echo ""
 echo "Uninstall: /opt/backup_tool/uninstall.sh"
 echo ""
