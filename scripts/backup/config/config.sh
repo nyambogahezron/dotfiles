@@ -43,7 +43,7 @@ EMAIL_ADDRESS=""
 EMAIL_SUBJECT="Backup Status Report"
 
 # Logging settings
-LOG_DIRECTORY="/var/log/backup_tool"
+LOG_DIRECTORY="/var/log/backit"
 LOG_FILE="${LOG_DIRECTORY}/backup.log"
 MAX_LOG_FILES=10
 

@@ -1,15 +1,21 @@
 #!/bin/bash
-# Complete Backup Tool for Ubuntu - Shell Script Version
+# Complete Backup Tool for Linux - Shell Script Version
 # Version: 2.0 - Modular Edition
 
 set -euo pipefail
 IFS=$'\n\t'
 
-# Determine script directory
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+# Determine script directory (resolve symlinks)
+SOURCE="${BASH_SOURCE[0]}"
+while [ -h "$SOURCE" ]; do
+    SCRIPT_DIR="$(cd -P "$(dirname "$SOURCE")" && pwd)"
+    SOURCE="$(readlink "$SOURCE")"
+    [[ $SOURCE != /* ]] && SOURCE="$SCRIPT_DIR/$SOURCE"
+done
+SCRIPT_DIR="$(cd -P "$(dirname "$SOURCE")" && pwd)"
 
 # Default configuration path
-CONFIG_FILE="/etc/backup_tool/backup_config.sh"
+CONFIG_FILE="/etc/backit/config.sh"
 
 # Load configuration
 if [ -f "$CONFIG_FILE" ]; then

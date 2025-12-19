@@ -1,5 +1,5 @@
 #!/bin/bash
-# Backup Tool Installer for Ubuntu
+# Backup Tool Installer for Linux
 
 set -e
 
@@ -44,37 +44,37 @@ fi
 
 # Create directories
 echo "Creating directories..."
-mkdir -p /etc/backup_tool
-mkdir -p /var/log/backup_tool
+mkdir -p /etc/backit
+mkdir -p /var/log/backit
 mkdir -p /usr/local/bin
-mkdir -p /opt/backup_tool
-mkdir -p /opt/backup_tool/modules
-mkdir -p /opt/backup_tool/config
+mkdir -p /opt/backit
+mkdir -p /opt/backit/modules
+mkdir -p /opt/backit/config
 
 # Copy files
 echo "Installing files..."
 
 # Main script
-cp main.sh /opt/backup_tool/
-chmod 755 /opt/backup_tool/main.sh
+cp main.sh /opt/backit/
+chmod 755 /opt/backit/main.sh
 
 # Copy all module files
 echo "Installing modules..."
-cp modules/*.sh /opt/backup_tool/modules/
-chmod 755 /opt/backup_tool/modules/*.sh
+cp modules/*.sh /opt/backit/modules/
+chmod 755 /opt/backit/modules/*.sh
 
 # Configuration file
-if [ ! -f /etc/backup_tool/backup_config.sh ]; then
-    cp config/config.sh /etc/backup_tool/backup_config.sh
-    chmod 644 /etc/backup_tool/backup_config.sh
+if [ ! -f /etc/backit/config.sh ]; then
+    cp config/config.sh /etc/backit/config.sh
+    chmod 644 /etc/backit/config.sh
 else
     echo -e "${YELLOW}Configuration file already exists. Keeping existing config.${NC}"
-    echo -e "${YELLOW}New config saved as /etc/backup_tool/backup_config.sh.new${NC}"
-    cp config/config.sh /etc/backup_tool/backup_config.sh.new
+    echo -e "${YELLOW}New config saved as /etc/backit/config.sh.new${NC}"
+    cp config/config.sh /etc/backit/config.sh.new
 fi
 
 # Create symlink for easy access
-ln -sf /opt/backup_tool/main.sh /usr/local/bin/backit
+ln -sf /opt/backit/main.sh /usr/local/bin/backit
 
 # Create example backup destination
 echo "Setting up backup destination..."
@@ -84,7 +84,7 @@ chmod 755 /mnt/harddrive/backups
 # Create log rotation
 echo "Setting up log rotation..."
 cat > /etc/logrotate.d/backit << 'EOF'
-/var/log/backup_tool/*.log {
+/var/log/backit/*.log {
     weekly
     missingok
     rotate 4
@@ -128,12 +128,12 @@ EOF
 
 # Set permissions
 echo "Setting permissions..."
-chown -R root:root /etc/backup_tool
-chown -R root:root /opt/backup_tool
-chmod -R 755 /opt/backup_tool
+chown -R root:root /etc/backit
+chown -R root:root /opt/backit
+chmod -R 755 /opt/backit
 
 # Create uninstall script
-cat > /opt/backup_tool/uninstall.sh << 'EOF'
+cat > /opt/backit/uninstall.sh << 'EOF'
 #!/bin/bash
 # Backup Tool Uninstaller
 
@@ -157,33 +157,33 @@ rm -f /etc/logrotate.d/backit
 # Ask about removing config and logs
 read -p "Remove configuration files? (y/n): " -r
 if [[ $REPLY =~ ^[Yy]$ ]]; then
-    rm -rf /etc/backup_tool
+    rm -rf /etc/backit
 fi
 
 read -p "Remove log files? (y/n): " -r
 if [[ $REPLY =~ ^[Yy]$ ]]; then
-    rm -rf /var/log/backup_tool
+    rm -rf /var/log/backit
 fi
 
 # Remove main script
-rm -rf /opt/backup_tool
+rm -rf /opt/backit
 
 echo "Backup tool uninstalled successfully!"
 EOF
 
-chmod +x /opt/backup_tool/uninstall.sh
+chmod +x /opt/backit/uninstall.sh
 
 echo ""
 echo -e "${GREEN}=== Installation Complete ===${NC}"
 echo ""
 echo "Backup Tool has been installed successfully!"
 echo ""
-echo "Configuration: /etc/backup_tool/backup_config.sh"
-echo "Main Script:   /opt/backup_tool/backup_tool.sh"
-echo "Log Directory: /var/log/backup_tool/"
+echo "Configuration: /etc/backit/config.sh"
+echo "Main Script:   /opt/backit/main.sh"
+echo "Log Directory: /var/log/backit/"
 echo "Backup Dest:   /mnt/harddrive/backups/"
 echo ""
-echo -e "${YELLOW}IMPORTANT: Edit /etc/backup_tool/backup_config.sh to customize:${NC}"
+echo -e "${YELLOW}IMPORTANT: Edit /etc/backit/config.sh to customize:${NC}"
 echo "  - Set correct backup destination"
 echo "  - Adjust exclude patterns"
 echo "  - Configure backup settings"
@@ -199,5 +199,5 @@ echo ""
 echo "To enable automatic daily backups:"
 echo "  backit --setup-cron"
 echo ""
-echo "Uninstall: /opt/backup_tool/uninstall.sh"
+echo "Uninstall: /opt/backit/uninstall.sh"
 echo ""

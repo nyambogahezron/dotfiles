@@ -66,7 +66,7 @@ sudo ./install.sh
 Edit the configuration file after installation:
 
 ```bash
-sudo nano /etc/backup_tool/backup_config.sh
+sudo nano /etc/backit/config.sh
 ```
 
 Key settings to configure:
@@ -86,11 +86,11 @@ The backup will be created at `/mnt/harddrive/backups/home_backup_TIMESTAMP.tar.
 
 ### Installed Structure
 ```text
-/etc/backup_tool/
-├── backup_config.sh          # Configuration file
-└── backup_config.sh.new      # New config template (if exists)
+/etc/backit/
+├── config.sh          # Configuration file
+└── config.sh.new      # New config template (if exists)
 
-/opt/backup_tool/
+/opt/backit/
 ├── main.sh                   # Main backup script
 ├── modules/                  # Module directory
 │   ├── utils.sh             # Utility functions
@@ -104,7 +104,7 @@ The backup will be created at `/mnt/harddrive/backups/home_backup_TIMESTAMP.tar.
 │   └── cleanup.sh           # Cleanup functions
 └── uninstall.sh             # Uninstaller
 
-/var/log/backup_tool/
+/var/log/backit/
 ├── backup.log               # Main log file
 └── cron.log                # Cron job logs (if enabled)
 
@@ -189,7 +189,7 @@ EMAIL_ADDRESS="admin@example.com"
 EMAIL_SUBJECT="Backup Status Report"
 
 # Log settings
-LOG_DIRECTORY="/var/log/backup_tool"
+LOG_DIRECTORY="/var/log/backit"
 MAX_LOG_FILES=10
 ```
 
@@ -261,7 +261,7 @@ sudo systemctl list-timers backit.timer
 sudo crontab -e
 
 # Add this line:
-0 2 * * * /usr/local/bin/backit >> /var/log/backup_tool/cron.log 2>&1
+0 2 * * * /usr/local/bin/backit >> /var/log/backit/cron.log 2>&1
 ```
 
 ## 📊 Backup Management
@@ -292,18 +292,18 @@ echo "password" | gpg --decrypt backup.tar.gz.gpg | tar -tz | head -20
 ### Monitor Logs
 ```bash
 # View recent logs
-sudo tail -f /var/log/backup_tool/backup.log
+sudo tail -f /var/log/backit/backup.log
 
 # Search for errors
-sudo grep -i error /var/log/backup_tool/backup.log
+sudo grep -i error /var/log/backit/backup.log
 
 # View cron logs
-sudo tail -f /var/log/backup_tool/cron.log
+sudo tail -f /var/log/backit/cron.log
 ```
 
 ## 🗑️ Uninstallation
 ```bash
-sudo /opt/backup_tool/uninstall.sh
+sudo /opt/backit/uninstall.sh
 ```
 
 The uninstaller will prompt you about removing:
@@ -317,7 +317,7 @@ The uninstaller will prompt you about removing:
 
 | Issue | Solution |
 |-------|----------|
-| Permission Denied | `sudo chmod 755 /opt/backup_tool/main.sh` |
+| Permission Denied | `sudo chmod 755 /opt/backit/main.sh` |
 | Destination Not Mounted | Check `mount \| grep /mnt/harddrive` |
 | Insufficient Disk Space | Reduce MAX_BACKUPS or increase destination storage |
 | Backup Too Slow | Change COMPRESSION to "tar" or use rsync mode |
@@ -326,10 +326,10 @@ The uninstaller will prompt you about removing:
 ### Debug Mode
 ```bash
 # Run with detailed output
-sudo bash -x /opt/backup_tool/backup_tool.sh
+sudo bash -x /opt/backit/backit.sh
 
 # Run with trace and dry run
-sudo bash -vx /opt/backup_tool/main.sh --dry-run
+sudo bash -vx /opt/backit/main.sh --dry-run
 ```
 
 ### Check Service Status
@@ -348,7 +348,7 @@ ls -la /usr/local/bin/backit
 
 ### Example 1: Home Directory Backup
 ```bash
-# /etc/backup_tool/backup_config.sh
+# /etc/backit/config.sh
 SOURCE_DIRECTORIES=("/home")
 EXCLUDE_PATTERNS+=(
     "**/Downloads/**"
@@ -399,19 +399,19 @@ RSYNC_INCREMENTAL=true
 **Enable Encryption** for sensitive data:
 ```bash
 ENABLE_ENCRYPTION=true
-ENCRYPTION_PASSWORD="$(cat /etc/backup_tool/.backup_password)"
+ENCRYPTION_PASSWORD="$(cat /etc/backit/.backup_password)"
 ```
 
 **Secure Password Storage:**
 ```bash
-sudo echo "your_password" > /etc/backup_tool/.backup_password
-sudo chmod 600 /etc/backup_tool/.backup_password
+sudo echo "your_password" > /etc/backit/.backup_password
+sudo chmod 600 /etc/backit/.backup_password
 ```
 
 **Proper Permissions:**
 ```bash
 sudo chmod 700 /mnt/harddrive/backups
-sudo chown root:root /etc/backup_tool/backup_config.sh
+sudo chown root:root /etc/backit/config.sh
 ```
 
 **Regular Testing** - Always verify backups work:
@@ -426,7 +426,7 @@ sudo backit --restore latest_backup.tar.gz --to /tmp/test_restore
 ```bash
 #!/bin/bash
 # Save as /usr/local/bin/check-backup-health
-LOG="/var/log/backup_tool/backup.log"
+LOG="/var/log/backit/backup.log"
 
 if [ ! -f "$LOG" ]; then
     echo "ERROR: No backup logs found"
@@ -545,9 +545,9 @@ Each module is independent and can be modified without affecting others.
 
 ## 🆘 Need Help?
 
-- Check logs first: `/var/log/backup_tool/backup.log`
+- Check logs first: `/var/log/backit/backup.log`
 - Dry run: `sudo backit --dry-run`
-- Verify configuration: Check `/etc/backup_tool/backup_config.sh`
+- Verify configuration: Check `/etc/backit/config.sh`
 - Test manually: Run commands from the script step by step
 
 ## 📚 Additional Resources
