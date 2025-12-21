@@ -1,34 +1,74 @@
 # My Dotfiles
 
-Personal configuration files for various applications and tools.
+Personal configuration files for various applications and tools, plus automated setup scripts for new machines.
 
-## Structure
+## 🚀 Quick Start - New Machine Setup
 
-```
-~/.mydotfiles/
-├── .config/
-│   ├── kitty/          # Kitty terminal configuration
-│   └── ...             # Other application configs
-├── shortcuts/          # Custom keyboard shortcuts and productivity scripts
-│   ├── scripts/        # Executable shortcut scripts
-│   ├── desktop-entries/ # Application menu entries
-│   ├── gnome-settings/ # GNOME keyboard shortcut configuration
-│   ├── install.sh      # Shortcuts installation script
-│   └── README.md       # Detailed shortcuts documentation
-├── install.sh          # Main installation script
-├── README.md           # This file
-└── scripts/            # Custom scripts (optional)
+```bash
+# Clone this repository
+git clone https://github.com/YOUR_USERNAME/my-dot-files.git
+cd my-dot-files
+
+# Run the automated setup (interactive mode)
+bash scripts/dev-env-setup/main.sh
 ```
 
-## Installation
+This will install and configure:
+- Essential development tools
+- Programming languages (Node.js, Python, Rust, Go, PHP)
+- Development tools (Docker, VS Code, Neovim)
+- Applications (browsers, terminal, etc.)
+- Shell improvements (Zsh, Oh My Zsh, Starship)
+- Fonts (Nerd Fonts)
+- All your dotfiles and configurations
 
-1. Clone or ensure dotfiles are in `~/.mydotfiles/`
-2. Run the installation script:
-   ```bash
-   cd ~/.mydotfiles
-   chmod +x install.sh
-   ./install.sh
-   ```
+For more options, see [scripts/dev-env-setup/README.md](scripts/dev-env-setup/README.md)
+
+## 📁 Structure
+
+```
+my-dot-files/
+├── bin/
+│   └── chezmoi                 # Dotfiles manager
+├── nvim-setup/                 # Neovim configuration
+│   ├── init.lua
+│   └── lua/
+│       ├── core/               # Core settings & keymaps
+│       └── plugins/            # Plugin configurations
+├── scripts/
+│   ├── dev-env-setup/          # 🆕 Automated machine setup
+│   │   ├── main.sh             # Main orchestrator
+│   │   ├── node.sh             # Node.js installer
+│   │   ├── python.sh           # Python installer
+│   │   ├── docker.sh           # Docker installer
+│   │   ├── vscode.sh           # VS Code installer
+│   │   ├── extensions.sh       # VS Code extensions
+│   │   └── ...                 # More modules
+│   ├── setup-blur.sh           # Blur effects setup
+│   └── backup/                 # Backup utilities
+├── shortcuts/                  # Custom keyboard shortcuts
+│   ├── scripts/                # Shortcut scripts
+│   ├── desktop-entries/        # Desktop menu entries
+│   ├── gnome-settings/         # GNOME shortcuts
+│   ├── install.sh              # Shortcuts installer
+│   └── README.md
+├── vscode/                     # VS Code configuration
+│   ├── settings.json
+│   ├── keybindings.json
+│   └── install.sh
+├── install.sh                  # Main dotfiles installer
+└── README.md                   # This file
+```
+
+## 🔧 Manual Installation
+
+If you only want to install dotfiles without the full setup:
+
+```bash
+cd my-dot-files
+chmod +x install.sh
+./install.sh
+```
 
 ## What gets installed
 
