@@ -28,8 +28,8 @@ cd my-dot-files
 ## 📦 What's Included
 
 - **Development Environment Setup** - Automated installation of languages, tools, and frameworks
-- **Neovim Configuration** - Custom setup with plugins and LSP
-- **VS Code Settings** - Settings, keybindings, and extensions
+- **Neovim Configuration** - Cloned from [nyambogahezron/nvim-setup](https://github.com/nyambogahezron/nvim-setup)
+- **Bash Configuration** - Custom .bashrc with aliases and shortcuts
 - **Backup System** - Automated backup with encryption
 - **Desktop Shortcuts** - GNOME shortcuts and custom scripts
 - **Configuration Files** - Dotfiles for various applications

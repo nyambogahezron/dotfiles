@@ -1,49 +1,28 @@
 #!/bin/bash
 
 
-# Neovim Configuration Setup
+# Neovim Installation Script
+# Note: Neovim configuration is managed separately via the main setup UI
 
 
 source "$(dirname "$0")/utils.sh"
 
 setup_nvim() {
-    print_header "SETTING UP NEOVIM"
+    print_header "INSTALLING NEOVIM"
     
     # Check if nvim is installed
     if ! command_exists nvim; then
-        print_warning "Neovim not installed. Installing..."
+        print_step "Installing Neovim package..."
         install_package "neovim"
+        print_success "Neovim installed"
+    else
+        print_success "Neovim is already installed"
     fi
     
-    # Get the dotfiles directory (assuming script is in dotfiles/scripts/dev-env-setup)
-    DOTFILES_DIR="$(cd "$(dirname "$0")/../.." && pwd)"
-    NVIM_SETUP_DIR="$DOTFILES_DIR/nvim-setup"
-    
-    if [ ! -d "$NVIM_SETUP_DIR" ]; then
-        print_warning "Neovim setup directory not found at $NVIM_SETUP_DIR"
-        return
-    fi
-    
-    print_step "Setting up Neovim configuration..."
-    
-    # Backup existing config
-    if [ -d "$HOME/.config/nvim" ]; then
-        if [ ! -L "$HOME/.config/nvim" ]; then
-            print_step "Backing up existing nvim config..."
-            mv "$HOME/.config/nvim" "$HOME/.config/nvim.backup.$(date +%Y%m%d_%H%M%S)"
-        else
-            rm "$HOME/.config/nvim"
-        fi
-    fi
-    
-    # Create config directory
-    mkdir -p "$HOME/.config"
-    
-    # Copy nvim config
-    cp -r "$NVIM_SETUP_DIR" "$HOME/.config/nvim"
-    
-    print_success "Neovim configuration installed"
-    print_step "Run 'nvim' to install plugins on first launch"
+    print_step "To setup Neovim configuration:"
+    echo "  • Use the graphical setup UI: ./install.sh --gui"
+    echo "  • Select 'Neovim Configuration' option"
+    echo "  • Config will be cloned from: https://github.com/nyambogahezron/nvim-setup.git"
 }
 
 # Run if executed directly

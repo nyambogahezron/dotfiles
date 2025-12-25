@@ -13,7 +13,7 @@ if [[ "$1" == "--gui" ]] || [[ "$1" == "-g" ]]; then
     
     # Check if zenity is installed
     if ! command -v zenity &> /dev/null; then
-        echo "❌ zenity is required for the GUI"
+        echo "zenity is required for the GUI"
         echo "Install it with: sudo apt install zenity"
         exit 1
     fi
