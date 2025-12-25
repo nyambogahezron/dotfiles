@@ -5,8 +5,28 @@
 
 DOTFILES_DIR="$HOME/.mydotfiles"
 CONFIG_DIR="$HOME/.config"
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+# Check if user wants to use the GUI
+if [[ "$1" == "--gui" ]] || [[ "$1" == "-g" ]]; then
+    echo "🎨 Launching graphical setup UI..."
+    
+    # Check if zenity is installed
+    if ! command -v zenity &> /dev/null; then
+        echo "❌ zenity is required for the GUI"
+        echo "Install it with: sudo apt install zenity"
+        exit 1
+    fi
+    
+    # Launch the GUI
+    bash "$SCRIPT_DIR/setup-ui.sh"
+    exit $?
+fi
 
 echo "🚀 Installing dotfiles..."
+echo ""
+echo "💡 Tip: Run with --gui flag for graphical setup: ./install.sh --gui"
+echo ""
 
 # Create .config directory if it doesn't exist
 mkdir -p "$CONFIG_DIR"
