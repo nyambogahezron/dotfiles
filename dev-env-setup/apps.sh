@@ -1,8 +1,6 @@
 #!/bin/bash
 
-
 # Applications Installation (Browsers, Tools, etc.)
-
 
 source "$(dirname "$0")/utils.sh"
 

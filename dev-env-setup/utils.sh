@@ -19,9 +19,9 @@ NC='\033[0m' # No Color
 
 
 print_header() {
-    echo -e "\n${MAGENTA}═══════════════════════════════════════════════════════════${NC}"
+    echo -e "\n${MAGENTA}${NC}"
     echo -e "${MAGENTA}  $1${NC}"
-    echo -e "${MAGENTA}═══════════════════════════════════════════════════════════${NC}\n"
+    echo -e "${MAGENTA}${NC}\n"
 }
 
 print_step() {
@@ -29,15 +29,15 @@ print_step() {
 }
 
 print_success() {
-    echo -e "${GREEN}✅${NC} $1"
+    echo -e "${GREEN}${NC} $1"
 }
 
 print_warning() {
-    echo -e "${YELLOW}⚠️${NC} $1"
+    echo -e "${YELLOW}${NC} $1"
 }
 
 print_error() {
-    echo -e "${RED}❌${NC} $1"
+    echo -e "${RED}${NC} $1"
 }
 
 

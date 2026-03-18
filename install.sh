@@ -9,7 +9,7 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 # Check if user wants to use the GUI
 if [[ "$1" == "--gui" ]] || [[ "$1" == "-g" ]]; then
-    echo "🎨 Launching graphical setup UI..."
+    echo "Launching graphical setup UI..."
     
     # Check if zenity is installed
     if ! command -v zenity &> /dev/null; then
@@ -23,9 +23,9 @@ if [[ "$1" == "--gui" ]] || [[ "$1" == "-g" ]]; then
     exit $?
 fi
 
-echo "🚀 Installing dotfiles..."
+echo "Installing dotfiles..."
 echo ""
-echo "💡 Tip: Run with --gui flag for graphical setup: ./install.sh --gui"
+echo "Tip: Run with --gui flag for graphical setup: ./install.sh --gui"
 echo ""
 
 # Create .config directory if it doesn't exist
@@ -38,7 +38,7 @@ create_symlink() {
     
     # If target exists and is not a symlink, back it up
     if [[ -e "$target" ]] && [[ ! -L "$target" ]]; then
-        echo "📦 Backing up existing $target to $target.backup"
+        echo "Backing up existing $target to $target.backup"
         mv "$target" "$target.backup"
     fi
     
@@ -49,11 +49,11 @@ create_symlink() {
     
     # Create new symlink
     ln -sf "$source" "$target"
-    echo "🔗 Linked $source -> $target"
+    echo "Linked $source -> $target"
 }
 
 # Symlink configurations
-echo "📁 Setting up configuration symlinks..."
+echo "Setting up configuration symlinks..."
 
 # Kitty terminal
 if [[ -d "$DOTFILES_DIR/.config/kitty" ]]; then
@@ -83,10 +83,10 @@ fi
 
 # Install custom shortcuts
 if [[ -d "$DOTFILES_DIR/shortcuts" ]]; then
-    echo "⌨️  Installing custom shortcuts..."
+    echo "Installing custom shortcuts..."
     cd "$DOTFILES_DIR/shortcuts" && ./install.sh
     cd "$DOTFILES_DIR"
 fi
 
-echo "✅ Dotfiles installation complete!"
-echo "💡 Run 'source ~/.zshrc' or restart your terminal to apply changes."
+echo "Dotfiles installation complete!"
+echo "Run 'source ~/.zshrc' or restart your terminal to apply changes."
