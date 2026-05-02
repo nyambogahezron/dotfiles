@@ -95,6 +95,10 @@ install_dev_tools() {
         fi
     fi
     
+    if command_exists gnome-shell && confirm "Install GNOME extensions?"; then
+        [ -f "$SCRIPT_DIR/gnome/install.sh" ] && source "$SCRIPT_DIR/gnome/install.sh" && install_gnome_extensions
+    fi
+    
     if confirm "Setup Neovim configuration?"; then
         [ -f "$SCRIPT_DIR/nvim.sh" ] && source "$SCRIPT_DIR/nvim.sh" && setup_nvim
     fi
@@ -305,6 +309,7 @@ main() {
     echo "  bash $SCRIPT_DIR/node.sh"
     echo "  bash $SCRIPT_DIR/rust.sh"
     echo "  bash $SCRIPT_DIR/docker.sh"
+    echo "  bash $SCRIPT_DIR/gnome/install.sh"
     echo "  ... etc"
     echo ""
     echo -e "${CYAN}Enjoy your new development environment!${NC}"
