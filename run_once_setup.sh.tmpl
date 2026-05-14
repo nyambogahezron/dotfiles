@@ -9,6 +9,11 @@ set -euo pipefail
 echo "Starting Dotfiles Setup..."
 echo "OS: {{ .chezmoi.os }} | Machine: {{ .machineType }}"
 
+{{ if not .runSetup -}}
+echo "runSetup is false. Skipping setup scripts..."
+exit 0
+{{- end }}
+
 #  Helper: Run Script 
 run_script() {
     local script_name="$1"
