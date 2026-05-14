@@ -1,0 +1,101 @@
+# ~/.gitconfig — managed by chezmoi
+# Edit source: chezmoi edit ~/.gitconfig
+
+[user]
+    name  = {{ .name }}
+    email = {{ .email }}
+
+{{ if eq .machineType "work" -}}
+# On work machines, override email for work repos via includeIf
+[includeIf "gitdir:~/Work/"]
+    path = ~/.config/git/work.conf
+{{- end }}
+
+[core]
+    editor       = nvim
+    pager        = delta
+    autocrlf     = input
+    whitespace   = fix,trailing-space,cr-at-eol
+    excludesfile = ~/.config/git/ignore
+
+[init]
+    defaultBranch = main
+
+[color]
+    ui = auto
+
+#  Delta (syntax-highlighted diffs) 
+[interactive]
+    diffFilter = delta --color-only
+
+[delta]
+    navigate     = true
+    light        = false
+    side-by-side = true
+    line-numbers = true
+    syntax-theme = "Tokyo Night"
+    file-style   = bold yellow ul
+    hunk-header-style = file line-number
+
+[diff]
+    colorMoved = default
+    tool       = nvimdiff
+
+[merge]
+    conflictstyle = diff3
+    tool          = nvimdiff
+
+[mergetool "nvimdiff"]
+    cmd = nvim -d $LOCAL $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
+
+[rebase]
+    autoStash = true
+
+#  Pull / Push 
+[pull]
+    rebase = false
+
+[push]
+    default         = current
+    autoSetupRemote = true
+
+[fetch]
+    prune = true
+
+#  Aliases ─
+[alias]
+    st   = status -sb
+    co   = checkout
+    br   = branch -vv
+    ci   = commit
+    cp   = cherry-pick
+    lg   = log --oneline --graph --decorate --all
+    ll   = log --pretty=format:"%C(yellow)%h%Creset %C(cyan)%an%Creset %C(green)%ar%Creset %s"
+    last = log -1 HEAD --stat
+    df   = diff
+    dfs  = diff --staged
+    unstage = reset HEAD --
+    undo    = reset --soft HEAD~1
+    save    = stash push -m
+    pop     = stash pop
+    pf      = push --force-with-lease
+    aliases = config --get-regexp alias
+
+#  URL shortcuts 
+[url "git@github.com:"]
+    insteadOf = gh:
+
+[url "git@gitlab.com:"]
+    insteadOf = gl:
+
+#  Credential / SSH 
+[credential]
+    helper = store
+
+# Uncomment and set your key path to enable SSH commit signing:
+# [user]
+#     signingkey = ~/.ssh/id_ed25519.pub
+# [gpg]
+#     format = ssh
+# [commit]
+#     gpgsign = true

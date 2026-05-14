@@ -1,0 +1,34 @@
+name: Validate Dotfiles
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install ShellCheck
+        run: sudo apt-get install -y shellcheck
+
+      - name: Syntax check shell scripts
+        run: |
+          find . -name "*.sh" -o -name "*.zsh" | xargs -I {} bash -n {}
+
+      - name: ShellCheck
+        run: |
+          # Only check scripts that are actual bash/zsh (not templates with {{ }})
+          find setup/ -name "*.sh" | xargs shellcheck
+
+      - name: Install Chezmoi
+        run: sh -c "$(curl -fsLS get.chezmoi.io)" -- -b /tmp/bin
+
+      - name: Validate Chezmoi templates
+        run: |
+          /tmp/bin/chezmoi execute-template < .chezmoi.toml.tmpl
+          /tmp/bin/chezmoi execute-template < dot_zshrc.tmpl
+          /tmp/bin/chezmoi execute-template < dot_gitconfig.tmpl

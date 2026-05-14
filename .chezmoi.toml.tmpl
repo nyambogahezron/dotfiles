@@ -1,0 +1,41 @@
+# Chezmoi configuration template
+# This file is rendered once to generate ~/.config/chezmoi/chezmoi.toml
+# Run: chezmoi init --apply gh:nyambogahezron/dotfiles
+
+{{- $name     := promptStringOnce . "name"     "Full name" -}}
+{{- $email    := promptStringOnce . "email"    "Personal email" -}}
+{{- $workEmail := promptStringOnce . "workEmail" "Work email (leave blank if same)" -}}
+
+{{- $machineType := promptChoiceOnce . "machineType" "Machine type" (list "personal" "work" "server") -}}
+
+{{- $enableHyprland := false -}}
+{{- $enableKitty    := true -}}
+{{- $enableBrew     := false -}}
+
+{{- if eq .chezmoi.os "darwin" -}}
+{{-   $enableBrew = true -}}
+{{- end -}}
+
+{{- if eq $machineType "personal" -}}
+{{-   $enableHyprland = promptBoolOnce . "enableHyprland" "Enable Hyprland config?" -}}
+{{- end -}}
+
+[data]
+  name         = {{ $name | quote }}
+  email        = {{ $email | quote }}
+  workEmail    = {{ $workEmail | quote }}
+  machineType  = {{ $machineType | quote }}
+  enableHyprland = {{ $enableHyprland }}
+  enableKitty    = {{ $enableKitty }}
+  enableBrew     = {{ $enableBrew }}
+
+[git]
+  autoCommit = false
+  autoPush   = false
+
+[diff]
+  pager = "delta"
+
+[merge]
+  command = "nvim"
+  args    = ["-d", "{{ "{{" }} .Destination {{ "}}" }}", "{{ "{{" }} .Source {{ "}}" }}", "{{ "{{" }} .Target {{ "}}" }}"]

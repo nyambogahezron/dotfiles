@@ -1,0 +1,41 @@
+-- ~/.config/nvim/lua/plugins/ai.lua
+
+return {
+  -- GitHub Copilot
+  {
+    "zbirenbaum/copilot.lua",
+    cmd = "Copilot",
+    event = "InsertEnter",
+    opts = {
+      suggestion = { enabled = false },
+      panel = { enabled = false },
+      filetypes = {
+        markdown = true,
+        help = true,
+      },
+    },
+  },
+
+  -- Copilot completion source
+  {
+    "zbirenbaum/copilot-cmp",
+    dependencies = "copilot.lua",
+    opts = {},
+    config = function(_, opts)
+      local copilot_cmp = require("copilot_cmp")
+      copilot_cmp.setup(opts)
+      -- attach cmp source
+      require("lazy.core.loader").on_load("nvim-cmp", function()
+        require("cmp").setup.filetype({ "markdown", "help" }, {
+          sources = {
+            { name = "copilot" },
+            { name = "nvim_lsp" },
+            { name = "luasnip" },
+            { name = "buffer" },
+            { name = "path" },
+          },
+        })
+      end)
+    end,
+  },
+}

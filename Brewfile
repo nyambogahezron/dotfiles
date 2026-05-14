@@ -1,0 +1,55 @@
+# Homebrew packages for macOS
+# Install: brew bundle install
+
+# Taps
+tap "homebrew/bundle"
+tap "homebrew/services"
+
+# Core binaries
+brew "chezmoi"
+brew "git"
+brew "curl"
+brew "wget"
+brew "zsh"
+brew "tmux"
+brew "neovim"
+brew "ripgrep"
+brew "fd"
+brew "fzf"
+brew "eza"
+brew "bat"
+brew "zoxide"
+brew "jq"
+brew "btop"
+brew "htop"
+brew "tree"
+brew "lazygit"
+brew "gh"
+brew "git-delta"
+brew "direnv"
+brew "nvm"
+brew "shellcheck"
+
+# Casks (GUI)
+cask "iterm2"
+cask "kitty"
+cask "visual-studio-code"
+cask "docker"
+cask "google-chrome"
+cask "brave-browser"
+cask "slack"
+cask "discord"
+cask "spotify"
+cask "postman"
+cask "obsidian"
+cask "dbeaver-community"
+cask "zoom"
+cask "telegram"
+cask "vlc"
+
+# Fonts
+tap "homebrew/cask-fonts"
+cask "font-jetbrains-mono-nerd-font"
+cask "font-fira-code-nerd-font"
+cask "font-hack-nerd-font"
+cask "font-cascadia-code-nerd-font"
