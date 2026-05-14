@@ -1,0 +1,17 @@
+# ~/.config/ghostty/config — managed by chezmoi
+
+# ── Appearance ────────────────────────────────────────────────────────────────
+theme = tokyonight
+font-family = JetBrainsMono Nerd Font
+font-size = 14
+
+# ── Window ────────────────────────────────────────────────────────────────────
+window-padding-x = 10
+window-padding-y = 10
+window-decoration = false
+background-opacity = 0.9
+
+# ── Keyboard ──────────────────────────────────────────────────────────────────
+keybind = super+t=new_tab
+keybind = super+w=close_tab
+keybind = super+n=new_window
