@@ -2,7 +2,7 @@
 # This is included in ~/.gitconfig when machineType is "work"
 
 [user]
-    email = {{ .workEmail }}
+    email = {{ index . "workEmail" | default .email }}
 
 [commit]
     # Optional: use a different GPG key for work

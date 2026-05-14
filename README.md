@@ -1,8 +1,8 @@
 # Dotfiles
 
-Modern, production-grade development environment managed by [chezmoi](https://www.chezmoi.io/).
+Modern, production-grade development environment.
 
-## 🚀 Quick Start (Bootstrap)
+## Quick Start (Bootstrap)
 
 Run this one-liner on a fresh Linux or macOS machine:
 
@@ -17,7 +17,7 @@ This will:
 
 ---
 
-## 🛠 Usage
+## Usage
 
 ### Linking & Applying Changes
 
@@ -52,19 +52,19 @@ chezmoi apply --exclude scripts
 
 ---
 
-## 📁 Repository Structure
+## Repository Structure
 
-The root is kept clean using the `.chezmoiroot` feature:
+The repository is organized for clarity and automation:
 
 - `install.sh`: One-liner bootstrap script.
-- `home/`: The actual dotfiles (prefixed with `dot_` or `run_`).
-- `home/scripts/`: Modular setup scripts (`pkgs.sh`, `nvim.sh`, etc.).
-- `home/dot_config/`: Modularized configurations for Nvim, Kitty, etc.
+- `dot_config/`: Modularized configurations for Nvim, Kitty, etc.
+- `scripts/`: Modular setup scripts (`pkgs.sh`, `nvim.sh`, etc.).
+- `run_once_setup.sh.tmpl`: Master orchestrator for the setup scripts.
 - `Brewfile`: macOS dependencies.
 
 ---
 
-## 🎨 Components
+## Components
 
 - **Shell**: Zsh (Modular) + Starship + Zoxide + FZF.
 - **Editor**: Neovim (Lazy.nvim + Mason + Tokyo Night).

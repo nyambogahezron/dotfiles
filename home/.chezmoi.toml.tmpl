@@ -6,7 +6,7 @@
 {{- $email    := promptStringOnce . "email"    "Personal email" -}}
 {{- $workEmail := promptStringOnce . "workEmail" "Work email (leave blank if same)" -}}
 
-{{- $machineType := promptChoiceOnce . "machineType" "Machine type" (list "personal" "work" "server") -}}
+{{- $machineType := promptStringOnce . "machineType" "Machine type (personal, work, server)" "personal" -}}
 
 {{- $enableHyprland := false -}}
 {{- $enableKitty    := true -}}
@@ -19,6 +19,7 @@
 {{- if eq $machineType "personal" -}}
 {{-   $enableHyprland = promptBoolOnce . "enableHyprland" "Enable Hyprland config?" -}}
 {{- end -}}
+
 
 [data]
   name         = {{ $name | quote }}
