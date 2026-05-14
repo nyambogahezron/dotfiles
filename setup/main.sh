@@ -140,6 +140,10 @@ install_dev_tools() {
     if confirm "Install GitHub CLI (gh)?"; then
         [ -f "$SCRIPT_DIR/gh.sh" ] && source "$SCRIPT_DIR/gh.sh" && install_gh
     fi
+
+    if confirm "Install Bun (fast JS runtime)?"; then
+        [ -f "$SCRIPT_DIR/bun.sh" ] && source "$SCRIPT_DIR/bun.sh" && install_bun
+    fi
 }
 
 install_applications() {
