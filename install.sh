@@ -1,92 +1,161 @@
 #!/bin/bash
 
 # Dotfiles Installation Script
-# This script creates symlinks from home directory to dotfiles directory
+# Creates symlinks from home directory to this dotfiles repository
 
-DOTFILES_DIR="$HOME/.mydotfiles"
-CONFIG_DIR="$HOME/.config"
+set -e
+
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+DOTFILES_DIR="$SCRIPT_DIR"   # This repo IS the dotfiles dir
+CONFIG_DIR="$HOME/.config"
 
-# Check if user wants to use the GUI
-if [[ "$1" == "--gui" ]] || [[ "$1" == "-g" ]]; then
-    echo "Launching graphical setup UI..."
-    
-    # Check if zenity is installed
-    if ! command -v zenity &> /dev/null; then
-        echo "zenity is required for the GUI"
-        echo "Install it with: sudo apt install zenity"
-        exit 1
-    fi
-    
-    # Launch the GUI
-    bash "$SCRIPT_DIR/setup-ui.sh"
-    exit $?
-fi
+#  Helpers ──
 
-echo "Installing dotfiles..."
-echo ""
-echo "Tip: Run with --gui flag for graphical setup: ./install.sh --gui"
-echo ""
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+CYAN='\033[0;36m'
+RED='\033[0;31m'
+NC='\033[0m'
 
-# Create .config directory if it doesn't exist
-mkdir -p "$CONFIG_DIR"
+log()     { echo -e "${CYAN}➜${NC} $1"; }
+success() { echo -e "${GREEN}✓${NC} $1"; }
+warn()    { echo -e "${YELLOW}!${NC} $1"; }
+error()   { echo -e "${RED}✗${NC} $1"; }
 
-# Function to create symlink with backup
 create_symlink() {
     local source="$1"
     local target="$2"
-    
-    # If target exists and is not a symlink, back it up
+
+    # Back up existing file/dir (if not already a symlink)
     if [[ -e "$target" ]] && [[ ! -L "$target" ]]; then
-        echo "Backing up existing $target to $target.backup"
-        mv "$target" "$target.backup"
+        local backup="${target}.backup-$(date +%Y%m%d-%H%M%S)"
+        warn "Backing up $target → $backup"
+        mv "$target" "$backup"
     fi
-    
-    # Remove existing symlink if it exists
-    if [[ -L "$target" ]]; then
-        rm "$target"
-    fi
-    
-    # Create new symlink
+
+    # Remove existing symlink
+    [[ -L "$target" ]] && rm "$target"
+
+    # Create parent dirs if needed
+    mkdir -p "$(dirname "$target")"
+
+    # Create symlink
     ln -sf "$source" "$target"
-    echo "Linked $source -> $target"
+    success "Linked $(basename "$source") → $target"
 }
 
-# Symlink configurations
-echo "Setting up configuration symlinks..."
+# Main 
 
-# Kitty terminal
-if [[ -d "$DOTFILES_DIR/.config/kitty" ]]; then
-    create_symlink "$DOTFILES_DIR/.config/kitty" "$CONFIG_DIR/kitty"
+echo -e "${CYAN}  Dotfiles Installer ${NC}"
+echo -e "${CYAN}  github.com/nyambogahezron/dotfiles ${NC}"
+
+mkdir -p "$CONFIG_DIR"
+
+#  Shell configs ──
+
+log "Setting up shell configurations..."
+
+if [[ -f "$DOTFILES_DIR/config/zshrc" ]]; then
+    create_symlink "$DOTFILES_DIR/config/zshrc" "$HOME/.zshrc"
 fi
 
-# VSCode
-if [[ -d "$DOTFILES_DIR/.config/Code" ]]; then
-    create_symlink "$DOTFILES_DIR/.config/Code" "$CONFIG_DIR/Code"
+if [[ -f "$DOTFILES_DIR/config/bashrc" ]]; then
+    create_symlink "$DOTFILES_DIR/config/bashrc" "$HOME/.bashrc"
 fi
 
-# Picom compositor
-if [[ -d "$DOTFILES_DIR/.config/picom" ]]; then
-    create_symlink "$DOTFILES_DIR/.config/picom" "$CONFIG_DIR/picom"
+#  Starship ─
+
+log "Setting up Starship prompt config..."
+
+if [[ -f "$DOTFILES_DIR/config/starship.toml" ]]; then
+    create_symlink "$DOTFILES_DIR/config/starship.toml" "$CONFIG_DIR/starship.toml"
 fi
 
-# Add more configurations here as you create them
-# tmux
-# if [[ -f "$DOTFILES_DIR/.tmux.conf" ]]; then
-#     create_symlink "$DOTFILES_DIR/.tmux.conf" "$HOME/.tmux.conf"
-# fi
+#  Git 
 
-# zsh
-# if [[ -f "$DOTFILES_DIR/.zshrc" ]]; then
-#     create_symlink "$DOTFILES_DIR/.zshrc" "$HOME/.zshrc"
-# fi
+log "Setting up Git configuration..."
 
-# Install custom shortcuts
-if [[ -d "$DOTFILES_DIR/shortcuts" ]]; then
-    echo "Installing custom shortcuts..."
-    cd "$DOTFILES_DIR/shortcuts" && ./install.sh
-    cd "$DOTFILES_DIR"
+if [[ -f "$DOTFILES_DIR/config/gitconfig" ]]; then
+    create_symlink "$DOTFILES_DIR/config/gitconfig" "$HOME/.gitconfig"
 fi
 
-echo "Dotfiles installation complete!"
-echo "Run 'source ~/.zshrc' or restart your terminal to apply changes."
+# Create a global gitignore
+if [[ ! -f "$HOME/.gitignore_global" ]]; then
+    cat > "$HOME/.gitignore_global" << 'EOF'
+# OS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+Thumbs.db
+desktop.ini
+
+# Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.netrwhist
+
+# Build artifacts
+node_modules/
+dist/
+build/
+*.o
+*.a
+*.so
+
+# Env files
+.env
+.env.local
+.env.*.local
+EOF
+    success "Created ~/.gitignore_global"
+fi
+
+git config --global core.excludesfile "$HOME/.gitignore_global" 2>/dev/null || true
+
+#  Tmux ──
+
+log "Setting up tmux configuration..."
+
+if [[ -f "$DOTFILES_DIR/config/tmux.conf" ]]; then
+    create_symlink "$DOTFILES_DIR/config/tmux.conf" "$HOME/.tmux.conf"
+fi
+
+#  Kitty terminal ─
+
+log "Setting up Kitty terminal config..."
+
+if [[ -d "$DOTFILES_DIR/config/kitty" ]]; then
+    create_symlink "$DOTFILES_DIR/config/kitty" "$CONFIG_DIR/kitty"
+fi
+
+#  Neovim 
+
+log "Setting up Neovim configuration..."
+
+if [[ -d "$DOTFILES_DIR/config/nvim" ]]; then
+    create_symlink "$DOTFILES_DIR/config/nvim" "$CONFIG_DIR/nvim"
+fi
+
+#  Picom compositor ──
+
+log "Setting up Picom configuration..."
+
+if [[ -d "$DOTFILES_DIR/config/picom" ]]; then
+    create_symlink "$DOTFILES_DIR/config/picom" "$CONFIG_DIR/picom"
+fi
+
+#  Done 
+
+echo ""
+echo -e "${GREEN}  Dotfiles installation complete! ${NC}"
+echo ""
+echo "  Next steps:"
+echo "  1. Restart your terminal (or run: source ~/.zshrc)"
+echo "  2. Run 'bash setup/main.sh' for full dev environment setup"
+echo "  3. In tmux: press Ctrl+Space, then I to install plugins"
+echo ""

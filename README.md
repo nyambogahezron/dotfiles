@@ -1,110 +1,192 @@
 # Dotfiles
 
-Personal dotfiles and setup scripts for building a repeatable Linux development environment.
+Personal dotfiles and setup scripts for a fast, reproducible Linux development environment.
 
-This repository is organized around two ideas:
+> **Quick start**: `git clone https://github.com/nyambogahezron/dotfiles ~/Projects/dotfiles && bash ~/Projects/dotfiles/install.sh`
 
-- `config/` contains application configuration that can be symlinked into place.
-- `setup/` contains modular shell scripts for installing tools, languages, apps, and shell extras.
+---
 
 ## What's Included
 
-- Kitty terminal configuration with a modular theme and keymap setup.
-- Picom compositor configuration.
-- Installation scripts for common development tools.
-- Language setup scripts for Node.js, Python, Rust, Go, and PHP.
-- Shell setup for Zsh, Starship, zoxide, and related tooling.
-- Git, fonts, applications, and GNOME extension setup helpers.
+### Configs (`config/`)
+
+| Config | Description |
+|---|---|
+| `zshrc` | Full Zsh config — Oh My Zsh, NVM, fzf, zoxide, eza, bat, Starship |
+| `bashrc` | Bash config at parity with zshrc |
+| `starship.toml` | Curated Starship prompt (Tokyo Night palette, git, language versions) |
+| `tmux.conf` | Tmux with Catppuccin theme, TPM plugins, Vi mode, Ctrl+Space prefix |
+| `gitconfig` | Global Git settings — delta pager, nvim editor, useful aliases |
+| `kitty/` | Kitty terminal — modular theme, keymaps, layouts |
+| `nvim/` | Neovim — LSP, Treesitter, Telescope, completion, formatting |
+| `picom/` | Picom compositor configuration |
+
+### Setup Scripts (`setup/`)
+
+#### Languages
+| Script | Installs |
+|---|---|
+| `node.sh` | Node.js LTS via NVM, yarn, pnpm, typescript, tsx, pm2, biome, Bun |
+| `python.sh` | Python 3 + pip + venv |
+| `rust.sh` | Rust via rustup |
+| `go.sh` | Go language |
+| `php.sh` | PHP + Composer |
+| `laravel.sh` | Laravel + Valet |
+
+#### Dev Tools
+| Script | Installs |
+|---|---|
+| `docker.sh` | Docker + Docker Compose |
+| `git.sh` | Git config, SSH key, delta pager, gitconfig symlink |
+| `tmux.sh` | Tmux + TPM (plugin manager) |
+| `lazygit.sh` | Lazygit TUI git client (latest release) |
+| `gh.sh` | GitHub CLI (official repo) |
+| `nvim.sh` | Neovim config symlinks |
+| `extensions.sh` | VS Code extensions |
+| `gnome/` | GNOME Shell extensions |
+
+#### System & Shell
+| Script | Installs |
+|---|---|
+| `tools.sh` | git, curl, wget, ripgrep, fd, jq, tmux, btop, eza, bat, dust, procs, hyperfine, build tools |
+| `shell.sh` | Zsh, Oh My Zsh + plugins, Starship, fzf, zoxide, delta, lazygit, gh |
+| `fonts.sh` | Nerd Fonts |
+| `apps.sh` | Browsers, Slack, Discord, Postman, VLC, GIMP, OBS |
+
+---
+
+## Quick Start
+
+### 1. Install dotfiles (symlink configs)
+
+```bash
+git clone https://github.com/nyambogahezron/dotfiles ~/Projects/dotfiles
+cd ~/Projects/dotfiles
+bash install.sh
+```
+
+This links:
+- `~/.zshrc` → `config/zshrc`
+- `~/.bashrc` → `config/bashrc`
+- `~/.gitconfig` → `config/gitconfig`
+- `~/.tmux.conf` → `config/tmux.conf`
+- `~/.config/starship.toml` → `config/starship.toml`
+- `~/.config/nvim/` → `config/nvim/`
+- `~/.config/kitty/` → `config/kitty/`
+- `~/.config/picom/` → `config/picom/`
+
+### 2. Set up development environment
+
+```bash
+# Interactive (prompts for each component)
+bash setup/main.sh
+
+# Full install (everything)
+bash setup/main.sh --full
+
+# Minimal install (essential tools + git only)
+bash setup/main.sh --minimal
+
+# Specific areas
+bash setup/main.sh --languages   # Node, Python, Rust, Go, PHP
+bash setup/main.sh --apps        # Browsers, comms, media apps
+bash setup/main.sh --shell       # Zsh, Starship, fzf, zoxide, eza
+bash setup/main.sh --tools       # Docker, tmux, lazygit, gh CLI
+```
+
+### 3. Run individual modules
+
+```bash
+bash setup/shell.sh        # Shell improvements
+bash setup/tmux.sh         # Tmux + TPM
+bash setup/lazygit.sh      # Lazygit
+bash setup/gh.sh           # GitHub CLI
+bash setup/node.sh         # Node.js
+bash setup/docker.sh       # Docker
+bash setup/git.sh          # Git config
+bash setup/fonts.sh        # Nerd Fonts
+```
+
+---
 
 ## Repository Layout
 
-```text
-install.sh
-config/
-	kitty/
-	picom/
-setup/
-	apps.sh
-	docker.sh
-	extensions.sh
-	fonts.sh
-	git.sh
-	go.sh
-	laravel.sh
-	main.sh
-	node.sh
-	nvim.sh
-	php.sh
-	python.sh
-	rust.sh
-	shell.sh
-	tools.sh
-	utils.sh
-	gnome/
-		index.sh
-		list.txt
 ```
+install.sh                  # Symlinks all configs into place
+config/
+    zshrc                   # Zsh configuration
+    bashrc                  # Bash configuration
+    starship.toml           # Starship prompt config
+    tmux.conf               # Tmux configuration
+    gitconfig               # Global Git configuration
+    kitty/                  # Kitty terminal config
+    nvim/                   # Neovim config (lazy.nvim)
+    picom/                  # Picom compositor config
+setup/
+    main.sh                 # Orchestrator — run this first
+    utils.sh                # Shared helpers (colors, OS detection, etc.)
+    tools.sh                # Essential CLI tools
+    shell.sh                # Zsh, Starship, fzf, zoxide, eza, delta
+    tmux.sh                 # Tmux + TPM
+    lazygit.sh              # Lazygit
+    gh.sh                   # GitHub CLI
+    git.sh                  # Git configuration
+    node.sh                 # Node.js via NVM
+    python.sh               # Python
+    rust.sh                 # Rust
+    go.sh                   # Go
+    php.sh                  # PHP + Composer
+    laravel.sh              # Laravel
+    docker.sh               # Docker
+    fonts.sh                # Nerd Fonts
+    apps.sh                 # Applications
+    nvim.sh                 # Neovim config symlinks
+    extensions.sh           # VS Code extensions
+    gnome/                  # GNOME extensions
+```
+
+---
+
+## Key Tools Configured
+
+| Tool | Purpose | Config |
+|---|---|---|
+| **Zsh + Oh My Zsh** | Shell | `config/zshrc` |
+| **Starship** | Prompt | `config/starship.toml` |
+| **Neovim** | Editor | `config/nvim/` |
+| **Kitty** | Terminal | `config/kitty/` |
+| **tmux** | Multiplexer | `config/tmux.conf` |
+| **lazygit** | TUI git client | `lg` alias |
+| **fzf** | Fuzzy finder | Ctrl+R, Ctrl+T, Alt+C |
+| **zoxide** | Smarter `cd` | `z` command |
+| **eza** | Better `ls` | `ls`, `ll`, `la`, `lt` |
+| **bat** | Better `cat` | `cat` alias |
+| **delta** | Better git diff | via `gitconfig` |
+| **btop** | Better `htop` | `top` alias |
+| **dust** | Better `du` | `du` alias |
+
+---
 
 ## Requirements
 
-- Bash
+- Bash 4+
 - Git
-- A sudo-capable user account for system packages
-- A Linux distribution with a supported package manager
-- `curl` for scripts that install external tools
+- curl
+- A sudo-capable user account
+- Linux (Ubuntu/Debian/Fedora/Arch) or macOS
 
-Some optional features also expect tools such as `zenity`, `code`, or `gnome-shell` to be available.
-
-## Setup
-
-Start by reviewing the available setup options:
-
-```bash
-bash setup/main.sh --help
-```
-
-The main setup script supports these modes:
-
-- Interactive setup: `bash setup/main.sh`
-- Full install: `bash setup/main.sh --full`
-- Minimal install: `bash setup/main.sh --minimal`
-- Language-only setup: `bash setup/main.sh --languages`
-- App-only setup: `bash setup/main.sh --apps`
-
-The interactive flow lets you choose what to install, while the preset modes run the same modules in a more automated way.
-
-## Module Overview
-
-The setup scripts are split so you can run only what you need:
-
-- `tools.sh` installs essential utilities.
-- `git.sh` configures Git.
-- `shell.sh` sets up shell improvements and prompt tooling.
-- `node.sh`, `python.sh`, `rust.sh`, `go.sh`, and `php.sh` handle language-specific installs.
-- `docker.sh`, `nvim.sh`, `extensions.sh`, and `apps.sh` cover common development tooling.
-- `fonts.sh` installs Nerd Fonts.
-- `gnome/` contains GNOME extension helpers.
-
-## Kitty Configuration
-
-The Kitty setup is documented separately in [config/kitty/README.md](config/kitty/README.md).
-
-That directory is split into small files for fonts, keymaps, layouts, and appearance, which makes it easier to tweak one area without touching the rest.
+---
 
 ## Customization
 
-- Edit files under `config/` to change application behavior.
-- Edit the matching module in `setup/` if you want to change installation behavior.
-- Update `config/kitty/current-theme.conf` to switch Kitty themes.
-- Add new setup modules by following the same pattern used by the existing scripts.
+- Edit `config/` files to change application configuration
+- Edit `setup/` scripts to change what gets installed
+- Update `config/kitty/current-theme.conf` to switch Kitty themes
+- Change the Starship palette in `config/starship.toml`
+- Add new setup modules following the pattern of existing scripts (source `utils.sh`, wrap in a function, add `BASH_SOURCE` guard)
 
-## Notes
-
-- Several scripts are Linux-specific.
-- Review the scripts before running them on a new machine.
-- The setup flow may install packages and modify shell configuration, so it is best run on a fresh or well-understood system.
+---
 
 ## License
 
-No license has been specified yet.
-
+MIT — use freely, attribution appreciated.
