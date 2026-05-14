@@ -1,4 +1,3 @@
--- VSCode-like appearance settings
 vim.wo.number = true -- Show line numbers
 vim.o.relativenumber = false -- Disable relative numbers for VSCode-like feel
 vim.o.clipboard = 'unnamedplus' -- Sync clipboard between OS and Neovim

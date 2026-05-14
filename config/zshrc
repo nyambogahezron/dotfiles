@@ -92,7 +92,8 @@ alias whatismyip="whatsmyip"
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
 # System
-alias update='sudo apt update && sudo apt upgrade -y'
+alias update='sudo apt update && sudo apt upgrade -y && sudo apt autoremove -y && sudo apt autoclean -y && sudo apt clean -y && sudo snap refresh && sudo flatpak update -y && sudo flatpak uninstall --unused -y && sudo apt modernize-sources'
+
 alias install='sudo apt install'
 alias remove='sudo apt remove'
 alias search='apt search'
