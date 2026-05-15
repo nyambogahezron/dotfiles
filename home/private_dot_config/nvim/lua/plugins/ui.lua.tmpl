@@ -1,23 +1,28 @@
 -- ~/.config/nvim/lua/plugins/ui.lua
 
 return {
-  -- Tokyo Night colorscheme
+  -- Catppuccin colorscheme
   {
-    "folke/tokyonight.nvim",
+    "catppuccin/nvim",
+    name = "catppuccin",
     lazy = false,
     priority = 1000,
     opts = {
-      style = "moon",
-      transparent = true,
-      styles = {
-        sidebars = "transparent",
-        floats = "transparent",
+      flavour = "{{ .theme }}",
+      transparent_background = true,
+      integrations = {
+        alpha = true,
+        cmp = true,
+        gitsigns = true,
+        nvimtree = true,
+        treesitter = true,
+        notify = false,
       },
     },
     config = function(_, opts)
-      local tokyonight = require("tokyonight")
-      tokyonight.setup(opts)
-      tokyonight.load()
+      local catppuccin = require("catppuccin")
+      catppuccin.setup(opts)
+      vim.cmd.colorscheme("catppuccin")
     end,
   },
 

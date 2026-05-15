@@ -7,6 +7,12 @@
 {{- $workEmail := promptStringOnce . "workEmail" "Work email (leave blank if same)" -}}
 
 {{- $machineType := promptStringOnce . "machineType" "Machine type (personal, work, server)" "personal" -}}
+{{- $theme       := promptStringOnce . "theme"       "Theme (mocha, macchiato, frappe, latte)" "mocha" -}}
+
+{{- $ageRecipient := "" -}}
+{{- if not (env "CI") -}}
+{{-   $ageRecipient = promptStringOnce . "ageRecipient" "Age public key for encryption (leave blank to skip)" "" -}}
+{{- end -}}
 
 {{- $installPackages := true -}}
 {{- $installTools    := true -}}
@@ -40,6 +46,15 @@
   enableHyprland = {{ $enableHyprland }}
   enableKitty    = {{ $enableKitty }}
   enableBrew     = {{ $enableBrew }}
+  theme          = {{ $theme | quote }}
+  ageRecipient   = {{ $ageRecipient | quote }}
+
+{{ if $ageRecipient }}
+encryption = "age"
+[age]
+  identity = "~/.config/chezmoi/key.txt"
+  recipient = {{ $ageRecipient | quote }}
+{{ end }}
 
 [git]
   autoCommit = false

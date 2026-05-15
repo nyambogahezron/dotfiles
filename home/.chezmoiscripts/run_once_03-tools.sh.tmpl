@@ -131,4 +131,15 @@ if ! command -v bun &>/dev/null; then
     success "Bun $(bun --version)"
 fi
 
+#  age (Secret Management) ─
+if ! command -v age &>/dev/null; then
+    log "Installing age..."
+    if is_debian; then sudo apt-get install -y age
+    elif is_fedora; then sudo dnf install -y age
+    elif is_arch; then sudo pacman -S --noconfirm age
+    elif is_macos; then brew install age
+    fi
+    success "age installed"
+fi
+
 success "All dev tools installed"

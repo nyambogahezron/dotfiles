@@ -71,3 +71,19 @@ command -v direnv &>/dev/null && eval "$(direnv hook zsh)"
 
 #  Starship prompt 
 command -v starship &>/dev/null && eval "$(starship init zsh)"
+
+#  Automated Maintenance Prompt ─
+if command -v dot-maintenance &>/dev/null && [[ -t 0 ]]; then
+    _last_maintenance=0
+    [[ -f "$HOME/.local/state/last-maintenance" ]] && _last_maintenance=$(cat "$HOME/.local/state/last-maintenance")
+    _now=$(date +%s)
+    # 7 days = 604800 seconds
+    if (( _now - _last_maintenance > 604800 )); then
+        echo -ne "\n\033[0;33m[Doctor]\033[0m It's been over 7 days since last system maintenance. Run 'dot-maintenance' now? [y/N] "
+        read -k 1 -r
+        echo
+        if [[ $REPLY =~ ^[Yy]$ ]]; then
+            dot-maintenance
+        fi
+    fi
+fi
