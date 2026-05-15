@@ -8,6 +8,14 @@
 
 {{- $machineType := promptStringOnce . "machineType" "Machine type (personal, work, server)" "personal" -}}
 
+{{- $installPackages := true -}}
+{{- $installTools    := true -}}
+
+{{- if not (env "CI") -}}
+{{-   $installPackages = promptBoolOnce . "installPackages" "Install core system packages (requires sudo)?" true -}}
+{{-   $installTools    = promptBoolOnce . "installTools"    "Install developer tools (lazygit, nvm, node, etc)?" true -}}
+{{- end -}}
+
 {{- $enableHyprland := false -}}
 {{- $enableKitty    := true -}}
 {{- $enableBrew     := false -}}
@@ -27,6 +35,8 @@
   workEmail    = {{ $workEmail | quote }}
   machineType  = {{ $machineType | quote }}
   runSetup     = true
+  installPackages = {{ $installPackages }}
+  installTools    = {{ $installTools }}
   enableHyprland = {{ $enableHyprland }}
   enableKitty    = {{ $enableKitty }}
   enableBrew     = {{ $enableBrew }}

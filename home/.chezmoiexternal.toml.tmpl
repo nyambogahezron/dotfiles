@@ -44,21 +44,28 @@
 # ── Self-Updating Binaries (Linux only, macOS uses Brew) ──────────────────────
 {{- if eq .chezmoi.os "linux" }}
 
+{{- $arch := .chezmoi.arch -}}
+{{- if eq .chezmoi.arch "amd64" -}}
+{{-   $arch = "x86_64" -}}
+{{- else if eq .chezmoi.arch "arm64" -}}
+{{-   $arch = "aarch64" -}}
+{{- end }}
+
 [".local/bin/starship"]
     type = "archive-file"
-    url = {{ gitHubLatestReleaseAssetURL "starship/starship" (printf "starship-%s-unknown-linux-gnu.tar.gz" .chezmoi.arch) | quote }}
+    url = {{ gitHubLatestReleaseAssetURL "starship/starship" (printf "starship-%s-unknown-linux-gnu.tar.gz" $arch) | quote }}
     executable = true
     path = "starship"
 
 [".local/bin/eza"]
     type = "archive-file"
-    url = {{ gitHubLatestReleaseAssetURL "eza-community/eza" (printf "eza_%s-unknown-linux-gnu.tar.gz" .chezmoi.arch) | quote }}
+    url = {{ gitHubLatestReleaseAssetURL "eza-community/eza" (printf "eza_%s-unknown-linux-gnu.tar.gz" $arch) | quote }}
     executable = true
     path = "./eza"
 
 [".local/bin/zoxide"]
     type = "archive-file"
-    url = {{ gitHubLatestReleaseAssetURL "ajeetdsouza/zoxide" (printf "zoxide-*-linux-%s.tar.gz" .chezmoi.arch) | quote }}
+    url = {{ gitHubLatestReleaseAssetURL "ajeetdsouza/zoxide" (printf "zoxide-*-%s-unknown-linux-musl.tar.gz" $arch) | quote }}
     executable = true
     path = "zoxide"
 

@@ -1,8 +1,8 @@
 # Dotfiles
 
-Modern, production-grade development environment.
+Modern, production-grade development environment managed by [chezmoi](https://www.chezmoi.io/).
 
-## Quick Start (Bootstrap)
+## Quick Start (Installation)
 
 Run this one-liner on a fresh Linux or macOS machine:
 
@@ -10,67 +10,79 @@ Run this one-liner on a fresh Linux or macOS machine:
 sh -c "$(curl -fsLS https://raw.githubusercontent.com/nyambogahezron/dotfiles/main/install.sh)"
 ```
 
-This will:
-1.  Install `git` and `chezmoi` if missing.
-2.  Initialize the repository and prompt for your name/email.
-3.  Automatically apply your dotfiles and run setup scripts (Packages, Node, Bun, Neovim, etc.).
+During initialization, you will be prompted for:
+1.  **Name & Email**: For Git configuration.
+2.  **Machine Type**: `personal`, `work`, or `server`.
+3.  **Install Core Packages**: Whether to install system packages (requires sudo).
+4.  **Install Developer Tools**: Whether to install `lazygit`, `nvm`, `node`, `bun`, etc.
 
 ---
 
-## Usage
+## Usage & Workflows
 
-### Linking & Applying Changes
+### 1. Apply ONLY Dotfiles (Skip App Installation)
 
-Chezmoi handles the "linking" of files to your home directory automatically.
+If you already have your apps installed and just want to update your configurations:
 
+**Method A: One-time apply**
 ```bash
-# Pull latest changes and apply them
-chezmoi update --apply
+chezmoi apply --exclude scripts
+```
 
-# Manually apply changes from the repo to your system
+**Method B: Permanent Configuration**
+Update your `~/.config/chezmoi/chezmoi.toml`:
+```toml
+[data]
+  installPackages = false
+  installTools = false
+```
+Then run:
+```bash
 chezmoi apply
 ```
 
-### ⚡ Apply ONLY Dotfiles (Skip Scripts)
+### 2. Install Apps/Tools ALONE
 
-If you want to update your configs without running the long setup scripts (like package installs):
+To re-run the installation scripts without re-applying all dotfiles:
 
 ```bash
-# Option A: One-time skip
-chezmoi apply --exclude scripts
-
-# Option B: Permanently disable scripts
-# Edit ~/.config/chezmoi/chezmoi.toml and set:
-# runSetup = false
+# Force re-run of setup scripts
+chezmoi state delete-bucket --bucket=scriptState
+chezmoi apply
 ```
 
-### Managing Files
+### 3. Update Dotfiles
 
-- **Edit a file**: `chezmoi edit ~/.zshrc` (this opens the source template).
-- **See changes before applying**: `chezmoi diff`
-- **Add a new file**: `chezmoi add ~/.newfile`
+To pull the latest changes from the repository and apply them:
+
+```bash
+chezmoi update --apply
+```
+
+### 4. Managing Configurations
+
+- **Edit a config**: `chezmoi edit ~/.zshrc` (automatically edits the source template).
+- **See pending changes**: `chezmoi diff`
+- **Add a new file**: `chezmoi add ~/.path/to/file`
 
 ---
 
 ## Repository Structure
 
-The repository is organized for clarity and automation:
-
-- `install.sh`: One-liner bootstrap script.
-- `dot_config/`: Modularized configurations for Nvim, Kitty, etc.
-- `scripts/`: Modular setup scripts (`pkgs.sh`, `nvim.sh`, etc.).
-- `run_once_setup.sh.tmpl`: Master orchestrator for the setup scripts.
-- `Brewfile`: macOS dependencies.
+- `home/`: The root of your managed home directory (mapped by `.chezmoiroot`).
+- `home/.chezmoiscripts/`: Setup scripts for packages, shell, tools, and Neovim.
+- `home/private_dot_config/`: Modularized configurations (mapped to `~/.config/`).
+- `install.sh`: Bootstrap script for fresh systems.
 
 ---
 
-## Components
+## Features
 
-- **Shell**: Zsh (Modular) + Starship + Zoxide + FZF.
-- **Editor**: Neovim (Lazy.nvim + Mason + Tokyo Night).
-- **Terminal**: Kitty (Consolidated & Clean).
-- **Git**: Templated config with Work/Personal identity support.
-- **Tmux**: TPM + Catppuccin theme.
+- **Shell**: Zsh + Oh My Zsh + Starship prompt + Zoxide (smart cd).
+- **Editor**: Neovim (Lazy.nvim, Mason for LSPs, Treesitter).
+- **Terminal**: Kitty & Ghostty configurations.
+- **Tools**: Tmux (TPM), Lazygit, Delta (git pager), NVM/Node/Bun.
+- **Git**: Support for Work/Personal identities via templates.
 
 ---
 License: MIT

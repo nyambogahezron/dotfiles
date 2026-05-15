@@ -4,6 +4,11 @@
 # To re-run: chezmoi state delete-bucket --bucket=scriptState && chezmoi apply
 # OS: {{ .chezmoi.os }} | Machine: {{ .machineType }}
 
+{{ if not .installPackages -}}
+echo "Skipping core packages installation (installPackages=false)"
+exit 0
+{{- end }}
+
 set -euo pipefail
 
 #  Colors 
