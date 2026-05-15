@@ -1,170 +1,86 @@
-# Starship Prompt Configuration
-# Style: Tokyo Night — clean, informative, minimal noise
-
-"$schema" = 'https://starship.rs/config-schema.json'
-
-# Wait 10ms for starship to check files under the current directory
-scan_timeout = 10
-
-# Add blank line between prompts
-add_newline = true
-
-#  Prompt Format ─
+# ~/.config/starship.toml
+# Powerlevel10k Rainbow Clone for Starship
+# Recreates the classic P10k aesthetic with exact ANSI colors and right-prompt support.
 
 format = """
-[╭─](bold #565f89)\
-$os\
-$username\
-$hostname\
+[ $os ](bg:white fg:black)\
+[](bg:blue fg:white)\
 $directory\
+[](bg:green fg:blue)\
 $git_branch\
 $git_status\
-$git_ahead_behind\
-$fill\
-$nodejs\
-$python\
-$rust\
-$golang\
-$php\
-$docker_context\
-$cmd_duration\
-$time\
-[─╮](bold #565f89)
-[╰─](bold #565f89)$character"""
+[](fg:green)\
+\n$character"""
 
-#  OS icon ─
+right_format = """
+[](fg:cyan)\
+$c\
+$golang\
+$nodejs\
+$rust\
+[](bg:cyan fg:black)\
+$time\
+"""
 
 [os]
 disabled = false
-style = "bold #565f89"
+style = "bg:white fg:black"
 
 [os.symbols]
-Linux = " "
-Ubuntu = " "
-Fedora = " "
-Arch = " "
-Manjaro = " "
-Pop = " "
-Debian = " "
-Macos = " "
-Windows = " "
-
-#  User / Host ─
-
-[username]
-show_always = false
-style_user = "bold #7dcfff"
-style_root = "bold #f7768e"
-format = "[$user]($style)[@](bold #565f89)"
-
-[hostname]
-ssh_only = true
-style = "bold #bb9af7"
-format = "[$hostname]($style) "
-
-#  Directory 
+Ubuntu = " "
+Macos = " "
+Linux = " "
+Arch = " "
+Debian = " "
 
 [directory]
-style = "bold #7aa2f7"
-read_only = " 󰌾"
-read_only_style = "bold #f7768e"
-truncation_length = 4
-truncate_to_repo = true
-home_symbol = "~"
-format = "[ $path]($style)[$read_only]($read_only_style) "
+style = "bg:blue fg:white"
+format = "[ $path ]($style)"
+truncation_length = 3
+truncation_symbol = "…/"
 
 [directory.substitutions]
 "Documents" = "󰈙 "
-"Downloads" = " "
-"Music" = "󰝚 "
-"Pictures" = " "
-"Projects" = "󰲋 "
-
-#  Git 
+"Downloads" = " "
+"Music" = " "
+"Pictures" = " "
 
 [git_branch]
-symbol = " "
-style = "bold #e0af68"
-format = "[$symbol$branch]($style) "
-truncation_length = 20
-truncation_symbol = "…"
+symbol = ""
+style = "bg:green fg:black"
+format = '[ $symbol $branch ]($style)'
 
 [git_status]
-style = "bold #f7768e"
-format = '([$all_status$ahead_behind]($style) )'
-conflicted = "󰩌 "
-ahead = "⇡${count}"
-behind = "⇣${count}"
-diverged = "⇕⇡${ahead_count}⇣${behind_count}"
-untracked = "󰙅 ${count}"
-stashed = "󰏗 "
-modified = "󱀿 ${count}"
-staged = "󰐕 ${count}"
-renamed = "󱀰 "
-deleted = "󰍶 ${count}"
+style = "bg:green fg:black"
+format = '[$all_status$ahead_behind ]($style)'
 
-[git_state]
-format = '\([$state( $progress_current/$progress_total)]($style)\) '
-style = "bold #bb9af7"
-
-#  Languages ─
+[c]
+symbol = ""
+style = "bg:cyan fg:black"
+format = '[ $symbol ($version) ]($style)'
 
 [nodejs]
-symbol = " "
-style = "bold #9ece6a"
-format = "[$symbol$version]($style) "
-detect_files = ["package.json", ".node-version", ".nvmrc"]
-detect_folders = ["node_modules"]
-
-[python]
-symbol = " "
-style = "bold #7aa2f7"
-format = '[${symbol}${pyenv_prefix}(${version} )(\($virtualenv\) )]($style)'
-detect_files = [".python-version", "requirements.txt", "pyproject.toml", "setup.py"]
+symbol = ""
+style = "bg:cyan fg:black"
+format = '[ $symbol ($version) ]($style)'
 
 [rust]
-symbol = " "
-style = "bold #f7768e"
-format = "[$symbol$version]($style) "
+symbol = ""
+style = "bg:cyan fg:black"
+format = '[ $symbol ($version) ]($style)'
 
 [golang]
-symbol = " "
-style = "bold #7dcfff"
-format = "[$symbol$version]($style) "
-
-[php]
-symbol = " "
-style = "bold #bb9af7"
-format = "[$symbol$version]($style) "
-detect_files = ["composer.json", ".php-version"]
-
-[docker_context]
-symbol = " "
-style = "bold #7dcfff"
-format = "[$symbol$context]($style) "
-only_with_files = true
-detect_files = ["docker-compose.yml", "docker-compose.yaml", "Dockerfile"]
-
-#  Meta 
-
-[cmd_duration]
-min_time = 2_000
-style = "bold #e0af68"
-format = "[ $duration]($style) "
-show_notifications = false
+symbol = ""
+style = "bg:cyan fg:black"
+format = '[ $symbol ($version) ]($style)'
 
 [time]
 disabled = false
-style = "bold #565f89"
-format = "[ $time]($style)"
-time_format = "%H:%M"
-
-[fill]
-symbol = " "
-
-#  Prompt character 
+time_format = "%R"
+style = "bg:black fg:white"
+format = '[  $time ]($style)'
 
 [character]
-success_symbol = "[❯](bold #9ece6a)"
-error_symbol = "[❯](bold #f7768e)"
-vimcmd_symbol = "[❮](bold #bb9af7)"
+success_symbol = "[❯](bold green)"
+error_symbol = "[❯](bold red)"
+vimcmd_symbol = "[❮](bold green)"

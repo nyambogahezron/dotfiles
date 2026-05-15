@@ -41,7 +41,14 @@ return {
       require("neoconf").setup()
 
       -- diagnostics
-      for name, icon in pairs(require("config.options").diagnostics or {}) do
+      local icons = {
+        Error = " ",
+        Warn  = " ",
+        Hint  = " ",
+        Info  = " ",
+      }
+
+      for name, icon in pairs(icons) do
         name = "DiagnosticSign" .. name
         vim.fn.sign_define(name, { text = icon, texthl = name, numhl = "" })
       end
@@ -49,7 +56,6 @@ return {
       if type(opts.diagnostics.virtual_text) == "table" and opts.diagnostics.virtual_text.prefix == "icons" then
         opts.diagnostics.virtual_text.prefix = vim.fn.has("nvim-0.10") == 0 and "●"
           or function(diagnostic)
-            local icons = require("config.options").diagnostics
             for d, icon in pairs(icons) do
               if diagnostic.severity == vim.diagnostic.severity[d:upper()] then
                 return icon

@@ -142,4 +142,11 @@ if ! command -v age &>/dev/null; then
     success "age installed"
 fi
 
+#  atuin (History Management) ─
+if ! command -v atuin &>/dev/null; then
+    log "Installing atuin..."
+    curl --proto '=https' --tlsv1.2 -LsSf https://setup.atuin.sh | sh
+    success "atuin installed"
+fi
+
 success "All dev tools installed"

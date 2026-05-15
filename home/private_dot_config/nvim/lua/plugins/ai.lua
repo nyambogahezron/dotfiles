@@ -25,17 +25,22 @@ return {
       local copilot_cmp = require("copilot_cmp")
       copilot_cmp.setup(opts)
       -- attach cmp source
-      require("lazy.core.loader").on_load("nvim-cmp", function()
-        require("cmp").setup.filetype({ "markdown", "help" }, {
-          sources = {
-            { name = "copilot" },
-            { name = "nvim_lsp" },
-            { name = "luasnip" },
-            { name = "buffer" },
-            { name = "path" },
-          },
-        })
-      end)
+      vim.api.nvim_create_autocmd("User", {
+        pattern = "LazyLoad",
+        callback = function(event)
+          if event.data == "nvim-cmp" then
+            require("cmp").setup.filetype({ "markdown", "help" }, {
+              sources = {
+                { name = "copilot" },
+                { name = "nvim_lsp" },
+                { name = "luasnip" },
+                { name = "buffer" },
+                { name = "path" },
+              },
+            })
+          end
+        end,
+      })
     end,
   },
 }

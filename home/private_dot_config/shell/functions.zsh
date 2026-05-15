@@ -111,6 +111,7 @@ mkproject() {
 }
 
 # Show git log as a pretty graph (alternative to alias)
+unalias glog 2>/dev/null || true
 glog() {
     git log --graph \
         --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' \
