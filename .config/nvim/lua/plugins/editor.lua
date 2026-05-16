@@ -19,6 +19,11 @@ return {
         bind_to_cwd = false,
         follow_current_file = { enabled = true },
         use_libuv_file_watcher = true,
+        filtered_items = {
+          visible = true,
+          hide_dotfiles = false,
+          hide_gitignored = false,
+        },
       },
       window = {
         mappings = {
@@ -61,6 +66,12 @@ return {
               require("telescope.builtin").find_files({ hidden = true, default_text = line })
             end,
           },
+        },
+      },
+      pickers = {
+        find_files = {
+          hidden = true,
+          no_ignore = true,
         },
       },
     },

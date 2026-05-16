@@ -1,13 +1,11 @@
-#  Oh My Zsh 
-export ZSH="$HOME/.oh-my-zsh"
-ZSH_THEME=""  # Starship handles the prompt
+# theme 
+ZSH_THEME="robbyrussell"
 
 plugins=(
     git docker docker-compose
     zsh-autosuggestions zsh-syntax-highlighting
     fzf direnv
 )
-[[ -f "$ZSH/oh-my-zsh.sh" ]] && source "$ZSH/oh-my-zsh.sh"
 
 #  Shell modules 
 # Load modular config files from ~/.config/shell/

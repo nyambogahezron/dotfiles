@@ -23,6 +23,7 @@ $jobs\
 $cmd_duration\
 $status\
 $line_break\
+$line_break\
 $character"""
 
 add_newline = true
