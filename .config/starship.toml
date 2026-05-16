@@ -1,7 +1,7 @@
 # ~/.config/starship.toml
 
 format = """
-$os\
+\n$os\
 $username\
 $hostname\
 $directory\
@@ -18,10 +18,11 @@ $ruby\
 $package\
 $aws\
 $docker_context\
-$battery\
+$time\
 $jobs\
 $cmd_duration\
 $status\
+$line_break\
 $line_break\
 $character"""
 
@@ -86,7 +87,8 @@ renamed = "󰕤"
 deleted = "󰗨"
 
 [fill]
-symbol = " "
+symbol = "·"
+style = "fg:gray"
 
 [python]
 style = "teal"
@@ -153,19 +155,11 @@ min_time = 500
 style = "fg:gray"
 format = "[$duration]($style)"
 
-[battery]
-full_symbol = "󰁹 "
-charging_symbol = "󰂄 "
-discharging_symbol = "󰂃 "
-format = "[$symbol$percentage]($style) "
-
-[[battery.display]]
-threshold = 30
-style = "bold red"
-
-[[battery.display]]
-threshold = 100
-style = "bold green"
+[time]
+disabled = false
+time_format = "%R"
+style = "bg:black fg:white"
+format = "[  $time ]($style)"
 
 [status]
 disabled = false

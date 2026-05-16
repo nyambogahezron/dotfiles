@@ -133,6 +133,13 @@ alias gcom='git add . && git commit -m'
 alias lazyg='git add . && git commit -m "$1" && git push'
 command -v lazygit &>/dev/null && alias lg='lazygit'
 
+#  FZF Git (Elite) 
+alias gafzf='git ls-files -m -o --exclude-standard | grep -v "__pycache__" | fzf -m --preview "git diff --color=always {}" --print0 | xargs -0 -o -t git add'
+alias grmfzf='git ls-files -m -o --exclude-standard | fzf -m --preview "git diff --color=always {}" --print0 | xargs -0 -o -t git rm'
+alias grfzf='git diff --name-only | fzf -m --preview "git diff --color=always {}" --print0 | xargs -0 -o -t git restore'
+alias grsfzf='git diff --name-only | fzf -m --preview "git diff --color=always {}" --print0 | xargs -0 -o -t git restore --staged'
+alias gcofzf='git branch | fzf --preview "git log --oneline --graph --color=always {}" | xargs git checkout'
+
 #  Docker 
 alias d='docker'
 alias dc='docker compose'
@@ -150,9 +157,9 @@ alias dcl='docker compose logs -f'
 command -v lazydocker &>/dev/null && alias ld='lazydocker'
 
 #  Development 
-alias nv='nvim'
-alias vim='nvim'
-alias v='nvim .'
+alias nv='poetry_run_nvim'
+alias vim='poetry_run_nvim'
+alias v='poetry_run_nvim .'
 alias py='python3'
 alias python='python3'
 alias ipy='python3 -m IPython'

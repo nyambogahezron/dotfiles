@@ -13,7 +13,7 @@ export XDG_CACHE_HOME="${XDG_CACHE_HOME:-$HOME/.cache}"
 export EDITOR="nvim"
 export VISUAL="nvim"
 export PAGER="less"
-export MANPAGER="sh -c 'col -bx | bat -l man -p'"  # bat-rendered man pages
+export MANPAGER='nvim +Man!'
 export LESS="-R --use-color"
 
 # Colored manpages

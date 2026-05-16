@@ -211,3 +211,20 @@ npm() { _nvm_lazy_load; npm "$@"; }
 npx() { _nvm_lazy_load; npx "$@"; }
 
 
+#  Yazi (File Manager) 
+y() {
+	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+	command yazi "$@" --cwd-file="$tmp"
+	IFS= read -r -d '' cwd < "$tmp"
+	[[ -n "$cwd" && "$cwd" != "$PWD" && -d "$cwd" ]] && builtin cd -- "$cwd"
+	rm -f -- "$tmp"
+}
+
+#  Poetry + Neovim 
+poetry_run_nvim() {
+  if command -v poetry >/dev/null 2>&1 && [[ -f "poetry.lock" ]]; then
+    poetry run nvim "$@"
+  else
+    nvim "$@"
+  fi
+}

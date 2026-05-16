@@ -1,17 +1,36 @@
 # ~/.config/ghostty/config 
 
 # ── Appearance ────────────────────────────────────────────────────────────────
-theme = tokyonight
+theme = nord
+background = #282c35
 font-family = JetBrainsMono Nerd Font
 font-size = 14
+font-thicken = true
 
 # ── Window ────────────────────────────────────────────────────────────────────
 window-padding-x = 10
 window-padding-y = 10
 window-decoration = false
 background-opacity = 0.9
+window-save-state = always
+maximize = true
+confirm-close-surface = false
+
+# ── Cursor ────────────────────────────────────────────────────────────────────
+cursor-style = bar
+cursor-style-blink = true
+cursor-color = #A3BE8C
+mouse-hide-while-typing = true
+
+# ── Shell / Tmux ──────────────────────────────────────────────────────────────
+# Auto-attach to an existing tmux session on launch, or create a new one if none exists.
+command = zsh --login -c "if command -v tmux >/dev/null 2>&1; then tmux attach || tmux; else zsh; fi"
 
 # ── Keyboard ──────────────────────────────────────────────────────────────────
 keybind = super+t=new_tab
 keybind = super+w=close_tab
 keybind = super+n=new_window
+
+# Ctrl+Enter / Shift+Enter CSI u sequences
+keybind = ctrl+enter=text:\x1b[13;5u
+keybind = shift+enter=text:\x1b[13;2u
