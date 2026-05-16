@@ -57,18 +57,21 @@ return {
       },
     },
     config = function(_, opts)
-      if type(opts.ensure_installed) == "table" then
-        ---@type table<string, boolean>
-        local added = {}
-        opts.ensure_installed = vim.tbl_filter(function(lang)
-          if added[lang] then
-            return false
-          end
-          added[lang] = true
-          return true
-        end, opts.ensure_installed)
+      local have_configs, configs = pcall(require, "nvim-treesitter.configs")
+      if have_configs then
+        if type(opts.ensure_installed) == "table" then
+          ---@type table<string, boolean>
+          local added = {}
+          opts.ensure_installed = vim.tbl_filter(function(lang)
+            if added[lang] then
+              return false
+            end
+            added[lang] = true
+            return true
+          end, opts.ensure_installed)
+        end
+        configs.setup(opts)
       end
-      require("nvim-treesitter.configs").setup(opts)
     end,
   },
 
