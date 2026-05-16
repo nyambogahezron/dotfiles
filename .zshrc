@@ -1,0 +1,77 @@
+#  Oh My Zsh 
+export ZSH="$HOME/.oh-my-zsh"
+ZSH_THEME=""  # Starship handles the prompt
+
+plugins=(
+    git docker docker-compose
+    zsh-autosuggestions zsh-syntax-highlighting
+    fzf direnv
+)
+[[ -f "$ZSH/oh-my-zsh.sh" ]] && source "$ZSH/oh-my-zsh.sh"
+
+#  Shell modules 
+# Load modular config files from ~/.config/shell/
+for _module in exports aliases functions completion; do
+    [[ -f "$HOME/.config/shell/${_module}.zsh" ]] && source "$HOME/.config/shell/${_module}.zsh"
+done
+unset _module
+
+#  Machine-specific ─
+
+
+#  History ─
+mkdir -p "$XDG_STATE_HOME/zsh"
+HISTFILE="$XDG_STATE_HOME/zsh/history"
+HISTSIZE=100000
+SAVEHIST=100000
+setopt HIST_EXPIRE_DUPS_FIRST HIST_IGNORE_DUPS HIST_IGNORE_ALL_DUPS
+setopt HIST_IGNORE_SPACE HIST_FIND_NO_DUPS HIST_SAVE_NO_DUPS
+setopt SHARE_HISTORY APPEND_HISTORY INC_APPEND_HISTORY
+
+#  Zsh options 
+setopt AUTO_CD CORRECT EXTENDED_GLOB NOMATCH NOTIFY NO_BEEP
+
+#  Completions 
+autoload -Uz compinit
+mkdir -p "$XDG_CACHE_HOME/zsh"
+# Only rebuild compinit dump once per day for faster startup
+if [[ -n "$XDG_CACHE_HOME/zsh/zcompdump"(#qN.mh+24) ]]; then
+    compinit -d "$XDG_CACHE_HOME/zsh/zcompdump"
+else
+    compinit -C -d "$XDG_CACHE_HOME/zsh/zcompdump"
+fi
+
+#  FZF ─
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+[ -f /usr/share/doc/fzf/examples/key-bindings.zsh ] && \
+    source /usr/share/doc/fzf/examples/key-bindings.zsh
+[ -f /usr/share/fzf/key-bindings.zsh ] && \
+    source /usr/share/fzf/key-bindings.zsh
+
+#  Zoxide (smarter cd) 
+command -v zoxide &>/dev/null && eval "$(zoxide init zsh --cmd z)"
+
+#  Atuin (History) 
+command -v atuin &>/dev/null && eval "$(atuin init zsh)"
+
+#  direnv 
+command -v direnv &>/dev/null && eval "$(direnv hook zsh)"
+
+#  Starship prompt 
+command -v starship &>/dev/null && eval "$(starship init zsh)"
+
+#  Automated Maintenance Prompt ─
+if command -v dot-maintenance &>/dev/null && [[ -t 0 ]]; then
+    _last_maintenance=0
+    [[ -f "$HOME/.local/state/last-maintenance" ]] && _last_maintenance=$(cat "$HOME/.local/state/last-maintenance")
+    _now=$(date +%s)
+    # 7 days = 604800 seconds
+    if (( _now - _last_maintenance > 604800 )); then
+        echo -ne "\n\033[0;33m[Doctor]\033[0m It's been over 7 days since last system maintenance. Run 'dot-maintenance' now? [y/N] "
+        read -k 1 -r
+        echo
+        if [[ $REPLY =~ ^[Yy]$ ]]; then
+            dot-maintenance
+        fi
+    fi
+fi

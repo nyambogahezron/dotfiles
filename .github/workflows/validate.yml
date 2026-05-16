@@ -12,8 +12,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Install ShellCheck
-        run: sudo apt-get install -y shellcheck
+      - name: Install Tools
+        run: sudo apt-get update && sudo apt-get install -y shellcheck stow
 
       - name: Syntax check shell scripts
         run: |
@@ -21,14 +21,10 @@ jobs:
 
       - name: ShellCheck
         run: |
-          # Only check scripts that are actual bash/zsh (not templates with {{ }})
-          find setup/ -name "*.sh" | xargs shellcheck
+          find . -name "*.sh" | grep -v "dotfiles-legacy" | xargs shellcheck
 
-      - name: Install Chezmoi
-        run: sh -c "$(curl -fsLS get.chezmoi.io)" -- -b /tmp/bin
-
-      - name: Validate Chezmoi templates
+      - name: Validate Stow application (dry-run)
         run: |
-          /tmp/bin/chezmoi execute-template < .chezmoi.toml.tmpl
-          /tmp/bin/chezmoi execute-template < dot_zshrc.tmpl
-          /tmp/bin/chezmoi execute-template < dot_gitconfig.tmpl
+          # Simulate stowing to a temporary directory to verify structure
+          mkdir -p /tmp/home
+          stow -v -d . -t /tmp/home --ignore="install.sh|Makefile|README.md|LICENSE|AGENTS.md|Brewfile|docs|scripts|setup|dotfiles-legacy" .

@@ -6,7 +6,7 @@ tap "homebrew/bundle"
 tap "homebrew/services"
 
 # Core binaries
-brew "chezmoi"
+brew "stow"
 brew "git"
 brew "curl"
 brew "wget"

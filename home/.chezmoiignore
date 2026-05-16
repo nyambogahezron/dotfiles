@@ -1,9 +1,0 @@
-# Exclude these from being copied to the home directory
-scripts/
-.github/
-Brewfile
-README.md
-install.sh
-implementation_plan.md
-task.md
-walkthrough.md
