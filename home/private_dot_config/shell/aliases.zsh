@@ -139,7 +139,6 @@ alias v='nvim .'
 alias py='python3'
 alias python='python3'
 alias ipy='python3 -m IPython'
-alias serve='python3 -m http.server'
 
 #  Dotfiles 
 alias dotfiles='cd ~/Projects/dotfiles'

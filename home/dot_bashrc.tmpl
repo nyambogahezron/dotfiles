@@ -38,6 +38,9 @@ command -v starship &>/dev/null && eval "$(starship init bash)"
 #  Zoxide 
 command -v zoxide &>/dev/null && eval "$(zoxide init bash --cmd z)"
 
+#  Atuin (History) 
+command -v atuin &>/dev/null && eval "$(atuin init bash)"
+
 #  FZF ─
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 {{ if eq .chezmoi.os "linux" -}}

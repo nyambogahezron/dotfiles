@@ -76,6 +76,7 @@ return {
   {
     "nvim-treesitter/nvim-treesitter-context",
     event = { "BufReadPost", "BufNewFile" },
+    dependencies = { "nvim-treesitter/nvim-treesitter" },
     opts = { mode = "cursor", max_lines = 3 },
     keys = {
       {
@@ -93,6 +94,7 @@ return {
   {
     "windwp/nvim-ts-autotag",
     event = { "BufReadPost", "BufNewFile" },
+    dependencies = { "nvim-treesitter/nvim-treesitter" },
     opts = {},
   },
 }
