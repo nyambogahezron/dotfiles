@@ -1,24 +1,37 @@
-.PHONY: help apply apply-config update install-tools diff doctor maintenance
+.PHONY: help apply delete restow adopt check update diff doctor maintenance
+
+# Configuration
+STOW_IGNORE = --ignore="install.sh|Makefile|README.md|LICENSE|AGENTS.md|Brewfile|docs|scripts|setup"
+STOW_FLAGS = -v -d $(PWD) -t $(HOME)
 
 help: ## Show this help menu
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-20s\033[0m %s\n", $$1, $$2}'
 
-STOW_IGNORE = --ignore="install.sh|Makefile|README.md|LICENSE|AGENTS.md|Brewfile|docs|scripts|setup|dotfiles-legacy|task.md|walkthrough.md|implementation_plan.md"
+apply: ## Apply dotfiles (create symlinks)
+	stow $(STOW_FLAGS) $(STOW_IGNORE) .
 
-apply: ## Apply all dotfiles via stow
-	stow -v -d $(PWD) -t $(HOME) $(STOW_IGNORE) .
+delete: ## Remove dotfiles (delete symlinks)
+	stow -D $(STOW_FLAGS) $(STOW_IGNORE) .
 
-apply-config: ## Apply dotfiles (alias for apply)
-	$(MAKE) apply
+restow: ## Refresh dotfiles (re-link)
+	stow -R $(STOW_FLAGS) $(STOW_IGNORE) .
 
-update: ## Pull the latest changes from git and apply them
+adopt: ## Adopt existing local files into the repository
+	stow --adopt $(STOW_FLAGS) $(STOW_IGNORE) .
+
+force: ## Forcefully overwrite local files with repository versions
+	@echo "Warning: This will overwrite local files with versions from the repository."
+	stow --adopt $(STOW_FLAGS) $(STOW_IGNORE) .
+	git checkout .
+
+check: ## Dry-run: show what stow would do
+	stow -n $(STOW_FLAGS) $(STOW_IGNORE) .
+
+update: ## Pull latest changes and restow
 	git pull
-	stow -v -R -d $(PWD) -t $(HOME) $(STOW_IGNORE) .
+	$(MAKE) restow
 
-install-tools: ## Installation logic should be handled by install.sh or package manager
-	@echo "Please use install.sh to install tools."
-
-diff: ## Show pending changes (not directly supported by stow, using git diff)
+diff: ## Show local changes in tracked files
 	git diff
 
 doctor: ## Run the dotfiles health check

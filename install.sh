@@ -46,7 +46,7 @@ fi
 log "Applying dotfiles via Stow..."
 # We use -v (verbose), -d (current dir), -t (home dir)
 # We ignore files that are part of the repository but not dotfiles
-stow -v -d "$PWD" -t "$HOME" --ignore="install.sh|Makefile|README.md|LICENSE|AGENTS.md|Brewfile|docs|scripts|setup|dotfiles-legacy|task.md|walkthrough.md|implementation_plan.md" .
+stow -v -d "$PWD" -t "$HOME" --ignore="install.sh|Makefile|README.md|LICENSE|AGENTS.md|Brewfile|docs|scripts|setup" .
 
 success "Dotfiles applied successfully! 🎉"
 echo ""
