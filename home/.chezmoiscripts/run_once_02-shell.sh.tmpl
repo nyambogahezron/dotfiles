@@ -21,42 +21,14 @@ if [[ "$SHELL" != "$(which zsh)" ]] && command -v zsh &>/dev/null; then
     success "Default shell set to Zsh"
 fi
 
-#  Oh My Zsh ─
-if [[ ! -d "$HOME/.oh-my-zsh" ]]; then
-    log "Installing Oh My Zsh..."
-    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
-    success "Oh My Zsh installed"
-fi
-
-#  OMZ Plugins 
-ZSH_CUSTOM="${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}"
-
-_clone_if_missing() {
-    local dir="$1" url="$2"
-    if [[ ! -d "$dir" ]]; then
-        log "Cloning $(basename "$dir")..."
-        git clone --depth=1 "$url" "$dir"
-    fi
-}
-
-_clone_if_missing "$ZSH_CUSTOM/plugins/zsh-autosuggestions" \
-    "https://github.com/zsh-users/zsh-autosuggestions"
-
-_clone_if_missing "$ZSH_CUSTOM/plugins/zsh-syntax-highlighting" \
-    "https://github.com/zsh-users/zsh-syntax-highlighting"
-
-_clone_if_missing "$ZSH_CUSTOM/plugins/zsh-completions" \
-    "https://github.com/zsh-users/zsh-completions"
-
-success "OMZ plugins installed"
+#  Oh My Zsh & Plugins ─
+# These are now handled declaratively in .chezmoiexternal.toml.tmpl.
+# Chezmoi will automatically download and extract them to:
+# - ~/.oh-my-zsh
+# - ~/.oh-my-zsh/custom/plugins/
 
 #  Starship ─
-if ! command -v starship &>/dev/null; then
-    log "Installing Starship prompt..."
-    curl -sS https://starship.rs/install.sh | sh -s -- -y
-    success "Starship installed"
-else
-    warn "Starship already installed ($(starship --version))"
-fi
+# Also handled by .chezmoiexternal.toml.tmpl (installed to ~/.local/bin/starship).
 
-success "Shell setup complete — restart your terminal or run: exec zsh"
+success "Shell setup scripts completed — binaries and plugins are managed by Chezmoi externals."
+success "Restart your terminal or run: exec zsh"

@@ -136,8 +136,12 @@ preview() {
 
 # FZF-powered file edit
 fe() {
-    local file
-    file=$(fzf --preview 'bat --color=always {}' --preview-window=right:60%)
+    local file preview_cmd
+    if command -v bat &>/dev/null; then preview_cmd='bat --color=always {}'
+    elif command -v batcat &>/dev/null; then preview_cmd='batcat --color=always {}'
+    else preview_cmd='cat {}'; fi
+
+    file=$(fzf --preview "$preview_cmd" --preview-window=right:60%)
     [[ -n "$file" ]] && ${EDITOR:-nvim} "$file"
 }
 
@@ -176,5 +180,12 @@ npx() { _nvm_lazy_load; npx "$@"; }
 
 # Edit a dotfile and auto-apply
 czea() {
-    chezmoi edit "$1" && chezmoi apply
+    chezmoi edit --apply "$1"
+}
+
+# FZF-powered chezmoi edit
+cze() {
+    local file
+    file=$(chezmoi managed | fzf --preview "chezmoi diff {}" --header="Edit dotfile")
+    [[ -n "$file" ]] && chezmoi edit --apply "$file"
 }
