@@ -4,7 +4,7 @@
 # Node.js & NPM Installation
 
 
-source "$(dirname "$0")/utils.sh"
+source "$(dirname "$0")/../utils.sh"
 
 install_nodejs() {
     print_header "INSTALLING NODE.JS & NPM"

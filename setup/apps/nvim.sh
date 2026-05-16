@@ -5,7 +5,7 @@
 # Note: Neovim configuration is managed separately via the main setup UI
 
 
-source "$(dirname "$0")/utils.sh"
+source "$(dirname "$0")/../utils.sh"
 
 setup_nvim() {
     print_header "INSTALLING NEOVIM"

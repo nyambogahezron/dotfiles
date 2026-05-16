@@ -42,12 +42,11 @@ EOF
 }
 
 
-
 install_essential() {
     print_header "ESSENTIAL TOOLS INSTALLATION"
     
-    if [ -f "$SCRIPT_DIR/tools.sh" ]; then
-        source "$SCRIPT_DIR/tools.sh"
+    if [ -f "$SCRIPT_DIR/tools/tools.sh" ]; then
+        source "$SCRIPT_DIR/tools/tools.sh"
         install_essential_tools
     fi
 }
@@ -56,27 +55,27 @@ install_languages() {
     print_header "PROGRAMMING LANGUAGES INSTALLATION"
     
     if confirm "Install Node.js?"; then
-        [ -f "$SCRIPT_DIR/node.sh" ] && source "$SCRIPT_DIR/node.sh" && install_nodejs
+        [ -f "$SCRIPT_DIR/langs/node.sh" ] && source "$SCRIPT_DIR/langs/node.sh" && install_nodejs
     fi
     
     if confirm "Install Python?"; then
-        [ -f "$SCRIPT_DIR/python.sh" ] && source "$SCRIPT_DIR/python.sh" && install_python
+        [ -f "$SCRIPT_DIR/langs/python.sh" ] && source "$SCRIPT_DIR/langs/python.sh" && install_python
     fi
     
     if confirm "Install Rust?"; then
-        [ -f "$SCRIPT_DIR/rust.sh" ] && source "$SCRIPT_DIR/rust.sh" && install_rust
+        [ -f "$SCRIPT_DIR/langs/rust.sh" ] && source "$SCRIPT_DIR/langs/rust.sh" && install_rust
     fi
     
     if confirm "Install Go?"; then
-        [ -f "$SCRIPT_DIR/go.sh" ] && source "$SCRIPT_DIR/go.sh" && install_go
+        [ -f "$SCRIPT_DIR/langs/go.sh" ] && source "$SCRIPT_DIR/langs/go.sh" && install_go
     fi
     
     if confirm "Install PHP?"; then
-        [ -f "$SCRIPT_DIR/php.sh" ] && source "$SCRIPT_DIR/php.sh" && install_php
+        [ -f "$SCRIPT_DIR/langs/php.sh" ] && source "$SCRIPT_DIR/langs/php.sh" && install_php
     fi
     
     if command_exists php && confirm "Setup Laravel development environment?"; then
-        [ -f "$SCRIPT_DIR/laravel.sh" ] && source "$SCRIPT_DIR/laravel.sh" && install_laravel
+        [ -f "$SCRIPT_DIR/langs/laravel.sh" ] && source "$SCRIPT_DIR/langs/laravel.sh" && install_laravel
     fi
 }
 
@@ -84,35 +83,35 @@ install_dev_tools() {
     print_header "DEVELOPMENT TOOLS INSTALLATION"
     
     if confirm "Install Docker?"; then
-        [ -f "$SCRIPT_DIR/docker.sh" ] && source "$SCRIPT_DIR/docker.sh" && install_docker
+        [ -f "$SCRIPT_DIR/tools/docker.sh" ] && source "$SCRIPT_DIR/tools/docker.sh" && install_docker
     fi
     
     if confirm "Install VS Code?"; then
         [ -f "$SCRIPT_DIR/vscode.sh" ] && source "$SCRIPT_DIR/vscode.sh" && install_vscode
         
         if command_exists code && confirm "Install VS Code extensions?"; then
-            [ -f "$SCRIPT_DIR/extensions.sh" ] && source "$SCRIPT_DIR/extensions.sh" && install_vscode_extensions
+            [ -f "$SCRIPT_DIR/apps/extensions.sh" ] && source "$SCRIPT_DIR/apps/extensions.sh" && install_vscode_extensions
         fi
     fi
     
     if command_exists gnome-shell && confirm "Install GNOME extensions?"; then
-        [ -f "$SCRIPT_DIR/gnome/install.sh" ] && source "$SCRIPT_DIR/gnome/install.sh" && install_gnome_extensions
+        [ -f "$SCRIPT_DIR/apps/gnome/install.sh" ] && source "$SCRIPT_DIR/apps/gnome/install.sh" && install_gnome_extensions
     fi
     
     if confirm "Setup Neovim configuration?"; then
-        [ -f "$SCRIPT_DIR/nvim.sh" ] && source "$SCRIPT_DIR/nvim.sh" && setup_nvim
+        [ -f "$SCRIPT_DIR/apps/nvim.sh" ] && source "$SCRIPT_DIR/apps/nvim.sh" && setup_nvim
     fi
     
     if confirm "Configure Git?"; then
-        [ -f "$SCRIPT_DIR/git.sh" ] && source "$SCRIPT_DIR/git.sh" && setup_git
+        [ -f "$SCRIPT_DIR/tools/git.sh" ] && source "$SCRIPT_DIR/tools/git.sh" && setup_git
     fi
 }
 
 install_applications() {
     print_header "APPLICATIONS INSTALLATION"
     
-    if [ -f "$SCRIPT_DIR/apps.sh" ]; then
-        source "$SCRIPT_DIR/apps.sh"
+    if [ -f "$SCRIPT_DIR/apps/apps.sh" ]; then
+        source "$SCRIPT_DIR/apps/apps.sh"
         install_all_apps
     fi
 }
@@ -120,8 +119,8 @@ install_applications() {
 install_shell_improvements() {
     print_header "SHELL IMPROVEMENTS INSTALLATION"
     
-    if [ -f "$SCRIPT_DIR/shell.sh" ]; then
-        source "$SCRIPT_DIR/shell.sh"
+    if [ -f "$SCRIPT_DIR/tools/shell.sh" ]; then
+        source "$SCRIPT_DIR/tools/shell.sh"
         setup_shell
     fi
 }
@@ -129,8 +128,8 @@ install_shell_improvements() {
 install_fonts_module() {
     print_header "FONTS INSTALLATION"
     
-    if [ -f "$SCRIPT_DIR/fonts.sh" ]; then
-        source "$SCRIPT_DIR/fonts.sh"
+    if [ -f "$SCRIPT_DIR/apps/fonts.sh" ]; then
+        source "$SCRIPT_DIR/apps/fonts.sh"
         install_fonts
     fi
 }
@@ -184,7 +183,7 @@ main() {
     
     echo -e "${CYAN}This script will help you set up your development environment.${NC}"
     echo ""
-    echo -e "${BLUE}Available components:${NC}"
+    echo -e "${CYAN}Available components:${NC}"
     echo "  • Essential Tools (git, curl, vim, etc.)"
     echo "  • Programming Languages (Node.js, Python, Rust, Go, PHP)"
     echo "  • Development Tools (Docker, VS Code, Neovim)"
@@ -244,7 +243,7 @@ main() {
         minimal)
             install_essential
             if confirm "Configure Git?"; then
-                [ -f "$SCRIPT_DIR/git.sh" ] && source "$SCRIPT_DIR/git.sh" && setup_git
+                [ -f "$SCRIPT_DIR/tools/git.sh" ] && source "$SCRIPT_DIR/tools/git.sh" && setup_git
             fi
             ;;
         full)
@@ -306,10 +305,10 @@ main() {
     echo "  • For VS Code extensions to work, you may need to reload VS Code"
     echo ""
     echo -e "${CYAN}Individual modules can be run separately:${NC}"
-    echo "  bash $SCRIPT_DIR/node.sh"
-    echo "  bash $SCRIPT_DIR/rust.sh"
-    echo "  bash $SCRIPT_DIR/docker.sh"
-    echo "  bash $SCRIPT_DIR/gnome/install.sh"
+    echo "  bash $SCRIPT_DIR/langs/node.sh"
+    echo "  bash $SCRIPT_DIR/langs/rust.sh"
+    echo "  bash $SCRIPT_DIR/tools/docker.sh"
+    echo "  bash $SCRIPT_DIR/apps/gnome/install.sh"
     echo "  ... etc"
     echo ""
     echo -e "${CYAN}Enjoy your new development environment!${NC}"

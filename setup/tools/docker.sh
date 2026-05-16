@@ -4,7 +4,7 @@
 # Docker & Docker Compose Installation
 
 
-source "$(dirname "$0")/utils.sh"
+source "$(dirname "$0")/../utils.sh"
 
 install_docker() {
     print_header "INSTALLING DOCKER"

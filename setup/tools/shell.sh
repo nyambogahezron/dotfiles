@@ -4,7 +4,7 @@
 # Shell Configuration & Improvements
 
 
-source "$(dirname "$0")/utils.sh"
+source "$(dirname "$0")/../utils.sh"
 
 install_zsh() {
     print_header "INSTALLING ZSH & OH MY ZSH"
@@ -46,7 +46,7 @@ install_zsh() {
         fi
         
         print_success "Oh My Zsh installed with plugins"
-        print_warning "To set Zsh as default shell, run: chsh -s \$(which zsh)"
+        print_warning "To set Zsh as default shell, run: chsh -s $(which zsh)"
     else
         print_warning "Oh My Zsh already installed"
     fi

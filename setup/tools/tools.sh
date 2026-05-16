@@ -4,7 +4,7 @@
 # Essential Development Tools Installation
 
 
-source "$(dirname "$0")/utils.sh"
+source "$(dirname "$0")/../utils.sh"
 
 install_essential_tools() {
     print_header "INSTALLING ESSENTIAL TOOLS"

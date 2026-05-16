@@ -4,7 +4,7 @@
 # Laravel Development Environment Setup
 
 
-source "$(dirname "$0")/utils.sh"
+source "$(dirname "$0")/../utils.sh"
 
 install_laravel() {
     print_header "SETTING UP LARAVEL DEVELOPMENT ENVIRONMENT"

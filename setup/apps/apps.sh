@@ -2,7 +2,7 @@
 
 # Applications Installation (Browsers, Tools, etc.)
 
-source "$(dirname "$0")/utils.sh"
+source "$(dirname "$0")/../utils.sh"
 
 install_terminal() {
     print_header "INSTALLING TERMINAL EMULATOR"

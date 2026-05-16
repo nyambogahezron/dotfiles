@@ -1,3 +1,4 @@
+
 blur-my-shell@aunetx
 caffeine@patapon.info
 user-theme@gnome-shell-extensions.gcampax.github.com
@@ -21,3 +22,4 @@ just-perfection-desktop@just-perfection
 in-picture@filiprund.cz
 gsconnect@andyholmes.github.io
 top-bar-organizer@julian.gse.jsts.xyz
+

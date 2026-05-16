@@ -4,7 +4,7 @@
 # Rust Installation
 
 
-source "$(dirname "$0")/utils.sh"
+source "$(dirname "$0")/../utils.sh"
 
 install_rust() {
     print_header "INSTALLING RUST"
