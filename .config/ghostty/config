@@ -1,4 +1,4 @@
-# ~/.config/ghostty/config — managed by GNU Stow
+# ~/.config/ghostty/config 
 
 # ── Appearance ────────────────────────────────────────────────────────────────
 theme = tokyonight

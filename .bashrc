@@ -1,5 +1,5 @@
 
-# ~/.bashrc — managed by GNU Stow
+# ~/.bashrc 
 
 
 # If not running interactively, don't do anything
