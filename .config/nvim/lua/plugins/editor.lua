@@ -6,7 +6,7 @@ return {
     "nvim-neo-tree/neo-tree.nvim",
     branch = "v3.x",
     dependencies = {
-      "nvim-lua/plenary.nvim",
+      { "nvim-lua/plenary.nvim", commit = "74b06c6" },
       "nvim-tree/nvim-web-devicons",
       "MunifTanjim/nui.nvim",
     },
@@ -38,7 +38,7 @@ return {
     "nvim-telescope/telescope.nvim",
     cmd = "Telescope",
     version = false,
-    dependencies = { "nvim-lua/plenary.nvim" },
+    dependencies = { { "nvim-lua/plenary.nvim", commit = "74b06c6" } },
     keys = {
       { "<leader>,", "<cmd>Telescope buffers show_all_buffers=true<cr>", desc = "Switch Buffer" },
       { "<leader>/", "<cmd>Telescope live_grep<cr>", desc = "Grep (root dir)" },
@@ -87,21 +87,21 @@ return {
     config = function(_, opts)
       local wk = require("which-key")
       wk.setup(opts)
-      wk.register({
-        ["g"] = { name = "+goto" },
-        ["gs"] = { name = "+surround" },
-        ["]"] = { name = "+next" },
-        ["["] = { name = "+prev" },
-        ["<leader><tab>"] = { name = "+tabs" },
-        ["<leader>b"] = { name = "+buffer" },
-        ["<leader>c"] = { name = "+code" },
-        ["<leader>f"] = { name = "+file/find" },
-        ["<leader>g"] = { name = "+git" },
-        ["<leader>q"] = { name = "+quit/session" },
-        ["<leader>s"] = { name = "+search" },
-        ["<leader>u"] = { name = "+ui" },
-        ["<leader>w"] = { name = "+windows" },
-        ["<leader>x"] = { name = "+diagnostics/quickfix" },
+      wk.add({
+        { "<leader><tab>", group = "tabs" },
+        { "<leader>b", group = "buffer" },
+        { "<leader>c", group = "code" },
+        { "<leader>f", group = "file/find" },
+        { "<leader>g", group = "git" },
+        { "<leader>q", group = "quit/session" },
+        { "<leader>s", group = "search" },
+        { "<leader>u", group = "ui" },
+        { "<leader>w", group = "windows" },
+        { "<leader>x", group = "diagnostics/quickfix" },
+        { "[", group = "prev" },
+        { "]", group = "next" },
+        { "g", group = "goto" },
+        { "gs", group = "surround" },
       }, { mode = { "n", "v" } })
     end,
   },

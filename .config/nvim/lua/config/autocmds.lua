@@ -95,3 +95,17 @@ vim.api.nvim_create_autocmd({ "BufWritePre" }, {
     vim.fn.mkdir(vim.fn.fnamemodify(file, ":p:h"), "p")
   end,
 })
+
+-- Set cwd to the passed directory on startup
+vim.api.nvim_create_autocmd("VimEnter", {
+  group = augroup("startup_cwd"),
+  callback = function()
+    if vim.fn.argc() == 0 then
+      return
+    end
+    local target = vim.fn.argv(0)
+    if target ~= nil and target ~= "" and vim.fn.isdirectory(target) == 1 then
+      vim.cmd.cd(vim.fn.fnamemodify(target, ":p"))
+    end
+  end,
+})

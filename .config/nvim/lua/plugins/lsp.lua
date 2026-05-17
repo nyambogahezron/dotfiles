@@ -8,6 +8,7 @@ return {
     dependencies = {
       { "folke/neoconf.nvim", cmd = "Neoconf", config = false, dependencies = { "nvim-lspconfig" } },
       { "folke/neodev.nvim", opts = {} },
+      { "b0o/schemastore.nvim" },
       "mason.nvim",
       "williamboman/mason-lspconfig.nvim",
     },
@@ -89,7 +90,8 @@ return {
             return
           end
         end
-        require("lspconfig")[server].setup(server_opts)
+        vim.lsp.config(server, server_opts)
+        vim.lsp.enable(server)
       end
 
       -- get all the servers that are available through mason-lspconfig

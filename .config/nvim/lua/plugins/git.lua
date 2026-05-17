@@ -49,7 +49,7 @@ return {
     },
     -- optional for floating window border decoration
     dependencies = {
-      "nvim-lua/plenary.nvim",
+      { "nvim-lua/plenary.nvim", commit = "74b06c6" },
     },
     -- setting the keybinding for LazyGit
     keys = {

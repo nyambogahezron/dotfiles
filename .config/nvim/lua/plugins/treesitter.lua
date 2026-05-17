@@ -3,6 +3,7 @@
 return {
   {
     "nvim-treesitter/nvim-treesitter",
+    commit = "90cd658",
     version = false, -- last release is way too old
     build = ":TSUpdate",
     event = { "BufReadPost", "BufNewFile" },
