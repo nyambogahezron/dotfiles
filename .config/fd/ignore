@@ -1,0 +1,9 @@
+.git
+node_modules
+.venv
+dist
+build
+coverage
+.cache
+target
+.DS_Store

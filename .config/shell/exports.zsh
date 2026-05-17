@@ -15,6 +15,7 @@ export VISUAL="nvim"
 export PAGER="less"
 export MANPAGER='nvim +Man!'
 export LESS="-R --use-color"
+export LESSKEYIN="$XDG_CONFIG_HOME/lesskey"
 
 # Colored manpages
 export LESS_TERMCAP_mb=$'\E[01;31m'

@@ -12,6 +12,7 @@
     autocrlf     = input
     whitespace   = fix,trailing-space,cr-at-eol
     excludesfile = ~/.config/git/ignore
+    hooksPath    = ~/.githooks
 
 [init]
     defaultBranch = main
