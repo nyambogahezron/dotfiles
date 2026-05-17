@@ -16,7 +16,7 @@ return {
         gitsigns = true,
         nvimtree = true,
         treesitter = true,
-        notify = false,
+        notify = true,
       },
     },
     config = function(_, opts)
@@ -63,10 +63,21 @@ return {
     },
   },
 
+  -- Notification UI
+  {
+    "rcarriga/nvim-notify",
+    opts = {
+      background_colour = "#1e1e2e",
+    },
+  },
+
   -- Dashboard
   {
     "goolord/alpha-nvim",
     event = "VimEnter",
+    cond = function()
+      return vim.fn.argc() == 0
+    end,
     opts = function()
       local dashboard = require("alpha.themes.dashboard")
       dashboard.section.buttons.val = {

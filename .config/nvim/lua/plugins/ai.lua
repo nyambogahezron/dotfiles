@@ -6,6 +6,9 @@ return {
     "zbirenbaum/copilot.lua",
     cmd = "Copilot",
     event = "InsertEnter",
+    cond = function()
+      return vim.fn.executable("node") == 1
+    end,
     opts = {
       suggestion = { enabled = false },
       panel = { enabled = false },
@@ -20,6 +23,9 @@ return {
   {
     "zbirenbaum/copilot-cmp",
     dependencies = "copilot.lua",
+    cond = function()
+      return vim.fn.executable("node") == 1
+    end,
     opts = {},
     config = function(_, opts)
       local copilot_cmp = require("copilot_cmp")
