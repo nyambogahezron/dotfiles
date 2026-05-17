@@ -4,8 +4,13 @@
 
 #  Completion styles 
 
-# Enable menu selection (navigate with arrow keys)
+# Enable menu selection
+zmodload zsh/complist
 zstyle ':completion:*' menu select
+
+# Navigate completion menu select with Tab and Shift-Tab
+bindkey -M menuselect '^I' menu-complete
+bindkey -M menuselect "${terminfo[kcbt]:-\e[Z}" reverse-menu-complete
 
 # Case-insensitive and partial-word completion
 zstyle ':completion:*' matcher-list \
@@ -65,3 +70,13 @@ fi
 
 # NVM bash completion (zsh compatible)
 [[ -s "$NVM_DIR/bash_completion" ]] && \. "$NVM_DIR/bash_completion"
+
+# Starship completions
+if command -v starship &>/dev/null; then
+    if [[ ! -f "$XDG_CACHE_HOME/zsh/completions/_starship" ]]; then
+        mkdir -p "$XDG_CACHE_HOME/zsh/completions"
+        starship completions zsh > "$XDG_CACHE_HOME/zsh/completions/_starship" 2>/dev/null || true
+    fi
+    fpath=("$XDG_CACHE_HOME/zsh/completions" $fpath)
+fi
+

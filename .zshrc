@@ -1,23 +1,28 @@
-# theme 
-ZSH_THEME="robbyrussell"
-
-plugins=(
-    git docker docker-compose
-    zsh-autosuggestions zsh-syntax-highlighting
-    fzf direnv
-)
-
-#  Shell modules 
+#  Shell modules
 # Load modular config files from ~/.config/shell/
 for _module in exports aliases functions completion; do
     [[ -f "$HOME/.config/shell/${_module}.zsh" ]] && source "$HOME/.config/shell/${_module}.zsh"
 done
 unset _module
 
-#  Machine-specific ─
+#  Standalone Plugins (Autocompletion & Syntax Highlighting)
+[[ -f "$HOME/.local/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh" ]] && \
+    source "$HOME/.local/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh"
+[[ -f "$HOME/.local/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ]] && \
+    source "$HOME/.local/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 
+# Smart Tab behavior: Accept autosuggestion if visible, otherwise trigger normal completion
+expand-or-complete-with-autosuggest() {
+    if [[ -n "$POSTDISPLAY" ]]; then
+        zle autosuggest-accept
+    else
+        zle expand-or-complete
+    fi
+}
+zle -N expand-or-complete-with-autosuggest
+bindkey '^I' expand-or-complete-with-autosuggest
 
-#  History ─
+# History
 mkdir -p "$XDG_STATE_HOME/zsh"
 HISTFILE="$XDG_STATE_HOME/zsh/history"
 HISTSIZE=100000
@@ -26,10 +31,10 @@ setopt HIST_EXPIRE_DUPS_FIRST HIST_IGNORE_DUPS HIST_IGNORE_ALL_DUPS
 setopt HIST_IGNORE_SPACE HIST_FIND_NO_DUPS HIST_SAVE_NO_DUPS
 setopt SHARE_HISTORY APPEND_HISTORY INC_APPEND_HISTORY
 
-#  Zsh options 
+#  Zsh options
 setopt AUTO_CD CORRECT EXTENDED_GLOB NOMATCH NOTIFY NO_BEEP
 
-#  Completions 
+#  Completions
 autoload -Uz compinit
 mkdir -p "$XDG_CACHE_HOME/zsh"
 # Only rebuild compinit dump once per day for faster startup
@@ -39,26 +44,26 @@ else
     compinit -C -d "$XDG_CACHE_HOME/zsh/zcompdump"
 fi
 
-#  FZF ─
+# FZF
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 [ -f /usr/share/doc/fzf/examples/key-bindings.zsh ] && \
     source /usr/share/doc/fzf/examples/key-bindings.zsh
 [ -f /usr/share/fzf/key-bindings.zsh ] && \
     source /usr/share/fzf/key-bindings.zsh
 
-#  Zoxide (smarter cd) 
+#  Zoxide (smarter cd)
 command -v zoxide &>/dev/null && eval "$(zoxide init zsh --cmd z)"
 
-#  Atuin (History) 
+#  Atuin (History)
 command -v atuin &>/dev/null && eval "$(atuin init zsh)"
 
-#  direnv 
+#  direnv
 command -v direnv &>/dev/null && eval "$(direnv hook zsh)"
 
-#  Starship prompt 
+#  Starship prompt
 command -v starship &>/dev/null && eval "$(starship init zsh)"
 
-#  Automated Maintenance Prompt ─
+# Automated Maintenance Prompt
 if command -v dot-maintenance &>/dev/null && [[ -t 0 ]]; then
     _last_maintenance=0
     [[ -f "$HOME/.local/state/last-maintenance" ]] && _last_maintenance=$(cat "$HOME/.local/state/last-maintenance")

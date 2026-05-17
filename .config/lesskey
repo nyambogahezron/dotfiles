@@ -1,7 +1,6 @@
 #command
-\
-    h noaction 0
-    l forw-line
-    H noaction 0
-    L forw-scroll
-    q quit
+h noaction 0
+l forw-line
+H noaction 0
+L forw-scroll
+q quit

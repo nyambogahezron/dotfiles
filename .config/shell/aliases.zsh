@@ -3,7 +3,7 @@
 # All aliases — sourced by ~/.zshrc
 
 
-#  Navigation 
+#  Navigation
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
@@ -45,19 +45,20 @@ elif command -v batcat &>/dev/null; then
     alias catn='batcat'
 fi
 
-#  Grep 
+#  Grep
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 alias rg='rg --color=always --smart-case'
 
-#  Safety 
+#  Safety
 alias rm='rm -i'
 alias cp='cp -i'
 alias mv='mv -i'
 alias mkdir='mkdir -p'
 
-#  System 
+#  System
+alias q='exit'
 alias c='clear'
 alias cls='clear'
 alias h='history'
@@ -86,12 +87,12 @@ alias ps='ps auxf'
 alias p="ps aux | grep "
 alias topcpu="/bin/ps -eo pcpu,pid,user,args | sort -k 1 -r | head -10"
 
-#  Better system tools 
+#  Better system tools
 command -v btop  &>/dev/null && alias top='btop'
 command -v dust  &>/dev/null && alias du='dust'
 command -v procs &>/dev/null && alias ps='procs'
 
-#  Archives 
+#  Archives
 alias mktar='tar -cvf'
 alias mkbz2='tar -cvjf'
 alias mkgz='tar -cvzf'
@@ -99,7 +100,7 @@ alias untar='tar -xvf'
 alias unbz2='tar -xvjf'
 alias ungz='tar -xvzf'
 
-#  System update (Ubuntu/Debian) 
+#  System update (Ubuntu/Debian)
 alias update='sudo apt update && sudo apt upgrade -y && sudo apt autoremove -y \
   ; sudo snap refresh 2>/dev/null; flatpak update -y 2>/dev/null'
 alias install='sudo apt install'
@@ -133,14 +134,14 @@ alias gcom='git add . && git commit -m'
 alias lazyg='git add . && git commit -m "$1" && git push'
 command -v lazygit &>/dev/null && alias lg='lazygit'
 
-#  FZF Git (Elite) 
+#  FZF Git (Elite)
 alias gafzf='git ls-files -m -o --exclude-standard | grep -v "__pycache__" | fzf -m --preview "git diff --color=always {}" --print0 | xargs -0 -o -t git add'
 alias grmfzf='git ls-files -m -o --exclude-standard | fzf -m --preview "git diff --color=always {}" --print0 | xargs -0 -o -t git rm'
 alias grfzf='git diff --name-only | fzf -m --preview "git diff --color=always {}" --print0 | xargs -0 -o -t git restore'
 alias grsfzf='git diff --name-only | fzf -m --preview "git diff --color=always {}" --print0 | xargs -0 -o -t git restore --staged'
 alias gcofzf='git branch | fzf --preview "git log --oneline --graph --color=always {}" | xargs git checkout'
 
-#  Docker 
+#  Docker
 alias d='docker'
 alias dc='docker compose'
 alias dps='docker ps'
@@ -156,7 +157,7 @@ alias dcr='docker compose restart'
 alias dcl='docker compose logs -f'
 command -v lazydocker &>/dev/null && alias ld='lazydocker'
 
-#  Development 
+#  Development
 alias nv='poetry_run_nvim'
 alias vim='poetry_run_nvim'
 alias v='poetry_run_nvim .'
@@ -164,7 +165,7 @@ alias py='python3'
 alias python='python3'
 alias ipy='python3 -m IPython'
 
-#  Dotfiles 
+#  Dotfiles
 alias dotfiles='cd ~/Projects/dotfiles'
 alias sa='make apply'
 alias su='make update'

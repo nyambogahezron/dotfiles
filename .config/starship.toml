@@ -1,7 +1,7 @@
 # ~/.config/starship.toml
 
 format = """
-\n$os\
+$os\
 $username\
 $hostname\
 $directory\
@@ -26,7 +26,7 @@ $line_break\
 $line_break\
 $character"""
 
-add_newline = true
+add_newline = false
 palette = "nord"
 
 [os]
@@ -151,12 +151,12 @@ number_threshold = 1
 format = "[$symbol]($style)"
 
 [cmd_duration]
-min_time = 500
-style = "fg:gray"
-format = "[$duration]($style)"
+min_time = 0
+style = "fg:yellow bold"
+format = "[ $duration]($style)"
 
 [time]
-disabled = false
+disabled = true
 time_format = "%R"
 style = "bg:black fg:white"
 format = "[  $time ]($style)"
