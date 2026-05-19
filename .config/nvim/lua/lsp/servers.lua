@@ -1,8 +1,9 @@
--- ~/.config/nvim/lua/lsp/servers.lua
-
 local M = {}
 
 M.ensure_installed = {
+  "ts_ls",
+  "pyright",
+  "gopls",
   "lua_ls",
   "pyright",
   "bashls",
@@ -10,11 +11,17 @@ M.ensure_installed = {
   "jsonls",
   "html",
   "cssls",
-  "tailwindcss",
   "rust_analyzer",
   "gopls",
   "yamlls",
   "dockerls",
+  "javascript",
+  "typescript",
+  "python",
+  "go",
+  "css",
+  "json",
+  "bash",
 }
 
 M.servers = {
@@ -45,9 +52,6 @@ M.servers = {
   },
   html = {},
   cssls = {},
-  tailwindcss = {
-    filetypes_exclude = { "markdown" },
-  },
   rust_analyzer = {
     settings = {
       ["rust-analyzer"] = {

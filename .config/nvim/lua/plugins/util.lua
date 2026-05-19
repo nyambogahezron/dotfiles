@@ -1,5 +1,3 @@
--- ~/.config/nvim/lua/plugins/util.lua
-
 return {
   -- Tmux & split window navigation
   {
@@ -47,4 +45,22 @@ return {
       require("neoscroll").setup({})
     end,
   },
+
+  -- Comment toggling
+  {
+    "numToStr/Comment.nvim",
+    event = { "BufReadPost", "BufNewFile" },
+    opts = {},
+    config = function(_, opts)
+      require("Comment").setup(opts)
+      local api = require("Comment.api")
+      vim.keymap.set("n", "<C-/>", api.toggle.linewise.current, { desc = "Toggle line comment" })
+      vim.keymap.set("i", "<C-/>", api.toggle.linewise.current, { desc = "Toggle line comment" })
+      vim.keymap.set("v", "<C-/>", "<ESC><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<CR>", { desc = "Toggle line comment" })
+      vim.keymap.set("n", "<C-S-/>", api.toggle.blockwise.current, { desc = "Toggle block comment" })
+      vim.keymap.set("v", "<C-S-/>", "<ESC><cmd>lua require('Comment.api').toggle.blockwise(vim.fn.visualmode())<CR>", { desc = "Toggle block comment" })
+    end,
+  },
+
 }
+

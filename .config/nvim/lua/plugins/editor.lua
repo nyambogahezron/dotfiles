@@ -1,5 +1,3 @@
--- ~/.config/nvim/lua/plugins/editor.lua
-
 return {
   -- File explorer
   {
@@ -12,7 +10,8 @@ return {
     },
     keys = {
       { "<leader>fe", "<cmd>Neotree toggle<cr>", desc = "Explorer NeoTree (Root Dir)" },
-      { "<leader>e", "<leader>fe", desc = "Explorer NeoTree (Root Dir)", remap = true },
+      { "<leader>e",  "<leader>fe", desc = "Explorer NeoTree (Root Dir)", remap = true },
+      { "<C-b>", "<cmd>Neotree toggle<cr>", desc = "Toggle Explorer" },
     },
     opts = {
       filesystem = {
@@ -40,13 +39,18 @@ return {
     version = false,
     dependencies = { { "nvim-lua/plenary.nvim", commit = "74b06c6" } },
     keys = {
-      { "<leader>,", "<cmd>Telescope buffers show_all_buffers=true<cr>", desc = "Switch Buffer" },
-      { "<leader>/", "<cmd>Telescope live_grep<cr>", desc = "Grep (root dir)" },
-      { "<leader>fb", "<cmd>Telescope buffers<cr>", desc = "Buffers" },
-      { "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "Find Files (root dir)" },
-      { "<leader>fr", "<cmd>Telescope oldfiles<cr>", desc = "Recent" },
-      { "<leader>gc", "<cmd>Telescope git_commits<cr>", desc = "commits" },
-      { "<leader>gs", "<cmd>Telescope git_status<cr>", desc = "status" },
+      { "<leader>,",  "<cmd>Telescope buffers show_all_buffers=true<cr>", desc = "Switch Buffer" },
+      { "<leader>/",  "<cmd>Telescope live_grep<cr>",                    desc = "Grep (root dir)" },
+      { "<leader>fb", "<cmd>Telescope buffers<cr>",                      desc = "Buffers" },
+      { "<leader>ff", "<cmd>Telescope find_files<cr>",                   desc = "Find Files (root dir)" },
+      { "<leader>fr", "<cmd>Telescope oldfiles<cr>",                     desc = "Recent" },
+      { "<leader>gc", "<cmd>Telescope git_commits<cr>",                  desc = "commits" },
+      { "<leader>gs", "<cmd>Telescope git_status<cr>",                   desc = "status" },
+      { "<C-p>",      "<cmd>Telescope find_files<cr>",                   desc = "Quick Open" },
+      { "<C-S-f>",    "<cmd>Telescope live_grep<cr>",                    desc = "Search Files" },
+      { "<C-S-p>",    "<cmd>Telescope commands<cr>",                     desc = "Command Palette" },
+      { "<C-S-o>",    "<cmd>Telescope lsp_document_symbols<cr>",         desc = "Go to Symbol" },
+      { "<C-t>",      "<cmd>Telescope lsp_workspace_symbols<cr>",        desc = "Go to Workspace Symbol" },
     },
     opts = {
       defaults = {
@@ -126,6 +130,7 @@ return {
     keys = {
       { "<leader>xx", "<cmd>TroubleToggle document_diagnostics<cr>", desc = "Document Diagnostics (Trouble)" },
       { "<leader>xX", "<cmd>TroubleToggle workspace_diagnostics<cr>", desc = "Workspace Diagnostics (Trouble)" },
+      { "<C-S-m>", "<cmd>TroubleToggle document_diagnostics<cr>", desc = "Problems Panel" },
     },
   },
 
