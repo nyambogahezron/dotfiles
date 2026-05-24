@@ -78,3 +78,11 @@ if command -v dot-maintenance &>/dev/null && [[ -t 0 ]]; then
         fi
     fi
 fi
+
+# Android
+export ANDROID_HOME=$HOME/Android/Sdk
+export PATH=$PATH:$ANDROID_HOME/emulator
+export PATH=$PATH:$ANDROID_HOME/platform-tools
+
+# nodejs
+export PATH="$HOME/.nvm/versions/node/v24.15.0/bin:$PATH"
