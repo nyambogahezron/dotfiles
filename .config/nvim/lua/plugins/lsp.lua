@@ -1,5 +1,3 @@
--- ~/.config/nvim/lua/plugins/lsp.lua
-
 return {
   -- LSP configuration
   {
@@ -36,6 +34,7 @@ return {
         timeout_ms = nil,
       },
       servers = require("lsp.servers").servers,
+      ensure_installed = require("lsp.servers").ensure_installed,
       setup = {},
     },
     config = function(_, opts)
@@ -133,6 +132,25 @@ return {
       ensure_installed = {
         "stylua",
         "shfmt",
+        "jq",
+        "yq",
+        "hadolint",
+        "jsonlint",
+        "codespell",
+        "prettier",
+        "copilot-language-server",
+        "cspell",
+        "cspell-lsp",
+        "dotenv-linter",
+        "prettierd",
+        "eslint_d",
+        "mypy",
+        "golangci-lint",
+        "goimports",
+        "gofumpt",
+        "actionlint",
+        "commitlint",
+        "typos",
       },
     },
     config = function(_, opts)
@@ -187,6 +205,9 @@ return {
         javascript = { { "prettierd", "prettier" } },
         typescript = { { "prettierd", "prettier" } },
         json = { "jq" },
+        jsonc = { "jq" },
+        yaml = { "yq" },
+        dockerfile = { "hadolint" },
       },
       format_on_save = function(bufnr)
         -- Disable autoformat on certain filetypes

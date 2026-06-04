@@ -100,7 +100,7 @@ map("v", ">", ">gv")
 map("v", "<", "<gv")
 
 -- Terminal
-map("n", "<C-`>", "<cmd>ToggleTerm<CR>", { desc = "Toggle terminal" })
+map("n", "<C-`>", "<cmd>terminal<CR>", { desc = "Open terminal" })
 map("t", "<C-`>", "<C-\\><C-n>",          { desc = "Exit terminal mode" })
 map("t", "<Esc>", "<C-\\><C-n>",          { desc = "Exit terminal mode" })
 

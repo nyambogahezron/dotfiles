@@ -1,9 +1,7 @@
--- ~/.config/nvim/lua/plugins/treesitter.lua
-
 return {
   {
     "nvim-treesitter/nvim-treesitter",
-    commit = "90cd658",
+    branch = "master",
     version = false, -- last release is way too old
     build = ":TSUpdate",
     event = { "BufReadPost", "BufNewFile" },

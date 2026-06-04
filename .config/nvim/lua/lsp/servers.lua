@@ -1,27 +1,26 @@
 local M = {}
 
 M.ensure_installed = {
-  "ts_ls",
-  "pyright",
-  "gopls",
   "lua_ls",
   "pyright",
+  "gopls",
   "bashls",
   "tsserver",
-  "jsonls",
   "html",
   "cssls",
-  "rust_analyzer",
-  "gopls",
+  "jsonls",
   "yamlls",
   "dockerls",
-  "javascript",
-  "typescript",
-  "python",
-  "go",
-  "css",
-  "json",
-  "bash",
+  "docker_compose_language_service",
+  "biome",
+  "codeqlls",
+  "markdown_oxide",
+  "cssvariables",
+  "eslint",
+  "tailwindcss",
+  "emmet_language_server",
+  "marksman",
+  "ruff",
 }
 
 M.servers = {
@@ -37,6 +36,15 @@ M.servers = {
   pyright = {},
   bashls = {},
   tsserver = {},
+  biome = {},
+  codeqlls = {},
+  markdown_oxide = {},
+  cssvariables = {},
+  eslint = {},
+  tailwindcss = {},
+  emmet_language_server = {},
+  marksman = {},
+  ruff = {},
   jsonls = {
     -- lazy-load schemastore when needed
     on_new_config = function(new_config)
@@ -76,13 +84,19 @@ M.servers = {
     },
   },
   yamlls = {
+    on_new_config = function(new_config)
+      new_config.settings.yaml.schemas = new_config.settings.yaml.schemas or {}
+      vim.tbl_deep_extend("force", new_config.settings.yaml.schemas, require("schemastore").yaml.schemas())
+    end,
     settings = {
       yaml = {
+        schemaStore = { enable = false, url = "" },
         keyOrdering = false,
       },
     },
   },
   dockerls = {},
+  docker_compose_language_service = {},
 }
 
 return M
