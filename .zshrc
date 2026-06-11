@@ -5,11 +5,16 @@ for _module in exports aliases functions completion; do
 done
 unset _module
 
-#  Standalone Plugins (Autocompletion & Syntax Highlighting)
-[[ -f "$HOME/.local/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh" ]] && \
-    source "$HOME/.local/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh"
-[[ -f "$HOME/.local/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ]] && \
-    source "$HOME/.local/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+#  Plugins (via sheldon if available, fallback to manual sourcing)
+if command -v sheldon &>/dev/null; then
+    eval "$(sheldon source)"
+else
+    #  Standalone fallback
+    [[ -f "$HOME/.local/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh" ]] && \
+        source "$HOME/.local/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh"
+    [[ -f "$HOME/.local/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ]] && \
+        source "$HOME/.local/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+fi
 
 # Smart Tab behavior: Accept autosuggestion if visible, otherwise trigger normal completion
 expand-or-complete-with-autosuggest() {
@@ -86,3 +91,4 @@ export PATH=$PATH:$ANDROID_HOME/platform-tools
 
 # nodejs
 export PATH="$HOME/.nvm/versions/node/v24.15.0/bin:$PATH"
+

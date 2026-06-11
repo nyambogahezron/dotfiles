@@ -77,6 +77,7 @@ export LANG="en_US.UTF-8"
 export LC_ALL="en_US.UTF-8"
 
 #  Misc 
+export TERMINAL=kitty              # Default terminal emulator
 export DOCKER_BUILDKIT=1          # Faster Docker builds
 export COMPOSE_DOCKER_CLI_BUILD=1 # Docker Compose uses BuildKit
 export GPG_TTY=$(tty)             # GPG pinentry in terminal

@@ -1,0 +1,19 @@
+# Encrypt sensitive files using age git filter (or git-crypt)
+# Files matching these patterns are encrypted in the repo
+# and auto-decrypted on checkout via the [filter "age"] in .gitconfig
+
+# SSH keys and config
+.ssh/**             filter=age diff=age
+
+# GPG keys
+.config/gpg/**      filter=age diff=age
+
+# Environment files
+.env                filter=age diff=age
+.env.*              filter=age diff=age
+
+# API tokens / secrets
+.config/secrets/**  filter=age diff=age
+
+# Any local certs
+.config/ssl/**      filter=age diff=age

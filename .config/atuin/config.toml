@@ -34,7 +34,7 @@
 ## enable or disable automatic update checks
 # update_check = true
 
-## address of the sync server
+## address of the sync server (set ATUIN_SERVER env var to override)
 # sync_address = "https://api.atuin.sh"
 
 ## how often to sync history. note that this is only triggered when a command
@@ -252,9 +252,11 @@ search_mode = "daemon-fuzzy"
 
 [sync]
 # Enable sync v2 by default
-# This ensures that sync v2 is enabled for new installs only
-# In a later release it will become the default across the board
 records = true
+# Set ATUIN_SERVER env var for self-hosted server (e.g. https://atuin.example.com)
+# Set ATUIN_KEY env var for encryption key
+# auto_sync is enabled by default
+# sync_frequency = "10m"
 
 [preview]
 ## which preview strategy to use to calculate the preview height (respects max_preview_height).

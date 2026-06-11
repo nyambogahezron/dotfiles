@@ -1,0 +1,12 @@
+theme = "catppuccin-mocha"
+
+[files]
+hidden = false
+gitignore = true
+
+[preview]
+position = "bottom"
+size = { percent = 40 }
+
+[keys]
+quit = [ "q", "Escape" ]

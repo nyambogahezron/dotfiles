@@ -105,6 +105,14 @@ install_dev_tools() {
     if confirm "Configure Git?"; then
         [ -f "$SCRIPT_DIR/tools/git.sh" ] && source "$SCRIPT_DIR/tools/git.sh" && setup_git
     fi
+
+    if confirm "Install television (modern fuzzy finder)?"; then
+        [ -f "$SCRIPT_DIR/tools/television.sh" ] && source "$SCRIPT_DIR/tools/television.sh" && install_television
+    fi
+
+    if confirm "Setup secrets management (age + git-crypt)?"; then
+        [ -f "$SCRIPT_DIR/secrets.sh" ] && source "$SCRIPT_DIR/secrets.sh" && setup_secrets
+    fi
 }
 
 install_applications() {
@@ -122,6 +130,14 @@ install_shell_improvements() {
     if [ -f "$SCRIPT_DIR/tools/shell.sh" ]; then
         source "$SCRIPT_DIR/tools/shell.sh"
         setup_shell
+    fi
+
+    if confirm "Install sheldon (Zsh plugin manager)?"; then
+        [ -f "$SCRIPT_DIR/tools/sheldon.sh" ] && source "$SCRIPT_DIR/tools/sheldon.sh" && install_sheldon
+    fi
+
+    if confirm "Setup atuin server sync?"; then
+        [ -f "$SCRIPT_DIR/tools/atuin-server.sh" ] && source "$SCRIPT_DIR/tools/atuin-server.sh" && setup_atuin_server
     fi
 }
 
@@ -186,9 +202,10 @@ main() {
     echo -e "${CYAN}Available components:${NC}"
     echo "  • Essential Tools (git, curl, vim, etc.)"
     echo "  • Programming Languages (Node.js, Python, Rust, Go, PHP)"
-    echo "  • Development Tools (Docker, VS Code, Neovim)"
+    echo "  • Development Tools (Docker, VS Code, Neovim, Television)"
     echo "  • Applications (Browsers, Terminal, etc.)"
-    echo "  • Shell Improvements (Zsh, Starship)"
+    echo "  • Shell Improvements (Zsh, Starship, Sheldon, Atuin server)"
+    echo "  • Secrets Management (age + git-crypt)"
     echo "  • Fonts (Nerd Fonts)"
     echo "  • Dotfiles & Configurations"
     echo ""

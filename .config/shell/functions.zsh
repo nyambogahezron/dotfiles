@@ -220,6 +220,15 @@ y() {
 	rm -f -- "$tmp"
 }
 
+#  Television fuzzy-finder
+if command -v tv &>/dev/null; then
+    tv-find-file() { tv files --hidden --no-ignore "$@" }
+    tv-grep() { tv grep "$@" }
+    tv-search() { tv search "$@" }
+    zle -N tv-find-file
+    bindkey '^[t' tv-find-file 2>/dev/null || true
+fi
+
 #  Poetry + Neovim 
 poetry_run_nvim() {
   if command -v poetry >/dev/null 2>&1 && [[ -f "poetry.lock" ]]; then
