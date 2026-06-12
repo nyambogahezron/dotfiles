@@ -132,10 +132,6 @@ install_shell_improvements() {
         setup_shell
     fi
 
-    if confirm "Install sheldon (Zsh plugin manager)?"; then
-        [ -f "$SCRIPT_DIR/tools/sheldon.sh" ] && source "$SCRIPT_DIR/tools/sheldon.sh" && install_sheldon
-    fi
-
     if confirm "Setup atuin server sync?"; then
         [ -f "$SCRIPT_DIR/tools/atuin-server.sh" ] && source "$SCRIPT_DIR/tools/atuin-server.sh" && setup_atuin_server
     fi
@@ -204,7 +200,7 @@ main() {
     echo "  • Programming Languages (Node.js, Python, Rust, Go, PHP)"
     echo "  • Development Tools (Docker, VS Code, Neovim, Television)"
     echo "  • Applications (Browsers, Terminal, etc.)"
-    echo "  • Shell Improvements (Zsh, Starship, Sheldon, Atuin server)"
+    echo "  • Shell Improvements (Zsh + plugins via apt, Starship, Atuin server)"
     echo "  • Secrets Management (age + git-crypt)"
     echo "  • Fonts (Nerd Fonts)"
     echo "  • Dotfiles & Configurations"

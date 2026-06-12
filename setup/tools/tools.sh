@@ -10,20 +10,29 @@ install_essential_tools() {
     print_header "INSTALLING ESSENTIAL TOOLS"
     
     local tools=(
+        # Core
         "git"
         "curl"
         "wget"
+        "stow"           # dotfiles symlink manager
+        "unzip"
+        "zip"
+        "jq"
+        "xclip"
+        "gnupg2"         # GPG (exports.zsh sets GPG_TTY)
+        # Editors / Shell
         "vim"
         "neovim"
         "tmux"
-        "htop"
-        "tree"
-        "unzip"
-        "zip"
-        "ripgrep"
-        "fd-find"
-        "jq"
-        "xclip"
+        "zsh"
+        # Modern CLI replacements (used in aliases.zsh)
+        "eza"            # better ls
+        "bat"            # better cat (also called batcat on Ubuntu)
+        "btop"           # better top (aliased as top)
+        "ripgrep"        # rg
+        "fd-find"        # fd
+        "fzf"            # fuzzy finder
+        "direnv"         # per-dir env vars (hooked in .zshrc)
     )
     
     # Add build tools based on OS

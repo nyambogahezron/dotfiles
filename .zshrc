@@ -5,15 +5,27 @@ for _module in exports aliases functions completion; do
 done
 unset _module
 
-#  Plugins (sourced directly)
-[[ -f "$HOME/.local/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh" ]] && \
+#  Plugins — system paths (apt) with user-local fallback
+# zsh-autosuggestions
+if [[ -f /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh ]]; then
+    source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+elif [[ -f "$HOME/.local/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh" ]]; then
     source "$HOME/.local/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh"
-[[ -f "$HOME/.local/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ]] && \
+fi
+
+# zsh-syntax-highlighting
+if [[ -f /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]]; then
+    source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+elif [[ -f "$HOME/.local/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ]]; then
     source "$HOME/.local/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
-[[ -f "$HOME/.local/share/zsh/plugins/zsh-completions/zsh-completions.zsh" ]] && \
-    source "$HOME/.local/share/zsh/plugins/zsh-completions/zsh-completions.zsh"
-[[ -f "$HOME/.local/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh" ]] && \
+fi
+
+# zsh-history-substring-search
+if [[ -f /usr/share/zsh-history-substring-search/zsh-history-substring-search.zsh ]]; then
+    source /usr/share/zsh-history-substring-search/zsh-history-substring-search.zsh
+elif [[ -f "$HOME/.local/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh" ]]; then
     source "$HOME/.local/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh"
+fi
 
 # Smart Tab behavior: Accept autosuggestion if visible, otherwise trigger normal completion
 expand-or-complete-with-autosuggest() {
