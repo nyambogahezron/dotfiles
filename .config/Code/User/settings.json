@@ -159,6 +159,12 @@
 		".claude/rules": true,
 		"~/.copilot/instructions": true,
 		"~/.claude/rules": true,
+		"/tmp/postman-collections-post-response.instructions.md": true,
+		"/tmp/postman-collections-pre-request.instructions.md": true,
+		"/tmp/postman-folder-post-response.instructions.md": true,
+		"/tmp/postman-folder-pre-request.instructions.md": true,
+		"/tmp/postman-http-request-post-response.instructions.md": true,
+		"/tmp/postman-http-request-pre-request.instructions.md": true
 	},
 	"github.copilot.nextEditSuggestions.enabled": true,
 	"cSpell.userWords": ["connectthree", "ecoderum"],
@@ -196,7 +202,7 @@
 		"npx": true,
 		"bun": true
 	},
-	"editor.defaultFormatter": "esbenp.prettier-vscode",
+	"editor.defaultFormatter": "biomejs.biome",
 	"editor.formatOnSave": true,
 	"editor.formatOnSaveMode": "modifications",
 	"files.autoSaveWhenNoErrors": true,
@@ -249,5 +255,8 @@
 "[java]": {
 	"editor.defaultFormatter": "redhat.java"
 },
-"compile-hero.config": ""
+"compile-hero.config": "",
+"[typescript]": {
+	"editor.defaultFormatter": "esbenp.prettier-vscode"
+}
 }
