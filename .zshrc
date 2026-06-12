@@ -5,16 +5,15 @@ for _module in exports aliases functions completion; do
 done
 unset _module
 
-#  Plugins (via sheldon if available, fallback to manual sourcing)
-if command -v sheldon &>/dev/null; then
-    eval "$(sheldon source)"
-else
-    #  Standalone fallback
-    [[ -f "$HOME/.local/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh" ]] && \
-        source "$HOME/.local/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh"
-    [[ -f "$HOME/.local/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ]] && \
-        source "$HOME/.local/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
-fi
+#  Plugins (sourced directly)
+[[ -f "$HOME/.local/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh" ]] && \
+    source "$HOME/.local/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh"
+[[ -f "$HOME/.local/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ]] && \
+    source "$HOME/.local/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+[[ -f "$HOME/.local/share/zsh/plugins/zsh-completions/zsh-completions.zsh" ]] && \
+    source "$HOME/.local/share/zsh/plugins/zsh-completions/zsh-completions.zsh"
+[[ -f "$HOME/.local/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh" ]] && \
+    source "$HOME/.local/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh"
 
 # Smart Tab behavior: Accept autosuggestion if visible, otherwise trigger normal completion
 expand-or-complete-with-autosuggest() {
