@@ -2,7 +2,7 @@
 
 # Configuration
 STOW_IGNORE = --ignore="install.sh|Makefile|README.md|LICENSE|AGENTS.md|Brewfile|docs|scripts|setup"
-STOW_FLAGS = -v -d $(PWD) -t $(HOME)
+STOW_FLAGS = -v -d $(CURDIR) -t $(HOME)
 
 help: ## Show this help menu
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-20s\033[0m %s\n", $$1, $$2}'
