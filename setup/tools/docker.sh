@@ -53,12 +53,16 @@ install_docker() {
             ;;
     esac
     
-    # Install docker-compose
-    if ! command_exists docker-compose; then
-        print_step "Installing Docker Compose..."
-        sudo curl -L "https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
-        sudo chmod +x /usr/local/bin/docker-compose
-        print_success "Docker Compose installed: $(docker-compose --version)"
+    # Install docker-compose (V2 Plugin)
+    if ! docker compose version &>/dev/null; then
+        print_step "Installing Docker Compose V2 Plugin..."
+        DOCKER_CONFIG=${DOCKER_CONFIG:-$HOME/.docker}
+        mkdir -p $DOCKER_CONFIG/cli-plugins
+        curl -SL "https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m)" -o $DOCKER_CONFIG/cli-plugins/docker-compose
+        chmod +x $DOCKER_CONFIG/cli-plugins/docker-compose
+        # Also symlink for old docker-compose command
+        sudo ln -sf $DOCKER_CONFIG/cli-plugins/docker-compose /usr/local/bin/docker-compose
+        print_success "Docker Compose V2 installed: $(docker compose version)"
     fi
     
     print_success "Docker installation complete"

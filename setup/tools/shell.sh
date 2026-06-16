@@ -23,13 +23,42 @@ install_zsh() {
         chsh -s "$(command -v zsh)" && print_success "Default shell set to zsh" || \
             print_warning "Run manually: chsh -s $(command -v zsh)"
     fi
-
-    # Install zsh plugins via apt
-    bash "$(dirname "$0")/zsh-plugins.sh"
 }
+
+install_oh_my_zsh() {
+    print_header "OH-MY-ZSH"
+    if [ ! -d "$HOME/.oh-my-zsh" ]; then
+        print_step "Installing Oh-My-Zsh..."
+        # Unattended install
+        RUNZSH=no CHSH=no sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
+        print_success "Oh-My-Zsh installed"
+    else
+        print_success "Oh-My-Zsh already installed"
+    fi
+}
+
+install_asdf() {
+    print_header "ASDF VERSION MANAGER"
+    if [ ! -d "$HOME/.asdf" ]; then
+        print_step "Installing asdf..."
+        git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.14.0
+        print_success "asdf installed. (Remember to source it in your .zshrc if not already)"
+    else
+        print_success "asdf already installed"
+    fi
+}
+
+
 
 setup_shell() {
     install_zsh
+    install_oh_my_zsh
+    
+    # Install zsh plugins via apt
+    bash "$(dirname "$0")/zsh-plugins.sh"
+    
+    install_asdf
+    
     # extras (starship, zoxide, lazygit, etc.) handled by extras.sh
     bash "$(dirname "$0")/extras.sh"
 }

@@ -170,14 +170,109 @@ install_productivity_apps() {
         esac
         print_success "Postman installed"
     fi
+
+    # Obsidian
+    if ! command_exists obsidian && confirm "Install Obsidian?"; then
+        print_step "Installing Obsidian..."
+        case $OS in
+            ubuntu|debian|linuxmint|pop|fedora|arch|manjaro)
+                if ! command_exists flatpak; then
+                    sudo apt-get install -y flatpak || sudo dnf install -y flatpak || sudo pacman -S flatpak
+                fi
+                flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+                flatpak install -y flathub md.obsidian.Obsidian
+                ;;
+            macos)
+                brew install --cask obsidian
+                ;;
+        esac
+        print_success "Obsidian installed (Flatpak/Brew)"
+    fi
+
+    # Anytype
+    if ! command_exists anytype && confirm "Install Anytype?"; then
+        print_step "Installing Anytype..."
+        case $OS in
+            ubuntu|debian|linuxmint|pop|fedora|arch|manjaro)
+                # AppImage method is most reliable across linux distros for Anytype
+                wget "https://anytype.io/release/anytype-latest.AppImage" -O /tmp/anytype.AppImage
+                chmod +x /tmp/anytype.AppImage
+                sudo mv /tmp/anytype.AppImage /usr/local/bin/anytype
+                ;;
+            macos)
+                brew install --cask anytype
+                ;;
+        esac
+        print_success "Anytype installed"
+    fi
+
+    # DBeaver
+    if ! command_exists dbeaver && ! command_exists dbeaver-ce && confirm "Install DBeaver CE?"; then
+        print_step "Installing DBeaver CE..."
+        case $OS in
+            ubuntu|debian|linuxmint|pop)
+                wget -O /tmp/dbeaver.deb https://dbeaver.io/files/dbeaver-ce_latest_amd64.deb
+                sudo dpkg -i /tmp/dbeaver.deb || sudo apt-get install -f -y
+                rm /tmp/dbeaver.deb
+                ;;
+            fedora)
+                sudo dnf install -y https://dbeaver.io/files/dbeaver-ce-latest-stable.x86_64.rpm
+                ;;
+            arch|manjaro)
+                sudo pacman -S --noconfirm dbeaver
+                ;;
+            macos)
+                brew install --cask dbeaver-community
+                ;;
+        esac
+        print_success "DBeaver installed"
+    fi
 }
 
-install_all_apps() {
+install_vpn_tools() {
+    print_header "INSTALLING VPN TOOLS"
+    
+    # OpenVPN
+    if ! command_exists openvpn && confirm "Install OpenVPN?"; then
+        print_step "Installing OpenVPN..."
+        install_package "openvpn"
+        print_success "OpenVPN installed"
+    fi
+
+    # ProtonVPN
+    if ! command_exists protonvpn-cli && confirm "Install ProtonVPN?"; then
+        print_step "Installing ProtonVPN..."
+        case $OS in
+            ubuntu|debian|linuxmint|pop)
+                wget "https://repo.protonvpn.com/debian/dists/stable/main/binary-all/protonvpn-stable-release_1.0.3-3_all.deb" -O /tmp/protonvpn.deb
+                sudo dpkg -i /tmp/protonvpn.deb
+                sudo apt-get update
+                sudo apt-get install -y proton-vpn-gnome-desktop
+                rm /tmp/protonvpn.deb
+                ;;
+            fedora)
+                sudo dnf install -y protonvpn-gui
+                ;;
+            arch|manjaro)
+                # aur is required, skipping complex build process, recommending flatpak instead
+                if ! command_exists flatpak; then
+                    sudo pacman -S --noconfirm flatpak
+                fi
+                flatpak install -y flathub com.protonvpn.www
+                ;;
+            macos)
+                brew install --cask protonvpn
+                ;;
+        esac
+        print_success "ProtonVPN installed"
+    fi
+
     install_terminal
     install_browsers
     install_communication_apps
     install_media_apps
     install_productivity_apps
+    install_vpn_tools
 }
 
 # Run if executed directly

@@ -42,6 +42,27 @@ if ! command -v stow &>/dev/null; then
     success "Stow installed"
 fi
 
+#  Backup existing files before stowing 
+log "Checking for Stow conflicts..."
+# Capture the output of stow simulate
+CONFLICTS=$(stow --no -v -d "$PWD" -t "$HOME" --ignore="install.sh|Makefile|README.md|LICENSE|AGENTS.md|Brewfile|docs|scripts|setup" . 2>&1 | grep "existing target is" || true)
+
+if [ -n "$CONFLICTS" ]; then
+    BACKUP_DIR="$HOME/.dotfiles-backup-$(date +%Y%m%d_%H%M%S)"
+    mkdir -p "$BACKUP_DIR"
+    log "Conflicts found. Backing up existing files to $BACKUP_DIR..."
+    
+    echo "$CONFLICTS" | while read -r line; do
+        # Extract the conflicting file path (everything after the last colon and space)
+        FILE=$(echo "$line" | sed 's/.*: //')
+        if [ -n "$FILE" ] && [ -e "$HOME/$FILE" ]; then
+            mkdir -p "$BACKUP_DIR/$(dirname "$FILE")"
+            mv "$HOME/$FILE" "$BACKUP_DIR/$FILE"
+            log "Backed up $FILE"
+        fi
+    done
+fi
+
 #  Apply Dotfiles 
 log "Applying dotfiles via Stow..."
 # We use -v (verbose), -d (current dir), -t (home dir)

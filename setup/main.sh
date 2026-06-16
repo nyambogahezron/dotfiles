@@ -110,6 +110,14 @@ install_dev_tools() {
         [ -f "$SCRIPT_DIR/tools/television.sh" ] && source "$SCRIPT_DIR/tools/television.sh" && install_television
     fi
 
+    if confirm "Install DevOps & Infrastructure Tools (Terraform, K8s, AWS, Ansible)?"; then
+        [ -f "$SCRIPT_DIR/tools/devops.sh" ] && source "$SCRIPT_DIR/tools/devops.sh" && install_devops_tools
+    fi
+
+    if confirm "Setup Observability Stack (Grafana, Prometheus, Tempo via Docker Compose)?"; then
+        [ -f "$SCRIPT_DIR/tools/observability.sh" ] && source "$SCRIPT_DIR/tools/observability.sh" && install_observability
+    fi
+
     if confirm "Setup secrets management (age + git-crypt)?"; then
         [ -f "$SCRIPT_DIR/secrets.sh" ] && source "$SCRIPT_DIR/secrets.sh" && setup_secrets
     fi
@@ -199,8 +207,10 @@ main() {
     echo "  • Essential Tools (git, curl, vim, etc.)"
     echo "  • Programming Languages (Node.js, Python, Rust, Go, PHP)"
     echo "  • Development Tools (Docker, VS Code, Neovim, Television)"
-    echo "  • Applications (Browsers, Terminal, etc.)"
-    echo "  • Shell Improvements (Zsh + plugins via apt, Starship, Atuin server)"
+    echo "  • DevOps & Infrastructure (Terraform, AWS CLI, K8s, Ansible, etc.)"
+    echo "  • Observability Stack (Grafana, Prometheus, Loki, etc.)"
+    echo "  • Applications (Browsers, Terminal, VPNs, DBeaver, etc.)"
+    echo "  • Shell Improvements (Zsh + oh-my-zsh + asdf, Starship, Atuin server)"
     echo "  • Secrets Management (age + git-crypt)"
     echo "  • Fonts (Nerd Fonts)"
     echo "  • Dotfiles & Configurations"
