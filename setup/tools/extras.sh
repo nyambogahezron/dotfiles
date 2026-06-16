@@ -133,6 +133,108 @@ install_opencode() {
     fi
 }
 
+# ── flameshot (screenshot tool) ──────────────────────────────────────────────
+install_flameshot() {
+    print_header "FLAMESHOT"
+    if command_exists flameshot; then print_success "flameshot already installed"; return; fi
+    print_step "Installing flameshot..."
+    install_package "flameshot"
+    command_exists flameshot && print_success "flameshot installed" || print_warning "flameshot install failed"
+}
+
+# ── ulauncher (app launcher) ─────────────────────────────────────────────────
+install_ulauncher() {
+    print_header "ULAUNCHER"
+    if command_exists ulauncher; then print_success "ulauncher already installed"; return; fi
+    print_step "Installing ulauncher..."
+    case $OS in
+        ubuntu|debian|pop|linuxmint)
+            sudo add-apt-repository -y ppa:agornostal/ulauncher
+            sudo apt update && sudo apt install -y ulauncher
+            ;;
+        fedora) sudo dnf install -y ulauncher ;;
+        arch|manjaro) sudo pacman -S --noconfirm ulauncher ;;
+        *) print_warning "Ulauncher must be installed manually on your OS" ;;
+    esac
+    command_exists ulauncher && print_success "ulauncher installed" || print_warning "ulauncher install failed"
+}
+
+# ── ngrok (tunneling) ────────────────────────────────────────────────────────
+install_ngrok() {
+    print_header "NGROK"
+    if command_exists ngrok; then print_success "ngrok already installed"; return; fi
+    print_step "Installing ngrok..."
+    case $OS in
+        ubuntu|debian|pop|linuxmint)
+            curl -s https://ngrok-agent.s3.amazonaws.com/ngrok.asc | sudo tee /etc/apt/trusted.gpg.d/ngrok.asc >/dev/null
+            echo "deb https://ngrok-agent.s3.amazonaws.com buster main" | sudo tee /etc/apt/sources.list.d/ngrok.list
+            sudo apt update && sudo apt install -y ngrok
+            ;;
+        macos) brew install ngrok/ngrok/ngrok ;;
+        *)
+            curl -sL https://bin.equinox.io/c/bNyj1mQVY4c/ngrok-v3-stable-linux-amd64.tgz | tar -xz -C /tmp
+            sudo install /tmp/ngrok /usr/local/bin/ngrok
+            rm -f /tmp/ngrok
+            ;;
+    esac
+    command_exists ngrok && print_success "ngrok installed" || print_warning "ngrok install failed"
+}
+
+# ── httpie (modern curl) ─────────────────────────────────────────────────────
+install_httpie() {
+    print_header "HTTPIE"
+    if command_exists http; then print_success "httpie already installed"; return; fi
+    print_step "Installing httpie..."
+    case $OS in
+        ubuntu|debian|pop|linuxmint)
+            curl -SsL https://packages.httpie.io/rsa.pub | sudo gpg --dearmor -o /usr/share/keyrings/httpie.gpg
+            echo "deb [arch=amd64 signed-by=/usr/share/keyrings/httpie.gpg] https://packages.httpie.io/debian/ stable main" | sudo tee /etc/apt/sources.list.d/httpie.list
+            sudo apt update && sudo apt install -y httpie
+            ;;
+        fedora) sudo dnf install -y httpie ;;
+        arch|manjaro) sudo pacman -S --noconfirm httpie ;;
+        macos) brew install httpie ;;
+        *) print_warning "Please install httpie manually" ;;
+    esac
+    command_exists http && print_success "httpie installed" || print_warning "httpie install failed"
+}
+
+# ── mkcert (local SSL certs) ─────────────────────────────────────────────────
+install_mkcert() {
+    print_header "MKCERT"
+    if command_exists mkcert; then print_success "mkcert already installed"; return; fi
+    print_step "Installing mkcert..."
+    case $OS in
+        ubuntu|debian|pop|linuxmint) install_package "libnss3-tools" ;;
+        fedora) install_package "nss-tools" ;;
+        arch|manjaro) install_package "nss" ;;
+    esac
+    
+    local version
+    version=$(curl -s https://api.github.com/repos/FiloSottile/mkcert/releases/latest | grep '"tag_name"' | sed 's/.*"v\([^"]*\)".*/\1/')
+    curl -sL "https://github.com/FiloSottile/mkcert/releases/download/v${version}/mkcert-v${version}-linux-amd64" -o /tmp/mkcert
+    sudo install /tmp/mkcert /usr/local/bin/mkcert
+    rm -f /tmp/mkcert
+    command_exists mkcert && print_success "mkcert installed" || print_warning "mkcert install failed"
+}
+
+# ── tealdeer (tldr) ──────────────────────────────────────────────────────────
+install_tealdeer() {
+    print_header "TEALDEER (tldr)"
+    if command_exists tldr; then print_success "tealdeer (tldr) already installed"; return; fi
+    print_step "Installing tealdeer..."
+    curl -sL "https://github.com/dbrgn/tealdeer/releases/latest/download/tldr-linux-x86_64-musl" -o /tmp/tldr
+    sudo install /tmp/tldr /usr/local/bin/tldr
+    rm -f /tmp/tldr
+    
+    if command_exists tldr; then
+        tldr --update
+        print_success "tealdeer installed and cache updated"
+    else
+        print_warning "tealdeer install failed"
+    fi
+}
+
 install_all_extras() {
     if confirm "Install lazygit?"; then install_lazygit; fi
     if confirm "Install lazydocker?"; then install_lazydocker; fi
@@ -143,6 +245,12 @@ install_all_extras() {
     if confirm "Install starship (shell prompt)?"; then install_starship; fi
     if confirm "Install bun (JavaScript runtime)?"; then install_bun; fi
     if confirm "Install opencode (AI Terminal Assistant)?"; then install_opencode; fi
+    if confirm "Install flameshot (screenshot tool)?"; then install_flameshot; fi
+    if confirm "Install ulauncher (app launcher)?"; then install_ulauncher; fi
+    if confirm "Install ngrok (port tunneling)?"; then install_ngrok; fi
+    if confirm "Install httpie (modern curl)?"; then install_httpie; fi
+    if confirm "Install mkcert (local SSL certs)?"; then install_mkcert; fi
+    if confirm "Install tealdeer (tldr - fast man pages)?"; then install_tealdeer; fi
 }
 
 # Run if executed directly

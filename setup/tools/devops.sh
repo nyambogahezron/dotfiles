@@ -152,6 +152,69 @@ EOF
         print_success "Ansible installed"
     fi
 
+    # 7. k9s
+    if ! command_exists k9s && confirm "Install k9s (Kubernetes UI)?"; then
+        print_step "Installing k9s..."
+        case $OS in
+            macos) brew install k9s ;;
+            arch|manjaro) sudo pacman -S --noconfirm k9s ;;
+            *)
+                local version
+                version=$(curl -s https://api.github.com/repos/derailed/k9s/releases/latest | grep '"tag_name"' | sed 's/.*"v\([^"]*\)".*/\1/')
+                curl -sL "https://github.com/derailed/k9s/releases/download/v${version}/k9s_Linux_amd64.tar.gz" | tar -xz -C /tmp k9s
+                sudo install /tmp/k9s /usr/local/bin/k9s
+                rm -f /tmp/k9s
+                ;;
+        esac
+        print_success "k9s installed"
+    fi
+
+    # 8. tflint
+    if ! command_exists tflint && confirm "Install tflint (Terraform linter)?"; then
+        print_step "Installing tflint..."
+        curl -s https://raw.githubusercontent.com/terraform-linters/tflint/master/install_linux.sh | bash
+        print_success "tflint installed"
+    fi
+
+    # 9. sops
+    if ! command_exists sops && confirm "Install sops (Secrets OPerationS)?"; then
+        print_step "Installing sops..."
+        case $OS in
+            macos) brew install sops ;;
+            arch|manjaro) sudo pacman -S --noconfirm sops ;;
+            *)
+                local version
+                version=$(curl -s https://api.github.com/repos/getsops/sops/releases/latest | grep '"tag_name"' | sed 's/.*"v\([^"]*\)".*/\1/')
+                curl -sL "https://github.com/getsops/sops/releases/download/v${version}/sops-v${version}.linux.amd64" -o /tmp/sops
+                sudo install /tmp/sops /usr/local/bin/sops
+                rm -f /tmp/sops
+                ;;
+        esac
+        print_success "sops installed"
+    fi
+
+    # 10. gh (GitHub CLI)
+    if ! command_exists gh && confirm "Install GitHub CLI (gh)?"; then
+        print_step "Installing GitHub CLI..."
+        case $OS in
+            ubuntu|debian|pop|linuxmint)
+                curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo dd of=/usr/share/keyrings/githubcli-archive-keyring.gpg
+                sudo chmod go+r /usr/share/keyrings/githubcli-archive-keyring.gpg
+                echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | sudo tee /etc/apt/sources.list.d/github-cli.list > /dev/null
+                sudo apt update
+                sudo apt install gh -y
+                ;;
+            fedora)
+                sudo dnf install 'dnf-command(config-manager)' -y
+                sudo dnf config-manager --add-repo https://cli.github.com/packages/rpm/gh-cli.repo
+                sudo dnf install gh -y
+                ;;
+            arch|manjaro) sudo pacman -S --noconfirm github-cli ;;
+            macos) brew install gh ;;
+        esac
+        print_success "GitHub CLI installed"
+    fi
+
     print_success "DevOps tools installation complete."
 }
 
