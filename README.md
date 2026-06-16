@@ -34,6 +34,45 @@ The `setup/` directory is organized by purpose:
 - `setup/utils.sh`: Shared helpers used by the setup scripts.
 - `setup/main.sh`: Interactive entry point that can install a full environment or selected groups.
 
+## Included Tools & Applications
+
+The automated `setup/main.sh` installer can dynamically provision the following software (you will be interactively prompted to select what you want):
+
+### DevOps & Infrastructure
+- **Cloud & IaC**: Terraform, AWS CLI, HashiCorp Vault
+- **Kubernetes**: Kubectl, Helm, k9s
+- **Configuration & Secrets**: Ansible, sops
+- **VCS**: Git, GitHub CLI (`gh`), GitLab CLI (`glab`)
+- **Linting**: tflint
+
+### Observability Stack (Docker Compose)
+- Grafana, Prometheus, Loki, Tempo, VictoriaMetrics, Redis
+
+### Programming Languages & Runtimes
+- **JavaScript**: Node.js (via NVM), Bun
+- **Others**: Python, Rust, Go, PHP (with Laravel environment)
+
+### Modern CLI & Shell
+- **Shell**: Zsh, Oh-My-Zsh, ASDF Version Manager
+- **Prompt & History**: Starship, Atuin
+- **File Management**: yazi, dust, zoxide
+- **Search**: ripgrep, fd-find, fzf
+- **Terminal UI**: lazygit, lazydocker, btop, eza, bat, tealdeer (`tldr`)
+
+### Desktop & Productivity
+- **Editors & AI**: VS Code, Neovim, Opencode, Gemini-CLI
+- **Browsers**: Google Chrome, Firefox, Brave
+- **Communication**: Slack, Discord
+- **Media**: VLC, GIMP, OBS Studio
+- **Utilities**: Flameshot, Ulauncher
+- **Note-Taking**: Obsidian, Anytype
+- **Databases & APIs**: DBeaver CE, Postman, HTTPie, ngrok, mkcert
+- **VPN**: OpenVPN, ProtonVPN
+
+### GNOME Configuration
+- Automated installation of GNOME Extensions and Tweaks
+- Export and automatic restoration of `dconf` settings, GTK Themes, and Icons
+
 ## Usage
 
 ### Management
