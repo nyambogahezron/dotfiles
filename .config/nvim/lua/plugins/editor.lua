@@ -56,6 +56,10 @@ return {
       defaults = {
         prompt_prefix = " ",
         selection_caret = " ",
+        file_ignore_patterns = {
+          "node_modules",
+          ".git",
+        },
         mappings = {
           i = {
             ["<C-t>"] = function(...) return require("trouble.providers.telescope").open_with_trouble(...) end,
