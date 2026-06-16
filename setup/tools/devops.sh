@@ -8,7 +8,7 @@ install_devops_tools() {
     print_header "INSTALLING DEVOPS TOOLS"
     
     # 1. HashiCorp Tools (Terraform & Vault)
-    if ! command_exists terraform || ! command_exists vault; then
+    if (! command_exists terraform || ! command_exists vault) && confirm "Install HashiCorp Tools (Terraform & Vault)?"; then
         print_step "Installing HashiCorp repository (Terraform, Vault)..."
         case $OS in
             ubuntu|debian|pop|linuxmint)
@@ -39,7 +39,7 @@ install_devops_tools() {
     fi
 
     # 2. AWS CLI
-    if ! command_exists aws; then
+    if ! command_exists aws && confirm "Install AWS CLI v2?"; then
         print_step "Installing AWS CLI v2..."
         case $OS in
             macos)
@@ -56,7 +56,7 @@ install_devops_tools() {
     fi
 
     # 3. GitLab CLI (glab)
-    if ! command_exists glab; then
+    if ! command_exists glab && confirm "Install GitLab CLI?"; then
         print_step "Installing GitLab CLI..."
         case $OS in
             ubuntu|debian|pop|linuxmint)
@@ -77,7 +77,7 @@ install_devops_tools() {
     fi
 
     # 4. Kubectl
-    if ! command_exists kubectl; then
+    if ! command_exists kubectl && confirm "Install kubectl?"; then
         print_step "Installing kubectl..."
         case $OS in
             ubuntu|debian|pop|linuxmint)
@@ -109,7 +109,7 @@ EOF
     fi
 
     # 5. Helm
-    if ! command_exists helm; then
+    if ! command_exists helm && confirm "Install Helm?"; then
         print_step "Installing Helm..."
         case $OS in
             macos)
@@ -129,7 +129,7 @@ EOF
     fi
 
     # 6. Ansible
-    if ! command_exists ansible; then
+    if ! command_exists ansible && confirm "Install Ansible?"; then
         print_step "Installing Ansible..."
         case $OS in
             ubuntu|debian|pop|linuxmint)

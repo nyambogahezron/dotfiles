@@ -54,7 +54,7 @@ install_docker() {
     esac
     
     # Install docker-compose (V2 Plugin)
-    if ! docker compose version &>/dev/null; then
+    if ! docker compose version &>/dev/null && confirm "Install Docker Compose V2 Plugin?"; then
         print_step "Installing Docker Compose V2 Plugin..."
         DOCKER_CONFIG=${DOCKER_CONFIG:-$HOME/.docker}
         mkdir -p $DOCKER_CONFIG/cli-plugins

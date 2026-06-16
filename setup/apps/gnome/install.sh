@@ -21,6 +21,29 @@ restore_gnome_settings() {
     fi
 }
 
+install_themes_and_icons() {
+    print_header "INSTALLING CUSTOM THEMES & ICONS"
+    
+    local THEMES_DIR="$SCRIPT_DIR/themes"
+    local ICONS_DIR="$SCRIPT_DIR/icons"
+
+    if [ -d "$THEMES_DIR" ] && [ "$(ls -A "$THEMES_DIR")" ]; then
+        print_step "Installing exported themes..."
+        mkdir -p "$HOME/.themes" "$HOME/.local/share/themes"
+        cp -a "$THEMES_DIR"/* "$HOME/.themes/" 2>/dev/null || true
+        cp -a "$THEMES_DIR"/* "$HOME/.local/share/themes/" 2>/dev/null || true
+        print_success "Themes installed"
+    fi
+
+    if [ -d "$ICONS_DIR" ] && [ "$(ls -A "$ICONS_DIR")" ]; then
+        print_step "Installing exported icons..."
+        mkdir -p "$HOME/.icons" "$HOME/.local/share/icons"
+        cp -a "$ICONS_DIR"/* "$HOME/.icons/" 2>/dev/null || true
+        cp -a "$ICONS_DIR"/* "$HOME/.local/share/icons/" 2>/dev/null || true
+        print_success "Icons installed"
+    fi
+}
+
 install_gnome_extensions() {
     print_header "INSTALLING GNOME EXTENSIONS"
     
@@ -30,7 +53,7 @@ install_gnome_extensions() {
     fi
     
     # Install GNOME Tweaks
-    if ! command_exists gnome-tweaks; then
+    if ! command_exists gnome-tweaks && confirm "Install GNOME Tweaks and theme support?"; then
         print_step "Installing GNOME Tweaks..."
         case $OS in
             ubuntu|debian|linuxmint|pop)
@@ -79,6 +102,7 @@ install_gnome_extensions() {
 }
 
 if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
+    install_themes_and_icons
     install_gnome_extensions
     restore_gnome_settings
 fi

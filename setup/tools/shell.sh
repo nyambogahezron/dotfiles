@@ -51,16 +51,25 @@ install_asdf() {
 
 
 setup_shell() {
-    install_zsh
-    install_oh_my_zsh
+    if confirm "Install Zsh and set as default shell?"; then
+        install_zsh
+    fi
     
-    # Install zsh plugins via apt
-    bash "$(dirname "$0")/zsh-plugins.sh"
+    if confirm "Install Oh-My-Zsh?"; then
+        install_oh_my_zsh
+    fi
     
-    install_asdf
+    if confirm "Install Zsh plugins via apt?"; then
+        bash "$(dirname "$0")/zsh-plugins.sh"
+    fi
     
-    # extras (starship, zoxide, lazygit, etc.) handled by extras.sh
-    bash "$(dirname "$0")/extras.sh"
+    if confirm "Install ASDF version manager?"; then
+        install_asdf
+    fi
+    
+    if confirm "Install shell extras (starship, zoxide, lazygit, etc.)?"; then
+        bash "$(dirname "$0")/extras.sh"
+    fi
 }
 
 

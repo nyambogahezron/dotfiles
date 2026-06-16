@@ -41,7 +41,8 @@ install_nodejs() {
         nodemon \
         pm2 \
         eslint \
-        prettier
+        prettier \
+        @google/gemini-cli
     
     print_success "Node.js installed: $(node --version)"
     print_success "npm installed: $(npm --version)"

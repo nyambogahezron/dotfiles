@@ -102,14 +102,47 @@ install_starship() {
     command_exists starship && print_success "starship installed" || print_warning "starship install failed"
 }
 
+# ── bun (JavaScript runtime) ─────────────────────────────────────────────────
+install_bun() {
+    print_header "BUN"
+    if command_exists bun; then print_success "bun already installed"; return; fi
+
+    print_step "Installing bun..."
+    curl -fsSL https://bun.sh/install | bash
+    
+    # Check if installed (usually installed to ~/.bun/bin/bun)
+    if [ -f "$HOME/.bun/bin/bun" ] || command_exists bun; then
+        print_success "bun installed"
+    else
+        print_warning "bun install failed"
+    fi
+}
+
+# ── opencode (AI Terminal Assistant) ─────────────────────────────────────────
+install_opencode() {
+    print_header "OPENCODE"
+    if command_exists opencode; then print_success "opencode already installed"; return; fi
+
+    print_step "Installing opencode..."
+    curl -fsSL https://opencode.ai/install | bash
+    
+    if [ -f "$HOME/.local/bin/opencode" ] || command_exists opencode; then
+        print_success "opencode installed"
+    else
+        print_warning "opencode install failed"
+    fi
+}
+
 install_all_extras() {
-    install_lazygit
-    install_lazydocker
-    install_dust
-    install_yazi
-    install_atuin
-    install_zoxide
-    install_starship
+    if confirm "Install lazygit?"; then install_lazygit; fi
+    if confirm "Install lazydocker?"; then install_lazydocker; fi
+    if confirm "Install dust (better du)?"; then install_dust; fi
+    if confirm "Install yazi (file manager)?"; then install_yazi; fi
+    if confirm "Install atuin (shell history)?"; then install_atuin; fi
+    if confirm "Install zoxide (smarter cd)?"; then install_zoxide; fi
+    if confirm "Install starship (shell prompt)?"; then install_starship; fi
+    if confirm "Install bun (JavaScript runtime)?"; then install_bun; fi
+    if confirm "Install opencode (AI Terminal Assistant)?"; then install_opencode; fi
 }
 
 # Run if executed directly
