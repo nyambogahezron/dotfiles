@@ -28,6 +28,10 @@ print_step() {
     echo -e "${CYAN}➜${NC} $1"
 }
 
+print_info() {
+    echo -e "${CYAN}$1${NC}"
+}
+
 print_success() {
     echo -e "${GREEN}${NC} $1"
 }
@@ -83,7 +87,7 @@ detect_os() {
     else
         OS="unknown"
     fi
-    
+
     export OS
     export OS_VERSION
 }
@@ -94,7 +98,7 @@ detect_os() {
 
 update_system() {
     print_header "UPDATING SYSTEM"
-    
+
     case $OS in
         ubuntu|debian|linuxmint|pop)
             print_step "Updating apt repositories..."
@@ -116,13 +120,13 @@ update_system() {
             print_warning "Unknown OS, skipping system update"
             ;;
     esac
-    
+
     print_success "System updated"
 }
 
 install_package() {
     local package=$1
-    
+
     case $OS in
         ubuntu|debian|linuxmint|pop)
             if ! dpkg -l | grep -q "^ii  $package "; then

@@ -4,16 +4,17 @@
 # Fonts Installation
 
 
-source "$(dirname "$0")/../utils.sh"
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+source "$SCRIPT_DIR/../utils/utils.sh"
 
 install_fonts() {
     print_header "INSTALLING FONTS"
-    
+
     local fonts_dir="$HOME/.local/share/fonts"
     mkdir -p "$fonts_dir"
-    
+
     print_step "Installing Nerd Fonts..."
-    
+
     # FiraCode Nerd Font
     if [ ! -f "$fonts_dir/FiraCodeNerdFont-Regular.ttf" ]; then
         if confirm "Install FiraCode Nerd Font?"; then
@@ -26,7 +27,7 @@ install_fonts() {
     else
         print_warning "FiraCode Nerd Font already installed"
     fi
-    
+
     # JetBrainsMono Nerd Font
     if [ ! -f "$fonts_dir/JetBrainsMonoNerdFont-Regular.ttf" ]; then
         if confirm "Install JetBrainsMono Nerd Font?"; then
@@ -39,7 +40,7 @@ install_fonts() {
     else
         print_warning "JetBrainsMono Nerd Font already installed"
     fi
-    
+
     # Hack Nerd Font
     if [ ! -f "$fonts_dir/HackNerdFont-Regular.ttf" ]; then
         if confirm "Install Hack Nerd Font?"; then
@@ -52,11 +53,11 @@ install_fonts() {
     else
         print_warning "Hack Nerd Font already installed"
     fi
-    
+
     # Refresh font cache
     print_step "Refreshing font cache..."
     fc-cache -f "$fonts_dir"
-    
+
     print_success "Fonts installation complete"
 }
 

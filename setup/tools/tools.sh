@@ -4,11 +4,12 @@
 # Essential Development Tools Installation
 
 
-source "$(dirname "$0")/../utils.sh"
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+source "$SCRIPT_DIR/../utils/utils.sh"
 
 install_essential_tools() {
     print_header "INSTALLING ESSENTIAL TOOLS"
-    
+
     local tools=(
         # Core
         "git"
@@ -34,7 +35,7 @@ install_essential_tools() {
         "fzf"            # fuzzy finder
         "direnv"         # per-dir env vars (hooked in .zshrc)
     )
-    
+
     # Add build tools based on OS
     case $OS in
         ubuntu|debian|linuxmint|pop)
@@ -47,12 +48,12 @@ install_essential_tools() {
             tools+=("base-devel")
             ;;
     esac
-    
+
     for tool in "${tools[@]}"; do
         print_step "Installing $tool..."
         install_package "$tool" || print_warning "Failed to install $tool"
     done
-    
+
     print_success "Essential tools installed"
 }
 

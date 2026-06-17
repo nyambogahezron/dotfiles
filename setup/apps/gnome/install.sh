@@ -2,7 +2,8 @@
 
 # GNOME Desktop Settings & Extensions Installation
 
-source "$(dirname "$0")/../../utils.sh"
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+source "$SCRIPT_DIR/../../utils/utils.sh"
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 restore_gnome_settings() {
@@ -23,7 +24,7 @@ restore_gnome_settings() {
 
 install_themes_and_icons() {
     print_header "INSTALLING CUSTOM THEMES & ICONS"
-    
+
     local THEMES_DIR="$SCRIPT_DIR/themes"
     local ICONS_DIR="$SCRIPT_DIR/icons"
 
@@ -46,12 +47,12 @@ install_themes_and_icons() {
 
 install_gnome_extensions() {
     print_header "INSTALLING GNOME EXTENSIONS"
-    
+
     if ! command_exists gnome-shell; then
         print_error "GNOME Shell not detected. Skipping GNOME extensions."
         return 1
     fi
-    
+
     # Install GNOME Tweaks
     if ! command_exists gnome-tweaks && confirm "Install GNOME Tweaks and theme support?"; then
         print_step "Installing GNOME Tweaks..."
@@ -68,7 +69,7 @@ install_gnome_extensions() {
         esac
         print_success "GNOME Tweaks installed"
     fi
-    
+
     # Install gnome-extensions-cli (gext) if not present
     if ! command_exists gext; then
         print_step "Installing gnome-extensions-cli via pipx..."
@@ -97,7 +98,7 @@ install_gnome_extensions() {
     else
         print_warning "No list.txt found. Skipping extension installation."
     fi
-    
+
     print_success "GNOME extensions processed."
 }
 

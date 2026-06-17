@@ -4,7 +4,8 @@
 # Shell Configuration & Improvements
 
 
-source "$(dirname "$0")/../utils.sh"
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+source "$SCRIPT_DIR/../utils/utils.sh"
 
 install_zsh() {
     print_header "ZSH"
@@ -51,24 +52,26 @@ install_asdf() {
 
 
 setup_shell() {
+    SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
     if confirm "Install Zsh and set as default shell?"; then
         install_zsh
     fi
-    
+
     if confirm "Install Oh-My-Zsh?"; then
         install_oh_my_zsh
     fi
-    
+
     if confirm "Install Zsh plugins via apt?"; then
-        bash "$(dirname "$0")/zsh-plugins.sh"
+        bash "$SCRIPT_DIR/zsh-plugins.sh"
     fi
-    
+
     if confirm "Install ASDF version manager?"; then
         install_asdf
     fi
-    
+
     if confirm "Install shell extras (starship, zoxide, lazygit, etc.)?"; then
-        bash "$(dirname "$0")/extras.sh"
+        bash "$SCRIPT_DIR/extras.sh"
     fi
 }
 

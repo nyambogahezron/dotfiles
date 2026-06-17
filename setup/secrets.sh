@@ -1,7 +1,10 @@
 #!/bin/bash
 set -euo pipefail
 
-source "$(dirname "$0")/utils/utils.sh"
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+source "$SCRIPT_DIR/utils/utils.sh"
+
+DOTFILES_DIR="$(cd "$SCRIPT_DIR/.." && pwd)"
 
 SECRETS_DIR="${XDG_CONFIG_HOME:-$HOME/.config}/age"
 KEY_FILE="$SECRETS_DIR/dotfiles-key.txt"
@@ -10,6 +13,12 @@ GITCONFIG="$HOME/.gitconfig"
 
 setup_secrets() {
     print_header "SECRETS MANAGEMENT (age)"
+
+    # Install age for key generation and transparent encryption filters
+    if ! command_exists age-keygen; then
+        print_step "Installing age..."
+        install_package "age" 2>/dev/null || print_warning "Could not install age automatically. Secrets setup may be incomplete."
+    fi
 
     # Install git-crypt if possible
     if ! command_exists git-crypt; then
@@ -21,6 +30,10 @@ setup_secrets() {
     mkdir -p "$SECRETS_DIR"
     if [[ ! -f "$KEY_FILE" ]]; then
         print_step "Generating age key pair..."
+        if ! command_exists age-keygen; then
+            print_error "age-keygen not found. Install age and retry secrets setup."
+            return 1
+        fi
         age-keygen -o "$KEY_FILE" 2>/dev/null
         age-keygen -y "$KEY_FILE" > "$PUB_FILE"
         chmod 600 "$KEY_FILE"
@@ -48,10 +61,10 @@ GITEOF
     fi
 
     # Initialize git-crypt in repo if installed and not already initialized
-    if command_exists git-crypt && [[ -f "$HOME/dotfiles/.gitattributes" ]]; then
-        if [[ ! -f "$HOME/dotfiles/.git/git-crypt" ]]; then
+    if command_exists git-crypt && [[ -f "$DOTFILES_DIR/.gitattributes" ]]; then
+        if [[ ! -f "$DOTFILES_DIR/.git/git-crypt" ]]; then
             print_step "Initializing git-crypt in dotfiles repo..."
-            (cd "$HOME/dotfiles" && git-crypt init)
+            (cd "$DOTFILES_DIR" && git-crypt init)
             git-crypt export-key "$SECRETS_DIR/dotfiles-git-crypt-key"
             print_success "git-crypt initialized. Key exported to $SECRETS_DIR/dotfiles-git-crypt-key"
             print_warning "BACK THIS UP: $SECRETS_DIR/dotfiles-git-crypt-key"

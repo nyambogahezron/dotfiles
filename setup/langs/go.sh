@@ -4,20 +4,21 @@
 # Go Installation
 
 
-source "$(dirname "$0")/../utils.sh"
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+source "$SCRIPT_DIR/../utils/utils.sh"
 
 install_go() {
     print_header "INSTALLING GO"
-    
+
     if command_exists go; then
         print_warning "Go already installed ($(go version))"
         if ! confirm "Reinstall Go?"; then
             return
         fi
     fi
-    
+
     print_step "Installing Go..."
-    
+
     # Try package manager first
     if install_package "golang"; then
         print_success "Go installed via package manager"
@@ -29,7 +30,7 @@ install_go() {
         sudo rm -rf /usr/local/go
         sudo tar -C /usr/local -xzf "go${GO_VERSION}.linux-amd64.tar.gz"
         rm "go${GO_VERSION}.linux-amd64.tar.gz"
-        
+
         # Add to PATH
         if ! grep -q "/usr/local/go/bin" "$HOME/.bashrc"; then
             echo 'export PATH=$PATH:/usr/local/go/bin' >> "$HOME/.bashrc"
@@ -38,7 +39,7 @@ install_go() {
             echo 'export PATH=$PATH:/usr/local/go/bin' >> "$HOME/.zshrc"
         fi
     fi
-    
+
     # Set GOPATH
     if ! grep -q "GOPATH" "$HOME/.bashrc"; then
         echo 'export GOPATH=$HOME/go' >> "$HOME/.bashrc"
@@ -48,7 +49,7 @@ install_go() {
         echo 'export GOPATH=$HOME/go' >> "$HOME/.zshrc"
         echo 'export PATH=$PATH:$GOPATH/bin' >> "$HOME/.zshrc"
     fi
-    
+
     print_success "Go installed"
 }
 

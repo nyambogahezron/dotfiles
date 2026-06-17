@@ -4,11 +4,12 @@
 # Python Installation
 
 
-source "$(dirname "$0")/../utils.sh"
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+source "$SCRIPT_DIR/../utils/utils.sh"
 
 install_python() {
     print_header "INSTALLING PYTHON"
-    
+
     if command_exists python3; then
         print_warning "Python already installed ($(python3 --version))"
         if ! confirm "Reinstall Python packages?"; then
@@ -20,11 +21,11 @@ install_python() {
         install_package "python3-pip"
         install_package "python3-venv"
     fi
-    
+
     # Upgrade pip
     print_step "Upgrading pip..."
     python3 -m pip install --user --upgrade pip
-    
+
     # Install useful Python packages
     print_step "Installing Python development packages..."
     python3 -m pip install --user \
@@ -40,7 +41,7 @@ install_python() {
         numpy \
         pandas \
         requests
-    
+
     print_success "Python setup complete: $(python3 --version)"
 }
 

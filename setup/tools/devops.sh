@@ -2,11 +2,12 @@
 
 # DevOps & Infrastructure Tools Installation
 
-source "$(dirname "$0")/../utils.sh"
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+source "$SCRIPT_DIR/../utils/utils.sh"
 
 install_devops_tools() {
     print_header "INSTALLING DEVOPS TOOLS"
-    
+
     # 1. HashiCorp Tools (Terraform & Vault)
     if (! command_exists terraform || ! command_exists vault) && confirm "Install HashiCorp Tools (Terraform & Vault)?"; then
         print_step "Installing HashiCorp repository (Terraform, Vault)..."

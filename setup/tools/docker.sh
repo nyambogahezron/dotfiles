@@ -4,25 +4,26 @@
 # Docker & Docker Compose Installation
 
 
-source "$(dirname "$0")/../utils.sh"
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+source "$SCRIPT_DIR/../utils/utils.sh"
 
 install_docker() {
     print_header "INSTALLING DOCKER"
-    
+
     if command_exists docker; then
         print_warning "Docker already installed ($(docker --version))"
         if ! confirm "Reinstall Docker?"; then
             return
         fi
     fi
-    
+
     case $OS in
         ubuntu|debian|linuxmint|pop)
             print_step "Installing Docker via official script..."
             curl -fsSL https://get.docker.com -o get-docker.sh
             sudo sh get-docker.sh
             rm get-docker.sh
-            
+
             # Add user to docker group
             sudo usermod -aG docker "$USER"
             print_warning "You need to log out and back in for docker group membership to take effect"
@@ -52,7 +53,7 @@ install_docker() {
             return
             ;;
     esac
-    
+
     # Install docker-compose (V2 Plugin)
     if ! docker compose version &>/dev/null && confirm "Install Docker Compose V2 Plugin?"; then
         print_step "Installing Docker Compose V2 Plugin..."
@@ -64,7 +65,7 @@ install_docker() {
         sudo ln -sf $DOCKER_CONFIG/cli-plugins/docker-compose /usr/local/bin/docker-compose
         print_success "Docker Compose V2 installed: $(docker compose version)"
     fi
-    
+
     print_success "Docker installation complete"
 }
 

@@ -5,11 +5,12 @@
 # Note: Neovim configuration is managed separately via the main setup UI
 
 
-source "$(dirname "$0")/../utils.sh"
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+source "$SCRIPT_DIR/../utils/utils.sh"
 
 setup_nvim() {
     print_header "INSTALLING NEOVIM"
-    
+
     # Check if nvim is installed
     if ! command_exists nvim; then
         print_step "Installing Neovim package..."
@@ -18,7 +19,7 @@ setup_nvim() {
     else
         print_success "Neovim is already installed"
     fi
-    
+
     print_step "To setup Neovim configuration:"
     echo "  • Use the graphical setup UI: ./install.sh --gui"
     echo "  • Select 'Neovim Configuration' option"

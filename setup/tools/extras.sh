@@ -4,7 +4,8 @@ set -euo pipefail
 # Extra CLI tools referenced in dotfiles (aliases.zsh / functions.zsh)
 # These require custom install methods beyond apt.
 
-source "$(dirname "$0")/../utils/utils.sh"
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+source "$SCRIPT_DIR/../utils/utils.sh"
 
 # ── lazygit ──────────────────────────────────────────────────────────────────
 install_lazygit() {
@@ -109,7 +110,7 @@ install_bun() {
 
     print_step "Installing bun..."
     curl -fsSL https://bun.sh/install | bash
-    
+
     # Check if installed (usually installed to ~/.bun/bin/bun)
     if [ -f "$HOME/.bun/bin/bun" ] || command_exists bun; then
         print_success "bun installed"
@@ -125,7 +126,7 @@ install_opencode() {
 
     print_step "Installing opencode..."
     curl -fsSL https://opencode.ai/install | bash
-    
+
     if [ -f "$HOME/.local/bin/opencode" ] || command_exists opencode; then
         print_success "opencode installed"
     else
@@ -209,7 +210,7 @@ install_mkcert() {
         fedora) install_package "nss-tools" ;;
         arch|manjaro) install_package "nss" ;;
     esac
-    
+
     local version
     version=$(curl -s https://api.github.com/repos/FiloSottile/mkcert/releases/latest | grep '"tag_name"' | sed 's/.*"v\([^"]*\)".*/\1/')
     curl -sL "https://github.com/FiloSottile/mkcert/releases/download/v${version}/mkcert-v${version}-linux-amd64" -o /tmp/mkcert
@@ -226,7 +227,7 @@ install_tealdeer() {
     curl -sL "https://github.com/dbrgn/tealdeer/releases/latest/download/tldr-linux-x86_64-musl" -o /tmp/tldr
     sudo install /tmp/tldr /usr/local/bin/tldr
     rm -f /tmp/tldr
-    
+
     if command_exists tldr; then
         tldr --update
         print_success "tealdeer installed and cache updated"

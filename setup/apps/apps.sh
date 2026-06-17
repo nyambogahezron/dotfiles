@@ -2,18 +2,19 @@
 
 # Applications Installation (Browsers, Tools, etc.)
 
-source "$(dirname "$0")/../utils.sh"
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+source "$SCRIPT_DIR/../utils/utils.sh"
 
 install_terminal() {
     print_header "INSTALLING TERMINAL EMULATOR"
-    
+
     if command_exists kitty; then
         print_warning "Kitty already installed"
         return
     fi
-    
+
     print_step "Installing Kitty terminal..."
-    
+
     case $OS in
         ubuntu|debian|linuxmint|pop)
             install_package "kitty"
@@ -32,13 +33,13 @@ install_terminal() {
             curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin
             ;;
     esac
-    
+
     print_success "Kitty terminal installed"
 }
 
 install_browsers() {
     print_header "INSTALLING BROWSERS"
-    
+
     # Google Chrome
     if ! command_exists google-chrome && ! command_exists google-chrome-stable; then
         if confirm "Install Google Chrome?"; then
@@ -62,7 +63,7 @@ install_browsers() {
             print_success "Google Chrome installed"
         fi
     fi
-    
+
     # Firefox
     if ! command_exists firefox; then
         if confirm "Install Firefox?"; then
@@ -71,7 +72,7 @@ install_browsers() {
             print_success "Firefox installed"
         fi
     fi
-    
+
     # Brave Browser
     if ! command_exists brave-browser && confirm "Install Brave Browser?"; then
         print_step "Installing Brave Browser..."
@@ -92,7 +93,7 @@ install_browsers() {
 
 install_communication_apps() {
     print_header "INSTALLING COMMUNICATION APPS"
-    
+
     # Slack
     if ! command_exists slack && confirm "Install Slack?"; then
         print_step "Installing Slack..."
@@ -112,7 +113,7 @@ install_communication_apps() {
         esac
         print_success "Slack installed"
     fi
-    
+
     # Discord
     if ! command_exists discord && confirm "Install Discord?"; then
         print_step "Installing Discord..."
@@ -136,13 +137,13 @@ install_communication_apps() {
 
 install_media_apps() {
     print_header "INSTALLING MEDIA APPLICATIONS"
-    
+
     local apps=(
         "vlc"           # Media player
         "gimp"          # Image editor
         "obs-studio"    # Screen recording
     )
-    
+
     for app in "${apps[@]}"; do
         if ! command_exists "$app" && confirm "Install $app?"; then
             print_step "Installing $app..."
@@ -153,7 +154,7 @@ install_media_apps() {
 
 install_productivity_apps() {
     print_header "INSTALLING PRODUCTIVITY APPS"
-    
+
     # Postman
     if ! command_exists postman && confirm "Install Postman?"; then
         print_step "Installing Postman..."
@@ -231,7 +232,7 @@ install_productivity_apps() {
 
 install_vpn_tools() {
     print_header "INSTALLING VPN TOOLS"
-    
+
     # OpenVPN
     if ! command_exists openvpn && confirm "Install OpenVPN?"; then
         print_step "Installing OpenVPN..."

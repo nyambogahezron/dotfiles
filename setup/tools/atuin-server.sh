@@ -1,7 +1,8 @@
 #!/bin/bash
 set -euo pipefail
 
-source "$(dirname "$0")/../utils/utils.sh"
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+source "$SCRIPT_DIR/../utils/utils.sh"
 
 setup_atuin_server() {
     print_header "ATUIN SERVER"

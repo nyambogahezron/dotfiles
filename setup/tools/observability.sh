@@ -2,18 +2,19 @@
 
 # Observability Stack Setup (Docker Compose based)
 
-source "$(dirname "$0")/../utils.sh"
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+source "$SCRIPT_DIR/../utils/utils.sh"
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 DOTFILES_DIR="$(cd "$SCRIPT_DIR/../.." && pwd)"
 
 install_observability() {
     print_header "SETTING UP OBSERVABILITY STACK"
-    
+
     local OBS_DIR="$DOTFILES_DIR/observability"
     mkdir -p "$OBS_DIR"
-    
+
     print_step "Scaffolding docker-compose.yml for Observability tools..."
-    
+
     cat << 'EOF' > "$OBS_DIR/docker-compose.yml"
 version: '3.8'
 
