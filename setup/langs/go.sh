@@ -12,7 +12,7 @@ install_go() {
 
     if command_exists go; then
         print_warning "Go already installed ($(go version))"
-        if ! confirm "Reinstall Go?"; then
+        if ! confirm_reinstall "Go"; then
             return
         fi
     fi

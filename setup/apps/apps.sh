@@ -41,7 +41,9 @@ install_browsers() {
     print_header "INSTALLING BROWSERS"
 
     # Google Chrome
-    if ! command_exists google-chrome && ! command_exists google-chrome-stable; then
+    if command_exists google-chrome || command_exists google-chrome-stable; then
+        print_success "Google Chrome already installed"
+    else
         if confirm "Install Google Chrome?"; then
             print_step "Installing Google Chrome..."
             case $OS in
@@ -65,7 +67,9 @@ install_browsers() {
     fi
 
     # Firefox
-    if ! command_exists firefox; then
+    if command_exists firefox; then
+        print_success "Firefox already installed"
+    else
         if confirm "Install Firefox?"; then
             print_step "Installing Firefox..."
             install_package "firefox"
@@ -74,7 +78,9 @@ install_browsers() {
     fi
 
     # Brave Browser
-    if ! command_exists brave-browser && confirm "Install Brave Browser?"; then
+    if command_exists brave-browser; then
+        print_success "Brave Browser already installed"
+    elif confirm "Install Brave Browser?"; then
         print_step "Installing Brave Browser..."
         case $OS in
             ubuntu|debian|linuxmint|pop)
@@ -95,7 +101,9 @@ install_communication_apps() {
     print_header "INSTALLING COMMUNICATION APPS"
 
     # Slack
-    if ! command_exists slack && confirm "Install Slack?"; then
+    if command_exists slack; then
+        print_success "Slack already installed"
+    elif confirm "Install Slack?"; then
         print_step "Installing Slack..."
         case $OS in
             ubuntu|debian|linuxmint|pop)
@@ -115,7 +123,9 @@ install_communication_apps() {
     fi
 
     # Discord
-    if ! command_exists discord && confirm "Install Discord?"; then
+    if command_exists discord; then
+        print_success "Discord already installed"
+    elif confirm "Install Discord?"; then
         print_step "Installing Discord..."
         case $OS in
             ubuntu|debian|linuxmint|pop)
@@ -145,7 +155,9 @@ install_media_apps() {
     )
 
     for app in "${apps[@]}"; do
-        if ! command_exists "$app" && confirm "Install $app?"; then
+        if command_exists "$app"; then
+            print_success "$app already installed"
+        elif confirm "Install $app?"; then
             print_step "Installing $app..."
             install_package "$app" || print_warning "Could not install $app"
         fi
@@ -156,7 +168,9 @@ install_productivity_apps() {
     print_header "INSTALLING PRODUCTIVITY APPS"
 
     # Postman
-    if ! command_exists postman && confirm "Install Postman?"; then
+    if command_exists postman; then
+        print_success "Postman already installed"
+    elif confirm "Install Postman?"; then
         print_step "Installing Postman..."
         case $OS in
             ubuntu|debian|linuxmint|pop)
@@ -173,7 +187,9 @@ install_productivity_apps() {
     fi
 
     # Obsidian
-    if ! command_exists obsidian && confirm "Install Obsidian?"; then
+    if command_exists obsidian; then
+        print_success "Obsidian already installed"
+    elif confirm "Install Obsidian?"; then
         print_step "Installing Obsidian..."
         case $OS in
             ubuntu|debian|linuxmint|pop|fedora|arch|manjaro)
@@ -191,7 +207,9 @@ install_productivity_apps() {
     fi
 
     # Anytype
-    if ! command_exists anytype && confirm "Install Anytype?"; then
+    if command_exists anytype; then
+        print_success "Anytype already installed"
+    elif confirm "Install Anytype?"; then
         print_step "Installing Anytype..."
         case $OS in
             ubuntu|debian|linuxmint|pop|fedora|arch|manjaro)
@@ -208,7 +226,9 @@ install_productivity_apps() {
     fi
 
     # DBeaver
-    if ! command_exists dbeaver && ! command_exists dbeaver-ce && confirm "Install DBeaver CE?"; then
+    if command_exists dbeaver || command_exists dbeaver-ce; then
+        print_success "DBeaver CE already installed"
+    elif confirm "Install DBeaver CE?"; then
         print_step "Installing DBeaver CE..."
         case $OS in
             ubuntu|debian|linuxmint|pop)
@@ -234,14 +254,18 @@ install_vpn_tools() {
     print_header "INSTALLING VPN TOOLS"
 
     # OpenVPN
-    if ! command_exists openvpn && confirm "Install OpenVPN?"; then
+    if command_exists openvpn; then
+        print_success "OpenVPN already installed"
+    elif confirm "Install OpenVPN?"; then
         print_step "Installing OpenVPN..."
         install_package "openvpn"
         print_success "OpenVPN installed"
     fi
 
     # ProtonVPN
-    if ! command_exists protonvpn-cli && confirm "Install ProtonVPN?"; then
+    if command_exists protonvpn-cli; then
+        print_success "ProtonVPN already installed"
+    elif confirm "Install ProtonVPN?"; then
         print_step "Installing ProtonVPN..."
         case $OS in
             ubuntu|debian|linuxmint|pop)
@@ -268,6 +292,9 @@ install_vpn_tools() {
         print_success "ProtonVPN installed"
     fi
 
+}
+
+install_all_apps() {
     install_terminal
     install_browsers
     install_communication_apps

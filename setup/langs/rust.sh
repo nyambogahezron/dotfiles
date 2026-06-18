@@ -12,7 +12,7 @@ install_rust() {
 
     if command_exists rustc; then
         print_warning "Rust already installed ($(rustc --version))"
-        if ! confirm "Reinstall Rust?"; then
+        if ! confirm_reinstall "Rust"; then
             return
         fi
     fi

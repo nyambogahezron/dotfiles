@@ -12,7 +12,7 @@ install_nodejs() {
 
     if command_exists node; then
         print_warning "Node.js already installed ($(node --version))"
-        if ! confirm "Reinstall Node.js?"; then
+        if ! confirm_reinstall "Node.js"; then
             return
         fi
     fi

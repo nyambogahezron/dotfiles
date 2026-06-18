@@ -12,7 +12,7 @@ install_python() {
 
     if command_exists python3; then
         print_warning "Python already installed ($(python3 --version))"
-        if ! confirm "Reinstall Python packages?"; then
+        if ! confirm_reinstall "Python packages"; then
             return
         fi
     else

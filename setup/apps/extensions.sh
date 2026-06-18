@@ -77,21 +77,31 @@ install_vscode_extensions() {
     )
 
     print_step "Installing extensions..."
+    local installed_extensions
+    installed_extensions="$(code --list-extensions 2>/dev/null || true)"
     local installed=0
+    local skipped=0
     local failed=0
 
     for ext in "${extensions[@]}"; do
+        if printf '%s\n' "$installed_extensions" | grep -Fxq "$ext"; then
+            print_success "  $ext already installed"
+            ((skipped+=1))
+            continue
+        fi
+
         print_step "  → $ext"
-        if code --install-extension "$ext" --force 2>/dev/null; then
-            ((installed++))
+        if code --install-extension "$ext" 2>/dev/null; then
+            ((installed+=1))
         else
-            ((failed++))
+            ((failed+=1))
             print_warning "    Failed to install $ext"
         fi
     done
 
     echo ""
     print_success "Installed $installed extensions"
+    print_success "Skipped $skipped already installed extensions"
     if [ $failed -gt 0 ]; then
         print_warning "$failed extensions failed to install"
     fi

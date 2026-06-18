@@ -6,6 +6,9 @@
 #   --help       Show detailed help message
 #   --minimal    Only install essential tools
 #   --full       Install everything
+#   --yes        Answer yes to installation prompts
+#   --force-reinstall
+#                Reinstall tools that are already present
 #   --languages  Install programming languages only
 #   --apps       Install applications only
 
@@ -37,6 +40,8 @@ OPTIONS:
 
     -h, --help                  Show this comprehensive help message
     -v, --version               Show version information
+    -y, --yes                   Answer yes to install prompts
+    --force-reinstall           Reinstall tools even when they are detected
 
 EOF
 }
@@ -157,13 +162,12 @@ install_fonts_module() {
 setup_dotfiles() {
     print_header "DOTFILES CONFIGURATION"
 
-    # Get the dotfiles directory (2 levels up from scripts/dev-env-setup)
-    DOTFILES_DIR="$(cd "$SCRIPT_DIR/../.." && pwd)"
+    DOTFILES_DIR="$(cd "$SCRIPT_DIR/.." && pwd)"
 
     # Run main dotfiles install script
-    if [ -f "$DOTFILES_DIR/install.sh" ]; then
+    if [ -f "$DOTFILES_DIR/setup/install.sh" ]; then
         print_step "Running dotfiles installer..."
-        bash "$DOTFILES_DIR/install.sh"
+        (cd "$DOTFILES_DIR" && bash "$DOTFILES_DIR/setup/install.sh")
     fi
 
     # Setup VS Code configuration
@@ -184,20 +188,49 @@ setup_dotfiles() {
 # Main Installation Flow
 
 main() {
-    # Parse command line arguments FIRST - before any output
-    case "${1:-}" in
-        -h|--help)
-            show_help
-            exit 0
-            ;;
-        -v|--version)
-            echo "Development Environment Setup Script v1.0.0"
-            echo "Part of my-dot-files by nyambogahezron"
-            exit 0
-            ;;
-    esac
+    INSTALL_MODE="interactive"
 
-    clear
+    while [[ $# -gt 0 ]]; do
+        case "$1" in
+            -h|--help)
+                show_help
+                exit 0
+                ;;
+            -v|--version)
+                echo "Development Environment Setup Script v1.0.0"
+                echo "Part of my-dot-files by nyambogahezron"
+                exit 0
+                ;;
+            -y|--yes)
+                export ASSUME_YES=1
+                ;;
+            --force-reinstall)
+                export FORCE_REINSTALL=1
+                ;;
+            --minimal)
+                INSTALL_MODE="minimal"
+                ;;
+            --full|--all)
+                INSTALL_MODE="full"
+                export ASSUME_YES=1
+                ;;
+            --languages)
+                INSTALL_MODE="languages"
+                ;;
+            --apps)
+                INSTALL_MODE="apps"
+                ;;
+            *)
+                print_error "Unknown option: $1"
+                echo ""
+                echo "Run 'bash main.sh --help' for usage information."
+                exit 1
+                ;;
+        esac
+        shift
+    done
+
+    clear 2>/dev/null || true
 
     print_header "DEVELOPMENT ENVIRONMENT SETUP"
 
@@ -232,34 +265,6 @@ main() {
     if confirm "Update system packages?"; then
         update_system
     fi
-
-    # Determine installation mode
-    INSTALL_MODE="interactive"
-
-    case "${1:-}" in
-        --minimal)
-            INSTALL_MODE="minimal"
-            ;;
-        --full)
-            INSTALL_MODE="full"
-            ;;
-        --languages)
-            INSTALL_MODE="languages"
-            ;;
-        --apps)
-            INSTALL_MODE="apps"
-            ;;
-        "")
-            # No arguments, use interactive mode
-            INSTALL_MODE="interactive"
-            ;;
-        *)
-            print_error "Unknown option: $1"
-            echo ""
-            echo "Run 'bash main.sh --help' for usage information."
-            exit 1
-            ;;
-    esac
 
     # Execute based on mode
     case $INSTALL_MODE in

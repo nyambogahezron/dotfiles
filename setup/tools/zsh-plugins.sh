@@ -7,6 +7,11 @@ source "$SCRIPT_DIR/../utils/utils.sh"
 install_zsh_plugins() {
     print_header "ZSH PLUGINS"
 
+    if [[ "$OS" != "ubuntu" && "$OS" != "debian" && "$OS" != "linuxmint" && "$OS" != "pop" ]]; then
+        print_warning "zsh plugin package checks are only configured for apt-based systems"
+        return
+    fi
+
     local plugins=(
         zsh-autosuggestions
         zsh-syntax-highlighting
@@ -28,4 +33,6 @@ install_zsh_plugins() {
         print_warning "apt install failed — install manually: sudo apt install ${missing[*]}"
 }
 
-install_zsh_plugins
+if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
+    install_zsh_plugins
+fi

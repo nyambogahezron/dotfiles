@@ -12,7 +12,7 @@ install_docker() {
 
     if command_exists docker; then
         print_warning "Docker already installed ($(docker --version))"
-        if ! confirm "Reinstall Docker?"; then
+        if ! confirm_reinstall "Docker"; then
             return
         fi
     fi

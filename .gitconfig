@@ -1,13 +1,13 @@
 # ~/.gitconfig 
 
 [user]
-    name  = Hezron Nyamboga
-    email = hezzyn1@gmail.com
+	name = nyambogahezron
+	email = hezzyn1@gmail.com
 
 
 
 [core]
-    editor       = nvim
+	editor = vim
     pager        = delta
     autocrlf     = input
     whitespace   = fix,trailing-space,cr-at-eol
@@ -15,10 +15,10 @@
     hooksPath    = ~/.githooks
 
 [init]
-    defaultBranch = main
+	defaultBranch = main
 
 [color]
-    ui = auto
+	ui = auto
 
 #  Delta (syntax-highlighted diffs) 
 [interactive]
@@ -35,11 +35,11 @@
 
 [diff]
     colorMoved = default
-    tool       = nvimdiff
+	tool = vimdiff
 
 [merge]
     conflictstyle = diff3
-    tool          = nvimdiff
+	tool = vimdiff
 
 [mergetool "nvimdiff"]
     cmd = nvim -d $LOCAL $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
@@ -60,22 +60,23 @@
 
 #  Aliases ─
 [alias]
-    st   = status -sb
-    co   = checkout
-    br   = branch -vv
-    ci   = commit
+	st = status
+	co = checkout
+	br = branch
+	ci = commit
     cp   = cherry-pick
     lg   = log --oneline --graph --decorate --all
     ll   = log --pretty=format:"%C(yellow)%h%Creset %C(cyan)%an%Creset %C(green)%ar%Creset %s"
-    last = log -1 HEAD --stat
+	last = log -1 HEAD
     df   = diff
     dfs  = diff --staged
-    unstage = reset HEAD --
+	unstage = reset HEAD --
     undo    = reset --soft HEAD~1
     save    = stash push -m
     pop     = stash pop
     pf      = push --force-with-lease
     aliases = config --get-regexp alias
+	visual = log --oneline --graph --decorate --all
 
 #  URL shortcuts 
 [url "git@github.com:"]

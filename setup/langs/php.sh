@@ -12,7 +12,7 @@ install_php() {
 
     if command_exists php; then
         print_warning "PHP already installed ($(php --version | head -n 1))"
-        if ! confirm "Reinstall PHP?"; then
+        if ! confirm_reinstall "PHP"; then
             return
         fi
     fi

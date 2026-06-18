@@ -25,4 +25,6 @@ install_television() {
     fi
 }
 
-install_television
+if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
+    install_television
+fi

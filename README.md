@@ -24,6 +24,14 @@ cd ~/Projects/dotfiles
 ./install.sh
 ```
 
+To install the full development environment from one script:
+
+```bash
+./install-all.sh
+```
+
+The full installer checks for existing tools before installing them and skips detected installs by default. Use `./install-all.sh --force-reinstall` only when you explicitly want to reinstall detected runtimes/tools.
+
 ### Setup Scripts
 
 The `setup/` directory is organized by purpose:
@@ -31,7 +39,7 @@ The `setup/` directory is organized by purpose:
 - `setup/langs/`: Programming language installers and language-specific tooling.
 - `setup/apps/`: Applications, fonts, Neovim, and GNOME helpers.
 - `setup/tools/`: Core tools, shell setup, Git, and Docker.
-- `setup/utils.sh`: Shared helpers used by the setup scripts.
+- `setup/utils/`: Shared helpers used by the setup scripts.
 - `setup/main.sh`: Interactive entry point that can install a full environment or selected groups.
 
 ## Included Tools & Applications

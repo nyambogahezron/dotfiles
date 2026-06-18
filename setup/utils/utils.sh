@@ -64,9 +64,22 @@ check_sudo() {
 
 # Ask for confirmation
 confirm() {
+    if [[ "${ASSUME_YES:-0}" == "1" ]]; then
+        return 0
+    fi
+
     read -p "$1 [y/N] " -n 1 -r
     echo
     [[ $REPLY =~ ^[Yy]$ ]]
+}
+
+confirm_reinstall() {
+    if [[ "${FORCE_REINSTALL:-0}" != "1" ]]; then
+        print_warning "$1 already installed; skipping"
+        return 1
+    fi
+
+    confirm "Reinstall $1?"
 }
 
 
@@ -129,23 +142,31 @@ install_package() {
 
     case $OS in
         ubuntu|debian|linuxmint|pop)
-            if ! dpkg -l | grep -q "^ii  $package "; then
-                sudo apt install -y "$package" 2>/dev/null
+            if dpkg -l | grep -q "^ii  $package "; then
+                print_success "$package already installed"
+            else
+                sudo apt install -y "$package"
             fi
             ;;
         fedora)
-            if ! rpm -q "$package" &>/dev/null; then
-                sudo dnf install -y "$package" 2>/dev/null
+            if rpm -q "$package" &>/dev/null; then
+                print_success "$package already installed"
+            else
+                sudo dnf install -y "$package"
             fi
             ;;
         arch|manjaro)
-            if ! pacman -Q "$package" &>/dev/null; then
-                sudo pacman -S --noconfirm "$package" 2>/dev/null
+            if pacman -Q "$package" &>/dev/null; then
+                print_success "$package already installed"
+            else
+                sudo pacman -S --noconfirm "$package"
             fi
             ;;
         macos)
-            if ! brew list "$package" &>/dev/null; then
-                brew install "$package" 2>/dev/null
+            if brew list "$package" &>/dev/null; then
+                print_success "$package already installed"
+            else
+                brew install "$package"
             fi
             ;;
     esac
