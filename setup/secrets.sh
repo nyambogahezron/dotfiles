@@ -82,4 +82,6 @@ GITEOF
     echo "  Files are encrypted in the repo but decrypted on checkout"
 }
 
-setup_secrets
+if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
+    setup_secrets
+fi

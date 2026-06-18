@@ -11,15 +11,10 @@ install_python() {
     print_header "INSTALLING PYTHON"
 
     if command_exists python3; then
-        print_warning "Python already installed ($(python3 --version))"
-        if ! confirm_reinstall "Python packages"; then
-            return
-        fi
+        print_success "Python already installed ($(python3 --version))"
     else
         print_step "Installing Python..."
-        install_package "python3"
-        install_package "python3-pip"
-        install_package "python3-venv"
+        install_packages "python3" "python3-pip" "python3-venv"
     fi
 
     # Upgrade pip
@@ -27,8 +22,7 @@ install_python() {
     python3 -m pip install --user --upgrade pip
 
     # Install useful Python packages
-    print_step "Installing Python development packages..."
-    python3 -m pip install --user \
+    install_python_user_packages \
         pipenv \
         virtualenv \
         black \

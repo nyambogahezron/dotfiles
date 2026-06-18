@@ -11,32 +11,29 @@ install_go() {
     print_header "INSTALLING GO"
 
     if command_exists go; then
-        print_warning "Go already installed ($(go version))"
-        if ! confirm_reinstall "Go"; then
-            return
-        fi
-    fi
-
-    print_step "Installing Go..."
-
-    # Try package manager first
-    if install_package "golang"; then
-        print_success "Go installed via package manager"
+        print_success "Go already installed ($(go version))"
     else
-        # Fallback: Install latest Go manually
-        GO_VERSION="1.21.5"
-        print_step "Installing Go ${GO_VERSION} manually..."
-        wget -q "https://go.dev/dl/go${GO_VERSION}.linux-amd64.tar.gz"
-        sudo rm -rf /usr/local/go
-        sudo tar -C /usr/local -xzf "go${GO_VERSION}.linux-amd64.tar.gz"
-        rm "go${GO_VERSION}.linux-amd64.tar.gz"
+        print_step "Installing Go..."
 
-        # Add to PATH
-        if ! grep -q "/usr/local/go/bin" "$HOME/.bashrc"; then
-            echo 'export PATH=$PATH:/usr/local/go/bin' >> "$HOME/.bashrc"
-        fi
-        if [ -f "$HOME/.zshrc" ] && ! grep -q "/usr/local/go/bin" "$HOME/.zshrc"; then
-            echo 'export PATH=$PATH:/usr/local/go/bin' >> "$HOME/.zshrc"
+        # Try package manager first
+        if install_package "golang"; then
+            print_success "Go installed via package manager"
+        else
+            # Fallback: Install latest Go manually
+            GO_VERSION="1.21.5"
+            print_step "Installing Go ${GO_VERSION} manually..."
+            wget -q "https://go.dev/dl/go${GO_VERSION}.linux-amd64.tar.gz"
+            sudo rm -rf /usr/local/go
+            sudo tar -C /usr/local -xzf "go${GO_VERSION}.linux-amd64.tar.gz"
+            rm "go${GO_VERSION}.linux-amd64.tar.gz"
+
+            # Add to PATH
+            if ! grep -q "/usr/local/go/bin" "$HOME/.bashrc"; then
+                echo 'export PATH=$PATH:/usr/local/go/bin' >> "$HOME/.bashrc"
+            fi
+            if [ -f "$HOME/.zshrc" ] && ! grep -q "/usr/local/go/bin" "$HOME/.zshrc"; then
+                echo 'export PATH=$PATH:/usr/local/go/bin' >> "$HOME/.zshrc"
+            fi
         fi
     fi
 
@@ -50,7 +47,7 @@ install_go() {
         echo 'export PATH=$PATH:$GOPATH/bin' >> "$HOME/.zshrc"
     fi
 
-    print_success "Go installed"
+    print_success "Go setup complete"
 }
 
 # Run if executed directly

@@ -11,7 +11,6 @@ openbar@neuromorph
 color-picker@tuberry
 extension-list@tu.berry
 tilingshell@ferrarodomenico.com
-soundbar@karthickk.gitlab.com
 rounded-window-corners@fxgn
 Rounded_Corners@lennart-k
 PrivacyMenu@stuarthayhurst
@@ -22,4 +21,3 @@ just-perfection-desktop@just-perfection
 in-picture@filiprund.cz
 gsconnect@andyholmes.github.io
 top-bar-organizer@julian.gse.jsts.xyz
-

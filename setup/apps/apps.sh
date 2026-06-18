@@ -8,7 +8,7 @@ source "$SCRIPT_DIR/../utils/utils.sh"
 install_terminal() {
     print_header "INSTALLING TERMINAL EMULATOR"
 
-    if command_exists kitty; then
+    if command_exists kitty || [ -x "$HOME/.local/kitty.app/bin/kitty" ]; then
         print_warning "Kitty already installed"
         return
     fi
@@ -16,21 +16,22 @@ install_terminal() {
     print_step "Installing Kitty terminal..."
 
     case $OS in
-        ubuntu|debian|linuxmint|pop)
-            install_package "kitty"
-            ;;
-        fedora)
-            sudo dnf install -y kitty
-            ;;
-        arch|manjaro)
-            sudo pacman -S --noconfirm kitty
+        ubuntu|debian|linuxmint|pop|fedora|arch|manjaro)
+            curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin
+            mkdir -p "$HOME/.local/bin"
+            if [ -x "$HOME/.local/kitty.app/bin/kitty" ]; then
+                ln -sf "$HOME/.local/kitty.app/bin/kitty" "$HOME/.local/bin/kitty"
+            fi
             ;;
         macos)
             brew install --cask kitty
             ;;
         *)
-            # Use universal installer
             curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin
+            mkdir -p "$HOME/.local/bin"
+            if [ -x "$HOME/.local/kitty.app/bin/kitty" ]; then
+                ln -sf "$HOME/.local/kitty.app/bin/kitty" "$HOME/.local/bin/kitty"
+            fi
             ;;
     esac
 
@@ -187,17 +188,16 @@ install_productivity_apps() {
     fi
 
     # Obsidian
-    if command_exists obsidian; then
+    if command_exists obsidian || (command_exists flatpak && flatpak_app_exists "md.obsidian.Obsidian"); then
         print_success "Obsidian already installed"
     elif confirm "Install Obsidian?"; then
         print_step "Installing Obsidian..."
         case $OS in
             ubuntu|debian|linuxmint|pop|fedora|arch|manjaro)
                 if ! command_exists flatpak; then
-                    sudo apt-get install -y flatpak || sudo dnf install -y flatpak || sudo pacman -S flatpak
+                    install_package "flatpak"
                 fi
-                flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
-                flatpak install -y flathub md.obsidian.Obsidian
+                install_flatpak_app "md.obsidian.Obsidian"
                 ;;
             macos)
                 brew install --cask obsidian
@@ -248,6 +248,15 @@ install_productivity_apps() {
         esac
         print_success "DBeaver installed"
     fi
+
+    # Google Antigravity
+    if any_command_exists antigravity google-antigravity; then
+        print_success "Google Antigravity already installed"
+    elif confirm "Install Google Antigravity IDE?"; then
+        print_warning "Google Antigravity does not expose a stable script/package URL in this setup."
+        print_warning "Download it from: https://antigravity.google/"
+        print_warning "After installing it once, this setup will detect and skip it."
+    fi
 }
 
 install_vpn_tools() {
@@ -263,7 +272,7 @@ install_vpn_tools() {
     fi
 
     # ProtonVPN
-    if command_exists protonvpn-cli; then
+    if command_exists protonvpn-cli || (command_exists flatpak && flatpak_app_exists "com.protonvpn.www"); then
         print_success "ProtonVPN already installed"
     elif confirm "Install ProtonVPN?"; then
         print_step "Installing ProtonVPN..."
@@ -281,9 +290,9 @@ install_vpn_tools() {
             arch|manjaro)
                 # aur is required, skipping complex build process, recommending flatpak instead
                 if ! command_exists flatpak; then
-                    sudo pacman -S --noconfirm flatpak
+                    install_package "flatpak"
                 fi
-                flatpak install -y flathub com.protonvpn.www
+                install_flatpak_app "com.protonvpn.www"
                 ;;
             macos)
                 brew install --cask protonvpn

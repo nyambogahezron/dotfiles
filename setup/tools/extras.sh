@@ -40,7 +40,7 @@ install_dust() {
 
     print_step "Installing dust..."
     if command_exists cargo; then
-        cargo install du-dust && print_success "dust installed via cargo"
+        install_cargo_crates du-dust
     else
         local version
         version=$(curl -s https://api.github.com/repos/bootandy/dust/releases/latest \
@@ -59,7 +59,7 @@ install_yazi() {
 
     print_step "Installing yazi..."
     if command_exists cargo; then
-        cargo install --locked yazi-fm yazi-cli && print_success "yazi installed via cargo"
+        install_cargo_crates yazi-fm yazi-cli
     else
         local version
         version=$(curl -s https://api.github.com/repos/sxyazi/yazi/releases/latest \
@@ -106,7 +106,7 @@ install_starship() {
 # ── bun (JavaScript runtime) ─────────────────────────────────────────────────
 install_bun() {
     print_header "BUN"
-    if command_exists bun; then print_success "bun already installed"; return; fi
+    if command_exists bun || [ -x "$HOME/.bun/bin/bun" ]; then print_success "bun already installed"; return; fi
 
     print_step "Installing bun..."
     curl -fsSL https://bun.sh/install | bash
@@ -116,6 +116,36 @@ install_bun() {
         print_success "bun installed"
     else
         print_warning "bun install failed"
+    fi
+}
+
+# ── uv (fast Python package/project manager) ─────────────────────────────────
+install_uv() {
+    print_header "UV"
+    if command_exists uv || [ -x "$HOME/.local/bin/uv" ]; then print_success "uv already installed"; return; fi
+
+    print_step "Installing uv..."
+    curl -LsSf https://astral.sh/uv/install.sh | sh
+
+    if [ -x "$HOME/.local/bin/uv" ] || command_exists uv; then
+        print_success "uv installed"
+    else
+        print_warning "uv install failed"
+    fi
+}
+
+# ── Deno (TypeScript/JavaScript runtime) ─────────────────────────────────────
+install_deno() {
+    print_header "DENO"
+    if command_exists deno || [ -x "$HOME/.deno/bin/deno" ]; then print_success "deno already installed"; return; fi
+
+    print_step "Installing deno..."
+    curl -fsSL https://deno.land/install.sh | sh
+
+    if [ -x "$HOME/.deno/bin/deno" ] || command_exists deno; then
+        print_success "deno installed"
+    else
+        print_warning "deno install failed"
     fi
 }
 
@@ -245,6 +275,8 @@ install_all_extras() {
     if confirm "Install zoxide (smarter cd)?"; then install_zoxide; fi
     if confirm "Install starship (shell prompt)?"; then install_starship; fi
     if confirm "Install bun (JavaScript runtime)?"; then install_bun; fi
+    if confirm "Install uv (fast Python package/project manager)?"; then install_uv; fi
+    if confirm "Install deno (TypeScript/JavaScript runtime)?"; then install_deno; fi
     if confirm "Install opencode (AI Terminal Assistant)?"; then install_opencode; fi
     if confirm "Install flameshot (screenshot tool)?"; then install_flameshot; fi
     if confirm "Install ulauncher (app launcher)?"; then install_ulauncher; fi

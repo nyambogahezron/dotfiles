@@ -45,9 +45,9 @@ fi
 #  Backup existing files before stowing
 log "Checking for Stow conflicts..."
 # Capture the output of stow simulate
-CONFLICTS=$(stow --no -v -d "$PWD" -t "$HOME" --ignore="install.sh|Makefile|README.md|LICENSE|AGENTS.md|Brewfile|docs|scripts|setup" . 2>&1 | grep "existing target is" || true)
+CONFLICTS=$(stow --no -v -d "$PWD" -t "$HOME" --ignore="install.sh|install-all.sh|Makefile|README.md|LICENSE|AGENTS.md|Brewfile|docs|scripts|setup" . 2>&1 | grep "existing target is" || true)
 if [ -z "$CONFLICTS" ]; then
-    CONFLICTS=$(stow --no -v -d "$PWD" -t "$HOME" --ignore="install.sh|Makefile|README.md|LICENSE|AGENTS.md|Brewfile|docs|scripts|setup" . 2>&1 | grep "cannot stow" || true)
+    CONFLICTS=$(stow --no -v -d "$PWD" -t "$HOME" --ignore="install.sh|install-all.sh|Makefile|README.md|LICENSE|AGENTS.md|Brewfile|docs|scripts|setup" . 2>&1 | grep "cannot stow" || true)
 fi
 
 if [ -n "$CONFLICTS" ]; then
@@ -76,7 +76,7 @@ fi
 log "Applying dotfiles via Stow..."
 # We use -v (verbose), -d (current dir), -t (home dir)
 # We ignore files that are part of the repository but not dotfiles
-stow -v -d "$PWD" -t "$HOME" --ignore="install.sh|Makefile|README.md|LICENSE|AGENTS.md|Brewfile|docs|scripts|setup" .
+stow -v -d "$PWD" -t "$HOME" --ignore="install.sh|install-all.sh|Makefile|README.md|LICENSE|AGENTS.md|Brewfile|docs|scripts|setup" .
 
 success "Dotfiles applied successfully! 🎉"
 echo ""

@@ -24,8 +24,7 @@ install_laravel() {
         return 1
     fi
 
-    print_step "Installing Laravel installer..."
-    composer global require laravel/installer
+    install_composer_global_packages "laravel/installer"
 
     # Add composer bin to PATH if not already there
     COMPOSER_BIN="$HOME/.config/composer/vendor/bin"
@@ -43,17 +42,19 @@ install_laravel() {
     # Install Laravel Valet (Linux)
     if [ "$OS" != "macos" ]; then
         if confirm "Install Laravel Valet (for local development)?"; then
-            print_step "Installing Laravel Valet for Linux..."
-            composer global require cpriego/valet-linux
-            valet install
-            print_success "Laravel Valet installed"
+            install_composer_global_packages "cpriego/valet-linux"
+            if command_exists valet; then
+                valet install
+                print_success "Laravel Valet installed"
+            fi
         fi
     else
         if confirm "Install Laravel Valet (for local development)?"; then
-            print_step "Installing Laravel Valet for macOS..."
-            composer global require laravel/valet
-            valet install
-            print_success "Laravel Valet installed"
+            install_composer_global_packages "laravel/valet"
+            if command_exists valet; then
+                valet install
+                print_success "Laravel Valet installed"
+            fi
         fi
     fi
 

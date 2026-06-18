@@ -93,6 +93,8 @@ install_vscode_extensions() {
         print_step "  → $ext"
         if code --install-extension "$ext" 2>/dev/null; then
             ((installed+=1))
+            installed_extensions="${installed_extensions}
+${ext}"
         else
             ((failed+=1))
             print_warning "    Failed to install $ext"

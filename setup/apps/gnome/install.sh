@@ -22,6 +22,66 @@ restore_gnome_settings() {
     fi
 }
 
+install_extension_manager() {
+    print_header "INSTALLING GNOME EXTENSION MANAGER"
+
+    if command_exists extension-manager; then
+        print_success "GNOME Extension Manager already installed"
+        return
+    fi
+
+    case $OS in
+        ubuntu|debian|linuxmint|pop)
+            install_package "gnome-shell-extension-manager"
+            ;;
+        fedora)
+            install_package "extension-manager"
+            ;;
+        arch|manjaro)
+            install_package "extension-manager"
+            ;;
+        *)
+            print_warning "Install GNOME Extension Manager manually for this OS"
+            ;;
+    esac
+}
+
+configure_gnome_click_to_minimize() {
+    print_header "CONFIGURING GNOME DOCK"
+
+    if ! command_exists gsettings; then
+        print_warning "gsettings not found. Skipping click-to-minimize setting."
+        return
+    fi
+
+    if gsettings list-schemas | grep -Fxq "org.gnome.shell.extensions.dash-to-dock"; then
+        print_step "Setting dock click action to minimize..."
+        gsettings set org.gnome.shell.extensions.dash-to-dock click-action 'minimize'
+        print_success "Dock click-to-minimize enabled"
+    else
+        print_warning "dash-to-dock schema not found. Skipping click-to-minimize setting."
+    fi
+}
+
+remove_unwanted_gnome_extensions() {
+    print_header "REMOVING UNWANTED GNOME EXTENSIONS"
+
+    if ! command_exists gnome-extensions; then
+        print_warning "gnome-extensions command not found. Skipping extension removal."
+        return
+    fi
+
+    local extension_id="soundbar@karthickk.gitlab.com"
+
+    if gnome-extensions list | grep -Fxq "$extension_id"; then
+        print_step "Removing $extension_id..."
+        gnome-extensions disable "$extension_id" 2>/dev/null || true
+        gnome-extensions uninstall "$extension_id" 2>/dev/null || print_warning "Could not uninstall $extension_id"
+    else
+        print_success "$extension_id is not installed"
+    fi
+}
+
 install_themes_and_icons() {
     print_header "INSTALLING CUSTOM THEMES & ICONS"
 
@@ -58,24 +118,26 @@ install_gnome_extensions() {
         print_step "Installing GNOME Tweaks..."
         case $OS in
             ubuntu|debian|linuxmint|pop)
-                sudo apt-get update && sudo apt-get install -y gnome-tweaks chrome-gnome-shell
+                install_packages gnome-tweaks chrome-gnome-shell
                 ;;
             fedora)
-                sudo dnf install -y gnome-tweaks
+                install_package gnome-tweaks
                 ;;
             arch|manjaro)
-                sudo pacman -S --noconfirm gnome-tweaks
+                install_package gnome-tweaks
                 ;;
         esac
         print_success "GNOME Tweaks installed"
     fi
+
+    install_extension_manager
 
     # Install gnome-extensions-cli (gext) if not present
     if ! command_exists gext; then
         print_step "Installing gnome-extensions-cli via pipx..."
         if ! command_exists pipx; then
             if command_exists apt-get; then
-                sudo apt-get update && sudo apt-get install -y pipx
+                install_package pipx
                 pipx ensurepath
                 export PATH="$PATH:$HOME/.local/bin"
             else
@@ -99,7 +161,10 @@ install_gnome_extensions() {
         print_warning "No list.txt found. Skipping extension installation."
     fi
 
+    remove_unwanted_gnome_extensions
+
     print_success "GNOME extensions processed."
+    configure_gnome_click_to_minimize
 }
 
 if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then

@@ -9,22 +9,24 @@ install_devops_tools() {
     print_header "INSTALLING DEVOPS TOOLS"
 
     # 1. HashiCorp Tools (Terraform & Vault)
-    if (! command_exists terraform || ! command_exists vault) && confirm "Install HashiCorp Tools (Terraform & Vault)?"; then
+    if command_exists terraform && command_exists vault; then
+        print_success "Terraform and Vault already installed"
+    elif confirm "Install HashiCorp Tools (Terraform & Vault)?"; then
         print_step "Installing HashiCorp repository (Terraform, Vault)..."
         case $OS in
             ubuntu|debian|pop|linuxmint)
-                sudo apt-get update && sudo apt-get install -y gnupg software-properties-common
+                install_packages gnupg software-properties-common
                 wget -O- https://apt.releases.hashicorp.com/gpg | gpg --dearmor | sudo tee /usr/share/keyrings/hashicorp-archive-keyring.gpg > /dev/null
                 echo "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/hashicorp.list
                 sudo apt-get update
-                ! command_exists terraform && sudo apt-get install -y terraform
-                ! command_exists vault && sudo apt-get install -y vault
+                ! command_exists terraform && install_package terraform
+                ! command_exists vault && install_package vault
                 ;;
             fedora)
-                sudo dnf install -y dnf-plugins-core
+                install_package dnf-plugins-core
                 sudo dnf config-manager --add-repo https://rpm.releases.hashicorp.com/fedora/hashicorp.repo
-                ! command_exists terraform && sudo dnf install -y terraform
-                ! command_exists vault && sudo dnf install -y vault
+                ! command_exists terraform && install_package terraform
+                ! command_exists vault && install_package vault
                 ;;
             macos)
                 brew tap hashicorp/tap
@@ -32,15 +34,17 @@ install_devops_tools() {
                 ! command_exists vault && brew install hashicorp/tap/vault
                 ;;
             arch|manjaro)
-                ! command_exists terraform && sudo pacman -S --noconfirm terraform
-                ! command_exists vault && sudo pacman -S --noconfirm vault
+                ! command_exists terraform && install_package terraform
+                ! command_exists vault && install_package vault
                 ;;
         esac
         print_success "HashiCorp tools processed"
     fi
 
     # 2. AWS CLI
-    if ! command_exists aws && confirm "Install AWS CLI v2?"; then
+    if command_exists aws; then
+        print_success "AWS CLI already installed"
+    elif confirm "Install AWS CLI v2?"; then
         print_step "Installing AWS CLI v2..."
         case $OS in
             macos)
@@ -57,28 +61,32 @@ install_devops_tools() {
     fi
 
     # 3. GitLab CLI (glab)
-    if ! command_exists glab && confirm "Install GitLab CLI?"; then
+    if command_exists glab; then
+        print_success "GitLab CLI already installed"
+    elif confirm "Install GitLab CLI?"; then
         print_step "Installing GitLab CLI..."
         case $OS in
             ubuntu|debian|pop|linuxmint)
                 curl -sL https://packages.gitlab.com/install/repositories/gitlab/gitlab-cli/script.deb.sh | sudo bash
-                sudo apt-get install -y glab
+                install_package glab
                 ;;
             fedora)
-                sudo dnf install -y glab
+                install_package glab
                 ;;
             macos)
-                brew install glab
+                install_package glab
                 ;;
             arch|manjaro)
-                sudo pacman -S --noconfirm glab
+                install_package glab
                 ;;
         esac
         print_success "GitLab CLI installed"
     fi
 
     # 4. Kubectl
-    if ! command_exists kubectl && confirm "Install kubectl?"; then
+    if command_exists kubectl; then
+        print_success "kubectl already installed"
+    elif confirm "Install kubectl?"; then
         print_step "Installing kubectl..."
         case $OS in
             ubuntu|debian|pop|linuxmint)
@@ -86,7 +94,7 @@ install_devops_tools() {
                 curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.29/deb/Release.key | sudo gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg
                 echo 'deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.29/deb/ /' | sudo tee /etc/apt/sources.list.d/kubernetes.list
                 sudo apt-get update
-                sudo apt-get install -y kubectl
+                install_package kubectl
                 ;;
             fedora)
                 cat <<EOF | sudo tee /etc/yum.repos.d/kubernetes.repo
@@ -97,27 +105,29 @@ enabled=1
 gpgcheck=1
 gpgkey=https://pkgs.k8s.io/core:/stable:/v1.29/rpm/Release.key
 EOF
-                sudo dnf install -y kubectl
+                install_package kubectl
                 ;;
             macos)
-                brew install kubectl
+                install_package kubectl
                 ;;
             arch|manjaro)
-                sudo pacman -S --noconfirm kubectl
+                install_package kubectl
                 ;;
         esac
         print_success "kubectl installed"
     fi
 
     # 5. Helm
-    if ! command_exists helm && confirm "Install Helm?"; then
+    if command_exists helm; then
+        print_success "Helm already installed"
+    elif confirm "Install Helm?"; then
         print_step "Installing Helm..."
         case $OS in
             macos)
-                brew install helm
+                install_package helm
                 ;;
             arch|manjaro)
-                sudo pacman -S --noconfirm helm
+                install_package helm
                 ;;
             *)
                 curl -fsSL -o /tmp/get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3
@@ -130,35 +140,39 @@ EOF
     fi
 
     # 6. Ansible
-    if ! command_exists ansible && confirm "Install Ansible?"; then
+    if command_exists ansible; then
+        print_success "Ansible already installed"
+    elif confirm "Install Ansible?"; then
         print_step "Installing Ansible..."
         case $OS in
             ubuntu|debian|pop|linuxmint)
                 sudo apt-get update
-                sudo apt-get install -y software-properties-common
+                install_package software-properties-common
                 sudo apt-add-repository -y ppa:ansible/ansible
                 sudo apt-get update
-                sudo apt-get install -y ansible
+                install_package ansible
                 ;;
             fedora)
-                sudo dnf install -y ansible
+                install_package ansible
                 ;;
             macos)
-                brew install ansible
+                install_package ansible
                 ;;
             arch|manjaro)
-                sudo pacman -S --noconfirm ansible
+                install_package ansible
                 ;;
         esac
         print_success "Ansible installed"
     fi
 
     # 7. k9s
-    if ! command_exists k9s && confirm "Install k9s (Kubernetes UI)?"; then
+    if command_exists k9s; then
+        print_success "k9s already installed"
+    elif confirm "Install k9s (Kubernetes UI)?"; then
         print_step "Installing k9s..."
         case $OS in
-            macos) brew install k9s ;;
-            arch|manjaro) sudo pacman -S --noconfirm k9s ;;
+            macos) install_package k9s ;;
+            arch|manjaro) install_package k9s ;;
             *)
                 local version
                 version=$(curl -s https://api.github.com/repos/derailed/k9s/releases/latest | grep '"tag_name"' | sed 's/.*"v\([^"]*\)".*/\1/')
@@ -171,18 +185,22 @@ EOF
     fi
 
     # 8. tflint
-    if ! command_exists tflint && confirm "Install tflint (Terraform linter)?"; then
+    if command_exists tflint; then
+        print_success "tflint already installed"
+    elif confirm "Install tflint (Terraform linter)?"; then
         print_step "Installing tflint..."
         curl -s https://raw.githubusercontent.com/terraform-linters/tflint/master/install_linux.sh | bash
         print_success "tflint installed"
     fi
 
     # 9. sops
-    if ! command_exists sops && confirm "Install sops (Secrets OPerationS)?"; then
+    if command_exists sops; then
+        print_success "sops already installed"
+    elif confirm "Install sops (Secrets OPerationS)?"; then
         print_step "Installing sops..."
         case $OS in
-            macos) brew install sops ;;
-            arch|manjaro) sudo pacman -S --noconfirm sops ;;
+            macos) install_package sops ;;
+            arch|manjaro) install_package sops ;;
             *)
                 local version
                 version=$(curl -s https://api.github.com/repos/getsops/sops/releases/latest | grep '"tag_name"' | sed 's/.*"v\([^"]*\)".*/\1/')
@@ -195,7 +213,9 @@ EOF
     fi
 
     # 10. gh (GitHub CLI)
-    if ! command_exists gh && confirm "Install GitHub CLI (gh)?"; then
+    if command_exists gh; then
+        print_success "GitHub CLI already installed"
+    elif confirm "Install GitHub CLI (gh)?"; then
         print_step "Installing GitHub CLI..."
         case $OS in
             ubuntu|debian|pop|linuxmint)
@@ -203,15 +223,15 @@ EOF
                 sudo chmod go+r /usr/share/keyrings/githubcli-archive-keyring.gpg
                 echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | sudo tee /etc/apt/sources.list.d/github-cli.list > /dev/null
                 sudo apt update
-                sudo apt install gh -y
+                install_package gh
                 ;;
             fedora)
                 sudo dnf install 'dnf-command(config-manager)' -y
                 sudo dnf config-manager --add-repo https://cli.github.com/packages/rpm/gh-cli.repo
-                sudo dnf install gh -y
+                install_package gh
                 ;;
-            arch|manjaro) sudo pacman -S --noconfirm github-cli ;;
-            macos) brew install gh ;;
+            arch|manjaro) install_package github-cli ;;
+            macos) install_package gh ;;
         esac
         print_success "GitHub CLI installed"
     fi

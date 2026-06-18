@@ -13,9 +13,11 @@ install_observability() {
     local OBS_DIR="$DOTFILES_DIR/observability"
     mkdir -p "$OBS_DIR"
 
-    print_step "Scaffolding docker-compose.yml for Observability tools..."
-
-    cat << 'EOF' > "$OBS_DIR/docker-compose.yml"
+    if [ -f "$OBS_DIR/docker-compose.yml" ]; then
+        print_success "docker-compose.yml already exists"
+    else
+        print_step "Scaffolding docker-compose.yml for Observability tools..."
+        cat << 'EOF' > "$OBS_DIR/docker-compose.yml"
 version: '3.8'
 
 services:
@@ -75,9 +77,11 @@ services:
       - "6379:6379"
     restart: unless-stopped
 EOF
+    fi
 
     # Create base configs to prevent startup crashes
     if [ ! -f "$OBS_DIR/prometheus.yml" ]; then
+        print_step "Creating prometheus.yml..."
         cat << 'EOF' > "$OBS_DIR/prometheus.yml"
 global:
   scrape_interval: 15s
@@ -87,9 +91,12 @@ scrape_configs:
     static_configs:
       - targets: ['localhost:9090']
 EOF
+    else
+        print_success "prometheus.yml already exists"
     fi
 
     if [ ! -f "$OBS_DIR/tempo.yaml" ]; then
+        print_step "Creating tempo.yaml..."
         cat << 'EOF' > "$OBS_DIR/tempo.yaml"
 server:
   http_listen_port: 3200
@@ -99,6 +106,8 @@ distributor:
       protocols:
         grpc:
 EOF
+    else
+        print_success "tempo.yaml already exists"
     fi
 
     print_success "Observability stack created at $OBS_DIR"

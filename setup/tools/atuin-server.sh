@@ -32,4 +32,6 @@ setup_atuin_server() {
     print_info "Sync with: atuin sync"
 }
 
-setup_atuin_server
+if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
+    setup_atuin_server
+fi

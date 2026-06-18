@@ -57,8 +57,9 @@ The automated `setup/main.sh` installer can dynamically provision the following 
 - Grafana, Prometheus, Loki, Tempo, VictoriaMetrics, Redis
 
 ### Programming Languages & Runtimes
-- **JavaScript**: Node.js (via NVM), Bun
-- **Others**: Python, Rust, Go, PHP (with Laravel environment)
+- **JavaScript/TypeScript**: Node.js (via NVM), Bun, Deno
+- **Python**: Python, uv, pipenv, virtualenv, Jupyter, pytest
+- **Others**: Rust, Go, PHP (with Laravel environment)
 
 ### Modern CLI & Shell
 - **Shell**: Zsh, Oh-My-Zsh, ASDF Version Manager
@@ -68,7 +69,7 @@ The automated `setup/main.sh` installer can dynamically provision the following 
 - **Terminal UI**: lazygit, lazydocker, btop, eza, bat, tealdeer (`tldr`)
 
 ### Desktop & Productivity
-- **Editors & AI**: VS Code, Neovim, Opencode, Gemini-CLI
+- **Editors & AI**: VS Code, Neovim, Google Antigravity, Opencode, Gemini-CLI
 - **Browsers**: Google Chrome, Firefox, Brave
 - **Communication**: Slack, Discord
 - **Media**: VLC, GIMP, OBS Studio
@@ -88,6 +89,8 @@ The automated `setup/main.sh` installer can dynamically provision the following 
 The repository uses `stow` to link files from the repo root to your home directory.
 
 - **Apply changes**: `make apply` or `./install.sh`
+- **Run setup installer**: `make setup`
+- **Install everything**: `make install-all` or `./install-all.sh`
 - **Update repo**: `make update` (pulls changes and re-stows)
 - **Check differences**: `git diff`
 

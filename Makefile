@@ -1,11 +1,20 @@
-.PHONY: help apply delete restow adopt check update diff doctor maintenance
+.PHONY: help install setup install-all apply delete restow adopt check update diff doctor maintenance
 
 # Configuration
-STOW_IGNORE = --ignore="install.sh|Makefile|README.md|LICENSE|AGENTS.md|Brewfile|docs|scripts|setup"
+STOW_IGNORE = --ignore="install.sh|install-all.sh|Makefile|README.md|LICENSE|AGENTS.md|Brewfile|docs|scripts|setup"
 STOW_FLAGS = -v -d $(CURDIR) -t $(HOME)
 
 help: ## Show this help menu
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-20s\033[0m %s\n", $$1, $$2}'
+
+install: ## Install dotfiles from the root installer
+	bash setup/install.sh
+
+setup: ## Run the interactive setup installer
+	bash setup/main.sh
+
+install-all: ## Install the full development environment
+	bash setup/main.sh --full
 
 apply: ## Apply dotfiles (create symlinks)
 	stow $(STOW_FLAGS) $(STOW_IGNORE) .

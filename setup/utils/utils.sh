@@ -53,6 +53,16 @@ command_exists() {
     command -v "$1" &> /dev/null
 }
 
+any_command_exists() {
+    local command_name
+    for command_name in "$@"; do
+        if command_exists "$command_name"; then
+            return 0
+        fi
+    done
+    return 1
+}
+
 # Check if running with sudo/root
 check_sudo() {
     if [[ $EUID -eq 0 ]]; then
@@ -170,6 +180,97 @@ install_package() {
             fi
             ;;
     esac
+}
+
+install_packages() {
+    local package
+    for package in "$@"; do
+        install_package "$package"
+    done
+}
+
+npm_global_package_exists() {
+    npm list -g --depth=0 "$1" &>/dev/null
+}
+
+install_npm_global_packages() {
+    local package
+
+    for package in "$@"; do
+        if npm_global_package_exists "$package"; then
+            print_success "$package already installed globally"
+        else
+            print_step "Installing npm package: $package"
+            npm install -g "$package"
+        fi
+    done
+}
+
+python_user_package_exists() {
+    python3 -m pip show "$1" &>/dev/null
+}
+
+install_python_user_packages() {
+    local package
+
+    for package in "$@"; do
+        if python_user_package_exists "$package"; then
+            print_success "$package already installed for user"
+        else
+            print_step "Installing Python package: $package"
+            python3 -m pip install --user "$package"
+        fi
+    done
+}
+
+cargo_crate_exists() {
+    cargo install --list 2>/dev/null | grep -q "^$1 "
+}
+
+install_cargo_crates() {
+    local crate
+
+    for crate in "$@"; do
+        if cargo_crate_exists "$crate"; then
+            print_success "$crate already installed via cargo"
+        else
+            print_step "Installing cargo crate: $crate"
+            cargo install "$crate"
+        fi
+    done
+}
+
+composer_global_package_exists() {
+    composer global show "$1" &>/dev/null
+}
+
+install_composer_global_packages() {
+    local package
+
+    for package in "$@"; do
+        if composer_global_package_exists "$package"; then
+            print_success "$package already installed globally"
+        else
+            print_step "Installing Composer package: $package"
+            composer global require "$package"
+        fi
+    done
+}
+
+flatpak_app_exists() {
+    flatpak info "$1" &>/dev/null
+}
+
+install_flatpak_app() {
+    local app_id=$1
+
+    if flatpak_app_exists "$app_id"; then
+        print_success "$app_id already installed"
+        return
+    fi
+
+    flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+    flatpak install -y flathub "$app_id"
 }
 
 # Initialize on source
