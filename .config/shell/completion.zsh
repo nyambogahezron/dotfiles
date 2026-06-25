@@ -12,6 +12,18 @@ zstyle ':completion:*' menu select
 bindkey -M menuselect '^I' menu-complete
 bindkey -M menuselect "${terminfo[kcbt]:-\e[Z}" reverse-menu-complete
 
+# Auto-select single match immediately
+zstyle ':completion:*' single-insert select
+
+# Compact completion list (more items per line)
+zstyle ':completion:*' list-packed true
+
+# Sort files by modification time (newest first)
+zstyle ':completion:*' file-sort modification
+
+# Auto-rehash: new commands (apt, cargo, pip, etc.) are immediately completable
+zstyle ':completion:*' rehash true
+
 # Case-insensitive and partial-word completion
 zstyle ':completion:*' matcher-list \
     'm:{a-zA-Z}={A-Za-z}' \
@@ -22,11 +34,15 @@ zstyle ':completion:*' matcher-list \
 zstyle ':completion:*' group-name ''
 zstyle ':completion:*:descriptions' format '%F{yellow} %d %f'
 zstyle ':completion:*:messages'     format '%F{purple}%d%f'
-zstyle ':completion:*:warnings'     format '%F{red}No matches for:%f %d'
+zstyle ':completion:*:warnings' format ''
 zstyle ':completion:*:corrections'  format '%F{green}%d (errors: %e)%f'
 
 # Colorize completions using dircolors
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
+
+# Ignore build artifacts in file completions
+zstyle ':completion:*:*:files' ignored-patterns '*?.o' '*?.pyc' '*?.class' '*?.zwc'
+zstyle ':completion:*:*:globbed-files' ignored-patterns 'node_modules/*' '.git/*' '__pycache__/*'
 
 # Better process completion
 zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
@@ -37,6 +53,9 @@ zstyle ':completion:*:rm:*' ignore-line yes
 zstyle ':completion:*:cp:*' ignore-line yes
 zstyle ':completion:*:mv:*' ignore-line yes
 
+# Skip ../ and ./ when completing cd
+zstyle ':completion:*:cd:*' ignore-parents parent pwd
+
 # Fuzzy matching of completions
 zstyle ':completion:*' completer _extensions _complete _approximate
 zstyle ':completion:*:approximate:*' max-errors 2
@@ -46,10 +65,10 @@ zstyle ':completion::complete:*' use-cache yes
 zstyle ':completion::complete:*' cache-path "$XDG_CACHE_HOME/zsh/zcompcache"
 mkdir -p "$XDG_CACHE_HOME/zsh/zcompcache"
 
-# SSH / SCP host completion from known_hosts
+# SSH / SCP host completion from known_hosts and ~/.ssh/config
 zstyle ':completion:*:ssh:*' hosts $(
-    [[ -f ~/.ssh/known_hosts ]] && \
-    awk '{print $1}' ~/.ssh/known_hosts | tr ',' '\n' | grep -v '^\[' | sort -u
+    ([[ -f ~/.ssh/known_hosts ]] && awk '{print $1}' ~/.ssh/known_hosts | tr ',' '\n' | grep -v '^\['
+     [[ -f ~/.ssh/config ]] && awk '/^Host /{for(i=2;i<=NF;i++) if($i!="*") print $i}' ~/.ssh/config) | sort -u
 )
 
 #  Tool-specific completions ─

@@ -44,3 +44,10 @@ command -v atuin &>/dev/null && eval "$(atuin init bash)"
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 [ -f /usr/share/doc/fzf/examples/key-bindings.bash ] && \
     source /usr/share/doc/fzf/examples/key-bindings.bash
+
+
+# Added by Antigravity CLI installer
+
+export PATH="/home/junior/.local/bin:$PATH"
+
+export TERMINAL=kitty

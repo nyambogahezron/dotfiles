@@ -27,12 +27,12 @@ elif [[ -f "$HOME/.local/share/zsh/plugins/zsh-history-substring-search/zsh-hist
     source "$HOME/.local/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh"
 fi
 
-# Smart Tab behavior: Accept autosuggestion if visible, otherwise trigger normal completion
+# Smart Tab: Accept autosuggestion if visible, otherwise cycle completions with Tab
 expand-or-complete-with-autosuggest() {
     if [[ -n "$POSTDISPLAY" ]]; then
         zle autosuggest-accept
     else
-        zle expand-or-complete
+        zle menu-complete
     fi
 }
 zle -N expand-or-complete-with-autosuggest
@@ -103,3 +103,24 @@ export PATH=$PATH:$ANDROID_HOME/platform-tools
 # nodejs
 export PATH="$HOME/.nvm/versions/node/v24.15.0/bin:$PATH"
 
+
+# opencode
+export PATH=/home/junior/.opencode/bin:$PATH
+
+# bun completions
+[ -s "/home/junior/.bun/_bun" ] && source "/home/junior/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+export PATH=$PATH:/usr/local/go/bin
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+
+# Added by Antigravity CLI installer
+export PATH="/home/junior/.local/bin:$PATH"
+
+export TERMINAL=kitty

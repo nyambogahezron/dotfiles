@@ -116,6 +116,17 @@ return {
         end
       end
 
+      -- also include servers from the explicit ensure_installed list
+      for _, server in ipairs(opts.ensure_installed or {}) do
+        if not vim.tbl_contains(ensure_installed, server) then
+          if have_mason and vim.tbl_contains(all_mslp_servers, server) then
+            ensure_installed[#ensure_installed + 1] = server
+          else
+            setup(server)
+          end
+        end
+      end
+
       if have_mason then
         mlsp.setup({ ensure_installed = ensure_installed, handlers = { setup } })
       end
@@ -151,6 +162,9 @@ return {
         "actionlint",
         "commitlint",
         "typos",
+        -- LSP servers (mason package names, not lspconfig names)
+        "vscode-json-languageserver",
+        "yaml-language-server",
       },
     },
     config = function(_, opts)
