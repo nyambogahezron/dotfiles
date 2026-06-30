@@ -7,7 +7,6 @@ $hostname\
 $directory\
 $git_branch\
 $git_status\
-$fill\
 $python\
 $lua\
 $nodejs\
@@ -58,7 +57,7 @@ format = "@[$hostname]($style) "
 style = "bold fg:dark_blue"
 format = "[󰉋 $path ]($style)"
 truncation_length = 3
-truncation_symbol = "…/"
+truncation_symbol = "/"
 truncate_to_repo = false
 
 [directory.substitutions]
@@ -85,10 +84,6 @@ modified = "󰏬"
 staged = "󰐕"
 renamed = "󰕤"
 deleted = "󰗨"
-
-[fill]
-symbol = "·"
-style = "fg:gray"
 
 [python]
 style = "teal"

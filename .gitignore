@@ -20,6 +20,9 @@ Thumbs.db
 .env
 .env.local
 
+# SSH config (contains private hostnames)
+.ssh/config
+
 # Cache directories
 cache/
 .cache/
@@ -27,3 +30,4 @@ cache/
 # Temporary files
 temp/
 tmp/
+.local/bin/agy

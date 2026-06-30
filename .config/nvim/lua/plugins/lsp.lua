@@ -181,8 +181,8 @@ return {
       end)
       local function ensure_installed()
         for _, tool in ipairs(opts.ensure_installed) do
-          local p = mr.get_package(tool)
-          if not p:is_installed() then
+          local ok, p = pcall(mr.get_package, mr, tool)
+          if ok and not p:is_installed() then
             p:install()
           end
         end
