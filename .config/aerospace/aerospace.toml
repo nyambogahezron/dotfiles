@@ -1,10 +1,7 @@
-# ~/.config/aerospace/aerospace.toml 
-# i3-like tiling window manager for macOS
-
-#  General 
+#  General
 start-at-login = true
 
-#  Keybindings 
+#  Keybindings
 [mode.main.binding]
 alt-h = 'focus left'
 alt-j = 'focus down'
@@ -23,7 +20,7 @@ alt-4 = 'workspace 4'
 
 alt-enter = 'exec-and-forget open -a Ghostty'
 
-#  Gaps 
+#  Gaps
 [gaps]
 inner.horizontal = 10
 inner.vertical = 10

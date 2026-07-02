@@ -82,13 +82,16 @@ if command -v docker &>/dev/null; then
     fpath=("$XDG_CACHE_HOME/zsh/completions" $fpath)
 fi
 
-# GitHub CLI completions
+# GitHub CLI completions (lazy via fpath, runs before compinit)
 if command -v gh &>/dev/null; then
-    eval "$(gh completion -s zsh)" 2>/dev/null || true
+    if [[ ! -f "$XDG_CACHE_HOME/zsh/completions/_gh" ]]; then
+        mkdir -p "$XDG_CACHE_HOME/zsh/completions"
+        gh completion -s zsh > "$XDG_CACHE_HOME/zsh/completions/_gh" 2>/dev/null || true
+    fi
+    fpath=("$XDG_CACHE_HOME/zsh/completions" $fpath)
 fi
 
-# NVM bash completion (zsh compatible)
-[[ -s "$NVM_DIR/bash_completion" ]] && \. "$NVM_DIR/bash_completion"
+# NVM bash completion is loaded by _nvm_lazy_load in functions.zsh
 
 # Starship completions
 if command -v starship &>/dev/null; then

@@ -53,8 +53,8 @@ setopt AUTO_CD CORRECT EXTENDED_GLOB NOMATCH NOTIFY NO_BEEP
 #  Completions
 autoload -Uz compinit
 mkdir -p "$XDG_CACHE_HOME/zsh"
-# Only rebuild compinit dump once per day for faster startup
-if [[ -n "$XDG_CACHE_HOME/zsh/zcompdump"(#qN.mh+24) ]]; then
+# Only rebuild compinit dump once per week for faster startup
+if [[ -n "$XDG_CACHE_HOME/zsh/zcompdump"(#qN.mh+168) ]]; then
     compinit -d "$XDG_CACHE_HOME/zsh/zcompdump"
 else
     compinit -C -d "$XDG_CACHE_HOME/zsh/zcompdump"
@@ -101,14 +101,14 @@ export PATH=$PATH:$ANDROID_HOME/emulator
 export PATH=$PATH:$ANDROID_HOME/platform-tools
 
 # nodejs
-export PATH="$HOME/.nvm/versions/node/v24.15.0/bin:$PATH"
+# nvm manages PATH; lazy-loaded in functions.zsh
 
 
 # opencode
 export PATH=/home/junior/.opencode/bin:$PATH
 
-# bun completions
-[ -s "/home/junior/.bun/_bun" ] && source "/home/junior/.bun/_bun"
+# bun completions (lazy via fpath)
+[[ -s "$HOME/.bun/_bun" ]] && fpath=("$HOME/.bun" $fpath)
 
 # bun
 export BUN_INSTALL="$HOME/.bun"
@@ -116,8 +116,7 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 export PATH=$PATH:/usr/local/go/bin
 
 export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+# nvm is lazy-loaded via _nvm_lazy_load in functions.zsh
 
 
 # Added by Antigravity CLI installer
