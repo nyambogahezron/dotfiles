@@ -16,7 +16,7 @@ install_nodejs() {
         # Install Node.js using NVM
         if ! command_exists nvm && [ ! -s "$HOME/.nvm/nvm.sh" ]; then
             print_step "Installing NVM..."
-            curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+            curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.5/install.sh | bash
         else
             print_success "NVM already installed"
         fi
@@ -25,10 +25,10 @@ install_nodejs() {
         export NVM_DIR="$HOME/.nvm"
         [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 
-        print_step "Installing Node.js LTS..."
-        nvm install --lts
-        nvm use --lts
-        nvm alias default node
+        print_step "Installing Node.js 26..."
+        nvm install 26
+        nvm use 26
+        nvm alias default 26
     fi
 
     if ! command_exists npm; then
@@ -48,8 +48,10 @@ install_nodejs() {
         prettier \
         @google/gemini-cli
 
-    print_success "Node.js installed: $(node --version)"
-    print_success "npm installed: $(npm --version)"
+    # Verify versions
+    print_step "Node.js version: $(node --version)"
+    print_step "npm version: $(npm --version)"
+    print_success "Node.js $(node --version) installed"
 }
 
 # Run if executed directly

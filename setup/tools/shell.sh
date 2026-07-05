@@ -51,6 +51,63 @@ install_asdf() {
 
 
 
+install_zsh_plugins() {
+    print_header "ZSH PLUGINS"
+
+    if [[ "$OS" != "ubuntu" && "$OS" != "debian" && "$OS" != "linuxmint" && "$OS" != "pop" ]]; then
+        print_warning "zsh plugin package checks are only configured for apt-based systems"
+        return
+    fi
+
+    local plugins=(
+        zsh-autosuggestions
+        zsh-syntax-highlighting
+    )
+
+    local missing=()
+    for pkg in "${plugins[@]}"; do
+        dpkg -s "$pkg" &>/dev/null || missing+=("$pkg")
+    done
+
+    if [[ ${#missing[@]} -eq 0 ]]; then
+        print_success "zsh plugins already installed"
+        return
+    fi
+
+    print_step "Installing zsh plugins via apt: ${missing[*]}"
+    sudo apt-get install -y "${missing[@]}" && \
+        print_success "zsh plugins installed" || \
+        print_warning "apt install failed — install manually: sudo apt install ${missing[*]}"
+}
+
+setup_atuin_server() {
+    print_header "ATUIN SERVER"
+
+    local server_addr="${ATUIN_SERVER:-}"
+    local server_key="${ATUIN_KEY:-}"
+
+    if [[ -z "$server_addr" ]]; then
+        print_step "Set ATUIN_SERVER env var to configure sync"
+        print_info "  export ATUIN_SERVER='https://your-server.com'"
+        print_info "  export ATUIN_KEY='your-encryption-key'"
+        print_info ""
+        print_info "Or set up your own server:"
+        print_info "  atuin server start"
+        echo ""
+        return
+    fi
+
+    # Register/login
+    if ! atuin status &>/dev/null; then
+        print_step "Registering with atuin server..."
+        atuin register -u "$USER" -e "$USER@localhost" -p "$(hostname)" "$server_addr" 2>/dev/null || \
+        atuin login -u "$USER" -p "$(hostname)" "$server_addr" 2>/dev/null || true
+    fi
+
+    print_success "Atuin server configured: $server_addr"
+    print_info "Sync with: atuin sync"
+}
+
 setup_shell() {
     SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
@@ -63,7 +120,7 @@ setup_shell() {
     fi
 
     if confirm "Install Zsh plugins via apt?"; then
-        bash "$SCRIPT_DIR/zsh-plugins.sh"
+        install_zsh_plugins
     fi
 
     if confirm "Install ASDF version manager?"; then
@@ -71,7 +128,8 @@ setup_shell() {
     fi
 
     if confirm "Install shell extras (starship, zoxide, lazygit, etc.)?"; then
-        bash "$SCRIPT_DIR/extras.sh"
+        source "$SCRIPT_DIR/tools.sh"
+        install_all_extras
     fi
 }
 

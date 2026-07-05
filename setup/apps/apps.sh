@@ -207,22 +207,22 @@ install_productivity_apps() {
     fi
 
     # Anytype
-    if command_exists anytype; then
+    if command_exists anytype || (command_exists flatpak && flatpak_app_exists "io.anytype.anytype"); then
         print_success "Anytype already installed"
     elif confirm "Install Anytype?"; then
-        print_step "Installing Anytype..."
+        print_step "Installing Anytype (Flatpak)..."
         case $OS in
             ubuntu|debian|linuxmint|pop|fedora|arch|manjaro)
-                # AppImage method is most reliable across linux distros for Anytype
-                wget "https://anytype.io/release/anytype-latest.AppImage" -O /tmp/anytype.AppImage
-                chmod +x /tmp/anytype.AppImage
-                sudo mv /tmp/anytype.AppImage /usr/local/bin/anytype
+                if ! command_exists flatpak; then
+                    install_package "flatpak"
+                fi
+                install_flatpak_app "io.anytype.anytype"
                 ;;
             macos)
                 brew install --cask anytype
                 ;;
         esac
-        print_success "Anytype installed"
+        print_success "Anytype installed (Flatpak)"
     fi
 
     # DBeaver

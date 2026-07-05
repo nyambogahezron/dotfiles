@@ -99,6 +99,8 @@ fi
 export ANDROID_HOME=$HOME/Android/Sdk
 export PATH=$PATH:$ANDROID_HOME/emulator
 export PATH=$PATH:$ANDROID_HOME/platform-tools
+export ANDROID_AVD_HOME=/home/junior/.var/app/com.google.AndroidStudio/config/.android/avd
+
 
 # nodejs
 # nvm manages PATH; lazy-loaded in functions.zsh

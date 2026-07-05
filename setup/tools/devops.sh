@@ -239,6 +239,236 @@ EOF
     print_success "DevOps tools installation complete."
 }
 
+install_docker() {
+    print_header "INSTALLING DOCKER"
+
+    if command_exists docker; then
+        print_success "Docker already installed ($(docker --version))"
+    else
+        case $OS in
+            ubuntu|debian|linuxmint|pop)
+                print_step "Installing Docker via official script..."
+                curl -fsSL https://get.docker.com -o get-docker.sh
+                sudo sh get-docker.sh
+                rm get-docker.sh
+
+                # Add user to docker group
+                sudo usermod -aG docker "$USER"
+                print_warning "You need to log out and back in for docker group membership to take effect"
+                ;;
+            fedora)
+                print_step "Installing Docker..."
+                install_package dnf-plugins-core
+                sudo dnf config-manager --add-repo https://download.docker.com/linux/fedora/docker-ce.repo
+                install_packages docker-ce docker-ce-cli containerd.io
+                sudo systemctl start docker
+                sudo systemctl enable docker
+                sudo usermod -aG docker "$USER"
+                ;;
+            arch|manjaro)
+                print_step "Installing Docker..."
+                install_packages docker docker-compose
+                sudo systemctl start docker
+                sudo systemctl enable docker
+                sudo usermod -aG docker "$USER"
+                ;;
+            macos)
+                print_step "Installing Docker Desktop..."
+                brew install --cask docker
+                ;;
+            *)
+                print_warning "Please install Docker manually for your OS"
+                return
+                ;;
+        esac
+    fi
+
+    # Install docker-compose (V2 Plugin)
+    if ! docker compose version &>/dev/null && confirm "Install Docker Compose V2 Plugin?"; then
+        print_step "Installing Docker Compose V2 Plugin..."
+        DOCKER_CONFIG=${DOCKER_CONFIG:-$HOME/.docker}
+        mkdir -p $DOCKER_CONFIG/cli-plugins
+        curl -SL "https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m)" -o $DOCKER_CONFIG/cli-plugins/docker-compose
+        chmod +x $DOCKER_CONFIG/cli-plugins/docker-compose
+        # Also symlink for old docker-compose command
+        sudo ln -sf $DOCKER_CONFIG/cli-plugins/docker-compose /usr/local/bin/docker-compose
+        print_success "Docker Compose V2 installed: $(docker compose version)"
+    fi
+
+    print_success "Docker installation complete"
+}
+
+install_observability() {
+    print_header "SETTING UP OBSERVABILITY STACK"
+
+    local DOTFILES_DIR="$(cd "$SCRIPT_DIR/../.." && pwd)"
+    local OBS_DIR="$DOTFILES_DIR/observability"
+    mkdir -p "$OBS_DIR"
+
+    if [ -f "$OBS_DIR/docker-compose.yml" ]; then
+        print_success "docker-compose.yml already exists"
+    else
+        print_step "Scaffolding docker-compose.yml for Observability tools..."
+        cat << 'EOF' > "$OBS_DIR/docker-compose.yml"
+version: '3.8'
+
+services:
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: prometheus
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+    ports:
+      - "9090:9090"
+    restart: unless-stopped
+
+  grafana:
+    image: grafana/grafana:latest
+    container_name: grafana
+    ports:
+      - "3000:3000"
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+    depends_on:
+      - prometheus
+      - loki
+      - tempo
+    restart: unless-stopped
+
+  loki:
+    image: grafana/loki:latest
+    container_name: loki
+    ports:
+      - "3100:3100"
+    restart: unless-stopped
+
+  tempo:
+    image: grafana/tempo:latest
+    container_name: tempo
+    command: [ "-config.file=/etc/tempo.yaml" ]
+    volumes:
+      - ./tempo.yaml:/etc/tempo.yaml
+    ports:
+      - "3200:3200"
+      - "4317:4317"  # otlp grpc
+    restart: unless-stopped
+
+  victoriametrics:
+    image: victoriametrics/victoria-metrics:latest
+    container_name: victoriametrics
+    ports:
+      - "8428:8428"
+    command:
+      - "-retentionPeriod=1"
+    restart: unless-stopped
+
+  redis:
+    image: redis:latest
+    container_name: redis
+    ports:
+      - "6379:6379"
+    restart: unless-stopped
+EOF
+    fi
+
+    # Create base configs to prevent startup crashes
+    if [ ! -f "$OBS_DIR/prometheus.yml" ]; then
+        print_step "Creating prometheus.yml..."
+        cat << 'EOF' > "$OBS_DIR/prometheus.yml"
+global:
+  scrape_interval: 15s
+
+scrape_configs:
+  - job_name: 'prometheus'
+    static_configs:
+      - targets: ['localhost:9090']
+EOF
+    else
+        print_success "prometheus.yml already exists"
+    fi
+
+    if [ ! -f "$OBS_DIR/tempo.yaml" ]; then
+        print_step "Creating tempo.yaml..."
+        cat << 'EOF' > "$OBS_DIR/tempo.yaml"
+server:
+  http_listen_port: 3200
+distributor:
+  receivers:
+    otlp:
+      protocols:
+        grpc:
+EOF
+    else
+        print_success "tempo.yaml already exists"
+    fi
+
+    print_success "Observability stack created at $OBS_DIR"
+    echo -e "${YELLOW}Note: The stack is not started automatically.${NC}"
+    echo -e "${CYAN}To start it, run: cd $OBS_DIR && docker compose up -d${NC}"
+}
+
+setup_git() {
+    print_header "CONFIGURING GIT"
+
+    # Check if git is already configured
+    if git config --global user.name &>/dev/null && git config --global user.email &>/dev/null; then
+        print_warning "Git already configured"
+        print_step "Current git user: $(git config --global user.name) <$(git config --global user.email)>"
+
+        if ! confirm "Reconfigure git?"; then
+            return
+        fi
+    fi
+
+    # Get user info
+    read -p "Enter your git username: " git_username
+    read -p "Enter your git email: " git_email
+
+    # Configure git
+    git config --global user.name "$git_username"
+    git config --global user.email "$git_email"
+
+    # Set default branch to main
+    git config --global init.defaultBranch main
+
+    # Set useful aliases
+    git config --global alias.st status
+    git config --global alias.co checkout
+    git config --global alias.br branch
+    git config --global alias.ci commit
+    git config --global alias.unstage 'reset HEAD --'
+    git config --global alias.last 'log -1 HEAD'
+    git config --global alias.visual 'log --oneline --graph --decorate --all'
+
+    # Better diff
+    git config --global diff.tool vimdiff
+    git config --global merge.tool vimdiff
+    git config --global core.editor vim
+
+    # Enable colors
+    git config --global color.ui auto
+
+    print_success "Git configured"
+
+    # Setup SSH key
+    if [ ! -f "$HOME/.ssh/id_ed25519" ]; then
+        if confirm "Generate SSH key for Git?"; then
+            print_step "Generating SSH key..."
+            ssh-keygen -t ed25519 -C "$git_email" -f "$HOME/.ssh/id_ed25519" -N ""
+
+            # Start ssh-agent and add key
+            eval "$(ssh-agent -s)"
+            ssh-add "$HOME/.ssh/id_ed25519"
+
+            print_success "SSH key generated"
+            print_warning "Add this key to your GitHub/GitLab account:"
+            echo ""
+            cat "$HOME/.ssh/id_ed25519.pub"
+            echo ""
+        fi
+    fi
+}
+
 if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
     install_devops_tools
 fi

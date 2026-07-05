@@ -88,7 +88,7 @@ install_dev_tools() {
     print_header "DEVELOPMENT TOOLS INSTALLATION"
 
     if confirm "Install Docker?"; then
-        [ -f "$SCRIPT_DIR/tools/docker.sh" ] && source "$SCRIPT_DIR/tools/docker.sh" && install_docker
+        [ -f "$SCRIPT_DIR/tools/devops.sh" ] && source "$SCRIPT_DIR/tools/devops.sh" && install_docker
     fi
 
     if confirm "Install VS Code?"; then
@@ -108,11 +108,19 @@ install_dev_tools() {
     fi
 
     if confirm "Configure Git?"; then
-        [ -f "$SCRIPT_DIR/tools/git.sh" ] && source "$SCRIPT_DIR/tools/git.sh" && setup_git
+        [ -f "$SCRIPT_DIR/tools/devops.sh" ] && source "$SCRIPT_DIR/tools/devops.sh" && setup_git
     fi
 
     if confirm "Install television (modern fuzzy finder)?"; then
-        [ -f "$SCRIPT_DIR/tools/television.sh" ] && source "$SCRIPT_DIR/tools/television.sh" && install_television
+        [ -f "$SCRIPT_DIR/tools/tools.sh" ] && source "$SCRIPT_DIR/tools/tools.sh" && install_television
+    fi
+
+    if confirm "Install Zed editor?"; then
+        [ -f "$SCRIPT_DIR/tools/editors.sh" ] && source "$SCRIPT_DIR/tools/editors.sh" && install_zed
+    fi
+
+    if confirm "Install GoLand IDE?"; then
+        [ -f "$SCRIPT_DIR/tools/editors.sh" ] && source "$SCRIPT_DIR/tools/editors.sh" && install_goland
     fi
 
     if confirm "Install DevOps & Infrastructure Tools (Terraform, K8s, AWS, Ansible)?"; then
@@ -120,7 +128,23 @@ install_dev_tools() {
     fi
 
     if confirm "Setup Observability Stack (Grafana, Prometheus, Tempo via Docker Compose)?"; then
-        [ -f "$SCRIPT_DIR/tools/observability.sh" ] && source "$SCRIPT_DIR/tools/observability.sh" && install_observability
+        [ -f "$SCRIPT_DIR/tools/devops.sh" ] && source "$SCRIPT_DIR/tools/devops.sh" && install_observability
+    fi
+
+    if confirm "Install PostgreSQL?"; then
+        [ -f "$SCRIPT_DIR/tools/database.sh" ] && source "$SCRIPT_DIR/tools/database.sh" && install_postgresql
+    fi
+
+    if confirm "Install MySQL?"; then
+        [ -f "$SCRIPT_DIR/tools/database.sh" ] && source "$SCRIPT_DIR/tools/database.sh" && install_mysql
+    fi
+
+    if confirm "Install bun (JavaScript runtime)?"; then
+        [ -f "$SCRIPT_DIR/tools/tools.sh" ] && source "$SCRIPT_DIR/tools/tools.sh" && install_bun
+    fi
+
+    if confirm "Install opencode (AI Terminal Assistant)?"; then
+        [ -f "$SCRIPT_DIR/tools/tools.sh" ] && source "$SCRIPT_DIR/tools/tools.sh" && install_opencode
     fi
 
     if confirm "Setup secrets management (age + git-crypt)?"; then
@@ -146,7 +170,7 @@ install_shell_improvements() {
     fi
 
     if confirm "Setup atuin server sync?"; then
-        [ -f "$SCRIPT_DIR/tools/atuin-server.sh" ] && source "$SCRIPT_DIR/tools/atuin-server.sh" && setup_atuin_server
+        [ -f "$SCRIPT_DIR/tools/shell.sh" ] && source "$SCRIPT_DIR/tools/shell.sh" && setup_atuin_server
     fi
 }
 
@@ -239,9 +263,11 @@ main() {
     echo -e "${CYAN}Available components:${NC}"
     echo "  • Essential Tools (git, curl, vim, etc.)"
     echo "  • Programming Languages (Node.js, Python, Rust, Go, PHP)"
-    echo "  • Development Tools (Docker, VS Code, Neovim, Television)"
+    echo "  • Development Tools (Docker, VS Code, Neovim, Television, Zed, GoLand)"
+    echo "  • JavaScript Runtimes (bun, opencode)"
     echo "  • DevOps & Infrastructure (Terraform, AWS CLI, K8s, Ansible, etc.)"
     echo "  • Observability Stack (Grafana, Prometheus, Loki, etc.)"
+    echo "  • Databases (PostgreSQL, MySQL)"
     echo "  • Applications (Browsers, Terminal, VPNs, DBeaver, etc.)"
     echo "  • Shell Improvements (Zsh + oh-my-zsh + asdf, Starship, Atuin server)"
     echo "  • Secrets Management (age + git-crypt)"
@@ -271,7 +297,7 @@ main() {
         minimal)
             install_essential
             if confirm "Configure Git?"; then
-                [ -f "$SCRIPT_DIR/tools/git.sh" ] && source "$SCRIPT_DIR/tools/git.sh" && setup_git
+                [ -f "$SCRIPT_DIR/tools/devops.sh" ] && source "$SCRIPT_DIR/tools/devops.sh" && setup_git
             fi
             ;;
         full)
@@ -335,7 +361,9 @@ main() {
     echo -e "${CYAN}Individual modules can be run separately:${NC}"
     echo "  bash $SCRIPT_DIR/langs/node.sh"
     echo "  bash $SCRIPT_DIR/langs/rust.sh"
-    echo "  bash $SCRIPT_DIR/tools/docker.sh"
+    echo "  bash $SCRIPT_DIR/tools/devops.sh"
+    echo "  bash $SCRIPT_DIR/tools/database.sh"
+    echo "  bash $SCRIPT_DIR/tools/editors.sh"
     echo "  bash $SCRIPT_DIR/apps/gnome/install.sh"
     echo "  ... etc"
     echo ""
