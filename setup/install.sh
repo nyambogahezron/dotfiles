@@ -161,6 +161,15 @@ install_applications() {
     fi
 }
 
+install_fortivpn_module() {
+    print_header "OPENFORTIVPN SERVICE SETUP"
+
+    if [ -f "$SCRIPT_DIR/tools/fortivpn.sh" ]; then
+        source "$SCRIPT_DIR/tools/fortivpn.sh"
+        setup_fortivpn
+    fi
+}
+
 install_shell_improvements() {
     print_header "SHELL IMPROVEMENTS INSTALLATION"
 
@@ -271,6 +280,7 @@ main() {
     echo "  • Applications (Browsers, Terminal, VPNs, DBeaver, etc.)"
     echo "  • Shell Improvements (Zsh + oh-my-zsh + asdf, Starship, Atuin server)"
     echo "  • Secrets Management (age + git-crypt)"
+    echo "  • OpenFortiVPN (systemd background service)"
     echo "  • Fonts (Nerd Fonts)"
     echo "  • Dotfiles & Configurations"
     echo ""
@@ -307,6 +317,9 @@ main() {
             install_applications
             install_shell_improvements
             install_fonts_module
+            if confirm "Setup OpenFortiVPN as a systemd service?"; then
+                install_fortivpn_module
+            fi
             if confirm "Setup dotfiles?"; then
                 setup_dotfiles
             fi
@@ -339,6 +352,10 @@ main() {
 
             if confirm "Install fonts?"; then
                 install_fonts_module
+            fi
+
+            if confirm "Setup OpenFortiVPN as a systemd service?"; then
+                install_fortivpn_module
             fi
 
             if confirm "Setup dotfiles and configurations?"; then

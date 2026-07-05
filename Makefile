@@ -1,4 +1,4 @@
-.PHONY: help install setup install-all apply delete restow adopt check update diff doctor maintenance
+.PHONY: help install setup install-all apply delete restow adopt check update diff doctor maintenance stow-system unstow-system
 
 # Configuration
 STOW_IGNORE = --ignore="install.sh|install-all.sh|Makefile|README.md|LICENSE|AGENTS.md|Brewfile|docs|scripts|setup"
@@ -48,3 +48,9 @@ doctor: ## Run the dotfiles health check
 
 maintenance: ## Run automated system maintenance and cleanup
 	~/.local/bin/dot-maintenance
+
+stow-system: ## Symlink etc/ files to / with sudo stow (e.g. systemd units)
+	sudo stow -v -d $(CURDIR) -t / etc
+
+unstow-system: ## Remove etc/ symlinks from / (undo stow-system)
+	sudo stow -D -v -d $(CURDIR) -t / etc

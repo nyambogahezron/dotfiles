@@ -1,0 +1,16 @@
+[Unit]
+Description=OpenFortiVPN Background Service
+Documentation=man:openfortivpn(1)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/openfortivpn -c /etc/openfortivpn/config
+StandardOutput=journal
+StandardError=journal
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
