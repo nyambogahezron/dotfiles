@@ -52,9 +52,11 @@ _install_openfortivpn() {
         return 0
     fi
 
-    print_step "Installing openfortivpn via apt..."
-    sudo apt-get update -qq
-    sudo apt-get install -y -qq openfortivpn
+    print_step "Installing openfortivpn via package manager..."
+    if ! install_package openfortivpn; then
+        print_warning "openfortivpn install failed — install manually"
+        return 1
+    fi
     print_success "openfortivpn installed"
 }
 

@@ -42,16 +42,11 @@ return {
 
       -- diagnostics
       local icons = {
-        Error = " ",
-        Warn  = " ",
-        Hint  = " ",
-        Info  = " ",
+        Error = " ",
+        Warn  = " ",
+        Hint  = " ",
+        Info  = " ",
       }
-
-      for name, icon in pairs(icons) do
-        name = "DiagnosticSign" .. name
-        vim.fn.sign_define(name, { text = icon, texthl = name, numhl = "" })
-      end
 
       if type(opts.diagnostics.virtual_text) == "table" and opts.diagnostics.virtual_text.prefix == "icons" then
         opts.diagnostics.virtual_text.prefix = vim.fn.has("nvim-0.10") == 0 and "●"
@@ -64,6 +59,7 @@ return {
           end
       end
 
+      opts.diagnostics.sign_text = opts.diagnostics.sign_text or icons
       vim.diagnostic.config(vim.deepcopy(opts.diagnostics))
 
       local servers = opts.servers
@@ -74,6 +70,51 @@ return {
         require("cmp_nvim_lsp").default_capabilities(),
         opts.capabilities or {}
       )
+
+      -- get all the servers that are available through mason-lspconfig
+      local have_mason, mlsp = pcall(require, "mason-lspconfig")
+      local all_mslp_servers = {}
+      local mason_package = {}
+      if have_mason then
+        local have_mappings, mappings = pcall(require, "mason-lspconfig.mappings.server")
+        if have_mappings then
+          all_mslp_servers = vim.tbl_keys(mappings.lspconfig_to_package)
+          mason_package = mappings.lspconfig_to_package
+        end
+      end
+
+      -- Starting a server whose binary cannot be resolved only produces
+      -- "exit code 127" noise, so only enable servers that can actually run.
+      local function probe_root()
+        local name = vim.api.nvim_buf_get_name(0)
+        if name == "" then
+          return vim.fn.getcwd()
+        end
+        return vim.fs.dirname(name)
+      end
+
+      local function available(server, config)
+        if servers[server] and servers[server].probe then
+          return servers[server].probe(probe_root()) ~= nil
+        end
+
+        if type(config.cmd) == "table" then
+          return vim.fn.executable(config.cmd[1]) == 1
+        end
+
+        local pkg_name = mason_package[server]
+        if pkg_name and have_mason then
+          local have_registry, mr = pcall(require, "mason-registry")
+          if have_registry then
+            local ok, pkg = pcall(mr.get_package, mr, pkg_name)
+            if ok then
+              return pkg:is_installed() or pkg:is_installing()
+            end
+          end
+        end
+
+        return true
+      end
 
       local function setup(server)
         local server_opts = vim.tbl_deep_extend("force", {
@@ -89,18 +130,13 @@ return {
             return
           end
         end
-        vim.lsp.config(server, server_opts)
-        vim.lsp.enable(server)
-      end
 
-      -- get all the servers that are available through mason-lspconfig
-      local have_mason, mlsp = pcall(require, "mason-lspconfig")
-      local all_mslp_servers = {}
-      if have_mason then
-        local have_mappings, mappings = pcall(require, "mason-lspconfig.mappings.server")
-        if have_mappings then
-          all_mslp_servers = vim.tbl_keys(mappings.lspconfig_to_package)
+        server_opts.probe = nil
+        vim.lsp.config(server, server_opts)
+        if not available(server, vim.lsp.config[server]) then
+          return
         end
+        vim.lsp.enable(server)
       end
 
       local ensure_installed = {}
@@ -128,7 +164,7 @@ return {
       end
 
       if have_mason then
-        mlsp.setup({ ensure_installed = ensure_installed, handlers = { setup } })
+        mlsp.setup({ ensure_installed = ensure_installed, handlers = { setup = setup } })
       end
     end,
   },
@@ -163,7 +199,7 @@ return {
         "commitlint",
         "typos",
         -- LSP servers (mason package names, not lspconfig names)
-        "vscode-json-languageserver",
+        "json-lsp",
         "yaml-language-server",
       },
     },
@@ -216,8 +252,18 @@ return {
         lua = { "stylua" },
         sh = { "shfmt" },
         python = { "isort", "black" },
-        javascript = { { "prettierd", "prettier" } },
-        typescript = { { "prettierd", "prettier" } },
+        javascript = function(bufnr)
+          return require("lsp.runtime").uses_biome(bufnr) and {} or { { "prettierd", "prettier" } }
+        end,
+        javascriptreact = function(bufnr)
+          return require("lsp.runtime").uses_biome(bufnr) and {} or { { "prettierd", "prettier" } }
+        end,
+        typescript = function(bufnr)
+          return require("lsp.runtime").uses_biome(bufnr) and {} or { { "prettierd", "prettier" } }
+        end,
+        typescriptreact = function(bufnr)
+          return require("lsp.runtime").uses_biome(bufnr) and {} or { { "prettierd", "prettier" } }
+        end,
         json = { "jq" },
         jsonc = { "jq" },
         yaml = { "yq" },

@@ -62,10 +62,13 @@ fi
 
 # FZF
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-[ -f /usr/share/doc/fzf/examples/key-bindings.zsh ] && \
-    source /usr/share/doc/fzf/examples/key-bindings.zsh
-[ -f /usr/share/fzf/key-bindings.zsh ] && \
-    source /usr/share/fzf/key-bindings.zsh
+# Ubuntu/Debian layout, then Fedora's (/usr/share/fzf/shell/)
+for _fzf_kb in /usr/share/doc/fzf/examples/key-bindings.zsh \
+              /usr/share/fzf/shell/key-bindings.zsh \
+              /usr/share/fzf/key-bindings.zsh; do
+    [ -f "$_fzf_kb" ] && { source "$_fzf_kb"; break; }
+done
+unset _fzf_kb
 
 #  Zoxide (smarter cd)
 command -v zoxide &>/dev/null && eval "$(zoxide init zsh --cmd z)"
@@ -94,6 +97,17 @@ if command -v dot-maintenance &>/dev/null && [[ -t 0 ]]; then
         fi
     fi
 fi
+
+
+# develpment utils
+# generate rand passwords
+genpass() {
+  local length=${1:-12}
+  LC_ALL=C tr -dc 'A-Za-z0-9!@#$%^&*' < /dev/urandom | head -c "$length"
+  echo
+}
+
+
 
 # Android
 export ANDROID_HOME=$HOME/Android/Sdk
@@ -125,3 +139,22 @@ export NVM_DIR="$HOME/.nvm"
 export PATH="/home/junior/.local/bin:$PATH"
 
 export TERMINAL=kitty
+
+# Yaru ships with Ubuntu; Fedora GNOME uses Adwaita-dark
+if [[ -d /usr/share/themes/Yaru-dark ]]; then
+    alias dbeaver="env GTK_THEME=Yaru-dark dbeaver"
+else
+    alias dbeaver="env GTK_THEME=Adwaita-dark dbeaver"
+fi
+
+export PATH="$HOME/.local/zed.app/bin:$PATH"
+
+export PATH=$PATH:~/go/bin
+
+# pnpm
+export PNPM_HOME="/home/junior/.local/share/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME/bin:"*) ;;
+  *) export PATH="$PNPM_HOME/bin:$PATH" ;;
+esac
+# pnpm end

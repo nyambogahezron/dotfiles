@@ -32,8 +32,14 @@ export PATH="$HOME/.local/bin:$PATH"
 
 # Go
 export GOPATH="$HOME/go"
-export GOROOT="/usr/local/go"
-[[ -d "$GOROOT/bin" ]] && export PATH="$GOROOT/bin:$GOPATH/bin:$PATH"
+# Derive GOROOT from the go binary so it works across distros
+# (Ubuntu/Debian: /usr/lib/go-1.26, Fedora: /usr/lib/golang, tarball: /usr/local/go)
+if command -v go &>/dev/null; then
+    export GOROOT="$(go env GOROOT)"
+elif [[ -d /usr/local/go ]]; then
+    export GOROOT="/usr/local/go"
+fi
+[[ -n "$GOROOT" && -d "$GOROOT/bin" ]] && export PATH="$GOROOT/bin:$GOPATH/bin:$PATH"
 
 # Rust / Cargo
 [[ -d "$HOME/.cargo/bin" ]] && export PATH="$HOME/.cargo/bin:$PATH"
@@ -63,13 +69,19 @@ export FZF_DEFAULT_OPTS="
     --bind='ctrl-d:preview-half-page-down'
 "
 
-# Use fd for fzf if available
+# Use fd for fzf if available (Ubuntu ships the binary as fdfind, Fedora as fd)
 if command -v fd &>/dev/null; then
-    export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
+    _fd_bin=fd
+elif command -v fdfind &>/dev/null; then
+    _fd_bin=fdfind
+fi
+if [[ -n "${_fd_bin:-}" ]]; then
+    export FZF_DEFAULT_COMMAND="$_fd_bin --type f --hidden --follow --exclude .git"
     export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-    export FZF_ALT_C_COMMAND='fd --type d --hidden --follow --exclude .git'
+    export FZF_ALT_C_COMMAND="$_fd_bin --type d --hidden --follow --exclude .git"
     export FZF_CTRL_T_OPTS="--preview 'bat --color=always --style=numbers {}'"
     export FZF_ALT_C_OPTS="--preview 'eza --tree --color=always {} | head -50'"
+    unset _fd_bin
 fi
 
 #  Language / Locale ─

@@ -20,6 +20,9 @@ Thumbs.db
 .env
 .env.local
 
+# Local binaries (not stowed, managed outside dotfiles)
+.local/
+
 # SSH config (contains private hostnames)
 .ssh/config
 
@@ -30,4 +33,3 @@ cache/
 # Temporary files
 temp/
 tmp/
-.local/bin/agy

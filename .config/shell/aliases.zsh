@@ -100,12 +100,25 @@ alias untar='tar -xvf'
 alias unbz2='tar -xvjf'
 alias ungz='tar -xvzf'
 
-#  System update (Ubuntu/Debian)
-alias update='sudo apt update && sudo apt upgrade -y && sudo apt autoremove -y \
-  ; sudo snap refresh 2>/dev/null; flatpak update -y 2>/dev/null'
-alias install='sudo apt install'
-alias remove='sudo apt remove'
-alias search='apt search'
+#  System update (package manager aware)
+if command -v apt-get &>/dev/null; then
+    alias update='sudo apt update && sudo apt upgrade -y && sudo apt autoremove -y \
+      ; sudo snap refresh 2>/dev/null; flatpak update -y 2>/dev/null'
+    alias install='sudo apt install'
+    alias remove='sudo apt remove'
+    alias search='apt search'
+elif command -v dnf &>/dev/null; then
+    alias update='sudo dnf upgrade -y && sudo dnf autoremove -y \
+      ; flatpak update -y 2>/dev/null'
+    alias install='sudo dnf install'
+    alias remove='sudo dnf remove'
+    alias search='dnf search'
+elif command -v pacman &>/dev/null; then
+    alias update='sudo pacman -Syu --noconfirm'
+    alias install='sudo pacman -S'
+    alias remove='sudo pacman -R'
+    alias search='pacman -Ss'
+fi
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" \
   "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 

@@ -258,8 +258,11 @@ install_docker() {
                 ;;
             fedora)
                 print_step "Installing Docker..."
-                install_package dnf-plugins-core
-                sudo dnf config-manager --add-repo https://download.docker.com/linux/fedora/docker-ce.repo
+                # dnf5 (Fedora 41+) ships config-manager built in; dnf4 needs dnf-plugins-core
+                if ! dnf config-manager --help &>/dev/null; then
+                    install_package dnf-plugins-core
+                fi
+                sudo dnf config-manager addrepo --from-repofile=https://download.docker.com/linux/fedora/docker-ce.repo
                 install_packages docker-ce docker-ce-cli containerd.io
                 sudo systemctl start docker
                 sudo systemctl enable docker

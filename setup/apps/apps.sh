@@ -90,8 +90,16 @@ install_browsers() {
                 sudo apt update
                 sudo apt install -y brave-browser
                 ;;
+            fedora)
+                sudo dnf config-manager addrepo --from-repofile=https://brave-browser-apt-release.s3.brave.com/brave-browser-release.repo
+                sudo dnf install -y brave-browser
+                ;;
             macos)
                 brew install --cask brave-browser
+                ;;
+            *)
+                print_warning "Brave Browser must be installed manually on your OS"
+                return
                 ;;
         esac
         print_success "Brave Browser installed"
@@ -180,8 +188,18 @@ install_productivity_apps() {
                 sudo ln -sf /opt/Postman/Postman /usr/local/bin/postman
                 rm /tmp/postman.tar.gz
                 ;;
+            fedora|arch|manjaro)
+                wget https://dl.pstmn.io/download/latest/linux64 -O /tmp/postman.tar.gz
+                sudo tar -xzf /tmp/postman.tar.gz -C /opt
+                sudo ln -sf /opt/Postman/Postman /usr/local/bin/postman
+                rm /tmp/postman.tar.gz
+                ;;
             macos)
                 brew install --cask postman
+                ;;
+            *)
+                print_warning "Postman must be installed manually on your OS"
+                return
                 ;;
         esac
         print_success "Postman installed"

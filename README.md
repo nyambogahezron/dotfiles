@@ -73,7 +73,7 @@ The `setup/install.sh` installer dynamically provisions the following software. 
 - **Terminal UI**: lazygit, lazydocker, btop, eza, bat, tealdeer (`tldr`)
 
 ### Desktop & Productivity
-- **Editors & AI**: VS Code, Neovim, Zed, GoLand, Opencode, Gemini-CLI
+- **Editors & AI**: VS Code, Neovim, Zed, GoLand, Opencode
 - **Browsers**: Google Chrome, Firefox, Brave
 - **Communication**: Slack, Discord
 - **Media**: VLC, GIMP, OBS Studio

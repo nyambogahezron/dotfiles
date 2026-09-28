@@ -11,6 +11,23 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+-- Neovim is not started from a login shell, so nvm's node is missing from $PATH.
+-- Language servers are launched through Bun, but node based plugins (copilot,
+-- cspell, eslint, prettierd, ...) still expect a node binary.
+if vim.fn.executable("node") == 0 then
+  local root = vim.fs.joinpath(vim.env.HOME, ".nvm", "versions", "node")
+  local latest, latest_major
+  for _, version in ipairs(vim.fn.glob(vim.fs.joinpath(root, "*"), false, true)) do
+    local major = tonumber(version:match("v(%d+)"))
+    if major and (not latest_major or major > latest_major) then
+      latest, latest_major = version, major
+    end
+  end
+  if latest then
+    vim.env.PATH = vim.fs.joinpath(latest, "bin") .. ":" .. vim.env.PATH
+  end
+end
+
 -- Load options, keymaps, and autocmds
 require("config.options")
 require("config.keymaps")

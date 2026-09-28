@@ -24,3 +24,6 @@ scripts
 Makefiles
 .github
 
+# Local binaries, managed outside dotfiles
+^\.local
+

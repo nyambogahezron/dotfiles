@@ -45,8 +45,7 @@ install_nodejs() {
         nodemon \
         pm2 \
         eslint \
-        prettier \
-        @google/gemini-cli
+        prettier
 
     # Verify versions
     print_step "Node.js version: $(node --version)"
