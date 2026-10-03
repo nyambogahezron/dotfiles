@@ -8,7 +8,8 @@ return {
     lazy = false,
     priority = 1000,
     opts = {
-      flavour = "mocha",
+      -- [latte,frappe,mocha,macchiato]
+      flavour = "macchiato",
       transparent_background = true,
       integrations = {
         alpha = true,

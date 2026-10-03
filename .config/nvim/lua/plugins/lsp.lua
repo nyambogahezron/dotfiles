@@ -252,6 +252,7 @@ return {
         lua = { "stylua" },
         sh = { "shfmt" },
         python = { "isort", "black" },
+        go = { "goimports", "gofumpt" },
         javascript = function(bufnr)
           return require("lsp.runtime").uses_biome(bufnr) and {} or { { "prettierd", "prettier" } }
         end,

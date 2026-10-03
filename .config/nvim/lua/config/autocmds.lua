@@ -109,3 +109,24 @@ vim.api.nvim_create_autocmd("VimEnter", {
     end
   end,
 })
+
+-- Drop the empty [No Name] buffer left by Neo-tree
+vim.api.nvim_create_autocmd("BufReadPost", {
+  group = augroup("drop_empty_buffer"),
+  desc = "Drop the empty [No Name] buffer left by Neo-tree",
+  callback = function()
+    local bufs = vim.api.nvim_list_bufs()
+    for _, bufnr in ipairs(bufs) do
+      if vim.api.nvim_buf_is_loaded(bufnr) and 
+         vim.api.nvim_buf_get_name(bufnr) == "" and 
+         vim.api.nvim_get_option_value("buftype", {buf=bufnr}) == "" then
+        -- Also check if it's not modified and empty
+        if not vim.api.nvim_get_option_value("modified", {buf=bufnr}) and 
+           vim.api.nvim_buf_line_count(bufnr) == 1 and 
+           vim.api.nvim_buf_get_lines(bufnr, 0, 1, false)[1] == "" then
+          pcall(vim.api.nvim_buf_delete, bufnr, { force = true })
+        end
+      end
+    end
+  end,
+})
