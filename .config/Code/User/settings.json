@@ -259,4 +259,5 @@
     "**/.forgejo/workflows/*.yml",
     "**/.forgejo/workflows/*.yaml",
   ],
+  "chat.editing.autoAcceptDelay": 1,
 }

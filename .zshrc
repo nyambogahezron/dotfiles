@@ -140,13 +140,6 @@ export PATH="/home/junior/.local/bin:$PATH"
 
 export TERMINAL=kitty
 
-# Yaru ships with Ubuntu; Fedora GNOME uses Adwaita-dark
-if [[ -d /usr/share/themes/Yaru-dark ]]; then
-    alias dbeaver="env GTK_THEME=Yaru-dark dbeaver"
-else
-    alias dbeaver="env GTK_THEME=Adwaita-dark dbeaver"
-fi
-
 export PATH="$HOME/.local/zed.app/bin:$PATH"
 
 export PATH=$PATH:~/go/bin

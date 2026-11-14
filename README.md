@@ -9,6 +9,19 @@ Modern, production-grade development environment managed by [GNU Stow](https://w
 - **Fast and Lightweight**: No templates or complex logic, just plain configuration files.
 - **Automation**: Bootstrap scripts for one-command environment setup and migration helpers.
 - **VPN as a Service**: OpenFortiVPN deployed as a persistent systemd background service.
+- **Opinionated Desktop**: Hyprland, Waybar, Starship, Kitty themes, and a modular Neovim setup.
+- **Safer Setup**: Preview installer plans, run focused local tests, and validate changes in GitHub Actions.
+
+## Visual Tour
+
+The desktop and terminal configuration is intentionally personal and modular:
+
+- **Tiling desktops**: Hyprland with Waybar and Fuzzel; Aerospace configuration is also included.
+- **Terminal**: Starship prompt, Kitty themes, and Fastfetch.
+- **Editor**: Neovim with separate plugin modules for LSP, completion, Git, UI, and DevOps.
+- **Shell**: Shared aliases, functions, and exports for Bash and Zsh.
+
+Browse the configurations under [`.config/`](./.config/) to see the actual settings. Screenshots are best captured from the running desktop so they reflect the real fonts, themes, and layout rather than a mockup.
 
 ## Getting Started
 
@@ -33,6 +46,18 @@ bash install.sh --full
 ```
 
 The full installer checks for existing tools before installing them and skips detected installs by default. Use `--force-reinstall` only when you explicitly want to reinstall detected runtimes/tools.
+
+Preview a setup mode without running installers, prompting for credentials, or making changes:
+
+```bash
+cd setup
+bash install.sh --dry-run --minimal
+bash install.sh --dry-run --full
+bash install.sh --dry-run --languages
+bash install.sh --dry-run --apps
+```
+
+The preview reports the setup modules for that mode; package selection can vary by operating system. Choose a mode explicitly when using `--dry-run`.
 
 ### Setup Scripts
 
@@ -147,8 +172,21 @@ The repository uses `stow` to link files from the repo root to your home directo
 | `make apply` or `./install.sh` | Apply dotfile symlinks |
 | `cd setup && bash install.sh` | Run the interactive setup installer |
 | `cd setup && bash install.sh --full` | Install everything non-interactively |
+| `cd setup && bash install.sh --dry-run --minimal` | Preview a setup plan without changes |
+| `make test` | Run focused setup-preview tests |
+| `make check` | Preview Stow symlink changes |
 | `make update` | Pull latest changes and re-stow |
 | `git diff` | Check local configuration differences |
+
+### Validation
+
+Run the focused checks locally before changing or sharing the setup:
+
+```bash
+make test
+```
+
+GitHub Actions also checks Bash syntax, runs ShellCheck, tests the setup previews, and checks Stow's proposed links in a clean target directory.
 
 ### Migrating Away From Stow
 

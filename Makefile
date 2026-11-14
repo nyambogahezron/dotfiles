@@ -1,7 +1,7 @@
-.PHONY: help install setup install-all apply delete restow adopt check update diff doctor maintenance stow-system unstow-system
+.PHONY: help install setup install-all apply delete restow adopt check update diff doctor maintenance test stow-system unstow-system
 
 # Configuration
-STOW_IGNORE = --ignore="install.sh|install-all.sh|Makefile|README.md|LICENSE|AGENTS.md|Brewfile|docs|scripts|setup"
+STOW_IGNORE = --ignore="install.sh|install-all.sh|Makefile|README.md|LICENSE|AGENTS.md|Brewfile|docs|scripts|setup|\.github|tests"
 STOW_FLAGS = -v -d $(CURDIR) -t $(HOME)
 
 help: ## Show this help menu
@@ -48,6 +48,9 @@ doctor: ## Run the dotfiles health check
 
 maintenance: ## Run automated system maintenance and cleanup
 	~/.local/bin/dot-maintenance
+
+test: ## Run focused repository tests
+	bash tests/setup-dry-run.sh
 
 stow-system: ## Symlink etc/ files to / with sudo stow (e.g. systemd units)
 	sudo stow -v -d $(CURDIR) -t / etc

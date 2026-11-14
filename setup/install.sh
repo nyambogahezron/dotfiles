@@ -4,6 +4,7 @@
 
 # Options:
 #   --help       Show detailed help message
+#   --dry-run    Show the plan without installing or changing anything
 #   --minimal    Only install essential tools
 #   --full       Install everything
 #   --yes        Answer yes to installation prompts
@@ -25,8 +26,8 @@ show_help() {
     cat << 'EOF'
 
 USAGE:
-    bash main.sh [OPTIONS]
-    bash main.sh --help         # Show this help message
+    bash install.sh [OPTIONS]
+    bash install.sh --help      # Show this help message
 
 INSTALLATION MODES:
 
@@ -40,10 +41,54 @@ OPTIONS:
 
     -h, --help                  Show this comprehensive help message
     -v, --version               Show version information
+    --dry-run                   Preview a selected mode without making changes
     -y, --yes                   Answer yes to install prompts
     --force-reinstall           Reinstall tools even when they are detected
 
+EXAMPLES:
+
+    bash install.sh --dry-run --minimal
+    bash install.sh --dry-run --full
+    bash install.sh --full
+
 EOF
+}
+
+print_dry_run() {
+    printf 'Dry run: no changes will be made.\n'
+    printf 'Mode: %s\n' "$INSTALL_MODE"
+    printf 'Plan (module-level; package choices depend on your operating system):\n'
+
+    if [[ "${ASSUME_YES:-0}" == "1" ]]; then
+        printf '  - Update system packages\n'
+    else
+        printf '  - Ask whether to update system packages\n'
+    fi
+
+    case "$INSTALL_MODE" in
+        minimal)
+            printf '  - Install essential tools\n'
+            printf '  - Optionally configure Git\n'
+            ;;
+        full)
+            printf '  - Install essential tools and language runtimes\n'
+            printf '  - Install development tools and applications\n'
+            printf '  - Configure shell improvements, fonts, OpenFortiVPN, and dotfiles\n'
+            ;;
+        languages)
+            printf '  - Run the Node.js, Python, Rust, Go, and PHP setup modules\n'
+            printf '  - Offer Laravel setup when PHP is installed\n'
+            ;;
+        apps)
+            printf '  - Run the applications setup module\n'
+            ;;
+    esac
+
+    if [[ "${ASSUME_YES:-0}" == "1" ]]; then
+        printf 'Prompt handling: accept installation prompts\n'
+    else
+        printf 'Prompt handling: prompts would remain interactive\n'
+    fi
 }
 
 
@@ -222,6 +267,8 @@ setup_dotfiles() {
 
 main() {
     INSTALL_MODE="interactive"
+    MODE_SELECTED=0
+    DRY_RUN=0
 
     while [[ $# -gt 0 ]]; do
         case "$1" in
@@ -234,6 +281,9 @@ main() {
                 echo "Part of my-dot-files by nyambogahezron"
                 exit 0
                 ;;
+            --dry-run)
+                DRY_RUN=1
+                ;;
             -y|--yes)
                 export ASSUME_YES=1
                 ;;
@@ -242,26 +292,40 @@ main() {
                 ;;
             --minimal)
                 INSTALL_MODE="minimal"
+                MODE_SELECTED=1
                 ;;
             --full|--all)
                 INSTALL_MODE="full"
+                MODE_SELECTED=1
                 export ASSUME_YES=1
                 ;;
             --languages)
                 INSTALL_MODE="languages"
+                MODE_SELECTED=1
                 ;;
             --apps)
                 INSTALL_MODE="apps"
+                MODE_SELECTED=1
                 ;;
             *)
                 print_error "Unknown option: $1"
                 echo ""
-                echo "Run 'bash main.sh --help' for usage information."
+                echo "Run 'bash install.sh --help' for usage information."
                 exit 1
                 ;;
         esac
         shift
     done
+
+    if [[ "$DRY_RUN" == "1" ]]; then
+        if [[ "$MODE_SELECTED" != "1" ]]; then
+            print_error "Choose a mode with --minimal, --full, --languages, or --apps when using --dry-run."
+            exit 1
+        fi
+
+        print_dry_run
+        return
+    fi
 
     clear 2>/dev/null || true
 
@@ -284,7 +348,7 @@ main() {
     echo "  • Fonts (Nerd Fonts)"
     echo "  • Dotfiles & Configurations"
     echo ""
-    echo -e "${YELLOW}Tip: Run 'bash main.sh --help' for detailed information${NC}"
+    echo -e "${YELLOW}Tip: Run 'bash install.sh --help' for detailed information${NC}"
     echo ""
 
     if ! confirm "Continue with installation?"; then
