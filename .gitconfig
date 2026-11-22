@@ -1,10 +1,8 @@
-# ~/.gitconfig 
+# ~/.gitconfig
 
 [user]
 	name = nyambogahezron
 	email = 133749469+nyambogahezron@users.noreply.github.com
-
-
 
 [core]
 	editor = vim
@@ -20,7 +18,7 @@
 [color]
 	ui = auto
 
-#  Delta (syntax-highlighted diffs) 
+#  Delta (syntax-highlighted diffs)
 [interactive]
     diffFilter = delta --color-only
 
@@ -47,7 +45,7 @@
 [rebase]
     autoStash = true
 
-#  Pull / Push 
+#  Pull / Push
 [pull]
     rebase = false
 
@@ -78,14 +76,14 @@
     aliases = config --get-regexp alias
 	visual = log --oneline --graph --decorate --all
 
-#  URL shortcuts 
+#  URL shortcuts
 [url "git@github.com:"]
     insteadOf = gh:
 
 [url "git@gitlab.com:"]
     insteadOf = gl:
 
-#  Credential / SSH 
+#  Credential / SSH
 [credential]
     helper = store
 
