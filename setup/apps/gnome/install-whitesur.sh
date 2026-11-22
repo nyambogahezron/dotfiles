@@ -44,9 +44,29 @@ install_icons() {
     rm -rf "$dir"
     git clone --depth=1 https://github.com/vinceliuice/WhiteSur-icon-theme.git "$dir"
     cd "$dir"
-    ./install.sh -a
+    ./install.sh --theme default --alternative
     cd "$WORK_DIR"
     print_success "Icon theme installed"
+}
+
+configure_icon_theme() {
+    print_header "APPLYING WHITESUR ICON THEME"
+
+    if ! command_exists gsettings || ! gsettings list-schemas | grep -Fxq org.gnome.desktop.interface; then
+        print_warning "GNOME settings are unavailable. Select WhiteSur under GNOME Tweaks > Appearance > Icons."
+        return
+    fi
+
+    if [[ ! -d "$HOME/.local/share/icons/WhiteSur" && ! -d "$HOME/.icons/WhiteSur" ]]; then
+        print_warning "WhiteSur icons were not found in the user icon directories."
+        return
+    fi
+
+    if gsettings set org.gnome.desktop.interface icon-theme 'WhiteSur'; then
+        print_success "WhiteSur is now the active GNOME icon theme"
+    else
+        print_warning "Could not activate WhiteSur. Select it under GNOME Tweaks > Appearance > Icons."
+    fi
 }
 
 install_gtk_theme() {
@@ -99,6 +119,7 @@ install_whitesur() {
 
     install_wallpapers
     install_icons
+    configure_icon_theme
     install_gtk_theme
 
     local theme_dir="$WORK_DIR/WhiteSur-gtk-theme"

@@ -70,6 +70,12 @@ check_sudo() {
         print_warning "Run it as a normal user. You'll be prompted for sudo when needed."
         exit 1
     fi
+
+    if [[ -r /proc/self/status ]] && grep -Eq '^NoNewPrivs:[[:space:]]*1$' /proc/self/status; then
+        print_error "This environment blocks privilege escalation (NoNewPrivs is enabled)."
+        print_warning "Run the installer on the host or in a container configured to allow sudo."
+        exit 1
+    fi
 }
 
 # Ask for confirmation
@@ -78,8 +84,7 @@ confirm() {
         return 0
     fi
 
-    read -p "$1 [y/N] " -n 1 -r
-    echo
+    read -r -p "$1 [y/N] " REPLY
     [[ $REPLY =~ ^[Yy]$ ]]
 }
 
@@ -125,19 +130,31 @@ update_system() {
     case $OS in
         ubuntu|debian|linuxmint|pop)
             print_step "Updating apt repositories..."
-            sudo apt update && sudo apt upgrade -y
+            sudo apt update && sudo apt upgrade -y || {
+                print_error "System package update failed"
+                return 1
+            }
             ;;
         fedora)
             print_step "Updating dnf repositories..."
-            sudo dnf update -y
+            sudo dnf update -y || {
+                print_error "System package update failed"
+                return 1
+            }
             ;;
         arch|manjaro)
             print_step "Updating pacman repositories..."
-            sudo pacman -Syu --noconfirm
+            sudo pacman -Syu --noconfirm || {
+                print_error "System package update failed"
+                return 1
+            }
             ;;
         macos)
             print_step "Updating Homebrew..."
-            brew update && brew upgrade
+            brew update && brew upgrade || {
+                print_error "System package update failed"
+                return 1
+            }
             ;;
         *)
             print_warning "Unknown OS, skipping system update"

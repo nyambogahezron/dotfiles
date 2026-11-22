@@ -30,8 +30,8 @@ install_oh_my_zsh() {
     print_header "OH-MY-ZSH"
     if [ ! -d "$HOME/.oh-my-zsh" ]; then
         print_step "Installing Oh-My-Zsh..."
-        # Unattended install
-        RUNZSH=no CHSH=no sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
+        # Clone the framework without letting its installer replace the managed ~/.zshrc.
+        git clone --depth 1 https://github.com/ohmyzsh/ohmyzsh.git "$HOME/.oh-my-zsh"
         print_success "Oh-My-Zsh installed"
     else
         print_success "Oh-My-Zsh already installed"

@@ -28,7 +28,8 @@ export LESS_TERMCAP_us=$'\E[01;32m'
 
 #  PATH — add all tool paths 
 # User-local binaries (highest priority)
-export PATH="$HOME/.local/bin:$PATH"
+export PATH="$HOME/local:$HOME/.local/bin:$PATH"
+[[ -d "$HOME/.atuin/bin" ]] && export PATH="$HOME/.atuin/bin:$PATH"
 
 # Go
 export GOPATH="$HOME/go"
@@ -75,14 +76,22 @@ if command -v fd &>/dev/null; then
 elif command -v fdfind &>/dev/null; then
     _fd_bin=fdfind
 fi
+if command -v bat &>/dev/null; then
+    _bat_bin=bat
+elif command -v batcat &>/dev/null; then
+    _bat_bin=batcat
+fi
 if [[ -n "${_fd_bin:-}" ]]; then
     export FZF_DEFAULT_COMMAND="$_fd_bin --type f --hidden --follow --exclude .git"
     export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
     export FZF_ALT_C_COMMAND="$_fd_bin --type d --hidden --follow --exclude .git"
-    export FZF_CTRL_T_OPTS="--preview 'bat --color=always --style=numbers {}'"
+    if [[ -n "${_bat_bin:-}" ]]; then
+        export FZF_CTRL_T_OPTS="--preview '$_bat_bin --color=always --style=numbers {}'"
+    fi
     export FZF_ALT_C_OPTS="--preview 'eza --tree --color=always {} | head -50'"
     unset _fd_bin
 fi
+unset _bat_bin
 
 #  Language / Locale ─
 export LANG="en_US.UTF-8"

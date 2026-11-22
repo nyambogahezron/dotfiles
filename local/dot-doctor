@@ -13,8 +13,9 @@ echo -e "${CYAN}=== Dotfiles Doctor ===${NC}"
 check_cmd() {
     local cmd=$1
     local name=${2:-$1}
+    local version_flag=${3:---version}
     if command -v "$cmd" &>/dev/null; then
-        echo -e "${GREEN}✓${NC} $name is installed ($($cmd --version 2>&1 | head -n 1 | awk '{print $1,$2,$3}' | tr -d '\n'))"
+        echo -e "${GREEN}✓${NC} $name is installed ($($cmd "$version_flag" 2>&1 | head -n 1 | awk '{print $1,$2,$3}' | tr -d '\n'))"
     else
         echo -e "${RED}✗${NC} $name is NOT installed or not in PATH"
     fi
@@ -23,7 +24,7 @@ check_cmd() {
 echo ""
 echo -e "${YELLOW}Checking Core Tools...${NC}"
 check_cmd nvim "Neovim"
-check_cmd tmux "Tmux"
+check_cmd tmux "Tmux" -V
 check_cmd zsh "Zsh"
 check_cmd stow "GNU Stow"
 
@@ -34,6 +35,11 @@ check_cmd lazygit "Lazygit"
 check_cmd gh "GitHub CLI"
 check_cmd fzf "FZF"
 check_cmd rg "Ripgrep"
+if ! command -v node &>/dev/null && [[ -s "${NVM_DIR:-$HOME/.nvm}/nvm.sh" ]]; then
+    export NVM_DIR="${NVM_DIR:-$HOME/.nvm}"
+    # shellcheck disable=SC1090
+    source "$NVM_DIR/nvm.sh"
+fi
 check_cmd node "Node.js"
 
 echo ""

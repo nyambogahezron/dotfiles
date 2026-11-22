@@ -16,10 +16,10 @@
 set -e
 
 # Get script directory
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+SETUP_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 # Source utilities
-source "$SCRIPT_DIR/utils/utils.sh"
+source "$SETUP_DIR/utils/utils.sh"
 
 # Show Help
 show_help() {
@@ -95,8 +95,8 @@ print_dry_run() {
 install_essential() {
     print_header "ESSENTIAL TOOLS INSTALLATION"
 
-    if [ -f "$SCRIPT_DIR/tools/tools.sh" ]; then
-        source "$SCRIPT_DIR/tools/tools.sh"
+    if [ -f "$SETUP_DIR/tools/tools.sh" ]; then
+        source "$SETUP_DIR/tools/tools.sh"
         install_essential_tools
     fi
 }
@@ -105,27 +105,27 @@ install_languages() {
     print_header "PROGRAMMING LANGUAGES INSTALLATION"
 
     if confirm "Install Node.js?"; then
-        [ -f "$SCRIPT_DIR/langs/node.sh" ] && source "$SCRIPT_DIR/langs/node.sh" && install_nodejs
+        [ -f "$SETUP_DIR/langs/node.sh" ] && source "$SETUP_DIR/langs/node.sh" && install_nodejs
     fi
 
     if confirm "Install Python?"; then
-        [ -f "$SCRIPT_DIR/langs/python.sh" ] && source "$SCRIPT_DIR/langs/python.sh" && install_python
+        [ -f "$SETUP_DIR/langs/python.sh" ] && source "$SETUP_DIR/langs/python.sh" && install_python
     fi
 
     if confirm "Install Rust?"; then
-        [ -f "$SCRIPT_DIR/langs/rust.sh" ] && source "$SCRIPT_DIR/langs/rust.sh" && install_rust
+        [ -f "$SETUP_DIR/langs/rust.sh" ] && source "$SETUP_DIR/langs/rust.sh" && install_rust
     fi
 
     if confirm "Install Go?"; then
-        [ -f "$SCRIPT_DIR/langs/go.sh" ] && source "$SCRIPT_DIR/langs/go.sh" && install_go
+        [ -f "$SETUP_DIR/langs/go.sh" ] && source "$SETUP_DIR/langs/go.sh" && install_go
     fi
 
     if confirm "Install PHP?"; then
-        [ -f "$SCRIPT_DIR/langs/php.sh" ] && source "$SCRIPT_DIR/langs/php.sh" && install_php
+        [ -f "$SETUP_DIR/langs/php.sh" ] && source "$SETUP_DIR/langs/php.sh" && install_php
     fi
 
     if command_exists php && confirm "Setup Laravel development environment?"; then
-        [ -f "$SCRIPT_DIR/langs/laravel.sh" ] && source "$SCRIPT_DIR/langs/laravel.sh" && install_laravel
+        [ -f "$SETUP_DIR/langs/laravel.sh" ] && source "$SETUP_DIR/langs/laravel.sh" && install_laravel
     fi
 }
 
@@ -133,75 +133,75 @@ install_dev_tools() {
     print_header "DEVELOPMENT TOOLS INSTALLATION"
 
     if confirm "Install Docker?"; then
-        [ -f "$SCRIPT_DIR/tools/devops.sh" ] && source "$SCRIPT_DIR/tools/devops.sh" && install_docker
+        [ -f "$SETUP_DIR/tools/devops.sh" ] && source "$SETUP_DIR/tools/devops.sh" && install_docker
     fi
 
     if confirm "Install VS Code?"; then
-        [ -f "$SCRIPT_DIR/vscode.sh" ] && source "$SCRIPT_DIR/vscode.sh" && install_vscode
+        [ -f "$SETUP_DIR/vscode.sh" ] && source "$SETUP_DIR/vscode.sh" && install_vscode
 
         if command_exists code && confirm "Install VS Code extensions?"; then
-            [ -f "$SCRIPT_DIR/apps/extensions.sh" ] && source "$SCRIPT_DIR/apps/extensions.sh" && install_vscode_extensions
+            [ -f "$SETUP_DIR/apps/extensions.sh" ] && source "$SETUP_DIR/apps/extensions.sh" && install_vscode_extensions
         fi
     fi
 
     if command_exists gnome-shell && confirm "Install GNOME extensions?"; then
-        [ -f "$SCRIPT_DIR/apps/gnome/install.sh" ] && source "$SCRIPT_DIR/apps/gnome/install.sh" && install_gnome_extensions
+        [ -f "$SETUP_DIR/apps/gnome/install.sh" ] && source "$SETUP_DIR/apps/gnome/install.sh" && install_gnome_extensions
     fi
 
     if confirm "Setup Neovim configuration?"; then
-        [ -f "$SCRIPT_DIR/apps/nvim.sh" ] && source "$SCRIPT_DIR/apps/nvim.sh" && setup_nvim
+        [ -f "$SETUP_DIR/apps/nvim.sh" ] && source "$SETUP_DIR/apps/nvim.sh" && setup_nvim
     fi
 
     if confirm "Configure Git?"; then
-        [ -f "$SCRIPT_DIR/tools/devops.sh" ] && source "$SCRIPT_DIR/tools/devops.sh" && setup_git
+        [ -f "$SETUP_DIR/tools/devops.sh" ] && source "$SETUP_DIR/tools/devops.sh" && setup_git
     fi
 
     if confirm "Install television (modern fuzzy finder)?"; then
-        [ -f "$SCRIPT_DIR/tools/tools.sh" ] && source "$SCRIPT_DIR/tools/tools.sh" && install_television
+        [ -f "$SETUP_DIR/tools/tools.sh" ] && source "$SETUP_DIR/tools/tools.sh" && install_television
     fi
 
     if confirm "Install Zed editor?"; then
-        [ -f "$SCRIPT_DIR/tools/editors.sh" ] && source "$SCRIPT_DIR/tools/editors.sh" && install_zed
+        [ -f "$SETUP_DIR/tools/editors.sh" ] && source "$SETUP_DIR/tools/editors.sh" && install_zed
     fi
 
     if confirm "Install GoLand IDE?"; then
-        [ -f "$SCRIPT_DIR/tools/editors.sh" ] && source "$SCRIPT_DIR/tools/editors.sh" && install_goland
+        [ -f "$SETUP_DIR/tools/editors.sh" ] && source "$SETUP_DIR/tools/editors.sh" && install_goland
     fi
 
     if confirm "Install DevOps & Infrastructure Tools (Terraform, K8s, AWS, Ansible)?"; then
-        [ -f "$SCRIPT_DIR/tools/devops.sh" ] && source "$SCRIPT_DIR/tools/devops.sh" && install_devops_tools
+        [ -f "$SETUP_DIR/tools/devops.sh" ] && source "$SETUP_DIR/tools/devops.sh" && install_devops_tools
     fi
 
     if confirm "Setup Observability Stack (Grafana, Prometheus, Tempo via Docker Compose)?"; then
-        [ -f "$SCRIPT_DIR/tools/devops.sh" ] && source "$SCRIPT_DIR/tools/devops.sh" && install_observability
+        [ -f "$SETUP_DIR/tools/devops.sh" ] && source "$SETUP_DIR/tools/devops.sh" && install_observability
     fi
 
     if confirm "Install PostgreSQL?"; then
-        [ -f "$SCRIPT_DIR/tools/database.sh" ] && source "$SCRIPT_DIR/tools/database.sh" && install_postgresql
+        [ -f "$SETUP_DIR/tools/database.sh" ] && source "$SETUP_DIR/tools/database.sh" && install_postgresql
     fi
 
     if confirm "Install MySQL?"; then
-        [ -f "$SCRIPT_DIR/tools/database.sh" ] && source "$SCRIPT_DIR/tools/database.sh" && install_mysql
+        [ -f "$SETUP_DIR/tools/database.sh" ] && source "$SETUP_DIR/tools/database.sh" && install_mysql
     fi
 
     if confirm "Install bun (JavaScript runtime)?"; then
-        [ -f "$SCRIPT_DIR/tools/tools.sh" ] && source "$SCRIPT_DIR/tools/tools.sh" && install_bun
+        [ -f "$SETUP_DIR/tools/tools.sh" ] && source "$SETUP_DIR/tools/tools.sh" && install_bun
     fi
 
     if confirm "Install opencode (AI Terminal Assistant)?"; then
-        [ -f "$SCRIPT_DIR/tools/tools.sh" ] && source "$SCRIPT_DIR/tools/tools.sh" && install_opencode
+        [ -f "$SETUP_DIR/tools/tools.sh" ] && source "$SETUP_DIR/tools/tools.sh" && install_opencode
     fi
 
     if confirm "Setup secrets management (age + git-crypt)?"; then
-        [ -f "$SCRIPT_DIR/secrets.sh" ] && source "$SCRIPT_DIR/secrets.sh" && setup_secrets
+        [ -f "$SETUP_DIR/secrets.sh" ] && source "$SETUP_DIR/secrets.sh" && setup_secrets
     fi
 }
 
 install_applications() {
     print_header "APPLICATIONS INSTALLATION"
 
-    if [ -f "$SCRIPT_DIR/apps/apps.sh" ]; then
-        source "$SCRIPT_DIR/apps/apps.sh"
+    if [ -f "$SETUP_DIR/apps/apps.sh" ]; then
+        source "$SETUP_DIR/apps/apps.sh"
         install_all_apps
     fi
 }
@@ -209,8 +209,8 @@ install_applications() {
 install_fortivpn_module() {
     print_header "OPENFORTIVPN SERVICE SETUP"
 
-    if [ -f "$SCRIPT_DIR/tools/fortivpn.sh" ]; then
-        source "$SCRIPT_DIR/tools/fortivpn.sh"
+    if [ -f "$SETUP_DIR/tools/fortivpn.sh" ]; then
+        source "$SETUP_DIR/tools/fortivpn.sh"
         setup_fortivpn
     fi
 }
@@ -218,21 +218,21 @@ install_fortivpn_module() {
 install_shell_improvements() {
     print_header "SHELL IMPROVEMENTS INSTALLATION"
 
-    if [ -f "$SCRIPT_DIR/tools/shell.sh" ]; then
-        source "$SCRIPT_DIR/tools/shell.sh"
+    if [ -f "$SETUP_DIR/tools/shell.sh" ]; then
+        source "$SETUP_DIR/tools/shell.sh"
         setup_shell
     fi
 
     if confirm "Setup atuin server sync?"; then
-        [ -f "$SCRIPT_DIR/tools/shell.sh" ] && source "$SCRIPT_DIR/tools/shell.sh" && setup_atuin_server
+        [ -f "$SETUP_DIR/tools/shell.sh" ] && source "$SETUP_DIR/tools/shell.sh" && setup_atuin_server
     fi
 }
 
 install_fonts_module() {
     print_header "FONTS INSTALLATION"
 
-    if [ -f "$SCRIPT_DIR/apps/fonts.sh" ]; then
-        source "$SCRIPT_DIR/apps/fonts.sh"
+    if [ -f "$SETUP_DIR/apps/fonts.sh" ]; then
+        source "$SETUP_DIR/apps/fonts.sh"
         install_fonts
     fi
 }
@@ -240,25 +240,11 @@ install_fonts_module() {
 setup_dotfiles() {
     print_header "DOTFILES CONFIGURATION"
 
-    DOTFILES_DIR="$(cd "$SCRIPT_DIR/.." && pwd)"
+    DOTFILES_DIR="$(cd "$SETUP_DIR/.." && pwd)"
 
-    # Run main dotfiles install script
-    if [ -f "$DOTFILES_DIR/setup/install.sh" ]; then
-        print_step "Running dotfiles installer..."
-        (cd "$DOTFILES_DIR" && bash "$DOTFILES_DIR/setup/install.sh")
-    fi
-
-    # Setup VS Code configuration
-    if [ -d "$DOTFILES_DIR/vscode" ] && [ -f "$DOTFILES_DIR/vscode/install.sh" ]; then
-        print_step "Setting up VS Code configuration..."
-        bash "$DOTFILES_DIR/vscode/install.sh"
-    fi
-
-    # Setup shortcuts
-    if [ -d "$DOTFILES_DIR/shortcuts" ] && [ -f "$DOTFILES_DIR/shortcuts/install.sh" ]; then
-        print_step "Setting up custom shortcuts..."
-        bash "$DOTFILES_DIR/shortcuts/install.sh"
-    fi
+    # Apply tracked configuration links. Do not invoke this setup installer again.
+    print_step "Applying dotfile symlinks..."
+    make -C "$DOTFILES_DIR" apply
 
     print_success "Dotfiles configured"
 }
@@ -371,7 +357,7 @@ main() {
         minimal)
             install_essential
             if confirm "Configure Git?"; then
-                [ -f "$SCRIPT_DIR/tools/devops.sh" ] && source "$SCRIPT_DIR/tools/devops.sh" && setup_git
+                [ -f "$SETUP_DIR/tools/devops.sh" ] && source "$SETUP_DIR/tools/devops.sh" && setup_git
             fi
             ;;
         full)
@@ -381,8 +367,10 @@ main() {
             install_applications
             install_shell_improvements
             install_fonts_module
-            if confirm "Setup OpenFortiVPN as a systemd service?"; then
+            if [[ -n "${VPN_HOST:-}" && -n "${VPN_USER:-}" && -n "${VPN_PASS:-}" ]] && confirm "Setup OpenFortiVPN as a systemd service?"; then
                 install_fortivpn_module
+            else
+                print_warning "Skipping OpenFortiVPN: set VPN_HOST, VPN_USER, and VPN_PASS to configure it."
             fi
             if confirm "Setup dotfiles?"; then
                 setup_dotfiles
@@ -440,15 +428,17 @@ main() {
     echo "  • For VS Code extensions to work, you may need to reload VS Code"
     echo ""
     echo -e "${CYAN}Individual modules can be run separately:${NC}"
-    echo "  bash $SCRIPT_DIR/langs/node.sh"
-    echo "  bash $SCRIPT_DIR/langs/rust.sh"
-    echo "  bash $SCRIPT_DIR/tools/devops.sh"
-    echo "  bash $SCRIPT_DIR/tools/database.sh"
-    echo "  bash $SCRIPT_DIR/tools/editors.sh"
-    echo "  bash $SCRIPT_DIR/apps/gnome/install.sh"
+    echo "  bash $SETUP_DIR/langs/node.sh"
+    echo "  bash $SETUP_DIR/langs/rust.sh"
+    echo "  bash $SETUP_DIR/tools/devops.sh"
+    echo "  bash $SETUP_DIR/tools/database.sh"
+    echo "  bash $SETUP_DIR/tools/editors.sh"
+    echo "  bash $SETUP_DIR/apps/gnome/install.sh"
     echo "  ... etc"
     echo ""
     echo -e "${CYAN}Enjoy your new development environment!${NC}"
 }
 
-main "$@"
+if [[ "${BASH_SOURCE[0]}" == "$0" ]]; then
+    main "$@"
+fi

@@ -1,6 +1,7 @@
 # OS generated files
 .DS_Store
 .DS_Store?
+/.nvimlog
 ._*
 .Spotlight-V100
 .Trashes
@@ -33,3 +34,5 @@ cache/
 # Temporary files
 temp/
 tmp/
+.config/Code
+

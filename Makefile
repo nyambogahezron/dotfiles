@@ -7,14 +7,14 @@ STOW_FLAGS = -v -d $(CURDIR) -t $(HOME)
 help: ## Show this help menu
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-20s\033[0m %s\n", $$1, $$2}'
 
-install: ## Install dotfiles from the root installer
-	bash setup/install.sh
+install: ## Apply dotfiles (create symlinks)
+	$(MAKE) apply
 
 setup: ## Run the interactive setup installer
-	bash setup/main.sh
+	bash setup/install.sh
 
 install-all: ## Install the full development environment
-	bash setup/main.sh --full
+	bash setup/install.sh --full
 
 apply: ## Apply dotfiles (create symlinks)
 	stow $(STOW_FLAGS) $(STOW_IGNORE) .
@@ -44,16 +44,16 @@ diff: ## Show local changes in tracked files
 	git diff
 
 doctor: ## Run the dotfiles health check
-	~/.local/bin/dot-doctor
+	$(CURDIR)/local/dot-doctor
 
 maintenance: ## Run automated system maintenance and cleanup
-	~/.local/bin/dot-maintenance
+	$(CURDIR)/local/dot-maintenance
 
 test: ## Run focused repository tests
 	bash tests/setup-dry-run.sh
 
-stow-system: ## Symlink etc/ files to / with sudo stow (e.g. systemd units)
-	sudo stow -v -d $(CURDIR) -t / etc
+stow-system: ## Symlink etc/ files under /etc with sudo stow (e.g. systemd units)
+	sudo stow -v -d $(CURDIR) -t /etc etc
 
-unstow-system: ## Remove etc/ symlinks from / (undo stow-system)
-	sudo stow -D -v -d $(CURDIR) -t / etc
+unstow-system: ## Remove etc/ symlinks from /etc (undo stow-system)
+	sudo stow -D -v -d $(CURDIR) -t /etc etc

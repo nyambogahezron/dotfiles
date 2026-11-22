@@ -144,7 +144,13 @@ alias gstp='git stash pop'
 alias grb='git rebase'
 alias grbi='git rebase -i'
 alias gcom='git add . && git commit -m'
-alias lazyg='git add . && git commit -m "$1" && git push'
+lazyg() {
+    if [[ $# -eq 0 ]]; then
+        print -u2 'Usage: lazyg <commit message>'
+        return 2
+    fi
+    git add . && git commit -m "$*" && git push
+}
 command -v lazygit &>/dev/null && alias lg='lazygit'
 
 #  FZF Git (Elite)
@@ -179,7 +185,7 @@ alias python='python3'
 alias ipy='python3 -m IPython'
 
 #  Dotfiles
-alias dotfiles='cd ~/Projects/dotfiles'
+alias dotfiles='cd "$HOME/dotfiles"'
 alias sa='make apply'
 alias su='make update'
 alias reload='exec zsh && echo "✓ Shell reloaded"'

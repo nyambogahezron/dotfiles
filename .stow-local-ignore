@@ -19,6 +19,11 @@ _darcs
 ^/README.*
 ^/LICENSE.*
 ^/COPYING
+^/\.agents$
+^/\.aws$
+^/\.codex$
+^/\.nvimlog$
+^/system$
 setup/
 scripts
 Makefiles
