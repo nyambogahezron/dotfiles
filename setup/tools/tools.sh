@@ -18,6 +18,7 @@ install_essential_tools() {
         "stow"           # dotfiles symlink manager
         "unzip"
         "zip"
+        "rsync"          # used by dot-backup
         "jq"
         "xclip"
         "gnupg2"         # GPG (exports.zsh sets GPG_TTY)
@@ -84,14 +85,14 @@ install_lazygit() {
     print_header "LAZYGIT"
     if command_exists lazygit; then print_success "lazygit already installed"; return; fi
 
-    print_step "Installing lazygit..."
-    local version
-    version=$(curl -s https://api.github.com/repos/jesseduffield/lazygit/releases/latest \
-        | grep '"tag_name"' | sed 's/.*"v\([^"]*\)".*/\1/')
-    curl -sL "https://github.com/jesseduffield/lazygit/releases/download/v${version}/lazygit_${version}_Linux_x86_64.tar.gz" \
-        | tar -xz -C /tmp lazygit
-    sudo install /tmp/lazygit /usr/local/bin/lazygit
-    rm -f /tmp/lazygit
+    print_step "Installing lazygit from the OS package repository..."
+    case $OS in
+        ubuntu|debian|linuxmint|pop) install_package lazygit ;;
+        fedora) install_package lazygit ;;
+        arch|manjaro) install_package lazygit ;;
+        macos) brew install lazygit ;;
+        *) print_warning "Install lazygit with your OS package manager"; return ;;
+    esac
     command_exists lazygit && print_success "lazygit installed" || print_warning "lazygit install failed"
 }
 
@@ -100,7 +101,7 @@ install_lazydocker() {
     if command_exists lazydocker; then print_success "lazydocker already installed"; return; fi
 
     print_step "Installing lazydocker..."
-    curl -s https://raw.githubusercontent.com/jesseduffield/lazydocker/master/scripts/install_update_linux.sh | bash
+    curl -fsSL https://raw.githubusercontent.com/jesseduffield/lazydocker/master/scripts/install_update_linux.sh | bash
     command_exists lazydocker && print_success "lazydocker installed" || print_warning "lazydocker install failed"
 }
 
@@ -108,18 +109,19 @@ install_dust() {
     print_header "DUST (better du)"
     if command_exists dust; then print_success "dust already installed"; return; fi
 
-    print_step "Installing dust..."
-    if command_exists cargo; then
-        install_cargo_crates du-dust
-    else
-        local version
-        version=$(curl -s https://api.github.com/repos/bootandy/dust/releases/latest \
-            | grep '"tag_name"' | sed 's/.*"v\([^"]*\)".*/\1/')
-        curl -sL "https://github.com/bootandy/dust/releases/download/v${version}/dust-v${version}-x86_64-unknown-linux-musl.tar.gz" \
-            | tar -xz -C /tmp
-        sudo install "/tmp/dust-v${version}-x86_64-unknown-linux-musl/dust" /usr/local/bin/dust
-        command_exists dust && print_success "dust installed" || print_warning "dust install failed"
-    fi
+    print_step "Installing dust from the OS package repository..."
+    case $OS in
+        ubuntu|debian|linuxmint|pop) install_package du-dust ;;
+        fedora) install_package dust ;;
+        arch|manjaro) install_package dust ;;
+        macos) brew install dust ;;
+        *)
+            if command_exists cargo; then install_cargo_crates du-dust
+            else print_warning "Install Rust or use your OS package manager to install dust"; return
+            fi
+            ;;
+    esac
+    command_exists dust && print_success "dust installed" || print_warning "dust install failed"
 }
 
 install_yazi() {
@@ -130,33 +132,80 @@ install_yazi() {
     if command_exists cargo; then
         install_cargo_crates yazi-fm yazi-cli
     else
-        local version
-        version=$(curl -s https://api.github.com/repos/sxyazi/yazi/releases/latest \
-            | grep '"tag_name"' | sed 's/.*"v\([^"]*\)".*/\1/')
-        curl -sL "https://github.com/sxyazi/yazi/releases/download/v${version}/yazi-x86_64-unknown-linux-musl.zip" \
-            -o /tmp/yazi.zip
-        unzip -q /tmp/yazi.zip -d /tmp/yazi-pkg
-        sudo install /tmp/yazi-pkg/yazi-x86_64-unknown-linux-musl/yazi /usr/local/bin/yazi
-        rm -rf /tmp/yazi.zip /tmp/yazi-pkg
-        command_exists yazi && print_success "yazi installed" || print_warning "yazi install failed"
+        local release_url tag tmpdir archive yazi_bin ya_bin
+        if ! release_url="$(curl -fsSL -o /dev/null -w '%{url_effective}' https://github.com/sxyazi/yazi/releases/latest)"; then
+            print_warning "Could not resolve the latest Yazi release; install Rust/Cargo and retry."
+            return
+        fi
+        tag="${release_url##*/}"
+        if [[ -z "$tag" || "$tag" == latest ]]; then
+            print_warning "Could not determine the latest Yazi release; install Rust/Cargo and retry."
+            return
+        fi
+
+        tmpdir="$(mktemp -d)"
+        archive="$tmpdir/yazi.zip"
+        if ! curl -fL --retry 2 "https://github.com/sxyazi/yazi/releases/download/${tag}/yazi-x86_64-unknown-linux-musl.zip" -o "$archive"; then
+            rm -rf "$tmpdir"
+            print_warning "Could not download Yazi ${tag}; install Rust/Cargo and retry."
+            return
+        fi
+        if ! unzip -tq "$archive" >/dev/null; then
+            rm -rf "$tmpdir"
+            print_warning "The Yazi download was not a valid zip archive; no files were installed."
+            return
+        fi
+
+        unzip -q "$archive" -d "$tmpdir/unpacked"
+        yazi_bin="$(find "$tmpdir/unpacked" -type f -name yazi -print -quit)"
+        ya_bin="$(find "$tmpdir/unpacked" -type f -name ya -print -quit)"
+        if [[ -z "$yazi_bin" ]]; then
+            rm -rf "$tmpdir"
+            print_warning "Yazi archive did not contain the yazi executable."
+            return
+        fi
+        mkdir -p "$HOME/.local/bin"
+        install -m 755 "$yazi_bin" "$HOME/.local/bin/yazi"
+        if [[ -n "$ya_bin" ]]; then install -m 755 "$ya_bin" "$HOME/.local/bin/ya"; fi
+        rm -rf "$tmpdir"
+    fi
+    if command_exists yazi || [[ -x "$HOME/.local/bin/yazi" ]]; then
+        print_success "yazi installed"
+    else
+        print_warning "yazi install failed"
     fi
 }
 
 install_atuin() {
     print_header "ATUIN"
-    if command_exists atuin; then print_success "atuin already installed"; return; fi
+    if command_exists atuin || [ -x "$HOME/.atuin/bin/atuin" ]; then
+        export PATH="$HOME/.atuin/bin:$PATH"
+        print_success "atuin already installed"
+        return
+    fi
 
     print_step "Installing atuin..."
     curl -s https://raw.githubusercontent.com/atuinsh/atuin/main/install.sh | bash
-    command_exists atuin && print_success "atuin installed" || print_warning "atuin install failed"
+    if [ -x "$HOME/.atuin/bin/atuin" ]; then
+        export PATH="$HOME/.atuin/bin:$PATH"
+        print_success "atuin installed"
+    elif command_exists atuin; then
+        print_success "atuin installed"
+    else
+        print_warning "atuin install failed"
+    fi
 }
 
 install_zoxide() {
     print_header "ZOXIDE"
     if command_exists zoxide; then print_success "zoxide already installed"; return; fi
 
-    print_step "Installing zoxide..."
-    curl -sS https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | bash
+    print_step "Installing zoxide from the OS package repository..."
+    case $OS in
+        ubuntu|debian|linuxmint|pop|fedora|arch|manjaro) install_package zoxide ;;
+        macos) brew install zoxide ;;
+        *) print_warning "Install zoxide with your OS package manager"; return ;;
+    esac
     command_exists zoxide && print_success "zoxide installed" || print_warning "zoxide install failed"
 }
 
@@ -272,13 +321,17 @@ install_ngrok() {
 
 install_httpie() {
     print_header "HTTPIE"
+    if [[ "$OS" == ubuntu || "$OS" == debian || "$OS" == pop || "$OS" == linuxmint ]]; then
+        # Remove the legacy third-party source if a previous run created it.
+        if [[ -f /etc/apt/sources.list.d/httpie.list ]] && grep -q 'packages\.httpie\.io/debian' /etc/apt/sources.list.d/httpie.list; then
+            sudo rm -f /etc/apt/sources.list.d/httpie.list /usr/share/keyrings/httpie.gpg
+        fi
+    fi
     if command_exists http; then print_success "httpie already installed"; return; fi
     print_step "Installing httpie..."
     case $OS in
         ubuntu|debian|pop|linuxmint)
-            curl -SsL https://packages.httpie.io/rsa.pub | sudo gpg --dearmor -o /usr/share/keyrings/httpie.gpg
-            echo "deb [arch=amd64 signed-by=/usr/share/keyrings/httpie.gpg] https://packages.httpie.io/debian/ stable main" | sudo tee /etc/apt/sources.list.d/httpie.list
-            sudo apt update && sudo apt install -y httpie
+            install_package httpie
             ;;
         fedora) sudo dnf install -y httpie ;;
         arch|manjaro) sudo pacman -S --noconfirm httpie ;;
@@ -290,33 +343,38 @@ install_httpie() {
 
 install_mkcert() {
     print_header "MKCERT"
-    if command_exists mkcert; then print_success "mkcert already installed"; return; fi
+    if command_exists mkcert && mkcert -version >/dev/null 2>&1; then print_success "mkcert already installed"; return; fi
     print_step "Installing mkcert..."
     case $OS in
-        ubuntu|debian|pop|linuxmint) install_package "libnss3-tools" ;;
-        fedora) install_package "nss-tools" ;;
-        arch|manjaro) install_package "nss" ;;
+        ubuntu|debian|pop|linuxmint)
+            # Remove a truncated binary left by older downloads before installing the package.
+            if [[ -x /usr/local/bin/mkcert ]] && ! /usr/local/bin/mkcert -version >/dev/null 2>&1; then sudo rm -f /usr/local/bin/mkcert; fi
+            install_packages libnss3-tools mkcert
+            ;;
+        fedora) install_packages nss-tools mkcert ;;
+        arch|manjaro) install_packages nss mkcert ;;
+        macos) brew install mkcert nss ;;
+        *) print_warning "Install mkcert with your OS package manager"; return ;;
     esac
-
-    local version
-    version=$(curl -s https://api.github.com/repos/FiloSottile/mkcert/releases/latest | grep '"tag_name"' | sed 's/.*"v\([^"]*\)".*/\1/')
-    curl -sL "https://github.com/FiloSottile/mkcert/releases/download/v${version}/mkcert-v${version}-linux-amd64" -o /tmp/mkcert
-    sudo install /tmp/mkcert /usr/local/bin/mkcert
-    rm -f /tmp/mkcert
-    command_exists mkcert && print_success "mkcert installed" || print_warning "mkcert install failed"
+    mkcert -version >/dev/null 2>&1 && print_success "mkcert installed" || print_warning "mkcert install failed"
 }
 
 install_tealdeer() {
     print_header "TEALDEER (tldr)"
-    if command_exists tldr; then print_success "tealdeer (tldr) already installed"; return; fi
+    if command_exists tldr && tldr --version >/dev/null 2>&1; then print_success "tealdeer (tldr) already installed"; return; fi
     print_step "Installing tealdeer..."
-    curl -sL "https://github.com/dbrgn/tealdeer/releases/latest/download/tldr-linux-x86_64-musl" -o /tmp/tldr
-    sudo install /tmp/tldr /usr/local/bin/tldr
-    rm -f /tmp/tldr
+    if [[ -x /usr/local/bin/tldr ]] && ! /usr/local/bin/tldr --version >/dev/null 2>&1; then sudo rm -f /usr/local/bin/tldr; fi
+    case $OS in
+        ubuntu|debian|linuxmint|pop) install_package tealdeer ;;
+        fedora) install_package tealdeer ;;
+        arch|manjaro) install_package tealdeer ;;
+        macos) brew install tealdeer ;;
+        *) print_warning "Install tealdeer with your OS package manager"; return ;;
+    esac
 
-    if command_exists tldr; then
-        tldr --update
-        print_success "tealdeer installed and cache updated"
+    if command_exists tldr && tldr --version >/dev/null 2>&1; then
+        tldr --update || print_warning "Could not refresh the tldr cache"
+        print_success "tealdeer installed"
     else
         print_warning "tealdeer install failed"
     fi

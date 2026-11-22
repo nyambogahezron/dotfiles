@@ -53,3 +53,7 @@ export PATH="/home/junior/.local/bin:$PATH"
 # export TERMINAL=kitty
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+
+. "$HOME/.atuin/bin/env"
+
+. "$HOME/.local/share/../bin/env"
